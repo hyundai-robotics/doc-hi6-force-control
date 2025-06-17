@@ -9,7 +9,7 @@
 
 ## ✅ 힘 데이터 모니터링 
 
-![환경 설정 UI 화면](_assets/_13_fctrl_ctrl_panel_force_data.png)
+![환경 설정 UI 화면](../_assets/_13_fctrl_ctrl_panel_force_data.png)
 
 | 항목명       | 설명 |
 |--------------|------|
@@ -25,7 +25,7 @@
 
 ## ✅ 힘 모션 모니터링 
 
-![환경 설정 UI 화면](_assets/_14_fctrl_ctrl_panel_force_motion.png)
+![환경 설정 UI 화면](../_assets/_14_fctrl_ctrl_panel_force_motion.png)
 
 | 항목명       | 설명 |
 |--------------|------|
