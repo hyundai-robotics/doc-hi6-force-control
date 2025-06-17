@@ -93,5 +93,15 @@
 		"link": "4-monitoring/README.md",
 		"char_ofs": 13571,
 		"byte_ofs": 23176
+	},
+	{
+		"link": "4-monitoring/4.1-force_data_monitoring.md",
+		"char_ofs": 13655,
+		"byte_ofs": 23367
+	},
+	{
+		"link": "4-monitoring/4.2-force_motion_monitoring.md",
+		"char_ofs": 13904,
+		"byte_ofs": 23750
 	}
 ]

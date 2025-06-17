@@ -27,3 +27,5 @@
 
 ## 4. 모니터링
 * [4. 모니터링](4-monitoring/README.md)
+  * [4.1 힘 데이터 모니터링](4-monitoring/4.1-force_data_monitoring.md)
+  * [4.2 힘 모션 모니터링](4-monitoring/4.2-force_motion_monitoring.md)
