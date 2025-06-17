@@ -1,16 +1,18 @@
-﻿# 🧩 1. 개요
+﻿# 🧩 1. Introduction
 
-본 매뉴얼은 센서 기반 힘 제어 시스템의 사용 방법을 안내하기 위한 문서입니다.  
-본 시스템은 로봇에 장착된 힘/토크 센서를 활용하여 외력에 반응하는 제어를 수행하며,  
-보다 정밀하고 안전한 접촉 작업을 가능하게 합니다.
+This manual provides instructions for using the sensor-based force control system.  
+The system utilizes a force/torque sensor mounted on a robot to perform responsive control to external forces,  
+enabling precise and safe contact operations.
 
-본 매뉴얼에서는 다음과 같은 기능을 다룹니다
+## Features Covered
 
-- 센서 환경 설정 방법 
-- 힘 제어 조건 설정 항목 
-- 명령문 
-- 모니터링 구성 
-- 기본 예제
+- Sensor environment configuration  
+- Force control parameter setup  
+- Command structure  
+- Monitoring interface  
+- Basic usage examples
 
-이 문서는 사용자 또는 유지보수 엔지니어가  
-기능을 설정하고 동작 상태를 이해하는 데 필요한 모든 절차를 설명합니다.
+## Purpose
+
+This document is intended for end-users and maintenance engineers.  
+It describes all necessary procedures for configuring the system and understanding its operational status.

@@ -1,21 +1,22 @@
-﻿# 🧩 3. 힘 제어 명령어
+﻿# 🧩 3. Force Control Commands
 
-이 문서는 힘 제어  기능과 관련된 주요 명령어에 대한 설명을 제공합니다.  
-각 명령어는 힘 제어 설정, 동작 시작/종료, 나선형 모션 제어 등에 사용됩니다. 
+This section provides an overview of the main commands related to the force control feature.  
+Each command is used to configure force settings, start/stop control, and execute motions like spiral, bidirectional anc zig-zag movement.
 
 <br>
 
 ---
 
-## ✅ Force Control 명령어 목록
+## ✅ List of Force Control Commands
 
-| 명령어                | 설명                             | 인자 (Argument)      | 비고       |
-|------------------------|----------------------------------|------------------------|------------|
-| `fctrl on, cnd=`       | 힘 제어 시작 및 조건 적용         | `cnd=설정 번호`        | 제어 시작 시 필수 |
-| `fctrl control, cnd=`  | 제어 조건 변경                | `cnd=설정 번호`        | 실행 중 제어 조건만 변경 |
-| `fctrl off`            | 힘 제어 종료                      | 없음                   | - |
-| `fctrl spiral_on`      | 나선형 모션 시작                  | 없음                   | 설정된 나선형 모션 적용 |
-| `fctrl spiral_off`     | 나선형 모션 종료                  | 없음                   | 즉시 중지 |
-| `spiral_state`         | 나선형 모션 상태 확인             | 없음                   | - |
+| Command               | Description                              | Argument                | Note                     |
+|------------------------|------------------------------------------|--------------------------|--------------------------|
+| `fctrl on, cnd=`       | Start force control with given condition | `cnd=condition number`   | Required to start control |
+| `fctrl control, cnd=`  | Change control condition only            | `cnd=condition number`   | Changes only control set during operation |
+| `fctrl off`            | Stop force control                       | None                     | -                        |
+| `fctrl motion_on`      | Start raster motion                      | None                     | Uses preset raster motion |
+| `fctrl motion_off`     | Stop raster motion                       | None                     | Stops immediately        |
+| `motion_state()`         | Check raster motion status               | None                     | -                        |
+| `contact_state()`         | Check contact status               | None                     | -                        |
 
 <br>
