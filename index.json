@@ -66,42 +66,42 @@
 	},
 	{
 		"link": "3-roblang/README.md",
-		"char_ofs": 16672,
-		"byte_ofs": 17436
+		"char_ofs": 16703,
+		"byte_ofs": 17469
 	},
 	{
 		"link": "3-roblang/3.1-example_2-axis_directional_force_control.md",
-		"char_ofs": 18125,
-		"byte_ofs": 18918
+		"char_ofs": 18156,
+		"byte_ofs": 18951
 	},
 	{
 		"link": "3-roblang/3.2-example_change_control_settings.md",
-		"char_ofs": 19305,
-		"byte_ofs": 20149
+		"char_ofs": 19336,
+		"byte_ofs": 20182
 	},
 	{
 		"link": "3-roblang/3.3-example_motion_contact.md",
-		"char_ofs": 20385,
-		"byte_ofs": 21269
+		"char_ofs": 20416,
+		"byte_ofs": 21302
 	},
 	{
 		"link": "3-roblang/3.4-example_motion_spiral.md",
-		"char_ofs": 21451,
-		"byte_ofs": 22380
+		"char_ofs": 21482,
+		"byte_ofs": 22413
 	},
 	{
 		"link": "4-monitoring/README.md",
-		"char_ofs": 22516,
-		"byte_ofs": 23494
+		"char_ofs": 22547,
+		"byte_ofs": 23527
 	},
 	{
 		"link": "4-monitoring/4.1-force_data_monitoring.md",
-		"char_ofs": 22675,
-		"byte_ofs": 23662
+		"char_ofs": 22706,
+		"byte_ofs": 23695
 	},
 	{
 		"link": "4-monitoring/4.2-force_motion_monitoring.md",
-		"char_ofs": 23041,
-		"byte_ofs": 24047
+		"char_ofs": 23072,
+		"byte_ofs": 24080
 	}
 ]

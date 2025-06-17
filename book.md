@@ -380,7 +380,7 @@ Contact is considered established when **all** the following conditions are sati
 
 📌 To use the **Surface Contact Detection** function properly,  
 the coordinate system must be set to **Tool** coordinate frame.
-## 🧩 2.4.3 Force Control Condition – Motion
+## 🧩 2.4.4.2 Force Control Condition – Motion – Auto Trajectory Generation
 
 Motion control conditions can be configured to run in conjunction with force control operations.
 
