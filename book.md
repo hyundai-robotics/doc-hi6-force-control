@@ -1,4 +1,4 @@
-﻿# Hi6 Robot Controller – Force Control with sensors Manual
+﻿# ${cont_model} Robot Controller – Force Control with sensors Manual
 
 The information provided in this manual is the intellectual property of HD Hyundai Robotics.
 
@@ -121,7 +121,17 @@ Configure the **communication protocol** supported by the selected sensor.
 
 ---
 
-### ✅ **SCI Protocol: Robotiq (FT-300S)**
+### ✅ **UDP 통신 방식 : ATI(Delta-SI-660-60)**
+![](../_assets/_18_fctrl_env_setting_ATI_udp.png)
+
+- The IP address and remote port number may vary depending on the ATI sensor model. Please verify before entering the values.
+
+- **Delta-SI-660-60** model
+  - IP Address: 192.168.1.2  
+  - Remote Port: 49152
+---
+
+### ✅ **SCI 통신 방식 : Robotiq(FT-300S)**
 
 ![](../_assets/_02_fctrl_env_setting_sci.png)
 

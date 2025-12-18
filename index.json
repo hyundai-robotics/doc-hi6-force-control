@@ -6,102 +6,102 @@
 	},
 	{
 		"link": "1-intro/README.md",
-		"char_ofs": 518,
-		"byte_ofs": 536
+		"char_ofs": 528,
+		"byte_ofs": 546
 	},
 	{
 		"link": "2-settings/README.md",
-		"char_ofs": 1135,
-		"byte_ofs": 1175
+		"char_ofs": 1145,
+		"byte_ofs": 1185
 	},
 	{
 		"link": "2-settings/2.1-force_sensor_coordinate_system.md",
-		"char_ofs": 1519,
-		"byte_ofs": 1573
+		"char_ofs": 1529,
+		"byte_ofs": 1583
 	},
 	{
 		"link": "2-settings/2.2-force_control_environment_settings.md",
-		"char_ofs": 2623,
-		"byte_ofs": 2723
+		"char_ofs": 2633,
+		"byte_ofs": 2733
 	},
 	{
 		"link": "2-settings/2.3-tool_information_settings_for_force_control.md",
-		"char_ofs": 4279,
-		"byte_ofs": 4506
+		"char_ofs": 4593,
+		"byte_ofs": 4848
 	},
 	{
 		"link": "2-settings/2.4-force_control_condition_settings.md",
-		"char_ofs": 5280,
-		"byte_ofs": 5554
+		"char_ofs": 5594,
+		"byte_ofs": 5896
 	},
 	{
 		"link": "2-settings/2.4.1-condition_setting_basic.md",
-		"char_ofs": 5781,
-		"byte_ofs": 6086
+		"char_ofs": 6095,
+		"byte_ofs": 6428
 	},
 	{
 		"link": "2-settings/2.4.2-condition_setting_control.md",
-		"char_ofs": 7850,
-		"byte_ofs": 8256
+		"char_ofs": 8164,
+		"byte_ofs": 8598
 	},
 	{
 		"link": "2-settings/2.4.3-condition_setting_filtering.md",
-		"char_ofs": 9806,
-		"byte_ofs": 10301
+		"char_ofs": 10120,
+		"byte_ofs": 10643
 	},
 	{
 		"link": "2-settings/2.4.4-condition_setting_motion.md",
-		"char_ofs": 12779,
-		"byte_ofs": 13386
+		"char_ofs": 13093,
+		"byte_ofs": 13728
 	},
 	{
 		"link": "2-settings/2.4.4.1-condition_setting_motion_contact.md",
-		"char_ofs": 13219,
-		"byte_ofs": 13840
+		"char_ofs": 13533,
+		"byte_ofs": 14182
 	},
 	{
 		"link": "2-settings/2.4.4.2-condition_setting_motion_raster.md",
-		"char_ofs": 14541,
-		"byte_ofs": 15217
+		"char_ofs": 14855,
+		"byte_ofs": 15559
 	},
 	{
 		"link": "3-roblang/README.md",
-		"char_ofs": 16703,
-		"byte_ofs": 17469
+		"char_ofs": 17017,
+		"byte_ofs": 17811
 	},
 	{
 		"link": "3-roblang/3.1-example_2-axis_directional_force_control.md",
-		"char_ofs": 18156,
-		"byte_ofs": 18951
+		"char_ofs": 18470,
+		"byte_ofs": 19293
 	},
 	{
 		"link": "3-roblang/3.2-example_change_control_settings.md",
-		"char_ofs": 19336,
-		"byte_ofs": 20182
+		"char_ofs": 19650,
+		"byte_ofs": 20524
 	},
 	{
 		"link": "3-roblang/3.3-example_motion_contact.md",
-		"char_ofs": 20416,
-		"byte_ofs": 21302
+		"char_ofs": 20730,
+		"byte_ofs": 21644
 	},
 	{
 		"link": "3-roblang/3.4-example_motion_spiral.md",
-		"char_ofs": 21482,
-		"byte_ofs": 22413
+		"char_ofs": 21796,
+		"byte_ofs": 22755
 	},
 	{
 		"link": "4-monitoring/README.md",
-		"char_ofs": 22547,
-		"byte_ofs": 23527
+		"char_ofs": 22861,
+		"byte_ofs": 23869
 	},
 	{
 		"link": "4-monitoring/4.1-force_data_monitoring.md",
-		"char_ofs": 22706,
-		"byte_ofs": 23695
+		"char_ofs": 23020,
+		"byte_ofs": 24037
 	},
 	{
 		"link": "4-monitoring/4.2-force_motion_monitoring.md",
-		"char_ofs": 23072,
-		"byte_ofs": 24080
+		"char_ofs": 23386,
+		"byte_ofs": 24422
 	}
 ]

@@ -1,4 +1,4 @@
-﻿# Hi6 Robot Controller – Force Control with sensors Manual
+﻿# ${cont_model} Robot Controller – Force Control with sensors Manual
 
 The information provided in this manual is the intellectual property of HD Hyundai Robotics.
 

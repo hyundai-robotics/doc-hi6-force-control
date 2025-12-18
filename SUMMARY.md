@@ -1,6 +1,6 @@
 ﻿# Table of Contents
 
-* [Hi6 Robot Controller Manual – Sensor-Based Force Control](README.md)
+* [${cont_model} Robot Controller Manual – Sensor-Based Force Control](README.md)
 
 ## 1. Overview
 * [1. Overview](1-intro/README.md)
