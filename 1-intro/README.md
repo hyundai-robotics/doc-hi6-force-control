@@ -16,3 +16,5 @@ enabling precise and safe contact operations.
 
 This document is intended for end-users and maintenance engineers.  
 It describes all necessary procedures for configuring the system and understanding its operational status.
+
+This feature is available from version V60.32-01 and requires a separate functional license.
