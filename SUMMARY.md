@@ -29,3 +29,6 @@
 * [4. 모니터링](4-monitoring/README.md)
   * [4.1 힘 데이터 모니터링](4-monitoring/4.1-force_data_monitoring.md)
   * [4.2 힘 모션 모니터링](4-monitoring/4.2-force_motion_monitoring.md)
+
+## 5. 에러 및 트러블슈팅 
+* [5. 에러 목록 및 대응 방법](5-error/README.md)
