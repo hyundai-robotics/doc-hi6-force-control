@@ -18,5 +18,6 @@ Each command is used to configure force settings, start/stop control, and execut
 | `fctrl motion_off`     | Stop raster motion                       | None                     | Stops immediately        |
 | `motion_state()`         | Check raster motion status               | None                     | -                        |
 | `contact_state()`         | Check contact status               | None                     | -                        |
+| `cfo(crd, type)` | Retrieves current FT sensor data | `crd`: coordinate frame defined in cnd<br>`type`: must be `"sensor"` | If the coordinate frame does not match the one configured in cnd, values will not update. The type parameter must be `"sensor"` to acquire FT sensor data. |
 
 <br>
