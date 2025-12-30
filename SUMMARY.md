@@ -29,3 +29,6 @@
 * [4. Monitoring](4-monitoring/README.md)
   * [4.1 Force Data Monitoring](4-monitoring/4.1-force_data_monitoring.md)
   * [4.2 Force Motion Monitoring](4-monitoring/4.2-force_motion_monitoring.md)
+
+## 5. Errors & Troubleshooting
+* [5. Error List and Recovery Actions](5-error/README.md)
