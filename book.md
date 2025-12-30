@@ -26,7 +26,9 @@ enabling precise and safe contact operations.
 ## Purpose
 
 This document is intended for end-users and maintenance engineers.  
-It describes all necessary procedures for configuring the system and understanding its operational status.# 🧩 2. Configuration
+It describes all necessary procedures for configuring the system and understanding its operational status.
+
+This feature is available from version V60.32-01 and requires a separate functional license.# 🧩 2. Configuration
 
 To use the sensor-based force control functionality, the following basic components must be configured first.  
 These settings are entered through the user interface (UI) and serve as the foundation for all control features.
@@ -168,6 +170,8 @@ Access the tool data settings via:
 | **Sensor coordinate** | Sensor coordinate system direction (refer to the image on the right in the UI) |
 
 > 💡 Up to 10 tool data entries can be configured.
+
+> 💡 The sensor-based load estimation function available on Hi5a is not supported on this system.
 ## 🧩 2.4 Force Control Condition Settings
 
 To use the force control function effectively, it is essential to configure the control conditions properly based on the task requirements,  
@@ -479,6 +483,7 @@ Each command is used to configure force settings, start/stop control, and execut
 | `fctrl motion_off`     | Stop raster motion                       | None                     | Stops immediately        |
 | `motion_state()`         | Check raster motion status               | None                     | -                        |
 | `contact_state()`         | Check contact status               | None                     | -                        |
+| `cfo(crd, type)` | Retrieves current FT sensor data | `crd`: coordinate frame defined in cnd<br>`type`: must be `"sensor"` | If the coordinate frame does not match the one configured in cnd, values will not update. The type parameter must be `"sensor"` to acquire FT sensor data. |
 
 <br>
 ## 🧩 3.1 Example: Z-Axis Force Control
@@ -622,21 +627,69 @@ While the sensor-based force control function is active,
 users can monitor the following status information in real-time through the UI.
 ## 🧩 4.1 Force Data Monitoring
 
+This function allows you to monitor the external force applied to the robot in real time.  
+It is essential to check this information when using the Force Control function.
+
+---
+
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
 
 | Item         | Description |
 |--------------|-------------|
-| **Cartesian** | External force (N or Nm) |
+| **Cartesian** | External force (N or Nm) displayed in the selected coordinate system |
 | **Joint**     | Not used in force control |
 
-> ⚠️ The coordinate system of the `Cartesian` external force follows the one selected in the force control condition (`cnd`).
+> ⚠️ The coordinate system of the `Cartesian` external force follows the coordinate frame defined in the force control condition (`cnd`).
+
+> ⚠️ Data is updated **only when force control (fctrl) is active**.
+
+### TP Navigation Path
+
+**[Operation]** → **[Select]** → **[Force Data Monitoring]**
 ## 🧩 4.2 Force Motion Monitoring
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
 
-| Item        | Description |
-|-------------|-------------|
-| **Fext**     | Force error (difference between target force and external force) [N or Nm] |
-| **Cmd**      | Command position for force control (mm or deg) |
+| Item  | Description |
+|-------|-------------|
+| **Fext** | Force error (difference between target force and external force) [N or Nm] |
+| **Cmd**  | Command position for force control (mm or deg) |
 
-> ⚠️ The coordinate system for `Fext` and `Cmd` follows the one selected in the force control condition (`cnd`).
+> ⚠️ The coordinate system for `Fext` and `Cmd` follows the coordinate frame defined in the force control condition (`cnd`).
+
+> ⚠️ This data is updated **only when force control (fctrl) is ON**.
+
+### TP Navigation Path
+
+**[Operation]** → **[Select]** → **[Force Motion Monitoring]**
+# 🧩 5. Errors & Troubleshooting
+
+During force control operation with an external FT sensor,  
+the user can monitor the **status and exception events** in real time via the UI.
+
+---
+
+## Force Control Exception Events & Corrective Actions
+
+| Error Code | Primary Cause | Guide |
+|:--:|---|---|
+| E0260 | Force control disabled | Enable force control in the configuration |
+| E0353 | Invalid force control tool number | Configure a valid tool number for force control |
+| E1336 | Invalid user coordinate frame number | Configure or add a valid user coordinate frame |
+| E0259 | FT sensor communication issue | Check sensor and cable connections |
+| E0272 | Unsupported FT sensor | Contact customer support (sensor interface required) |
+| E0273 | FT sensor communication issue | Check sensor and cable connections |
+| E0274 | FT sensor communication issue | Check sensor and cable connections |
+
+> In all exception cases, the system performs a **temporary Safe-Stop** operation as the highest priority.
+
+---
+
+## Troubleshooting Workflow
+
+1. Check the FT sensor connection  
+2. Verify the tool number and coordinate frame  
+3. Confirm whether the sensor is supported  
+4. Review and back up logs  
+
+---
