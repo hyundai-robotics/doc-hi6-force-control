@@ -18,5 +18,6 @@
 | `fctrl motion_off`     | 레스터 모션 종료                  | 없음                   | 즉시 중지 |
 | `motion_state`         | 레스터 모션 상태 확인             | 없음                   | - |
 | `contact_state`         | 접촉면 상태 확인             | 없음                   | - |
+| `cfo(crd,type)`         | 현재 FT 센서 값 수신             | `crd=cnd에서 설정한 좌표계`, `type="sensor"`                     | cnd에서 설정한 좌표계와 crd값이 동일 하지 않으면 cfo값은 update되지 않고, FT센서 값을 수신하기 위해서는 type은 무조건 "sensor"로 설정 |
 
 <br>
