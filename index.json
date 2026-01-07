@@ -26,87 +26,87 @@
 	},
 	{
 		"link": "2-settings/2.3-tool_information_settings_for_force_control.md",
-		"char_ofs": 2601,
-		"byte_ofs": 4914
+		"char_ofs": 3277,
+		"byte_ofs": 5883
 	},
 	{
 		"link": "2-settings/2.4-force_control_condition_settings.md",
-		"char_ofs": 3212,
-		"byte_ofs": 6012
+		"char_ofs": 3888,
+		"byte_ofs": 6981
 	},
 	{
 		"link": "2-settings/2.4.1-condition_setting_basic.md",
-		"char_ofs": 3451,
-		"byte_ofs": 6550
+		"char_ofs": 4127,
+		"byte_ofs": 7519
 	},
 	{
 		"link": "2-settings/2.4.2-condition_setting_control.md",
-		"char_ofs": 4795,
-		"byte_ofs": 8908
+		"char_ofs": 5471,
+		"byte_ofs": 9877
 	},
 	{
 		"link": "2-settings/2.4.3-condition_setting_filtering.md",
-		"char_ofs": 5959,
-		"byte_ofs": 10786
+		"char_ofs": 6635,
+		"byte_ofs": 11755
 	},
 	{
 		"link": "2-settings/2.4.4-condition_setting_motion.md",
-		"char_ofs": 7788,
-		"byte_ofs": 13982
+		"char_ofs": 8464,
+		"byte_ofs": 14951
 	},
 	{
 		"link": "2-settings/2.4.4.1-condition_setting_motion_contact.md",
-		"char_ofs": 8001,
-		"byte_ofs": 14455
+		"char_ofs": 8677,
+		"byte_ofs": 15424
 	},
 	{
 		"link": "2-settings/2.4.4.2-condition_setting_motion_raster.md",
-		"char_ofs": 8796,
-		"byte_ofs": 15768
+		"char_ofs": 9472,
+		"byte_ofs": 16737
 	},
 	{
 		"link": "3-roblang/README.md",
-		"char_ofs": 10212,
-		"byte_ofs": 17910
+		"char_ofs": 10888,
+		"byte_ofs": 18879
 	},
 	{
 		"link": "3-roblang/3.1-example_2-axis_directional_force_control.md",
-		"char_ofs": 11367,
-		"byte_ofs": 19569
+		"char_ofs": 12043,
+		"byte_ofs": 20538
 	},
 	{
 		"link": "3-roblang/3.2-example_change_control_settings.md",
-		"char_ofs": 12147,
-		"byte_ofs": 20880
+		"char_ofs": 12823,
+		"byte_ofs": 21849
 	},
 	{
 		"link": "3-roblang/3.3-example_motion_contact.md",
-		"char_ofs": 12795,
-		"byte_ofs": 21937
+		"char_ofs": 13471,
+		"byte_ofs": 22906
 	},
 	{
 		"link": "3-roblang/3.4-example_motion_spiral.md",
-		"char_ofs": 13498,
-		"byte_ofs": 23011
+		"char_ofs": 14174,
+		"byte_ofs": 23980
 	},
 	{
 		"link": "4-monitoring/README.md",
-		"char_ofs": 14205,
-		"byte_ofs": 24154
+		"char_ofs": 14881,
+		"byte_ofs": 25123
 	},
 	{
 		"link": "4-monitoring/4.1-force_data_monitoring.md",
-		"char_ofs": 14289,
-		"byte_ofs": 24345
+		"char_ofs": 14965,
+		"byte_ofs": 25314
 	},
 	{
 		"link": "4-monitoring/4.2-force_motion_monitoring.md",
-		"char_ofs": 14717,
-		"byte_ofs": 25087
+		"char_ofs": 15393,
+		"byte_ofs": 26056
 	},
 	{
 		"link": "5-error/README.md",
-		"char_ofs": 15075,
-		"byte_ofs": 25661
+		"char_ofs": 15751,
+		"byte_ofs": 26630
 	}
 ]
