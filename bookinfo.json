@@ -1,11 +1,12 @@
 {
     "langCode": "en",
-    "series": "Hyundai Robot Hi6 Controller",
-    "title": "Force Control with Sensors",
+    "series": "${cont_model} Controller",
+    "title": "Function Manual - Force Control with Sensors",
     "publisher": "HD Hyundai Robotics",
     "tocTitle": "Table of Contents",
     "tocTitleElements": "[ \"h1\", \"h2\" ]",
-    "variables": {
-        "cont_model": "Hi6"
-    }
+    "docId": "${cont_model:upper}FORCECTRL_EN_001",
+    "references": [
+        { "rpath" : "doc-hi6-operation/en-tp630" }
+    ]
 }
