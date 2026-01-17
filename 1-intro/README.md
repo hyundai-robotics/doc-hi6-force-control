@@ -1,4 +1,4 @@
-﻿# 🧩 1. Introduction
+﻿# 1. Introduction
 
 This manual provides instructions for using the sensor-based force control system.  
 The system utilizes a force/torque sensor mounted on a robot to perform responsive control to external forces,  

@@ -1,4 +1,4 @@
-﻿# 🧩 5. Errors & Troubleshooting
+﻿# 5. Errors & Troubleshooting
 
 During force control operation with an external FT sensor,  
 the user can monitor the **status and exception events** in real time via the UI.

@@ -1,4 +1,4 @@
-﻿# 🧩 3. Force Control Commands
+﻿# 3. Force Control Commands
 
 This section provides an overview of the main commands related to the force control feature.  
 Each command is used to configure force settings, start/stop control, and execute motions like spiral, bidirectional anc zig-zag movement.
@@ -7,7 +7,7 @@ Each command is used to configure force settings, start/stop control, and execut
 
 ---
 
-## ✅ List of Force Control Commands
+## List of Force Control Commands
 
 | Command               | Description                              | Argument                | Note                     |
 |------------------------|------------------------------------------|--------------------------|--------------------------|
