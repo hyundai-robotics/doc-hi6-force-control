@@ -68,7 +68,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 
 ---
 
-[__SOURCE](2-settings/2-force_control-environment-settings.md)
+[__SOURCE](2-settings/2-force-control-environment-settings.md)
 ## 2.2 힘 제어 환경 설정
 
 센서 기반 힘 제어 기능을 사용하기 위해 아래의 주요 항목들을 설정해야 합니다.  
@@ -570,7 +570,7 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 
 <br>
 
-[__SOURCE](3-roblang/1-example-2-axis_directional_force_control.md)
+[__SOURCE](3-roblang/1-example-2-axis-directional-force-control.md)
 ## 3.1 예제: Z축 방향 힘 제어 
 
 다음은 로봇에서 **센서 기반 힘 제어 기능**을 사용하는 Job 프로그램 예시입니다.  
@@ -612,7 +612,7 @@ if abs(force.z) < 35 then *get_current_force
 delay 5                             # 외력 안정화 대기
 fctrl off                           # 힘 제어 종료
                             
-[__SOURCE](3-roblang/2-example-change_control_settings.md)
+[__SOURCE](3-roblang/2-example-change-control-settings.md)
 ## 3.2 예제: 제어 설정 변경 
 
 다음은 로봇에서 **힘 제어 조건 중 '제어(Control)' 항목만 변경**하는 Job 프로그램 예제입니다.  
@@ -646,7 +646,7 @@ fctrl control,cnd=1                # 힘 제어 설정(제어) 변경 (설정 �
 delay 5                             # 외력 안정화 대기
 fctrl off                           # 힘 제어 종료
 
-[__SOURCE](3-roblang/3-example-motion_contact.md)
+[__SOURCE](3-roblang/3-example-motion-contact.md)
 ## 3.3 예제: 접촉면 판단 기능 
 
 다음은 로봇에서 **접촉면 판단 기능**을 사용하는 Job 프로그램 예시입니다.  
@@ -684,7 +684,7 @@ wait contact_state()                 # 접촉면 판단 조건 실행, 접촉면
 fctrl off                            # 힘 제어 종료
 
 
-[__SOURCE](3-roblang/4-example-motion_spiral.md)
+[__SOURCE](3-roblang/4-example-motion-spiral.md)
 ## 3.4 예제: 나선형 모션 
 
 다음은 로봇에서 **나선형 모션**을 사용하는 Job 프로그램 예시입니다.  
@@ -725,7 +725,7 @@ fctrl off                            # 힘 제어 종료
 센서 기반 힘 제어 기능이 동작 중일 때,  
 사용자는 UI를 통해 다음과 같은 상태 정보를 실시간으로 확인할 수 있습니다.
 
-[__SOURCE](4-monitoring/1-force_data_monitoring.md)
+[__SOURCE](4-monitoring/1-force-data-monitoring.md)
 ## 4.1 힘 데이터 모니터링
 
 작업 중 로봇에 가해지는 외력을 실시간으로 확인할 수 있는 기능입니다.  
@@ -748,7 +748,7 @@ fctrl off                            # 힘 제어 종료
 **[창조정]** → **[선택]** → **[힘 데이터 모니터링]**
 
 
-[__SOURCE](4-monitoring/2-force_motion_monitoring.md)
+[__SOURCE](4-monitoring/2-force-motion-monitoring.md)
 ## 4.2 힘 모션 모니터링
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
