@@ -31,7 +31,7 @@
 - 힘 제어 환경 구성
 - 힘 제어 툴 정보  
 - 힘 제어 조건  
-[__SOURCE](2-settings/2.1-force_sensor_coordinate_system.md)
+[__SOURCE](2-settings/1-force-sensor-coordinate-system.md)
 ## 2.1 힘 센서 좌표계 
 
 FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일치하도록 설정해야 합니다. 
@@ -68,7 +68,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 
 ---
 
-[__SOURCE](2-settings/2.2-force_control_environment_settings.md)
+[__SOURCE](2-settings/2-force_control-environment-settings.md)
 ## 2.2 힘 제어 환경 설정
 
 센서 기반 힘 제어 기능을 사용하기 위해 아래의 주요 항목들을 설정해야 합니다.  
@@ -188,7 +188,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 >  
 > 👉 적용 전 모델별 매뉴얼 확인을 권장합니다.
 
-[__SOURCE](2-settings/2.3-tool_information_settings_for_force_control.md)
+[__SOURCE](2-settings/3-tool-information-settings-for-force-control.md)
 ## 2.3 힘 제어 툴 정보
 
 로봇에 장착된 툴의 물리적 특성을 입력하여, 힘 제어 알고리즘의 정확도를 향상시킵니다.  
@@ -216,7 +216,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 > 💡 툴 정보는 최대 10개 까지 설정 가능 합니다. 
 
 > 💡 Hi5a에 제공된 센서기반부하추정 기능은 미지원 
-[__SOURCE](2-settings/2.4-force_control_condition_settings.md)
+[__SOURCE](2-settings/4-condition-settings/README.md)
 ## 2.4 힘 제어 조건 설정
 
 힘 제어 기능을 사용하기 위해서는 작업 조건에 맞는 제어 조건(목표 힘, 제어 방향, 민감도 등)을 정확하게 설정해야 합니다.  
@@ -228,8 +228,8 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 📂 시스템 → ⚙️ 4: 응용파라미터 → 💪 17: 힘제어 → 🎛 4: 조건 설정 
 
 
-[__SOURCE](2-settings/2.4.1-condition_setting_basic.md)
-## 2.4.1 힘 제어 조건 설정-기본
+[__SOURCE](2-settings/4-condition-settings/1-basic.md)
+### 2.4.1 힘 제어 조건 설정-기본
 
 작업에 따라 제어할 축을 선택하고, 축별로 힘 목표값, 강성(Stiffness), 속도, 위치 제한(Pose limit)을 설정합니다.  
 이 항목은 힘 제어의 핵심이며, 실제 로봇 동작의 반응성을 결정합니다.
@@ -243,7 +243,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 
 <br> 
 
-### **기본(Default) 설정 항목**
+#### **기본(Default) 설정 항목**
 
 | 항목             | 설명 |
 |------------------|------|
@@ -264,7 +264,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 
 <br> 
 
-### 기본 항목 설정 예시
+#### 기본 항목 설정 예시
 
 > 예: `Sanding 작업용 조건`
 >
@@ -275,8 +275,8 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 > - **영점 기능(Zeros)**: `ON` (힘 제어 동작 시 0으로 초기화된 센서 데이터값 사용)  
 
 ---
-[__SOURCE](2-settings/2.4.2-condition_setting_control.md)
-## 2.4.2 힘 제어 조건 설정-제어
+[__SOURCE](2-settings/4-condition-settings/2-control.md)
+### 2.4.2 힘 제어 조건 설정-제어
 
 힘 제어 축을 선택하고, 방향별 힘 목표값, 강성(Stiffness), 속도 및 위치 제한값을 설정합니다. 
 
@@ -289,7 +289,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 ![](../_assets/_07_fctrl_ctrl_cnd_control.png)
 
 
-### **제어(Control) 설정 항목**
+#### **제어(Control) 설정 항목**
 
 | 항목       | 설명 |
 |------------|------|
@@ -303,7 +303,7 @@ FT 센서를 장착할 때, 센서 좌표계는 반드시 로봇 모델과 일�
 ---
 
 
-### 예시 설정 해석
+#### 예시 설정 해석
 
 <br> 
 
@@ -326,8 +326,8 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 
 
 > ⚠️ 강성 비율을 낮으면 유연한 반응을 얻지만, 로봇 응답과 환경에 따라 진동과 소음을 유발 할 수 있습니다.
-[__SOURCE](2-settings/2.4.3-condition_setting_filtering.md)
-## 2.4.3 힘 제어 조건 설정-필터링
+[__SOURCE](2-settings/4-condition-settings/3-filtering.md)
+### 2.4.3 힘 제어 조건 설정-필터링
 
 힘 센서의 노이즈를 줄이고, 입력값을 안정적으로 제어에 사용할 수 있도록 하기 위한 필터링 기능을 제공합니다.
 
@@ -416,8 +416,8 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 
 📎 **필터링**, **스케일링**, **명령 흐름** 설정은 모두 함께 작용하므로, 작업 목적에 따라 **통합적으로 튜닝**해야 합니다.
 
-[__SOURCE](2-settings/2.4.4-condition_setting_motion.md)
-## 2.4.4 힘 제어 조건 설정-모션   
+[__SOURCE](2-settings/4-condition-settings/4-motion/README.md)
+### 2.4.4 힘 제어 조건 설정-모션   
 
 힘 제어 동작 시 함께 수행할 모션 제어 조건을 설정할 수 있습니다.  
 
@@ -425,8 +425,8 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 
 **move 명령어**를 사용하지 않고 **나선형/양방향/지그재그** 경로와 궤적을 자동으로 생성하여 작업이 용이하게 가능하도록 합니다. 
 
-[__SOURCE](2-settings/2.4.4.1-condition_setting_motion_contact.md)
-## 2.4.4.1 힘 제어 조건 설정-모션-접촉면 판단    
+[__SOURCE](2-settings/4-condition-settings/4-motion/1-contact.md)
+#### 2.4.4.1 힘 제어 조건 설정-모션-접촉면 판단    
 
 힘 제어 동작(`툴 Z 방향`) 시 로봇이 표면에 제대로 접촉 했는지를 실시간으로 판단하는 기능
 
@@ -468,8 +468,8 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 <br>
 
 📌 `접촉면 판단 기준` 기능을 올바르게 사용하기 위해서는, 선택된 좌표계가 **툴 좌표계** 기준으로 설정되어야 한다.   
-[__SOURCE](2-settings/2.4.4.2-condition_setting_motion_raster.md)
-## 2.4.4.2 힘 제어 조건 설정-모션-자동 경로 생성  
+[__SOURCE](2-settings/4-condition-settings/4-motion/2-raster.md)
+#### 2.4.4.2 힘 제어 조건 설정-모션-자동 경로 생성  
 
 힘 제어 동작 시 함께 수행할 모션 제어 조건을 설정할 수 있습니다.  
 
@@ -555,7 +555,7 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 
 ---
 
-## Force Control 명령어 목록
+### Force Control 명령어 목록
 
 | 명령어                | 설명                             | 인자 (Argument)      | 비고       |
 |------------------------|----------------------------------|------------------------|------------|
@@ -570,7 +570,7 @@ Gain이 낮을수록 더 유연한 반응을 얻을 수 있습니다.
 
 <br>
 
-[__SOURCE](3-roblang/3.1-example_2-axis_directional_force_control.md)
+[__SOURCE](3-roblang/1-example-2-axis_directional_force_control.md)
 ## 3.1 예제: Z축 방향 힘 제어 
 
 다음은 로봇에서 **센서 기반 힘 제어 기능**을 사용하는 Job 프로그램 예시입니다.  
@@ -612,7 +612,7 @@ if abs(force.z) < 35 then *get_current_force
 delay 5                             # 외력 안정화 대기
 fctrl off                           # 힘 제어 종료
                             
-[__SOURCE](3-roblang/3.2-example_change_control_settings.md)
+[__SOURCE](3-roblang/2-example-change_control_settings.md)
 ## 3.2 예제: 제어 설정 변경 
 
 다음은 로봇에서 **힘 제어 조건 중 '제어(Control)' 항목만 변경**하는 Job 프로그램 예제입니다.  
@@ -646,7 +646,7 @@ fctrl control,cnd=1                # 힘 제어 설정(제어) 변경 (설정 �
 delay 5                             # 외력 안정화 대기
 fctrl off                           # 힘 제어 종료
 
-[__SOURCE](3-roblang/3.3-example_motion_contact.md)
+[__SOURCE](3-roblang/3-example-motion_contact.md)
 ## 3.3 예제: 접촉면 판단 기능 
 
 다음은 로봇에서 **접촉면 판단 기능**을 사용하는 Job 프로그램 예시입니다.  
@@ -684,7 +684,7 @@ wait contact_state()                 # 접촉면 판단 조건 실행, 접촉면
 fctrl off                            # 힘 제어 종료
 
 
-[__SOURCE](3-roblang/3.4-example_motion_spiral.md)
+[__SOURCE](3-roblang/4-example-motion_spiral.md)
 ## 3.4 예제: 나선형 모션 
 
 다음은 로봇에서 **나선형 모션**을 사용하는 Job 프로그램 예시입니다.  
@@ -725,7 +725,7 @@ fctrl off                            # 힘 제어 종료
 센서 기반 힘 제어 기능이 동작 중일 때,  
 사용자는 UI를 통해 다음과 같은 상태 정보를 실시간으로 확인할 수 있습니다.
 
-[__SOURCE](4-monitoring/4.1-force_data_monitoring.md)
+[__SOURCE](4-monitoring/1-force_data_monitoring.md)
 ## 4.1 힘 데이터 모니터링
 
 작업 중 로봇에 가해지는 외력을 실시간으로 확인할 수 있는 기능입니다.  
@@ -748,7 +748,7 @@ fctrl off                            # 힘 제어 종료
 **[창조정]** → **[선택]** → **[힘 데이터 모니터링]**
 
 
-[__SOURCE](4-monitoring/4.2-force_motion_monitoring.md)
+[__SOURCE](4-monitoring/2-force_motion_monitoring.md)
 ## 4.2 힘 모션 모니터링
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
@@ -773,7 +773,7 @@ fctrl off                            # 힘 제어 종료
 
 ---
 
-## 힘 제어 예외 상황 및 대응 가이드
+### 힘 제어 예외 상황 및 대응 가이드
 
 | 에러 코드 | 주요 원인 | 가이드 |
 |:--:|---|---|
@@ -790,7 +790,7 @@ fctrl off                            # 힘 제어 종료
 
 ---
 
-## 트러블슈팅 Workflow
+### 트러블슈팅 Workflow
 
 1. FT 센서 연결 상태 점검  
 2. 툴 번호, 좌표계 번호 재검증  
