@@ -1,4 +1,4 @@
-﻿## 2.4.4.2 Force Control Condition - Motion - Auto Trajectory Generation
+﻿#### 2.4.4.2 Force Control Condition - Motion - Auto Trajectory Generation
 
 Motion control conditions can be configured to run in conjunction with force control operations.
 
@@ -11,7 +11,7 @@ In particular, this section allows the configuration of **Spiral**, **Bidirectio
 ![](../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)  
 ![](../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
-### Motion Type
+##### Motion Type
 
 | Type             |
 |------------------|
@@ -24,7 +24,7 @@ In particular, this section allows the configuration of **Spiral**, **Bidirectio
 
 <br>
 
-### Spiral Motion
+##### Spiral Motion
 
 Generates a spiral path and trajectory.
 
@@ -36,7 +36,7 @@ Generates a spiral path and trajectory.
 
 ---
 
-### Bidirectional Motion
+##### Bidirectional Motion
 
 Generates a linear raster path that alternates direction line-by-line.
 
@@ -51,7 +51,7 @@ Generates a linear raster path that alternates direction line-by-line.
 
 ---
 
-### Zigzag Motion
+##### Zigzag Motion
 
 Generates a raster path that alternates direction every line (zigzag pattern).
 

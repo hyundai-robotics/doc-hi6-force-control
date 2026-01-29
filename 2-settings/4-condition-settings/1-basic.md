@@ -1,4 +1,4 @@
-﻿## 2.4.2 Force Control Condition - Default Settings
+﻿### 2.4.2 Force Control Condition - Default Settings
 
 Depending on the task, select the control axes and configure the target force, stiffness, velocity, and pose limits for each axis.  
 These parameters form the core of the force control system and determine the robot's responsiveness during operation.
@@ -11,7 +11,7 @@ These parameters form the core of the force control system and determine the rob
 
 <br>
 
-### **Default Setting Items**
+#### **Default Setting Items**
 
 | Item                | Description |
 |---------------------|-------------|
@@ -29,7 +29,7 @@ These parameters form the core of the force control system and determine the rob
 
 <br>
 
-### Example: Default Condition Setup
+#### Example: Default Condition Setup
 
 > Example: `Condition for Sanding Task`
 >

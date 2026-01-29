@@ -1,4 +1,4 @@
-﻿## 2.4.4.1 Force Control Condition - Motion - Surface Contact Detection
+﻿#### 2.4.4.1 Force Control Condition - Motion - Surface Contact Detection
 
 Real-time evaluation of whether the robot has properly contacted the surface during force control motion (along the tool Z-axis).
 
@@ -8,7 +8,7 @@ Real-time evaluation of whether the robot has properly contacted the surface dur
 
 <br>
 
-### Surface Contact Detection Criteria
+##### Surface Contact Detection Criteria
 
 Contact is considered established when **all** the following conditions are satisfied:
 
@@ -23,7 +23,7 @@ Contact is considered established when **all** the following conditions are sati
 
 <br>
 
-### Example Setting
+##### Example Setting
 
 > Example: If the following conditions are maintained for 3 seconds, surface contact is considered valid.
 

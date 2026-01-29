@@ -7,7 +7,7 @@ Each command is used to configure force settings, start/stop control, and execut
 
 ---
 
-## List of Force Control Commands
+### List of Force Control Commands
 
 | Command               | Description                              | Argument                | Note                     |
 |------------------------|------------------------------------------|--------------------------|--------------------------|

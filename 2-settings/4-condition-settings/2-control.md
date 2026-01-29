@@ -1,4 +1,4 @@
-﻿## 2.4.2 Force Control Condition - Control Parameters
+﻿### 2.4.2 Force Control Condition - Control Parameters
 
 Select the axes to be used for force control, and configure the target force (or torque), stiffness, velocity, and pose limits for each direction.
 
@@ -10,7 +10,7 @@ These settings are central to force control and determine the robot's responsive
 
 ![](../_assets/_07_fctrl_ctrl_cnd_control.png)
 
-### **Control Parameter Items**
+#### **Control Parameter Items**
 
 | Item             | Description |
 |------------------|-------------|
@@ -23,7 +23,7 @@ These settings are central to force control and determine the robot's responsive
 
 ---
 
-### Example Interpretation
+#### Example Interpretation
 
 <br>
 

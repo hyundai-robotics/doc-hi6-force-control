@@ -5,7 +5,7 @@ the user can monitor the **status and exception events** in real time via the UI
 
 ---
 
-## Force Control Exception Events & Corrective Actions
+### Force Control Exception Events & Corrective Actions
 
 | Error Code | Primary Cause | Guide |
 |:--:|---|---|
@@ -21,7 +21,7 @@ the user can monitor the **status and exception events** in real time via the UI
 
 ---
 
-## Troubleshooting Workflow
+### Troubleshooting Workflow
 
 1. Check the FT sensor connection  
 2. Verify the tool number and coordinate frame  
