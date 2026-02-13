@@ -2,6 +2,8 @@
 
 * [${cont_model} Controller Manual - Sensor-Based Force Control](README.md)
 
+* [Precautions](0-about-this-manual/precautions.md)
+
 ## 1. Overview
 * [1. Overview](1-intro/README.md)
 
