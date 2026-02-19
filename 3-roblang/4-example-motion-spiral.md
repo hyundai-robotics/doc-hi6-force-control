@@ -7,18 +7,17 @@ The robot maintains a constant **external force of 20N in the Z-axis direction**
 
 ---
 
-### 📄 Operation Overview
+### **Operation Overview**
 
-> ⚠️ Make sure to set the **Motion Type** to **Spiral** in the **configuration settings**.
+- Make sure to set the **Motion Type** to **Spiral** in the **configuration settings**.
 
-> ⚠️ It is recommended to insert a `delay` command before `motion_on`  
-> to suppress vibration and ensure more stable force control.
+- It is recommended to insert a **delay** command before **fctrl motion_on** to suppress vibration and ensure more stable force control.
 
 <br>
 
 ---
 
-### 📁 Job File Example
+### **JOB Program Example** 
 
 ```python
 delay 1.0                            # Wait to stabilize before starting control

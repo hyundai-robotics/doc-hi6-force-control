@@ -1,36 +1,36 @@
 ﻿## 3.3 Example: Contact Surface Detection
 
-This is a Job program example that uses the **contact surface detection** feature in a robotic force control system.
+The following is a Job program example for using the **Contact Surface Detection** function in the robot. 
 
 <br>
 
 ---
 
-### Configuration Example
+### **Operation Overview**
 
-Set the **contact check** condition in the configuration as follows:
+Configure the **Contact Check** conditions in the **Settings** as follows:
 
-> Example: If the following conditions are maintained for 5 seconds,  
-> contact is considered successful.
+- **Criteria**: If contact is maintained according to the standards below for 5 seconds, the contact surface detection is confirmed (OK).
 
-| Parameter              | Value     |
-|------------------------|-----------|
-| Force Error Threshold  | `3 N`     |
-| Force Direction Change | `20 deg`  |
-| Contact Angle          | `40 deg`  |
-| Hold Duration          | `5 sec`   |
+| Item | Value |
+|------------------|---------|
+| Force Error (Thresh) | 3 N |
+| Force Direction Change (Dev Angle) | 20 deg |
+| Contact Angle (Tilt Angle) | 40 deg |
+| Confirmation Time | 5 sec |
 
-<br>
+<br> 
 
 ---
 
-### 📁 Job File Example
+### **JOB Program Example** 
 
 ```python
-delay 1.0                            # Wait to stabilize before starting control
-fctrl on,cnd=1                       # Start force control (using condition set No. 1)
-delay 0.5                            # Brief wait before executing contact check
+delay 1.0                           # Wait for stabilization before starting control
+fctrl on, cnd=1                     # Start force control (Using condition set No. 1)
+delay 0.5                           # Wait 0.5s before executing contact detection
 
-wait contact_state()                 # Execute contact check, wait until contact is confirmed
+wait contact_state()                # Execute contact detection; wait until "OK"
 
-fctrl off                            # Stop force control
+fctrl off                           # End force control
+

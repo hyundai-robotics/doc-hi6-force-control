@@ -1,69 +1,87 @@
-﻿#### 2.4.4.2 Force Control Condition - Motion - Auto Trajectory Generation
+﻿#### 2.4.4.2 Force Control Condition Setup - Motion - Auto Path Generation
 
-Motion control conditions can be configured to run in conjunction with force control operations.
+Sets the motion control conditions to be executed during force control operations.
 
-In particular, this section allows the configuration of **Spiral**, **Bidirectional**, and **Zigzag** path trajectories.
+This section is specifically used to configure **Spiral, Bi-directional, and Zig-zag** paths and trajectories.
+
 
 <br>
 
 ---
 
-![](../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)  
-![](../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
-##### Motion Type
 
-| Type             |
-|------------------|
+![](../../../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)
+
+![](../../../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
+
+
+### **Motion Types**
+
+| Item |
+|----------------|
 | **Spiral Motion** |
-| **Bidirectional Motion** |
-| **Zigzag Motion** |
-
----
-![](../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
+| **Bi-directional Motion** |
+| **Zig-zag Motion** |
 
 <br>
 
-##### Spiral Motion
+---
 
-Generates a spiral path and trajectory.
+![](../../../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
 
-| Item            | Description |
-|------------------|-------------|
-| **Velocity**      | Linear rotational velocity (mm/s) |
-| **Radius**        | Maximum spiral radius (mm) - defines the final spiral size |
-| **Revolutions**   | Number of full rotations (rev) |
+### **Spiral Motion**
+
+A function that generates a spiral path and trajectory.
+
+| Item | Description |
+|--------------|------|
+| **Velocity** | Rotational linear velocity (mm/s) |
+| **Radius** | Maximum radius setting (mm) - The final size of the spiral |
+| **Revolutions** | Number of revolutions (rev) - Total count of rotations |
+
+
+<br>
 
 ---
 
-##### Bidirectional Motion
 
-Generates a linear raster path that alternates direction line-by-line.
+### **Bi-directional Motion**
 
-| Item            | Description |
-|------------------|-------------|
-| **Velocity**       | Linear velocity along the path (mm/s) |
-| **Mov Dir**        | Movement direction (+X, -X, +Y, -Y) |
-| **Mov Length**     | Length of each movement line |
-| **Shift Dir**      | Line shift direction (+X, -X, +Y, -Y) |
-| **Shift Length**   | Distance between raster lines |
-| **Num Lines**      | Number of lines to generate in movement direction |
+A function that generates a bi-directional path and trajectory.
 
----
+| Item | Description |
+|--------------|------|
+| **Velocity** | Linear velocity (mm/s) |
+| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
+| **Mov Length** | Movement Length (mm) |
+| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
+| **Shift Length** | Shift (Pitch) Length (mm) |
+| **Num Lines** | Number of lines to be generated in the movement direction |
 
-##### Zigzag Motion
-
-Generates a raster path that alternates direction every line (zigzag pattern).
-
-| Item            | Description |
-|------------------|-------------|
-| **Velocity**       | Linear velocity along the path (mm/s) |
-| **Mov Dir**        | Movement direction (+X, -X, +Y, -Y) |
-| **Mov Length**     | Length of each movement line |
-| **Shift Dir**      | Line shift direction (+X, -X, +Y, -Y) |
-| **Shift Length**   | Distance between raster lines |
-| **Num Lines**      | Number of lines to generate in movement direction |
+<br>
 
 ---
 
-📌 The above motions generate XY-plane trajectories relative to the coordinate system selected in **Section 2.4.1**.
+### **Zig-zag Motion**
+
+A function that generates a zig-zag path and trajectory.
+
+| Item | Description |
+|--------------|------|
+| **Velocity** | Linear velocity (mm/s) |
+| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
+| **Mov Length** | Movement Length (mm) |
+| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
+| **Shift Length** | Shift (Pitch) Length (mm) |
+| **Num Lines** | Number of lines to be generated relative to the movement direction |
+
+<br>
+
+---
+
+{% hint style="info" %}
+
+- This motion generates a path based on the **XY plane** relative to the coordinate system selected in **2.4.1 (Force Control Condition Setup - Basic)**.
+
+{% endhint %}

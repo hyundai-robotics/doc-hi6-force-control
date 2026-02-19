@@ -1,46 +1,55 @@
-﻿### 2.4.2 Force Control Condition - Control Parameters
+﻿### 2.4.2 Force Control Condition Setup - Control
 
-Select the axes to be used for force control, and configure the target force (or torque), stiffness, velocity, and pose limits for each direction.
+Select the force control axes and set the target force value, stiffness, speed, and pose limit for each direction.
 
-These settings are central to force control and determine the robot's responsiveness during operation.
+This section is the core of force control and determines the responsiveness of the actual robot movement.
+
+<br>
+
+---
+
+![](../../_assets/_07_fctrl_ctrl_cnd_control.png)
+
+
+#### **Control Configuration Items**
+
+| Item | Description |
+|------------|------|
+| **Axis** | Controllable axes (X, Y, Z, Rx, Ry, Rz) |
+| **Act** | Whether to activate control for the corresponding axis (Active when checked ✓) |
+| **Force / Torque** | Target Force (N) or Torque (Nm)<br>Example: Set 50N for the Z-axis |
+| **Stiff** | Stiffness ratio (%), lower values allow more flexible response |
+| **Vel** | Movement speed limit during force control (mm/s or deg/s) |
+| **(-)Pose / (+)Pose** | Position limits in negative/positive directions (mm or deg)<br>Restricts robot movement when exceeded |
 
 <br>
 
 ---
 
-![](../_assets/_07_fctrl_ctrl_cnd_control.png)
+#### **Control Configuration Example**
 
-#### **Control Parameter Items**
+The following settings are for a **vertical sanding** operation:
 
-| Item             | Description |
-|------------------|-------------|
-| **Axis**         | Controllable axes (X, Y, Z, Rx, Ry, Rz) |
-| **Act**          | Activation checkbox - enables control on the selected axis |
-| **Force / Torque** | Target force (N) or torque (Nm)<br>e.g., 50 N on Z-axis |
-| **Stiff**        | Stiffness ratio (%); lower values result in more compliant behavior |
-| **Vel**          | Velocity limit during force control (mm/s or deg/s) |
-| **(-)Pose / (+)Pose** | Negative/positive pose limits (mm or deg); motion is restricted if exceeded |
+| Axis | Act | Force / Torque | Stiff | Vel | Pose Limit |
+|------|------|----|------|------|-------------|
+| **Z** | ✓ | 50N | 30% | 20 mm/s | -50 ~ +50 mm |
+| **Rx** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
+| **Ry** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
+| **X**, **Y**, **Rz** | - | - | - | - | - | 
 
----
+→ The robot maintains a force of 50N in the Z-axis direction, while the tool rotation directions (Rx, Ry) respond flexibly.
 
-#### Example Interpretation
-
-<br>
-
-> 💡 The following settings are designed for a **vertical sanding** task:
-
-| Axis  | Control | Force | Stiffness | Velocity | Pose Limit         |
-|-------|---------|--------|-----------|----------|--------------------|
-| **Z**   | `✓`     | 50 N   | 30%       | 20 mm/s  | -50 ~ +50 mm       |
-| **Rx**  | `✓`     | 0 Nm   | 10%       | 5 deg/s  | -10 ~ +10 deg      |
-| **Ry**  | `✓`     | 0 Nm   | 10%       | 5 deg/s  | -10 ~ +10 deg      |
-| **X**, **Y**, **Rz** | -       | -      | -         | -        | -                  |
-
-→ The robot maintains 50 N in the Z-direction while allowing compliant rotation around the Rx and Ry axes.
+<br> 
 
 ---
 
-Each axis should be configured based on task-specific requirements (e.g., surface curvature, precision).  
-Lower stiffness values provide greater compliance.
 
-> ⚠️ While low stiffness enables flexible interaction, it may cause vibration or noise depending on the robot response and environment.
+{% hint style="info" %}
+
+
+Detailed control for each axis must be adjusted based on actual working conditions (e.g., surface curvature, precision requirements, etc.). Lower gains result in a more flexible response.
+
+While lower stiffness ratios provide a flexible response, they may cause vibration and noise depending on the robot's responsiveness and the surrounding environment.
+
+{% endhint %}
+

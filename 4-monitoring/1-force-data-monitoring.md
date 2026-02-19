@@ -3,6 +3,8 @@
 This function allows you to monitor the external force applied to the robot in real time.  
 It is essential to check this information when using the Force Control function.
 
+<br>
+
 ---
 
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
@@ -12,10 +14,17 @@ It is essential to check this information when using the Force Control function.
 | **Cartesian** | External force (N or Nm) displayed in the selected coordinate system |
 | **Joint**     | Not used in force control |
 
-> ⚠️ The coordinate system of the `Cartesian` external force follows the coordinate frame defined in the force control condition (`cnd`).
+- The coordinate system of the Cartesian external force follows the coordinate frame defined in the force control condition (cnd).
+- Data is updated **only when force control (fctrl) is active**.
 
-> ⚠️ Data is updated **only when force control (fctrl) is active**.
+<br>
 
-### TP Navigation Path
+--- 
 
-**[Operation]** → **[Select]** → **[Force Data Monitoring]**
+{% hint style="info" %}
+
+**TP Navigation Path**
+
+[pane layout] – [F1: select] – [force data]
+
+{% endhint %}

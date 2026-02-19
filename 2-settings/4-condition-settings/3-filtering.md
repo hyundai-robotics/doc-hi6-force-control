@@ -1,80 +1,94 @@
-﻿### 2.4.3 Force Control Condition - Filtering
+﻿### 2.4.3 Force Control Condition Setup - Filtering
 
-Filtering functions are provided to reduce noise from the force sensor and ensure stable input for control.  
-Additional features include a **scaling option** that adjusts control intensity within a specific force/torque range,  
-and a **bypass option** for more sensitive response to minor inputs.
+Filtering functions are provided to reduce noise from the force sensor and ensure that input values can be used stably for control.
 
-<br>
-
----
-
-![](../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
-
-#### Smooth Force (Filtering)
-
-Applies a **filter** to the sensor's force signal to reduce fluctuation and ensure smoother control.
-
-| Item              | Description |
-|-------------------|-------------|
-| **Enable**        | Apply filtering when checked |
-| **Frequency (Freq)** | Cutoff frequency of the filter (e.g., 20 Hz)<br>→ Lower values provide smoother output but slower response |
+Additionally, it offers scaling options to adjust control intensity within a specific force/torque range, as well as a bypass option to make the response to force input more sensitive.
 
 <br>
 
 ---
 
-![](../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
+![](../../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
 
-#### Smooth Scaling
+#### **Force Filtering**
 
-Smoothly adjusts the control response within a defined range of force or torque.  
-Useful in tasks requiring fine sensitivity tuning; typically left disabled by default.  
-The system can be configured to ignore minor force changes and only respond to forces above a certain threshold.
+Applies a **filter** to the sensor's force signals to eliminate jitter and smooth the output.
 
-| Item              | Description |
-|-------------------|-------------|
-| **Enable**        | Apply scaling within the range when checked |
-| **Force Range**   | Target force range (e.g., 2 ~ 8 N) |
-| **Torque Range**  | Target torque range (e.g., 0 ~ 0 Nm) |
-
-![](../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
-
-> 💡 If the input force is below the start value, the output is set to 0.  
-> 💡 If the input force is above the end value, the original input value is used.  
-> ⚠️ If the start and end values are the same, scaling will not be applied.
+| Item | Description |
+|------|------|
+| **Enable** | Apply filter when checked |
+| **Frequency (Freq)** | Set the filter cutoff frequency (e.g., 20 Hz)<br>→ Lower values result in smoother motion but slower response. |
 
 <br>
 
 ---
 
-![](../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
+![](../../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
 
 
-#### Command Flow
+#### **Force Scaling**
 
-Configures how command signals are processed and delivered to the robot.
+This function smoothly scales the control intensity within a specific force or torque range.  
+It is useful for tasks requiring sensitivity adjustments and is typically kept off.
 
-| Item     | Description |
-|----------|-------------|
-| **Mode** | `Normal`: Standard command delivery method<br>`Bypass`: Immediate and sensitive command response |
-| **Freq** | Filter frequency used in `Bypass` mode (Hz) |
+It can be designed to suppress control for minute force changes and respond sensitively only to forces above a certain level.
 
-> **Bypass** mode is used to **reflect sensor data immediately** and is recommended only for highly sensitive or experimental use cases.  
-> ⚠️ May cause **noise or vibration**, so `Normal` mode is recommended for standard operations.
+| Item | Description |
+|------|------|
+| **Enable** | When checked, scaling is applied only within the ranges below |
+| **Force Range** | Force range (e.g., 2 ~ 8 N) |
+| **Torque Range** | Torque range (e.g., 0 ~ 0 Nm) |
 
----
+![](../../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
+
+{% hint style="info" %}
+
+- When entering the force range, if the input force is smaller than the **Start Force**, the output force is 0. If it is greater than the **End Force**, the original input force value is output.
+
+- If the **Start Force** and **End Force** are equal, the scaling function will not operate.
+
+{% endhint %}
 
 <br>
 
-#### Recommended Settings Guide
+--- 
 
-| Task Type           | Recommended Settings                            |
-|---------------------|-------------------------------------------------|
-| Polishing / Sanding | `Smooth Force = ON`, `Freq = 20 Hz`             |
-| Delicate Assembly   | `Smooth Scaling = ON`, with conservative range  |
-| High Responsiveness / Testing | `Command Flow = Bypass`               |
 
----
+![](../../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
 
-📎 **Filtering**, **Scaling**, and **Command Flow** settings all work together.  
-They should be **tuned as a whole** depending on the specific task requirements.
+#### **Command Method**
+
+Sets the **processing method** for the command signals transmitted to the robot.
+
+| Item | Description |
+|------|------|
+| **Mode** | **Normal**: Standard command transmission method. <br>**Bypass**: Command transmission method for highly sensitive responses. |
+| **Freq** | Filter frequency setting used in Bypass mode (Hz). |
+
+{% hint style="info" %}
+
+- **Bypass** mode is used when you want to **reflect sensor data immediately**.
+- It is recommended only for experimental situations requiring extremely sensitive control.
+- Since there is a **risk of noise or vibration**, it is recommended to use **Normal** mode for general operations.
+
+{% endhint %}
+
+<br> 
+
+--- 
+
+### **Configuration Guide**
+
+| Task Type | Recommended Settings |
+|------------------|-----------------------------|
+| Polishing / Sanding | Smooth Force = ON, Freq = 20 Hz |
+| Smooth Assembly | Smooth Scaling = ON, Conservative range setting |
+| High-speed Response / Research | Command Flow = Bypass |
+
+--- 
+
+{% hint style="info" %}
+
+- **Filtering**, **Scaling**, and **Command Flow** settings all work together; therefore, they must be **tuned integrally** according to the specific objective of the task.
+
+{% endhint %}

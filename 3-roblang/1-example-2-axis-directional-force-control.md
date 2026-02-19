@@ -1,36 +1,33 @@
-﻿## 3.1 Example: Z-Axis Force Control
+﻿## 3.1 Example: Z-axis Force Control
 
-The following is a Job program example that uses the **sensor-based force control** function.  
-This example is designed to **wait until the external force along the Z-axis exceeds 35N**,  
-and then proceed with the task execution.
-
-<br>
-
----
-
-### 📄 Operation Overview
-
-> 💡 It is recommended to use the `delay` command before enabling force control,  
-> to suppress sensor noise and initial vibrations for more stable force response.
-
-> ⚠️ In the `cfo` command, make sure the coordinate system matches the one selected  
-> in the force control condition settings in order to receive force data correctly.
+The following is an example of a Job program using the **Sensor-based Force Control function**.
+This example is designed to wait until the **external force applied in the Z-axis direction reaches 35N or more** before performing the task.
 
 <br>
 
 ---
 
-### 📁 Job File Example
+### **Operation Overview**
+
+- By using a **delay** command to secure time before starting force control, you can suppress sensor noise or initial vibrations, enabling more stable force control.
+
+- When selecting a coordinate system in the **CFO (Force Control Output)** command, it must match the coordinate system selected in the **Force Control Settings** to properly receive force data.
+
+<br>
+
+---
+
+### **JOB Program Example**
 
 ```python
-delay 1.0                           # Wait to stabilize before starting control
-fctrl on,cnd=2                      # Start force control (using condition No. 2)
+delay 1.0                           # Wait for stabilization before starting control
+fctrl on,cnd=2                      # Start force control (Using condition set No. 2)
 delay 0.5
 
 #get_current_force
-var force = cfo("tool", "sensor")   # Get current external force in tool coordinates
+var force = cfo("tool", "sensor")   # Receive external force data based on the Tool coordinates
 
-# Wait until Z-axis force exceeds 35N
+# Conditional Loop: Wait until the Z-axis external force reaches 35N or more
 if abs(force.z) < 35 then *get_current_force
-delay 5                             # Wait for force stabilization
-fctrl off                           # Stop force control
+delay 5                             # Wait for external force stabilization 
+fctrl off                           # End force control 

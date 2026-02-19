@@ -1,31 +1,31 @@
-﻿## 3.2 Example: Control Setting Update
+﻿## 3.2 Example: Modifying Control Settings
 
-The following is a Job program example where **only the 'Control' section of the force control condition** is updated.  
-This approach is useful when you want to change only the force response characteristics during operation,  
-while keeping the coordinate system, filters, and motion settings unchanged.
-
-<br>
-
----
-
-### 📄 Operation Overview
-
-- `fctrl on,cnd=2`: Starts force control using **condition set No. 2** (full configuration)
-- `fctrl control,cnd=1`: Replaces **only the 'Control' section** with set No. 1  
-  (Coordinate system, filter, and motion remain as in condition set No. 2)
+The following is a Job program example for **modifying only the 'Control' parameters** within the force control conditions.  
+This method is useful when you want to change only the external force response characteristics during real-time operation while maintaining other settings such as filters, coordinate systems, and motion profiles.
 
 <br>
 
 ---
 
-### 📁 Job File Example
+### **Operation Overview**
+
+- **fctrl on, cnd=2**: Applies the complete configuration from set No. 2 when starting force control.
+- **fctrl control, cnd=1**: Changes **only the 'Control' parameters** to those of set No. 1.
+  (Other settings such as coordinate system, filters, and motion profiles remain as they were in set No. 2.)
+
+<br>
+
+---
+
+### **JOB Program Example**
 
 ```python
-delay 1.0                           # Wait to stabilize before starting control
-fctrl on,cnd=2                      # Start force control (use condition set No. 2)
+delay 1.0                           # Wait for stabilization before starting control
+fctrl on, cnd=2                     # Start force control (Initial: Using set No. 2)
 delay 0.5
 
-fctrl control,cnd=1                 # Update only the Control section (use condition set No. 1)
+fctrl control, cnd=1                # Update ONLY 'Control' parameters (Switch to set No. 1)
+                                    # (Coordinates, Filters, and Motion remain from No. 2)
 
-delay 5                             # Wait for force stabilization
-fctrl off                           # Stop force control
+delay 5                             # Wait for stabilization of external force
+fctrl off                           # End force control

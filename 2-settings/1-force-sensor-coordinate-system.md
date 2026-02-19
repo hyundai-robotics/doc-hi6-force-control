@@ -10,21 +10,22 @@ If the sensor frame is misaligned, the measured force/torque directions will not
 
 ### **Robot Sensor Coordinate Frame**
 
-> The X, Y, and Z axes of the sensor coordinate system, as defined by our standard, are shown in the figure below:  
->
-> The directions of the X, Y, and Z axes defined in the sensor model **must match** the robot's sensor coordinate system.
+- The X, Y, and Z axes of the sensor coordinate system, as defined by our standard, are shown in the figure below:  
+- The directions of the X, Y, and Z axes defined in the sensor model **must match** the robot's sensor coordinate system.
 
 ![](../_assets/_05_fctrl_ctrl_sensor_crd.png)
 
-⚠️ The robot in the above diagram is in its default posture.  
-⚠️ Most circular FT sensors have coordinate direction markings on the sensor body.  
+- The robot in the above diagram is in its default posture.  
+- Most circular FT sensors have coordinate direction markings on the sensor body.  
 
 <br>
 
-### 💡 Configuration Tips
+---
+
+{% hint style="info" %}
 
 - **If the axes are inverted**: apply axis inversion or transformation in the software.
 - **When entering the tool center of mass**: use the sensor's coordinate frame.
 - **Before zeroing the sensor**: verify that the coordinate direction is correct.
 
----
+{% endhint %}
