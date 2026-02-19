@@ -7,19 +7,17 @@
 
 ---
 
-### 📄 동작 개요
+### 동작 개요
 
-- `fctrl on,cnd=2`: 힘 제어 시작 시, 전체 설정값 세트 2번을 적용
-- `fctrl control,cnd=1`: **제어(Control) 항목 만** 1번 세트로 변경  
+- fctrl on,cnd=2: 힘 제어 시작 시, 전체 설정값 세트 2번을 적용
+- fctrl control,cnd=1: **제어(Control) 항목 만** 1번 세트로 변경  
   (좌표계, 필터, 모션 등은 2번 상태 그대로 유지)
 
 <br>
 
 ---
 
-### 📁 Job File 정보
-
- 
+### JOB 프로그램 예시 
 
 ```python
 delay 1.0                           # 제어 시작 전 안정화 대기
