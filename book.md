@@ -14,7 +14,9 @@ This manual provides instructions for using the sensor-based force control syste
 The system utilizes a force/torque sensor mounted on a robot to perform responsive control to external forces,  
 enabling precise and safe contact operations.
 
-### Features Covered
+--- 
+
+### **Features Covered**
 
 - Sensor environment configuration  
 - Force control parameter setup  
@@ -22,7 +24,9 @@ enabling precise and safe contact operations.
 - Monitoring interface  
 - Basic usage examples
 
-### Purpose
+--- 
+
+### **Purpose**
 
 This document is intended for end-users and maintenance engineers.  
 It describes all necessary procedures for configuring the system and understanding its operational status.
@@ -52,153 +56,171 @@ If the sensor frame is misaligned, the measured force/torque directions will not
 
 ### **Robot Sensor Coordinate Frame**
 
-> The X, Y, and Z axes of the sensor coordinate system, as defined by our standard, are shown in the figure below:  
->
-> The directions of the X, Y, and Z axes defined in the sensor model **must match** the robot's sensor coordinate system.
+- The X, Y, and Z axes of the sensor coordinate system, as defined by our standard, are shown in the figure below:  
+- The directions of the X, Y, and Z axes defined in the sensor model **must match** the robot's sensor coordinate system.
 
 ![](../_assets/_05_fctrl_ctrl_sensor_crd.png)
 
-⚠️ The robot in the above diagram is in its default posture.  
-⚠️ Most circular FT sensors have coordinate direction markings on the sensor body.  
+- The robot in the above diagram is in its default posture.  
+- Most circular FT sensors have coordinate direction markings on the sensor body.  
 
 <br>
 
-### 💡 Configuration Tips
+---
+
+{% hint style="info" %}
 
 - **If the axes are inverted**: apply axis inversion or transformation in the software.
 - **When entering the tool center of mass**: use the sensor's coordinate frame.
 - **Before zeroing the sensor**: verify that the coordinate direction is correct.
 
----
+{% endhint %}
 [__SOURCE](2-settings/2-force-control-environment-settings.md)
 ## 2.2 Force Control Environment Setup
 
-To enable sensor-based force control, the following key parameters must be configured.  
-These parameters serve as the **starting point** for all force control operations.
+To use sensor-based force control functions, the following key items must be configured.  
+These settings serve as the **starting point** for all controller operations. 
 
-Access the force control environment settings via:
+You can access the Force Control Environment Setup through the following path: 
 
-📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🛠 1: Environment Settings
+[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup
 
 <br>
 
 ---
 
-### **Function Use**
 
-Enable or disable the force control functionality.
+### **Enable Function**
 
-- `Enable`: Activate the function  
-- `Disable`: Deactivate the function
+Set whether to use the sensor-based force control function.
 
-> ⚠️ The function must be set to **Enable** for force control to operate.
+- Enable: Function **Activated**
+- Disable: Function **Deactivated**
+
+The setting must be set to Enable for the force control function to operate.
+
+<br>
 
 ---
 
-### **Sensor Type**
+### **Sensor Manufacturer and Model**
 
-Select the **manufacturer and model** of the force sensor to be used.
+Select the **manufacturer and model of the force sensor** to be used.
 
 - Examples:
-  - `ATI : Generic ATI Model`
-  - `ATI : Delta-SI-660-60`
-  - `ATI : Theta-SI2500-400`
-  - `ATI : Omega-SI7200-1400` 
-  - `OnRobot : HEX-E` 
-  - `Robotiq : FT-300S` 
+  - ATI: Standard ATI models
+  - ATI: Delta-SI-660-60
+  - ATI: Theta-SI2500-400
+  - ATI: Omega-SI7200-1400 
+  - OnRobot: HEX-E 
+  - Robotiq: FT-300S 
 
+The **data format and communication method** vary depending on the sensor, so an accurate selection is required.
 
-Since the **data format and communication method** vary depending on the sensor, please ensure that the correct option is selected.
+{% hint style="info" %}
 
-> 💡 **Note**  
-> The following ATI models are supported starting from **version V60.32-05 or later**:
-> - General ATI models  
-> - Theta-SI2500-400  
-> - Omega-SI7200-1400
+The following ATI models are supported in **version V60.32-05 or later**.  
+- Standard ATI models  
+- Theta-SI2500-400  
+- Omega-SI7200-1400
 
----
-
-### **Comm. Protocol**
-
-Configure the **communication protocol** supported by the selected sensor.
-
-- `UDP`  
-- `SCI`  
-- `TCP`  
-
-⚙️ Port numbers and internal parsing methods differ based on the selected protocol.
-
----
-### **ATI Model Configuration Guide**
-
-- **Communication Protocol** : `UDP`  
-- **IP Address** : `192.168.1.2`  
-- **Remote Port** : `49152`
-
+{% endhint %}
 
 <br>
 
-#### ✔️ **ATI(Delta-SI-660-60)**  
+--- 
+
+### **Communication Protocol**
+
+Set the **communication method** provided by the selected sensor.
+
+- UDP
+- SCI
+- TCP
+
+Configure the port settings and internal parsing methods according to the protocol as follows:
+
+<br>
+
+--- 
+
+### **Configuration Method by ATI Model**
+
+- **Communication Protocol**: UDP
+- **IP Address**: 192.168.1.2
+- **Remote Port**: 49152
+
+<br>
+
+#### **ATI(Delta-SI-660-60)**  
 
 ![](../_assets/_01_01_fctrl_env_setting_ATI_Delta_UDP.png)
 
 <br>
 
-#### ✔️ **ATI(Theta-SI2500-400)**
+#### **ATI(Theta-SI2500-400)**
 ![](../_assets/_01_02_fctrl_env_setting_ATI_Theta_UDP.png)
 
 <br>
 
-#### ✔️ **ATI(Omega-SI7200-1400)**
+#### **ATI(Omega-SI7200-1400)**
 ![](../_assets/_01_03_fctrl_env_setting_ATI_Omega_UDP.png)
 
 <br>
 
-#### ✔️ **ATI(Generic ATI Model)**
+#### **ATI(Generic ATI Model)**
 ![](../_assets/_01_04_fctrl_env_setting_ATI_Generic_UDP.png)
 
-- **General ATI Models**
-  - Model management is not supported.  
-    **ATI-defined scaling parameters must be manually entered by the user**.
+- Instead of registering models individually, this method involves the **user manually entering and applying the scaling values provided by ATI for each specific model.**
+
+<br>
 
 ---
 
-### **OnRobot HEX-E Configuration Guide**
+### **OnRobot HEX-E Configuration Method**
 
-- **Communication Protocol** : `UDP`  
-- **IP Address** : `192.168.1.1`  
-- **Remote Port** : `49152`
+- **Communication Protocol**: UDP
+- **IP Address**: 192.168.1.1
+- **Remote Port**: 49152
 
 ![](../_assets/_02_fctrl_env_setting_OnRobot_HEX_E_UDP.png)
 
 
+<br>
+
+
 ---
 
-### **SCI Communication Method : Robotiq(FT-300S)**
+### **SCI Communication Method: Robotiq(FT-300S)**
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
-📂 System → 🔧 2: Control Parameter → 🔌 3: Serial Port → 🛠 1: Environment Settings
+[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
----
-
 <br>
 
-> ⚠️ **Caution**
->  
-> The settings shown above are provided for reference only.  
-> **Depending on the ATI model, different network parameters may be required.**  
-> Please verify the specifications for the applicable model prior to use.
+
+---
+
+
+{% hint style="info" %}
+ 
+- These settings are examples based on standard models.  
+- **Some ATI models may use network values that differ from the settings above.**
+
+{% endhint %}
+
+
 [__SOURCE](2-settings/3-tool-information-settings-for-force-control.md)
-## 2.3 Tool Data for Force Control
+## 2.3 Force Control Tool Information
 
-Entering the physical properties of the tool mounted on the robot improves the accuracy of the force control algorithm.  
-The force and torque measured by the sensor are compensated based on the tool's weight and center of mass.
+By entering the physical characteristics of the tool mounted on the robot, the accuracy of the force control algorithm is improved.  
+The force and torque perceived by the sensor are calibrated based on the tool's weight and center of gravity coordinates. 
 
-Access the tool data settings via:
+The Force Control Tool Information setup can be accessed through the following path: 
 
-📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🧰 2: Tool Data Settings
+[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data
 
 <br>
 
@@ -206,18 +228,21 @@ Access the tool data settings via:
 
 ![](../_assets/_04_fctrl_ctrl_tool_data.png)
 
-| Item                | Description |
-|---------------------|-------------|
-| **Name**            | Tool data name (auto-generated) |
-| **Description**     | Optional description or purpose of the tool |
-| **Weight [kg]**     | Weight of the tool. Used for gravity compensation in force correction |
-| **Center [X, Y, Z]**| Center of mass position (relative to the sensor frame, in mm) |
-| **Sensor coordinate** | Sensor coordinate system direction (refer to the image on the right in the UI) |
+| Item | Description |
+|--------------|------|
+| **Name** | Tool data name (Automatically entered) |
+| **Description** | Tool description or purpose (Optional entry) |
+| **Weight [kg]** | Weight of the tool. Used for gravity compensation when calculating force errors. |
+| **Center [X, Y, Z]** | Position of the tool's center of gravity (Based on the sensor, Unit: mm) |
+| **Sensor coordinate** | Direction of the sensor reference coordinate system (Refer to the image on the right of the UI) |
 
-> 💡 Up to 10 tool data entries can be configured.
 
-> 💡 The sensor-based load estimation function available on Hi5a is not supported on this system.
+{% hint style="info" %}
 
+ - Up to 10 sets of tool information can be configured. 
+ - The sensor-based load estimation function provided in Hi5a is currently not supported. 
+
+{% endhint %}
 [__SOURCE](2-settings/4-condition-settings/README.md)
 ## 2.4 Force Control Condition Settings
 
@@ -231,176 +256,219 @@ Access the force control condition settings via:
 📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🎛 4: Condition Settings
 
 [__SOURCE](2-settings/4-condition-settings/1-basic.md)
-### 2.4.2 Force Control Condition - Default Settings
+### 2.4.1 Force Control Condition Setup - Basic
 
-Depending on the task, select the control axes and configure the target force, stiffness, velocity, and pose limits for each axis.  
-These parameters form the core of the force control system and determine the robot's responsiveness during operation.
+Select the axes to be controlled according to the task, and set the force target value, stiffness, speed, and pose limit for each axis.  
+These items are the core of force control and determine the responsiveness of the actual robot movement.
 
 <br>
 
 ---
 
-![](../_assets/_06_fctrl_ctrl_cnd_default.png)
 
-<br>
+![](../../_assets/_06_fctrl_ctrl_cnd_default.png)
 
-#### **Default Setting Items**
 
-| Item                | Description |
-|---------------------|-------------|
-| **Name**            | Condition name (e.g., `cnd_12`) - auto-filled upon selection from the list |
-| **Description**     | Task description (e.g., `Sanding`) - used to distinguish the condition's purpose |
-| **Coordinate (Crd)**| Coordinate system to apply force control:<br>• `Base`<br>• `Robot`<br>• `Tool`<br>• `User` |
-| **User Coordinate (UCS ID)** | User-defined coordinate system ID - required if `User` is selected for Crd |
-| **Tool Coordinate (Tool ID)** | Tool number currently in use (linked with weight and center info) |
-| **Zeroing (Zeros)** | Zero-offset calibration for the force sensor:<br>• `On`: Perform zeroing<br>• `Off`: Retain original values |
+#### **Default Configuration Items**
 
-> 💡 If `User` is selected and the specified coordinate ID does not exist, an error (E1336) will occur during force control execution.  
-> 💡 If `User` is selected and the coordinate ID is set to `0`, the robot coordinate frame is used instead.  
-> 💡 The Tool ID refers to the tool number configured under:<br>📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🧰 2: Tool Data Settings  
-> 💡 If zeroing is disabled (`Off`), the output is compensated using the selected tool's weight and center of mass.
+| Item | Description |
+|------------------|------|
+| **Name** | Condition name (e.g., cnd_12) - Automatically entered by selecting from the list |
+| **Description** | Task description (e.g., Sanding) - Used to identify the purpose of the current condition |
+| **Coordinate System (Crd)** | Select the coordinate system where force control will be applied:<br>• Base (Base Coordinates)<br>• Robot (Robot Coordinates)<br>• Tool (Tool Coordinates)<br>• User (User-defined Coordinates) |
+| **User Coordinate System (UCS ID)** | User-defined coordinate system number - Used when Crd is set to User |
+| **Tool ID** | Current tool number (Linked to tool weight and center of gravity information) |
+| **Zeroing Function (Zeros)** | Force sensor initial value calibration (Zeroing)<br>• On: Execute zero calibration<br>• Off: Maintain original values |
 
-<br>
+<br> 
 
-#### Example: Default Condition Setup
+---
 
-> Example: `Condition for Sanding Task`
->
-> - **Name**: `cnd_12`  
-> - **Description**: `Sanding`  
-> - **Coordinate (Crd)**: Select `Tool` coordinate system  
-> - **Tool Coordinate (Tool ID)**: Use Tool ID `0` (includes mass and center of mass)  
-> - **Zeroing (Zeros)**: `ON` - Use sensor data initialized to zero at the start of force control  
+{% hint style="info" %}
 
+- If a User Coordinate System is selected and a non-existent User Coordinate System ID is entered, an error (**E1336**) will be output during force control operation.
+
+- If the User Coordinate System is selected and the ID is set to 0, it is identical to the Robot Coordinate System.
+
+- The Tool ID refers to the tool number configured in:  
+  **"[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data"**
+
+- If the Zeroing function is not used (**Off**), the system outputs values calibrated based on the tool information (weight and center of gravity) assigned to the set tool number, relative to the raw output from the sensor.
+
+{% endhint %}
+
+<br> 
+
+---
+
+{% hint style="info" %}
+
+#### **Default Item Configuration Example**
+
+**Applied Task:** Sanding
+
+- **Name**: cnd_12  
+- **Description**: Sanding operation conditions  
+- **Coordinate System (Crd)**: Select Tool Coordinate System  
+- **Tool ID**: Use Force Control Tool Data ID 0 (Mass and Center of Gravity applied)  
+- **Zeroing Function (Zeros)**: ON → Initializes the sensor value to 0 when force control starts 
+
+{% endhint %}
+
+---
 [__SOURCE](2-settings/4-condition-settings/2-control.md)
-### 2.4.2 Force Control Condition - Control Parameters
+### 2.4.2 Force Control Condition Setup - Control
 
-Select the axes to be used for force control, and configure the target force (or torque), stiffness, velocity, and pose limits for each direction.
+Select the force control axes and set the target force value, stiffness, speed, and pose limit for each direction.
 
-These settings are central to force control and determine the robot's responsiveness during operation.
+This section is the core of force control and determines the responsiveness of the actual robot movement.
+
+<br>
+
+---
+
+![](../../_assets/_07_fctrl_ctrl_cnd_control.png)
+
+
+#### **Control Configuration Items**
+
+| Item | Description |
+|------------|------|
+| **Axis** | Controllable axes (X, Y, Z, Rx, Ry, Rz) |
+| **Act** | Whether to activate control for the corresponding axis (Active when checked ✓) |
+| **Force / Torque** | Target Force (N) or Torque (Nm)<br>Example: Set 50N for the Z-axis |
+| **Stiff** | Stiffness ratio (%), lower values allow more flexible response |
+| **Vel** | Movement speed limit during force control (mm/s or deg/s) |
+| **(-)Pose / (+)Pose** | Position limits in negative/positive directions (mm or deg)<br>Restricts robot movement when exceeded |
 
 <br>
 
 ---
 
-![](../_assets/_07_fctrl_ctrl_cnd_control.png)
+#### **Control Configuration Example**
 
-#### **Control Parameter Items**
+The following settings are for a **vertical sanding** operation:
 
-| Item             | Description |
-|------------------|-------------|
-| **Axis**         | Controllable axes (X, Y, Z, Rx, Ry, Rz) |
-| **Act**          | Activation checkbox - enables control on the selected axis |
-| **Force / Torque** | Target force (N) or torque (Nm)<br>e.g., 50 N on Z-axis |
-| **Stiff**        | Stiffness ratio (%); lower values result in more compliant behavior |
-| **Vel**          | Velocity limit during force control (mm/s or deg/s) |
-| **(-)Pose / (+)Pose** | Negative/positive pose limits (mm or deg); motion is restricted if exceeded |
+| Axis | Act | Force / Torque | Stiff | Vel | Pose Limit |
+|------|------|----|------|------|-------------|
+| **Z** | ✓ | 50N | 30% | 20 mm/s | -50 ~ +50 mm |
+| **Rx** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
+| **Ry** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
+| **X**, **Y**, **Rz** | - | - | - | - | - | 
 
----
+→ The robot maintains a force of 50N in the Z-axis direction, while the tool rotation directions (Rx, Ry) respond flexibly.
 
-#### Example Interpretation
-
-<br>
-
-> 💡 The following settings are designed for a **vertical sanding** task:
-
-| Axis  | Control | Force | Stiffness | Velocity | Pose Limit         |
-|-------|---------|--------|-----------|----------|--------------------|
-| **Z**   | `✓`     | 50 N   | 30%       | 20 mm/s  | -50 ~ +50 mm       |
-| **Rx**  | `✓`     | 0 Nm   | 10%       | 5 deg/s  | -10 ~ +10 deg      |
-| **Ry**  | `✓`     | 0 Nm   | 10%       | 5 deg/s  | -10 ~ +10 deg      |
-| **X**, **Y**, **Rz** | -       | -      | -         | -        | -                  |
-
-→ The robot maintains 50 N in the Z-direction while allowing compliant rotation around the Rx and Ry axes.
+<br> 
 
 ---
 
-Each axis should be configured based on task-specific requirements (e.g., surface curvature, precision).  
-Lower stiffness values provide greater compliance.
 
-> ⚠️ While low stiffness enables flexible interaction, it may cause vibration or noise depending on the robot response and environment.
+{% hint style="info" %}
+
+
+Detailed control for each axis must be adjusted based on actual working conditions (e.g., surface curvature, precision requirements, etc.). Lower gains result in a more flexible response.
+
+While lower stiffness ratios provide a flexible response, they may cause vibration and noise depending on the robot's responsiveness and the surrounding environment.
+
+{% endhint %}
+
 
 [__SOURCE](2-settings/4-condition-settings/3-filtering.md)
-### 2.4.3 Force Control Condition - Filtering
+### 2.4.3 Force Control Condition Setup - Filtering
 
-Filtering functions are provided to reduce noise from the force sensor and ensure stable input for control.  
-Additional features include a **scaling option** that adjusts control intensity within a specific force/torque range,  
-and a **bypass option** for more sensitive response to minor inputs.
+Filtering functions are provided to reduce noise from the force sensor and ensure that input values can be used stably for control.
 
-<br>
-
----
-
-![](../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
-
-#### Smooth Force (Filtering)
-
-Applies a **filter** to the sensor's force signal to reduce fluctuation and ensure smoother control.
-
-| Item              | Description |
-|-------------------|-------------|
-| **Enable**        | Apply filtering when checked |
-| **Frequency (Freq)** | Cutoff frequency of the filter (e.g., 20 Hz)<br>→ Lower values provide smoother output but slower response |
+Additionally, it offers scaling options to adjust control intensity within a specific force/torque range, as well as a bypass option to make the response to force input more sensitive.
 
 <br>
 
 ---
 
-![](../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
+![](../../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
 
-#### Smooth Scaling
+#### **Force Filtering**
 
-Smoothly adjusts the control response within a defined range of force or torque.  
-Useful in tasks requiring fine sensitivity tuning; typically left disabled by default.  
-The system can be configured to ignore minor force changes and only respond to forces above a certain threshold.
+Applies a **filter** to the sensor's force signals to eliminate jitter and smooth the output.
 
-| Item              | Description |
-|-------------------|-------------|
-| **Enable**        | Apply scaling within the range when checked |
-| **Force Range**   | Target force range (e.g., 2 ~ 8 N) |
-| **Torque Range**  | Target torque range (e.g., 0 ~ 0 Nm) |
-
-![](../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
-
-> 💡 If the input force is below the start value, the output is set to 0.  
-> 💡 If the input force is above the end value, the original input value is used.  
-> ⚠️ If the start and end values are the same, scaling will not be applied.
+| Item | Description |
+|------|------|
+| **Enable** | Apply filter when checked |
+| **Frequency (Freq)** | Set the filter cutoff frequency (e.g., 20 Hz)<br>→ Lower values result in smoother motion but slower response. |
 
 <br>
 
 ---
 
-![](../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
+![](../../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
 
 
-#### Command Flow
+#### **Force Scaling**
 
-Configures how command signals are processed and delivered to the robot.
+This function smoothly scales the control intensity within a specific force or torque range.  
+It is useful for tasks requiring sensitivity adjustments and is typically kept off.
 
-| Item     | Description |
-|----------|-------------|
-| **Mode** | `Normal`: Standard command delivery method<br>`Bypass`: Immediate and sensitive command response |
-| **Freq** | Filter frequency used in `Bypass` mode (Hz) |
+It can be designed to suppress control for minute force changes and respond sensitively only to forces above a certain level.
 
-> **Bypass** mode is used to **reflect sensor data immediately** and is recommended only for highly sensitive or experimental use cases.  
-> ⚠️ May cause **noise or vibration**, so `Normal` mode is recommended for standard operations.
+| Item | Description |
+|------|------|
+| **Enable** | When checked, scaling is applied only within the ranges below |
+| **Force Range** | Force range (e.g., 2 ~ 8 N) |
+| **Torque Range** | Torque range (e.g., 0 ~ 0 Nm) |
 
----
+![](../../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
+
+{% hint style="info" %}
+
+- When entering the force range, if the input force is smaller than the **Start Force**, the output force is 0. If it is greater than the **End Force**, the original input force value is output.
+
+- If the **Start Force** and **End Force** are equal, the scaling function will not operate.
+
+{% endhint %}
 
 <br>
 
-#### Recommended Settings Guide
+--- 
 
-| Task Type           | Recommended Settings                            |
-|---------------------|-------------------------------------------------|
-| Polishing / Sanding | `Smooth Force = ON`, `Freq = 20 Hz`             |
-| Delicate Assembly   | `Smooth Scaling = ON`, with conservative range  |
-| High Responsiveness / Testing | `Command Flow = Bypass`               |
 
----
+![](../../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
 
-📎 **Filtering**, **Scaling**, and **Command Flow** settings all work together.  
-They should be **tuned as a whole** depending on the specific task requirements.
+#### **Command Method**
+
+Sets the **processing method** for the command signals transmitted to the robot.
+
+| Item | Description |
+|------|------|
+| **Mode** | **Normal**: Standard command transmission method. <br>**Bypass**: Command transmission method for highly sensitive responses. |
+| **Freq** | Filter frequency setting used in Bypass mode (Hz). |
+
+{% hint style="info" %}
+
+- **Bypass** mode is used when you want to **reflect sensor data immediately**.
+- It is recommended only for experimental situations requiring extremely sensitive control.
+- Since there is a **risk of noise or vibration**, it is recommended to use **Normal** mode for general operations.
+
+{% endhint %}
+
+<br> 
+
+--- 
+
+### **Configuration Guide**
+
+| Task Type | Recommended Settings |
+|------------------|-----------------------------|
+| Polishing / Sanding | Smooth Force = ON, Freq = 20 Hz |
+| Smooth Assembly | Smooth Scaling = ON, Conservative range setting |
+| High-speed Response / Research | Command Flow = Bypass |
+
+--- 
+
+{% hint style="info" %}
+
+- **Filtering**, **Scaling**, and **Command Flow** settings all work together; therefore, they must be **tuned integrally** according to the specific objective of the task.
+
+{% endhint %}
+
 [__SOURCE](2-settings/4-condition-settings/4-motion/README.md)
 ### 2.4.4 Force Control Condition - Motion
 
@@ -411,118 +479,151 @@ You can define a **surface contact detection** criterion to determine whether th
 Additionally, without using a separate `move` command, the system can automatically generate **spiral**, **bidirectional**, or **zigzag** trajectories  
 
 [__SOURCE](2-settings/4-condition-settings/4-motion/1-contact.md)
-#### 2.4.4.1 Force Control Condition - Motion - Surface Contact Detection
+#### 2.4.4.1 Force Control Condition Setup - Motion - Contact Detection
 
-Real-time evaluation of whether the robot has properly contacted the surface during force control motion (along the tool Z-axis).
+This function determines in real-time whether the robot has properly made contact with the surface during a force control operation (in the Tool Z direction).
+
+
+
+<br>
 
 ---
 
-![](../_assets/_12_fctrl_ctrl_cnd_motion_contact.png)
+
+
+
+![](../../../_assets/_12_fctrl_ctrl_cnd_motion_contact.png)
+
 
 <br>
-
-##### Surface Contact Detection Criteria
-
-Contact is considered established when **all** the following conditions are satisfied:
-
-| Item               | Description |
-|--------------------|-------------|
-| **Force Thresh**       | Allowable error between target and actual force (unit: N) |
-| **Dev Angle Thresh**   | Instantaneous deviation angle of force direction along tool Z-axis (unit: deg) |
-| **Tilt Angle Thresh**  | Angle between contact surface and force direction (unit: deg) |
-| **Confirm Time**       | Duration the condition must be held (unit: sec) |
 
 ---
 
-<br>
+### **Contact Surface Detection Criteria Setup**
 
-##### Example Setting
+Contact is determined to be complete when all of the following conditions are met:
 
-> Example: If the following conditions are maintained for 3 seconds, surface contact is considered valid.
-
-| Item             | Value     |
-|------------------|-----------|
-| Force Error      | `3 N`     |
-| Force Direction Change | `20 deg`  |
-| Contact Angle    | `30 deg`  |
-| Hold Time        | `3 sec`   |
+| Item | Description |
+|--------------|------|
+| **Force Thresh** | Error threshold between the target force and current force (Unit: N) |
+| **Dev Angle Thresh** | Instantaneous change in the direction of the Z-axis force relative to the tool coordinates (Unit: deg) |
+| **Tilt Angle Thresh** | Angle between the contact surface and the direction of the force (Unit: deg) |
+| **Confirm time** | Duration the conditions must be maintained (Unit: sec) |
 
 <br>
 
-📌 To use the **Surface Contact Detection** function properly,  
-the coordinate system must be set to **Tool** coordinate frame.
+---
+
+### **Configuration Example**
+
+- **Criteria**: If contact is maintained according to the following standards for 3 seconds, the contact surface detection is confirmed (OK).
+
+| Item | Value |
+|------------------|---------|
+| Force Error (Thresh) | 3 N |
+| Force Direction Change (Dev Angle) | 20 deg |
+| Contact Angle (Tilt Angle) | 30 deg |
+| Confirmation Time | 3 sec |
+
+<br>
+
+---
+
+{% hint style="info" %}
+
+- To ensure the **Contact Surface Detection** function operates correctly, the selected coordinate system must be set to the **Tool Coordinate System**.
+
+{% endhint %}
+
 
 [__SOURCE](2-settings/4-condition-settings/4-motion/2-raster.md)
-#### 2.4.4.2 Force Control Condition - Motion - Auto Trajectory Generation
+#### 2.4.4.2 Force Control Condition Setup - Motion - Auto Path Generation
 
-Motion control conditions can be configured to run in conjunction with force control operations.
+Sets the motion control conditions to be executed during force control operations.
 
-In particular, this section allows the configuration of **Spiral**, **Bidirectional**, and **Zigzag** path trajectories.
+This section is specifically used to configure **Spiral, Bi-directional, and Zig-zag** paths and trajectories.
+
 
 <br>
 
 ---
 
-![](../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)  
-![](../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
-##### Motion Type
 
-| Type             |
-|------------------|
+![](../../../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)
+
+![](../../../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
+
+
+### **Motion Types**
+
+| Item |
+|----------------|
 | **Spiral Motion** |
-| **Bidirectional Motion** |
-| **Zigzag Motion** |
-
----
-![](../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
+| **Bi-directional Motion** |
+| **Zig-zag Motion** |
 
 <br>
 
-##### Spiral Motion
+---
 
-Generates a spiral path and trajectory.
+![](../../../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
 
-| Item            | Description |
-|------------------|-------------|
-| **Velocity**      | Linear rotational velocity (mm/s) |
-| **Radius**        | Maximum spiral radius (mm) - defines the final spiral size |
-| **Revolutions**   | Number of full rotations (rev) |
+### **Spiral Motion**
+
+A function that generates a spiral path and trajectory.
+
+| Item | Description |
+|--------------|------|
+| **Velocity** | Rotational linear velocity (mm/s) |
+| **Radius** | Maximum radius setting (mm) - The final size of the spiral |
+| **Revolutions** | Number of revolutions (rev) - Total count of rotations |
+
+
+<br>
 
 ---
 
-##### Bidirectional Motion
 
-Generates a linear raster path that alternates direction line-by-line.
+### **Bi-directional Motion**
 
-| Item            | Description |
-|------------------|-------------|
-| **Velocity**       | Linear velocity along the path (mm/s) |
-| **Mov Dir**        | Movement direction (+X, -X, +Y, -Y) |
-| **Mov Length**     | Length of each movement line |
-| **Shift Dir**      | Line shift direction (+X, -X, +Y, -Y) |
-| **Shift Length**   | Distance between raster lines |
-| **Num Lines**      | Number of lines to generate in movement direction |
+A function that generates a bi-directional path and trajectory.
 
----
+| Item | Description |
+|--------------|------|
+| **Velocity** | Linear velocity (mm/s) |
+| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
+| **Mov Length** | Movement Length (mm) |
+| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
+| **Shift Length** | Shift (Pitch) Length (mm) |
+| **Num Lines** | Number of lines to be generated in the movement direction |
 
-##### Zigzag Motion
-
-Generates a raster path that alternates direction every line (zigzag pattern).
-
-| Item            | Description |
-|------------------|-------------|
-| **Velocity**       | Linear velocity along the path (mm/s) |
-| **Mov Dir**        | Movement direction (+X, -X, +Y, -Y) |
-| **Mov Length**     | Length of each movement line |
-| **Shift Dir**      | Line shift direction (+X, -X, +Y, -Y) |
-| **Shift Length**   | Distance between raster lines |
-| **Num Lines**      | Number of lines to generate in movement direction |
+<br>
 
 ---
 
-📌 The above motions generate XY-plane trajectories relative to the coordinate system selected in **Section 2.4.1**.
+### **Zig-zag Motion**
 
+A function that generates a zig-zag path and trajectory.
+
+| Item | Description |
+|--------------|------|
+| **Velocity** | Linear velocity (mm/s) |
+| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
+| **Mov Length** | Movement Length (mm) |
+| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
+| **Shift Length** | Shift (Pitch) Length (mm) |
+| **Num Lines** | Number of lines to be generated relative to the movement direction |
+
+<br>
+
+---
+
+{% hint style="info" %}
+
+- This motion generates a path based on the **XY plane** relative to the coordinate system selected in **2.4.1 (Force Control Condition Setup - Basic)**.
+
+{% endhint %}
 [__SOURCE](3-roblang/README.md)
 # 3. Force Control Commands
 
@@ -549,113 +650,109 @@ Each command is used to configure force settings, start/stop control, and execut
 <br>
 
 [__SOURCE](3-roblang/1-example-2-axis-directional-force-control.md)
-## 3.1 Example: Z-Axis Force Control
+## 3.1 Example: Z-axis Force Control
 
-The following is a Job program example that uses the **sensor-based force control** function.  
-This example is designed to **wait until the external force along the Z-axis exceeds 35N**,  
-and then proceed with the task execution.
-
-<br>
-
----
-
-### 📄 Operation Overview
-
-> 💡 It is recommended to use the `delay` command before enabling force control,  
-> to suppress sensor noise and initial vibrations for more stable force response.
-
-> ⚠️ In the `cfo` command, make sure the coordinate system matches the one selected  
-> in the force control condition settings in order to receive force data correctly.
+The following is an example of a Job program using the **Sensor-based Force Control function**.
+This example is designed to wait until the **external force applied in the Z-axis direction reaches 35N or more** before performing the task.
 
 <br>
 
 ---
 
-### 📁 Job File Example
+### **Operation Overview**
+
+- By using a **delay** command to secure time before starting force control, you can suppress sensor noise or initial vibrations, enabling more stable force control.
+
+- When selecting a coordinate system in the **CFO (Force Control Output)** command, it must match the coordinate system selected in the **Force Control Settings** to properly receive force data.
+
+<br>
+
+---
+
+### **JOB Program Example**
 
 ```python
-delay 1.0                           # Wait to stabilize before starting control
-fctrl on,cnd=2                      # Start force control (using condition No. 2)
+delay 1.0                           # Wait for stabilization before starting control
+fctrl on,cnd=2                      # Start force control (Using condition set No. 2)
 delay 0.5
 
 #get_current_force
-var force = cfo("tool", "sensor")   # Get current external force in tool coordinates
+var force = cfo("tool", "sensor")   # Receive external force data based on the Tool coordinates
 
-# Wait until Z-axis force exceeds 35N
+# Conditional Loop: Wait until the Z-axis external force reaches 35N or more
 if abs(force.z) < 35 then *get_current_force
-delay 5                             # Wait for force stabilization
-fctrl off                           # Stop force control
-
+delay 5                             # Wait for external force stabilization 
+fctrl off                           # End force control 
 [__SOURCE](3-roblang/2-example-change-control-settings.md)
-## 3.2 Example: Control Setting Update
+## 3.2 Example: Modifying Control Settings
 
-The following is a Job program example where **only the 'Control' section of the force control condition** is updated.  
-This approach is useful when you want to change only the force response characteristics during operation,  
-while keeping the coordinate system, filters, and motion settings unchanged.
-
-<br>
-
----
-
-### 📄 Operation Overview
-
-- `fctrl on,cnd=2`: Starts force control using **condition set No. 2** (full configuration)
-- `fctrl control,cnd=1`: Replaces **only the 'Control' section** with set No. 1  
-  (Coordinate system, filter, and motion remain as in condition set No. 2)
+The following is a Job program example for **modifying only the 'Control' parameters** within the force control conditions.  
+This method is useful when you want to change only the external force response characteristics during real-time operation while maintaining other settings such as filters, coordinate systems, and motion profiles.
 
 <br>
 
 ---
 
-### 📁 Job File Example
+### **Operation Overview**
+
+- **fctrl on, cnd=2**: Applies the complete configuration from set No. 2 when starting force control.
+- **fctrl control, cnd=1**: Changes **only the 'Control' parameters** to those of set No. 1.
+  (Other settings such as coordinate system, filters, and motion profiles remain as they were in set No. 2.)
+
+<br>
+
+---
+
+### **JOB Program Example**
 
 ```python
-delay 1.0                           # Wait to stabilize before starting control
-fctrl on,cnd=2                      # Start force control (use condition set No. 2)
+delay 1.0                           # Wait for stabilization before starting control
+fctrl on, cnd=2                     # Start force control (Initial: Using set No. 2)
 delay 0.5
 
-fctrl control,cnd=1                 # Update only the Control section (use condition set No. 1)
+fctrl control, cnd=1                # Update ONLY 'Control' parameters (Switch to set No. 1)
+                                    # (Coordinates, Filters, and Motion remain from No. 2)
 
-delay 5                             # Wait for force stabilization
-fctrl off                           # Stop force control
+delay 5                             # Wait for stabilization of external force
+fctrl off                           # End force control
 
 [__SOURCE](3-roblang/3-example-motion-contact.md)
 ## 3.3 Example: Contact Surface Detection
 
-This is a Job program example that uses the **contact surface detection** feature in a robotic force control system.
+The following is a Job program example for using the **Contact Surface Detection** function in the robot. 
 
 <br>
 
 ---
 
-### Configuration Example
+### **Operation Overview**
 
-Set the **contact check** condition in the configuration as follows:
+Configure the **Contact Check** conditions in the **Settings** as follows:
 
-> Example: If the following conditions are maintained for 5 seconds,  
-> contact is considered successful.
+- **Criteria**: If contact is maintained according to the standards below for 5 seconds, the contact surface detection is confirmed (OK).
 
-| Parameter              | Value     |
-|------------------------|-----------|
-| Force Error Threshold  | `3 N`     |
-| Force Direction Change | `20 deg`  |
-| Contact Angle          | `40 deg`  |
-| Hold Duration          | `5 sec`   |
+| Item | Value |
+|------------------|---------|
+| Force Error (Thresh) | 3 N |
+| Force Direction Change (Dev Angle) | 20 deg |
+| Contact Angle (Tilt Angle) | 40 deg |
+| Confirmation Time | 5 sec |
 
-<br>
+<br> 
 
 ---
 
-### 📁 Job File Example
+### **JOB Program Example** 
 
 ```python
-delay 1.0                            # Wait to stabilize before starting control
-fctrl on,cnd=1                       # Start force control (using condition set No. 1)
-delay 0.5                            # Brief wait before executing contact check
+delay 1.0                           # Wait for stabilization before starting control
+fctrl on, cnd=1                     # Start force control (Using condition set No. 1)
+delay 0.5                           # Wait 0.5s before executing contact detection
 
-wait contact_state()                 # Execute contact check, wait until contact is confirmed
+wait contact_state()                # Execute contact detection; wait until "OK"
 
-fctrl off                            # Stop force control
+fctrl off                           # End force control
+
 
 [__SOURCE](3-roblang/4-example-motion-spiral.md)
 ## 3.4 Example: Spiral Motion
@@ -667,18 +764,17 @@ The robot maintains a constant **external force of 20N in the Z-axis direction**
 
 ---
 
-### 📄 Operation Overview
+### **Operation Overview**
 
-> ⚠️ Make sure to set the **Motion Type** to **Spiral** in the **configuration settings**.
+- Make sure to set the **Motion Type** to **Spiral** in the **configuration settings**.
 
-> ⚠️ It is recommended to insert a `delay` command before `motion_on`  
-> to suppress vibration and ensure more stable force control.
+- It is recommended to insert a **delay** command before **fctrl motion_on** to suppress vibration and ensure more stable force control.
 
 <br>
 
 ---
 
-### 📁 Job File Example
+### **JOB Program Example** 
 
 ```python
 delay 1.0                            # Wait to stabilize before starting control
@@ -703,6 +799,8 @@ users can monitor the following status information in real-time through the UI.
 This function allows you to monitor the external force applied to the robot in real time.  
 It is essential to check this information when using the Force Control function.
 
+<br>
+
 ---
 
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
@@ -712,32 +810,50 @@ It is essential to check this information when using the Force Control function.
 | **Cartesian** | External force (N or Nm) displayed in the selected coordinate system |
 | **Joint**     | Not used in force control |
 
-> ⚠️ The coordinate system of the `Cartesian` external force follows the coordinate frame defined in the force control condition (`cnd`).
+- The coordinate system of the Cartesian external force follows the coordinate frame defined in the force control condition (cnd).
+- Data is updated **only when force control (fctrl) is active**.
 
-> ⚠️ Data is updated **only when force control (fctrl) is active**.
+<br>
 
-### TP Navigation Path
+--- 
 
-**[Operation]** → **[Select]** → **[Force Data Monitoring]**
+{% hint style="info" %}
 
+**TP Navigation Path**
+
+[pane layout] – [F1: select] – [force data]
+
+{% endhint %}
 [__SOURCE](4-monitoring/2-force-motion-monitoring.md)
 ## 4.2 Force Motion Monitoring
 
+This function allows for real-time monitoring of the external forces applied to the robot, the error relative to the target force, and the commanded position during operation.
+
+<br>
+
+--- 
+
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
 
-| Item  | Description |
-|-------|-------------|
-| **Fext** | Force error (difference between target force and external force) [N or Nm] |
-| **Cmd**  | Command position for force control (mm or deg) |
+| Item | Description |
+|--------------|------|
+| **Fext** | Force Error (Error between target force and external force) [N or Nm] |
+| **Cmd** | Command Position for force control (mm or deg) |
 
-> ⚠️ The coordinate system for `Fext` and `Cmd` follows the coordinate frame defined in the force control condition (`cnd`).
+- The coordinate system for **Fext** and **Cmd** follows the coordinate system selected in the settings (cnd).
+- This data is only active while **fctrl on** is in effect.
 
-> ⚠️ This data is updated **only when force control (fctrl) is ON**.
+<br>
 
-### TP Navigation Path
+--- 
 
-**[Operation]** → **[Select]** → **[Force Motion Monitoring]**
+{% hint style="info" %}
 
+**TP Navigation Path**
+
+[pane layout] – [F1: select] – [force motion]
+
+{% endhint %}
 [__SOURCE](5-error/README.md)
 # 5. Errors & Troubleshooting
 
