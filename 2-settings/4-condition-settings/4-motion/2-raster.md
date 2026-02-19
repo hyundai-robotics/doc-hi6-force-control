@@ -9,12 +9,14 @@
 
 ---
 
+
+
 ![](../../../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)
 
 ![](../../../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
 
-### 모션 타입 [Motion Type]
+### **모션 타입**
 
 | 항목명         |
 |----------------|
@@ -28,9 +30,7 @@
 
 ![](../../../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
 
-<br>
-
-### 나선형 모션[Spiral Motion]
+### **나선형 모션**
 
 나선형 경로와 궤적을 생성하는 기능입니다.  
 
@@ -41,7 +41,12 @@
 | **Revolutions** | 회전수 (rev) - 전체 몇 바퀴 도는지 |
 
 
-### 양방향 모션[Bidirectional Motion]
+<br>
+
+---
+
+
+### **양방향 모션**
 
 양방향 경로와 궤적을 생성하는 기능입니다.  
 
@@ -54,7 +59,11 @@
 | **Shift Length** | 줄 바꿈 길이 |
 | **Num Lines**    | 이동 방향 기준 생성 되는 줄의 개수 |
 
-### 지그재그 모션[ZigZag Motion]
+<br>
+
+---
+
+### **지그재그 모션**
 
 지그재그 경로와 궤적을 생성하는 기능입니다.  
 
@@ -66,7 +75,6 @@
 | **Shift Dir**    | 줄 바꿈 방향  (+X, -X, +Y, -Y) |
 | **Shift Length** | 줄 바꿈 길이 |
 | **Num Lines**    | 이동 방향 기준 생성 되는 줄의 개수 |
-
 
 <br>
 
