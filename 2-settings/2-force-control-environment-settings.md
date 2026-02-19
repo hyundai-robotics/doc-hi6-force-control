@@ -18,7 +18,7 @@
 - `유효`: 기능 **활성화** 
 - `무효`: 기능 **비활성화** 
 
-> ⚠️ 반드시 Enable로 설정해야 힘 제어 기능이 작동합니다.
+>  반드시 Enable로 설정해야 힘 제어 기능이 작동합니다.
 
 ---
 
@@ -36,7 +36,7 @@
 
 센서에 따라 **데이터 포맷 및 통신 방식**이 달라지므로 정확히 선택해야 합니다.
 
-> 💡 **참고 사항**  
+> **참고 사항**  
 > 다음 ATI 모델은 **V60.32-05 이상 버전**에서 지원됩니다.  
 > - 일반 ATI 모델  
 > - Theta-SI2500-400  
@@ -52,7 +52,7 @@
 - `SCI`
 - `TCP`
 
-⚙️ 프로토콜에 따라 포트 설정 및 내부 파싱 방식을 아래와 같이 설정
+프로토콜에 따라 포트 설정 및 내부 파싱 방식을 아래와 같이 설정
 
 --- 
 ### **ATI 모델별 설정 방법**
@@ -64,23 +64,23 @@
 
 <br>
 
-#### ✔️ **ATI(Delta-SI-660-60)**  
+#### **ATI(Delta-SI-660-60)**  
 
 ![](../_assets/_01_01_fctrl_env_setting_ATI_Delta_UDP.png)
 
 <br>
 
-#### ✔️ **ATI(Theta-SI2500-400)**
+#### **ATI(Theta-SI2500-400)**
 ![](../_assets/_01_02_fctrl_env_setting_ATI_Theta_UDP.png)
 
 <br>
 
-#### ✔️ **ATI(Omega-SI7200-1400)**
+#### **ATI(Omega-SI7200-1400)**
 ![](../_assets/_01_03_fctrl_env_setting_ATI_Omega_UDP.png)
 
 <br>
 
-#### ✔️ **ATI(일반 ATI 모델)**
+#### **ATI(일반 ATI 모델)**
 ![](../_assets/_01_04_fctrl_env_setting_ATI_Generic_UDP.png)
 
 - **일반 ATI 모델**
@@ -102,7 +102,7 @@
 ### **SCI 통신 방식 : Robotiq(FT-300S)**
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
-📂 시스템 → 🔧 2: 제어파라미터 → 🔌 3: 시리얼포트 → 🛠 1: 환경설정
+[F2: 시스템] – 2: 제어파라미터 – 3: 시리얼포트 – 1: 환경설정
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
@@ -110,9 +110,8 @@
 
 <br>
 
-> ⚠️ **주의 사항**
->  
+{% hint style="info" %}
 > - 본 설정은 *일반적인 모델 기준 예시*입니다.  
 > - **ATI 일부 모델은 상기 설정과 상이한 네트워크 값을 사용할 수 있습니다.**  
->  
-> 👉 적용 전 모델별 매뉴얼 확인을 권장합니다.
+{% endhint %}
+
