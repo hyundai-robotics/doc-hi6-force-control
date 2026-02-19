@@ -6,7 +6,7 @@
 
 ---
 
-![](../_assets/_06_fctrl_ctrl_cnd_default.png)
+![](../../_assets/_06_fctrl_ctrl_cnd_default.png)
 
 <br> 
 

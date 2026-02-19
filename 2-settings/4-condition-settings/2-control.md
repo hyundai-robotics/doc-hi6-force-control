@@ -8,7 +8,7 @@
 
 ---
 
-![](../_assets/_07_fctrl_ctrl_cnd_control.png)
+![](../../_assets/_07_fctrl_ctrl_cnd_control.png)
 
 
 #### **제어(Control) 설정 항목**

@@ -9,9 +9,9 @@
 
 ---
 
-![](../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)
+![](../../../_assets/_13_fctrl_ctrl_cnd_motion_raster1.png)
 
-![](../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
+![](../../../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
 
 ### 모션 타입 [Motion Type]
@@ -26,7 +26,7 @@
 
 ---
 
-![](../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
+![](../../../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
 
 <br>
 

@@ -7,11 +7,9 @@
 힘 입력에 대한 반응을 더욱 민감하게 하는 바이패스 옵션도 제공합니다. 
 
 <br>
-
-
 ---
 
-![](../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
+![](../../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
 
 #### 힘 필터링 [Smooth Force]
 
@@ -26,7 +24,7 @@
 
 ---
 
-![](../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
+![](../../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
 
 
 #### 힘 스케일링 [Smooth Scaling]
@@ -42,7 +40,7 @@
 | **Force Range** | 힘 범위 (예: 2 ~ 8 N) |
 | **Torque Range** | 토크 범위 (예: 0 ~ 0 Nm) |
 
-![](../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
+![](../../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
 
 {% hint style="info" %}
 
@@ -56,7 +54,7 @@
 --- 
 
 
-![](../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
+![](../../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
 
 #### 명령 방식 [Command Flow]
 
