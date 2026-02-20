@@ -1,7 +1,7 @@
-﻿## 4.1 Force Data Monitoring
+## 4.1 力数据监测
 
-This function allows you to monitor the external force applied to the robot in real time.  
-It is essential to check this information when using the Force Control function.
+此功能允许您实时监测施加到机器人上的外部力。  
+在使用力控制功能时，检查此信息是必不可少的。
 
 <br>
 
@@ -9,13 +9,13 @@ It is essential to check this information when using the Force Control function.
 
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
 
-| Item         | Description |
-|--------------|-------------|
-| **Cartesian** | External force (N or Nm) displayed in the selected coordinate system |
-| **Joint**     | Not used in force control |
+| 项目         | 描述         |
+|--------------|--------------|
+| **笛卡尔**   | 在选定坐标系中显示的外部力 (N 或 Nm) |
+| **关节**     | 在力控制中未使用 |
 
-- The coordinate system of the Cartesian external force follows the coordinate frame defined in the force control condition (cnd).
-- Data is updated **only when force control (fctrl) is active**.
+- 笛卡尔外部力的坐标系统遵循在力控制条件 (cnd) 中定义的坐标框架。
+- 数据**仅在力控制 (fctrl) 激活时更新**。
 
 <br>
 
@@ -23,7 +23,7 @@ It is essential to check this information when using the Force Control function.
 
 {% hint style="info" %}
 
-**TP Navigation Path**
+**TP 导航路径**
 
 [pane layout] – [F1: select] – [force data]
 

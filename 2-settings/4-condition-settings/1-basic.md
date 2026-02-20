@@ -1,26 +1,24 @@
-﻿### 2.4.1 Force Control Condition Setup - Basic
+### 2.4.1 力控制条件设置 - 基础
 
-Select the axes to be controlled according to the task, and set the force target value, stiffness, speed, and pose limit for each axis.  
-These items are the core of force control and determine the responsiveness of the actual robot movement.
+根据任务选择要控制的轴，并为每个轴设置力目标值、刚度、速度和姿态限制。  
+这些项是力控制的核心，决定了实际机器人运动的响应能力。
 
 <br>
 
 ---
 
-
 ![](../../_assets/_06_fctrl_ctrl_cnd_default.png)
 
+#### **默认配置项**
 
-#### **Default Configuration Items**
-
-| Item | Description |
+| 项目 | 描述 |
 |------------------|------|
-| **Name** | Condition name (e.g., cnd_12) - Automatically entered by selecting from the list |
-| **Description** | Task description (e.g., Sanding) - Used to identify the purpose of the current condition |
-| **Coordinate System (Crd)** | Select the coordinate system where force control will be applied:<br>• Base (Base Coordinates)<br>• Robot (Robot Coordinates)<br>• Tool (Tool Coordinates)<br>• User (User-defined Coordinates) |
-| **User Coordinate System (UCS ID)** | User-defined coordinate system number - Used when Crd is set to User |
-| **Tool ID** | Current tool number (Linked to tool weight and center of gravity information) |
-| **Zeroing Function (Zeros)** | Force sensor initial value calibration (Zeroing)<br>• On: Execute zero calibration<br>• Off: Maintain original values |
+| **名称** | 条件名称（例如，cnd_12） - 从列表中选择后自动输入 |
+| **描述** | 任务描述（例如，打磨） - 用于识别当前条件的目的 |
+| **坐标系统 (Crd)** | 选择施加力控制的坐标系统：<br>• 基础（基础坐标）<br>• 机器人（机器人坐标）<br>• 工具（工具坐标）<br>• 用户（用户定义坐标） |
+| **用户坐标系统 (UCS ID)** | 用户定义的坐标系统编号 - 当 Crd 设置为用户时使用 |
+| **工具 ID** | 当前工具编号（与工具重量和重心信息相连） |
+| **归零功能 (Zeros)** | 力传感器初始值校准（归零）<br>• 开：执行零校准<br>• 关：保持原始值 |
 
 <br> 
 
@@ -28,14 +26,14 @@ These items are the core of force control and determine the responsiveness of th
 
 {% hint style="info" %}
 
-- If a User Coordinate System is selected and a non-existent User Coordinate System ID is entered, an error (**E1336**) will be output during force control operation.
+- 如果选择用户坐标系统并输入不存在的用户坐标系统 ID，则在力控制操作期间将输出错误（**E1336**）。
 
-- If the User Coordinate System is selected and the ID is set to 0, it is identical to the Robot Coordinate System.
+- 如果选择用户坐标系统并将 ID 设置为 0，则等同于机器人坐标系统。
 
-- The Tool ID refers to the tool number configured in:  
-  `[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data`
+- 工具 ID 指的是在以下位置配置的工具编号：  
+  `[F2: 系统] – 4: 应用参数 – 17: 力控制 – 2: 力控制工具数据`
 
-- If the Zeroing function is not used (**Off**), the system outputs values calibrated based on the tool information (weight and center of gravity) assigned to the set tool number, relative to the raw output from the sensor.
+- 如果不使用归零功能（**关**），系统将输出基于分配给设置工具编号的工具信息（重量和重心）校准的值，相对于传感器的原始输出。
 
 {% endhint %}
 
@@ -45,16 +43,13 @@ These items are the core of force control and determine the responsiveness of th
 
 {% hint style="info" %}
 
-#### **Default Item Configuration Example**
+#### **默认项目配置示例**
 
-**Applied Task:** Sanding
-
-- **Name**: cnd_12  
-- **Description**: Sanding operation conditions  
-- **Coordinate System (Crd)**: Select Tool Coordinate System  
-- **Tool ID**: Use Force Control Tool Data ID 0 (Mass and Center of Gravity applied)  
-- **Zeroing Function (Zeros)**: ON → Initializes the sensor value to 0 when force control starts 
+**应用任务：** 打磨
+- **名称**: cnd_12  
+- **描述**: 打磨操作条件  
+- **坐标系统 (Crd)**: 选择工具坐标系统  
+- **工具 ID**: 使用力控制工具数据 ID 0 (应用质量和重心)  
+- **归零功能 (Zeros)**: 开 → 在开始力控制时将传感器值初始化为 0  
 
 {% endhint %}
-
----

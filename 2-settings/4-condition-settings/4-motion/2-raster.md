@@ -1,8 +1,8 @@
-﻿#### 2.4.4.2 Force Control Condition Setup - Motion - Auto Path Generation
+#### 2.4.4.2 力控制条件设置 - 运动 - 自动路径生成
 
-Sets the motion control conditions to be executed during force control operations.
+设置在力控制操作期间执行的运动控制条件。
 
-This section is specifically used to configure **Spiral, Bi-directional, and Zig-zag** paths and trajectories.
+本节专门用于配置 **螺旋、双向和锯齿形** 路径和轨迹。
 
 
 <br>
@@ -16,13 +16,13 @@ This section is specifically used to configure **Spiral, Bi-directional, and Zig
 ![](../../../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
 
-### **Motion Types**
+### **运动类型**
 
-| Item |
+| 项目 |
 |----------------|
-| **Spiral Motion** |
-| **Bi-directional Motion** |
-| **Zig-zag Motion** |
+| **螺旋运动** |
+| **双向运动** |
+| **锯齿形运动** |
 
 <br>
 
@@ -30,15 +30,15 @@ This section is specifically used to configure **Spiral, Bi-directional, and Zig
 
 ![](../../../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
 
-### **Spiral Motion**
+### **螺旋运动**
 
-A function that generates a spiral path and trajectory.
+生成螺旋路径和轨迹的功能。
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Velocity** | Rotational linear velocity (mm/s) |
-| **Radius** | Maximum radius setting (mm) - The final size of the spiral |
-| **Revolutions** | Number of revolutions (rev) - Total count of rotations |
+| **速度** | 旋转线速度 (mm/s) |
+| **半径** | 最大半径设置 (mm) - 螺旋的最终大小 |
+| **旋转次数** | 旋转次数 (rev) - 总旋转计数 |
 
 
 <br>
@@ -46,35 +46,34 @@ A function that generates a spiral path and trajectory.
 ---
 
 
-### **Bi-directional Motion**
-
+### **双向运动**
 A function that generates a bi-directional path and trajectory.
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Velocity** | Linear velocity (mm/s) |
-| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
-| **Mov Length** | Movement Length (mm) |
-| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
-| **Shift Length** | Shift (Pitch) Length (mm) |
-| **Num Lines** | Number of lines to be generated in the movement direction |
+| **速度** | 线性速度 (mm/s) |
+| **运动方向** | 运动方向 (+X, -X, +Y, -Y) |
+| **运动长度** | 运动长度 (mm) |
+| **位移方向** | 位移方向 (+X, -X, +Y, -Y) |
+| **位移长度** | 位移 (步距) 长度 (mm) |
+| **生成线数** | 在运动方向生成的线数 |
 
 <br>
 
 ---
 
-### **Zig-zag Motion**
+### **锯齿形运动**
 
 A function that generates a zig-zag path and trajectory.
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Velocity** | Linear velocity (mm/s) |
-| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
-| **Mov Length** | Movement Length (mm) |
-| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
-| **Shift Length** | Shift (Pitch) Length (mm) |
-| **Num Lines** | Number of lines to be generated relative to the movement direction |
+| **速度** | 线性速度 (mm/s) |
+| **运动方向** | 运动方向 (+X, -X, +Y, -Y) |
+| **运动长度** | 运动长度 (mm) |
+| **位移方向** | 位移方向 (+X, -X, +Y, -Y) |
+| **位移长度** | 位移 (步距) 长度 (mm) |
+| **生成线数** | 相对于运动方向生成的线数 |
 
 <br>
 
@@ -82,6 +81,6 @@ A function that generates a zig-zag path and trajectory.
 
 {% hint style="info" %}
 
-- This motion generates a path based on the **XY plane** relative to the coordinate system selected in **2.4.1 (Force Control Condition Setup - Basic)**.
+- 此运动基于在 **2.4.1 (力控制条件设置 - 基础)** 中选择的坐标系统相对的 **XY 平面** 生成路径。
 
 {% endhint %}

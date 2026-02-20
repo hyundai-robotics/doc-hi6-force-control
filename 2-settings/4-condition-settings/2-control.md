@@ -1,8 +1,8 @@
-﻿### 2.4.2 Force Control Condition Setup - Control
+### 2.4.2 力控制条件设置 - 控制
 
-Select the force control axes and set the target force value, stiffness, speed, and pose limit for each direction.
+选择力控制轴并设置每个方向的目标力值、刚度、速度和姿态限制。
 
-This section is the core of force control and determines the responsiveness of the actual robot movement.
+本节是力控制的核心，决定了实际机器人运动的响应性。
 
 <br>
 
@@ -10,46 +10,42 @@ This section is the core of force control and determines the responsiveness of t
 
 ![](../../_assets/_07_fctrl_ctrl_cnd_control.png)
 
+#### **控制配置项**
 
-#### **Control Configuration Items**
-
-| Item | Description |
+| 项目 | 描述 |
 |------------|------|
-| **Axis** | Controllable axes (X, Y, Z, Rx, Ry, Rz) |
-| **Act** | Whether to activate control for the corresponding axis (Active when checked ✓) |
-| **Force / Torque** | Target Force (N) or Torque (Nm)<br>Example: Set 50N for the Z-axis |
-| **Stiff** | Stiffness ratio (%), lower values allow more flexible response |
-| **Vel** | Movement speed limit during force control (mm/s or deg/s) |
-| **(-)Pose / (+)Pose** | Position limits in negative/positive directions (mm or deg)<br>Restricts robot movement when exceeded |
+| **轴** | 可控轴 (X, Y, Z, Rx, Ry, Rz) |
+| **激活** | 是否激活对应轴的控制 (选中时为激活状态 ✓) |
+| **力 / 转矩** | 目标力 (N) 或 转矩 (Nm)<br>示例：将 Z 轴设置为 50N |
+| **刚度** | 刚度比 (%), 较低的值允许更灵活的响应 |
+| **速度** | 力控制期间的移动速度限制 (mm/s 或 deg/s) |
+| **(-)姿态 / (+)姿态** | 负/正方向的位置限制 (mm 或 deg)<br>超出限制时限制机器人运动 |
 
 <br>
 
 ---
 
-#### **Control Configuration Example**
+#### **控制配置示例**
 
-The following settings are for a **vertical sanding** operation:
+以下设置适用于 **垂直打磨** 操作：
 
-| Axis | Act | Force / Torque | Stiff | Vel | Pose Limit |
+| 轴 | 激活 | 力 / 转矩 | 刚度 | 速度 | 姿态限制 |
 |------|------|----|------|------|-------------|
 | **Z** | ✓ | 50N | 30% | 20 mm/s | -50 ~ +50 mm |
 | **Rx** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
 | **Ry** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
 | **X**, **Y**, **Rz** | - | - | - | - | - | 
 
-→ The robot maintains a force of 50N in the Z-axis direction, while the tool rotation directions (Rx, Ry) respond flexibly.
+→ 机器人在 Z 轴方向维持 50N 的力，而工具旋转方向 (Rx, Ry) 灵活响应。
 
 <br> 
 
 ---
 
-
 {% hint style="info" %}
 
 
-Detailed control for each axis must be adjusted based on actual working conditions (e.g., surface curvature, precision requirements, etc.). Lower gains result in a more flexible response.
-
-While lower stiffness ratios provide a flexible response, they may cause vibration and noise depending on the robot's responsiveness and the surrounding environment.
+每个轴的详细控制必须根据实际工作条件进行调整 (例如，表面曲率、精度要求等)。较低的增益会导致更灵活的响应。
+虽然较低的刚度比提供了灵活的响应，但它们可能会导致振动和噪音，这取决于机器人响应能力和周围环境。
 
 {% endhint %}
-

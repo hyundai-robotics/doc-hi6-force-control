@@ -1,31 +1,31 @@
-﻿## 3.4 Example: Spiral Motion
+## 3.4 示例：螺旋运动
 
-This is a Job program example that uses the **Spiral Motion** feature in the robotic force control system.  
-The robot maintains a constant **external force of 20N in the Z-axis direction** while performing the spiral path.
-
-<br>
-
----
-
-### **Operation Overview**
-
-- Make sure to set the **Motion Type** to **Spiral** in the **configuration settings**.
-
-- It is recommended to insert a **delay** command before **fctrl motion_on** to suppress vibration and ensure more stable force control.
+这是一个使用**螺旋运动**功能的机器人力控制系统的作业程序示例。  
+机器人在执行螺旋路径时保持**Z轴方向上恒定的外部力为20N**。
 
 <br>
 
 ---
 
-### **JOB Program Example** 
+### **操作概述**
+
+- 确保在**配置设置**中将**运动类型**设置为**螺旋**。
+
+- 建议在**fctrl motion_on**之前插入**延迟**命令，以抑制振动并确保更稳定的力控制。
+
+<br>
+
+---
+
+### **JOB程序示例** 
 
 ```python
-delay 1.0                            # Wait to stabilize before starting control
-fctrl on,cnd=1                       # Start force control (using condition set No. 1)
-delay 0.5                            # Wait before starting spiral motion
+delay 1.0                            # 等待以在开始控制之前稳定
+fctrl on,cnd=1                       # 开始力控制（使用条件集编号1）
+delay 0.5                            # 在开始螺旋运动之前等待
 
-fctrl motion_on                      # Start spiral motion
-wait motion_state() == 0             # Wait until spiral motion is complete
-fctrl motion_off                     # Stop spiral motion
+fctrl motion_on                      # 开始螺旋运动
+wait motion_state() == 0             # 等待直到螺旋运动完成
+fctrl motion_off                     # 停止螺旋运动
 
-fctrl off                            # Stop force control
+fctrl off                            # 停止力控制

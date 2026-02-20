@@ -1,22 +1,22 @@
-﻿## 2.1 Force Sensor Coordinate System
+## 2.1 力传感器坐标系统
 
-When mounting the force/torque (FT) sensor, the sensor coordinate system **must be aligned with the robot model's coordinate system**.
+在安装力/扭矩（FT）传感器时，传感器坐标系统 **必须与机器人模型的坐标系统对齐**。
 
-If the sensor frame is misaligned, the measured force/torque directions will not match reality, leading to **severely degraded control performance**.
+如果传感器框架不对齐，测得的力/扭矩方向将与实际情况不符，导致 **控制性能严重降低**。
 
 <br>
 
 ---
 
-### **Robot Sensor Coordinate Frame**
+### **机器人传感器坐标框架**
 
-- The X, Y, and Z axes of the sensor coordinate system, as defined by our standard, are shown in the figure below:  
-- The directions of the X, Y, and Z axes defined in the sensor model **must match** the robot's sensor coordinate system.
+- 根据我们的标准，传感器坐标系统的X、Y和Z轴如下图所示：  
+- 传感器模型中定义的X、Y和Z轴方向 **必须与** 机器人的传感器坐标系统相匹配。
 
 ![](../_assets/_05_fctrl_ctrl_sensor_crd.png)
 
-- The robot in the above diagram is in its default posture.  
-- Most circular FT sensors have coordinate direction markings on the sensor body.  
+- 上图中的机器人处于其默认姿态。  
+- 大多数圆形FT传感器在传感器外壳上有坐标方向标记。  
 
 <br>
 
@@ -24,8 +24,8 @@ If the sensor frame is misaligned, the measured force/torque directions will not
 
 {% hint style="info" %}
 
-- **If the axes are inverted**: apply axis inversion or transformation in the software.
-- **When entering the tool center of mass**: use the sensor's coordinate frame.
-- **Before zeroing the sensor**: verify that the coordinate direction is correct.
+- **如果轴被反转**：在软件中应用轴反转或变换。
+- **在进入工具质心时**：使用传感器的坐标框架。
+- **在归零传感器之前**：验证坐标方向是否正确。
 
 {% endhint %}

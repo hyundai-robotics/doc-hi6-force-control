@@ -1,68 +1,59 @@
 ﻿
-[__SOURCE](README.md)
-# ${cont_model} Controller - Force Control with sensors Manual
-
-[__SOURCE](0-about-this-manual/precautions.md)
-# Precautions
-
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/en/precautions.md" %}
-
 [__SOURCE](1-intro/README.md)
-# 1. Introduction
+# 1. 引言
 
-This manual provides instructions for using the sensor-based force control system.  
-The system utilizes a force/torque sensor mounted on a robot to perform responsive control to external forces,  
-enabling precise and safe contact operations.
-
---- 
-
-### **Features Covered**
-
-- Sensor environment configuration  
-- Force control parameter setup  
-- Command structure  
-- Monitoring interface  
-- Basic usage examples
+本手册提供传感器基础的力控制系统的使用说明。  
+该系统利用安装在机器人上的力/扭矩传感器对外部力量进行响应控制，  
+实现精确和安全的接触操作。
 
 --- 
 
-### **Purpose**
+### **涵盖的特性**
 
-This document is intended for end-users and maintenance engineers.  
-It describes all necessary procedures for configuring the system and understanding its operational status.
+- 传感器环境配置  
+- 力控制参数设置  
+- 命令结构  
+- 监视接口  
+- 基本使用示例
 
-This feature is available from version V60.32-01 and requires a separate functional license.
+--- 
+
+### **目的**
+
+本文件面向最终用户和维护工程师。  
+它描述了配置系统和理解其操作状态所需的所有必要程序。
+
+该功能自版本 V60.32-01 起提供，并需要单独的功能许可证。
 [__SOURCE](2-settings/README.md)
-# 2. Configuration
+# 2. 配置
 
-To use the sensor-based force control functionality, the following basic components must be configured first.  
-These settings are entered through the user interface (UI) and serve as the foundation for all control features.
+要使用基于传感器的力控制功能，必须首先配置以下基本组件。  
+这些设置通过用户界面 (UI) 输入，并作为所有控制功能的基础。
 
-- Force Sensor Coordinate System  
-- Force Control Environment Setup  
-- Force Control Tool Information  
-- Force Control Conditions  
-
+- 力传感器坐标系  
+- 力控制环境设置  
+- 力控制工具信息  
+- 力控制条件  
 [__SOURCE](2-settings/1-force-sensor-coordinate-system.md)
-## 2.1 Force Sensor Coordinate System
+## 2.1 力传感器坐标系统
 
-When mounting the force/torque (FT) sensor, the sensor coordinate system **must be aligned with the robot model's coordinate system**.
+在安装力/扭矩（FT）传感器时，传感器坐标系统 **必须与机器人模型的坐标系统对齐**。
 
-If the sensor frame is misaligned, the measured force/torque directions will not match reality, leading to **severely degraded control performance**.
+如果传感器框架不对齐，测得的力/扭矩方向将与实际情况不符，导致 **控制性能严重降低**。
 
 <br>
 
 ---
 
-### **Robot Sensor Coordinate Frame**
+### **机器人传感器坐标框架**
 
-- The X, Y, and Z axes of the sensor coordinate system, as defined by our standard, are shown in the figure below:  
-- The directions of the X, Y, and Z axes defined in the sensor model **must match** the robot's sensor coordinate system.
+- 根据我们的标准，传感器坐标系统的X、Y和Z轴如下图所示：  
+- 传感器模型中定义的X、Y和Z轴方向 **必须与** 机器人的传感器坐标系统相匹配。
 
 ![](../_assets/_05_fctrl_ctrl_sensor_crd.png)
 
-- The robot in the above diagram is in its default posture.  
-- Most circular FT sensors have coordinate direction markings on the sensor body.  
+- 上图中的机器人处于其默认姿态。  
+- 大多数圆形FT传感器在传感器外壳上有坐标方向标记。  
 
 <br>
 
@@ -70,85 +61,82 @@ If the sensor frame is misaligned, the measured force/torque directions will not
 
 {% hint style="info" %}
 
-- **If the axes are inverted**: apply axis inversion or transformation in the software.
-- **When entering the tool center of mass**: use the sensor's coordinate frame.
-- **Before zeroing the sensor**: verify that the coordinate direction is correct.
+- **如果轴被反转**：在软件中应用轴反转或变换。
+- **在进入工具质心时**：使用传感器的坐标框架。
+- **在归零传感器之前**：验证坐标方向是否正确。
 
 {% endhint %}
 [__SOURCE](2-settings/2-force-control-environment-settings.md)
-## 2.2 Force Control Environment Setup
+## 2.2 力控制环境设置
 
-To use sensor-based force control functions, the following key items must be configured.  
-These settings serve as the **starting point** for all controller operations. 
+要使用基于传感器的力控制功能，必须配置以下关键项目。  
+这些设置作为所有控制器操作的**起始点**。
 
-You can access the Force Control Environment Setup through the following path: 
+您可以通过以下路径访问力控制环境设置：
 
-[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup
-
-<br>
-
----
-
-
-### **Enable Function**
-
-Set whether to use the sensor-based force control function.
-
-- Enable: Function **Activated**
-- Disable: Function **Deactivated**
-
-The setting must be set to Enable for the force control function to operate.
+`[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup`
 
 <br>
 
 ---
 
-### **Sensor Manufacturer and Model**
 
-Select the **manufacturer and model of the force sensor** to be used.
+### **启用功能**
 
-- Examples:
-  - ATI: Standard ATI models
-  - ATI: Delta-SI-660-60
-  - ATI: Theta-SI2500-400
-  - ATI: Omega-SI7200-1400 
-  - OnRobot: HEX-E 
-  - Robotiq: FT-300S 
+设置是否使用基于传感器的力控制功能。
 
-The **data format and communication method** vary depending on the sensor, so an accurate selection is required.
+- 启用：功能**已激活**
+- 禁用：功能**已停用**
+
+力控制功能的操作必须设置为启用。
+
+<br>
+
+---
+
+### **传感器制造商和型号**
+
+选择要使用的**力传感器的制造商和型号**。
+
+- 示例：
+  - ATI：标准ATI型号
+  - ATI：Delta-SI-660-60
+  - ATI：Theta-SI2500-400
+  - ATI：Omega-SI7200-1400 
+  - OnRobot：HEX-E 
+  - Robotiq：FT-300S 
+
+**数据格式和通信方式**因传感器而异，因此需要准确选择。
 
 {% hint style="info" %}
 
-The following ATI models are supported in **version V60.32-05 or later**.  
-- Standard ATI models  
+以下ATI型号在**版本V60.32-05或更高版本**中受支持。  
+- 标准ATI型号  
 - Theta-SI2500-400  
 - Omega-SI7200-1400
 
 {% endhint %}
-
-<br>
-
 --- 
 
-### **Communication Protocol**
+### **通信协议**
 
-Set the **communication method** provided by the selected sensor.
+设置所选传感器提供的**通信方法**。
 
 - UDP
 - SCI
 - TCP
 
-Configure the port settings and internal parsing methods according to the protocol as follows:
+根据协议配置端口设置和内部解析方法如下：
 
 <br>
 
 --- 
 
-### **Configuration Method by ATI Model**
+### **按ATI模型的配置方法**
 
-- **Communication Protocol**: UDP
-- **IP Address**: 192.168.1.2
-- **Remote Port**: 49152
+- **通信协议**：UDP
+- **IP地址**：192.168.1.2
+- **远程端口**：49152
 
 <br>
 
@@ -168,20 +156,19 @@ Configure the port settings and internal parsing methods according to the protoc
 
 <br>
 
-#### **ATI(Generic ATI Model)**
+#### **ATI(通用ATI模型)**
 ![](../_assets/_01_04_fctrl_env_setting_ATI_Generic_UDP.png)
 
-- Instead of registering models individually, this method involves the **user manually entering and applying the scaling values provided by ATI for each specific model.**
+- 此方法不需要单独注册模型，而是**用户手动输入并应用ATI为每个特定模型提供的缩放值。**
 
 <br>
 
 ---
+### **OnRobot HEX-E 配置方法**
 
-### **OnRobot HEX-E Configuration Method**
-
-- **Communication Protocol**: UDP
-- **IP Address**: 192.168.1.1
-- **Remote Port**: 49152
+- **通信协议**: UDP
+- **IP 地址**: 192.168.1.1
+- **远程端口**: 49152
 
 ![](../_assets/_02_fctrl_env_setting_OnRobot_HEX_E_UDP.png)
 
@@ -191,10 +178,10 @@ Configure the port settings and internal parsing methods according to the protoc
 
 ---
 
-### **SCI Communication Method: Robotiq(FT-300S)**
+### **SCI 通信方法: Robotiq(FT-300S)**
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
-[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration
+`[F2: 系统] – 2: 控制参数 – 3: 串口 – 1: 配置`
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
@@ -206,21 +193,19 @@ Configure the port settings and internal parsing methods according to the protoc
 
 {% hint style="info" %}
  
-- These settings are examples based on standard models.  
-- **Some ATI models may use network values that differ from the settings above.**
+- 这些设置是基于标准模型的示例。  
+- **某些 ATI 模型可能使用与上述设置不同的网络值。**
 
 {% endhint %}
-
-
 [__SOURCE](2-settings/3-tool-information-settings-for-force-control.md)
-## 2.3 Force Control Tool Information
+## 2.3 力控制工具信息
 
-By entering the physical characteristics of the tool mounted on the robot, the accuracy of the force control algorithm is improved.  
-The force and torque perceived by the sensor are calibrated based on the tool's weight and center of gravity coordinates. 
+通过输入安装在机器上的工具的物理特性，力控制算法的准确性得以提高。  
+传感器感知的力和扭矩是基于工具的重量和重心坐标进行校准的。
 
-The Force Control Tool Information setup can be accessed through the following path: 
+力控制工具信息设置可以通过以下路径访问：
 
-[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data
+`[F2: 系统] – 4: 应用参数 – 17: 力控制 – 2: 力控制工具数据`
 
 <br>
 
@@ -228,57 +213,53 @@ The Force Control Tool Information setup can be accessed through the following p
 
 ![](../_assets/_04_fctrl_ctrl_tool_data.png)
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Name** | Tool data name (Automatically entered) |
-| **Description** | Tool description or purpose (Optional entry) |
-| **Weight [kg]** | Weight of the tool. Used for gravity compensation when calculating force errors. |
-| **Center [X, Y, Z]** | Position of the tool's center of gravity (Based on the sensor, Unit: mm) |
-| **Sensor coordinate** | Direction of the sensor reference coordinate system (Refer to the image on the right of the UI) |
-
+| **名称** | 工具数据名称（自动输入） |
+| **描述** | 工具描述或用途（可选输入） |
+| **重量 [kg]** | 工具的重量。在计算力误差时用于重力补偿。 |
+| **中心 [X, Y, Z]** | 工具重心的位置（基于传感器，单位：毫米） |
+| **传感器坐标** | 传感器参考坐标系的方向（参考用户界面右侧的图像） |
 
 {% hint style="info" %}
 
- - Up to 10 sets of tool information can be configured. 
- - The sensor-based load estimation function provided in Hi5a is currently not supported. 
+ - 最多可以配置10组工具信息。  
+ - Hi5a提供的基于传感器的负载估计功能目前不被支持。
 
 {% endhint %}
 [__SOURCE](2-settings/4-condition-settings/README.md)
-## 2.4 Force Control Condition Settings
+## 2.4 力控制条件设置
 
-To use the force control function effectively, it is essential to configure the control conditions properly based on the task requirements,  
-including target force, control direction, and sensitivity.
+要有效使用力控制功能，必须根据任务要求正确配置控制条件，  
+包括目标力、控制方向和灵敏度。
 
-These settings determine how the robot responds to external forces and directly affect the quality of the task.
+这些设置决定了机器人如何响应外部力量，并直接影响任务的质量。
 
-Access the force control condition settings via:
+通过以下方式访问力控制条件设置：
 
-📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🎛 4: Condition Settings
-
+📂 系统 → ⚙️ 4: 应用参数 → 💪 17: 力控制 → 🎛 4: 条件设置
 [__SOURCE](2-settings/4-condition-settings/1-basic.md)
-### 2.4.1 Force Control Condition Setup - Basic
+### 2.4.1 力控制条件设置 - 基础
 
-Select the axes to be controlled according to the task, and set the force target value, stiffness, speed, and pose limit for each axis.  
-These items are the core of force control and determine the responsiveness of the actual robot movement.
+根据任务选择要控制的轴，并为每个轴设置力目标值、刚度、速度和姿态限制。  
+这些项是力控制的核心，决定了实际机器人运动的响应能力。
 
 <br>
 
 ---
 
-
 ![](../../_assets/_06_fctrl_ctrl_cnd_default.png)
 
+#### **默认配置项**
 
-#### **Default Configuration Items**
-
-| Item | Description |
+| 项目 | 描述 |
 |------------------|------|
-| **Name** | Condition name (e.g., cnd_12) - Automatically entered by selecting from the list |
-| **Description** | Task description (e.g., Sanding) - Used to identify the purpose of the current condition |
-| **Coordinate System (Crd)** | Select the coordinate system where force control will be applied:<br>• Base (Base Coordinates)<br>• Robot (Robot Coordinates)<br>• Tool (Tool Coordinates)<br>• User (User-defined Coordinates) |
-| **User Coordinate System (UCS ID)** | User-defined coordinate system number - Used when Crd is set to User |
-| **Tool ID** | Current tool number (Linked to tool weight and center of gravity information) |
-| **Zeroing Function (Zeros)** | Force sensor initial value calibration (Zeroing)<br>• On: Execute zero calibration<br>• Off: Maintain original values |
+| **名称** | 条件名称（例如，cnd_12） - 从列表中选择后自动输入 |
+| **描述** | 任务描述（例如，打磨） - 用于识别当前条件的目的 |
+| **坐标系统 (Crd)** | 选择施加力控制的坐标系统：<br>• 基础（基础坐标）<br>• 机器人（机器人坐标）<br>• 工具（工具坐标）<br>• 用户（用户定义坐标） |
+| **用户坐标系统 (UCS ID)** | 用户定义的坐标系统编号 - 当 Crd 设置为用户时使用 |
+| **工具 ID** | 当前工具编号（与工具重量和重心信息相连） |
+| **归零功能 (Zeros)** | 力传感器初始值校准（归零）<br>• 开：执行零校准<br>• 关：保持原始值 |
 
 <br> 
 
@@ -286,14 +267,14 @@ These items are the core of force control and determine the responsiveness of th
 
 {% hint style="info" %}
 
-- If a User Coordinate System is selected and a non-existent User Coordinate System ID is entered, an error (**E1336**) will be output during force control operation.
+- 如果选择用户坐标系统并输入不存在的用户坐标系统 ID，则在力控制操作期间将输出错误（**E1336**）。
 
-- If the User Coordinate System is selected and the ID is set to 0, it is identical to the Robot Coordinate System.
+- 如果选择用户坐标系统并将 ID 设置为 0，则等同于机器人坐标系统。
 
-- The Tool ID refers to the tool number configured in:  
-  **"[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data"**
+- 工具 ID 指的是在以下位置配置的工具编号：  
+  `[F2: 系统] – 4: 应用参数 – 17: 力控制 – 2: 力控制工具数据`
 
-- If the Zeroing function is not used (**Off**), the system outputs values calibrated based on the tool information (weight and center of gravity) assigned to the set tool number, relative to the raw output from the sensor.
+- 如果不使用归零功能（**关**），系统将输出基于分配给设置工具编号的工具信息（重量和重心）校准的值，相对于传感器的原始输出。
 
 {% endhint %}
 
@@ -303,25 +284,23 @@ These items are the core of force control and determine the responsiveness of th
 
 {% hint style="info" %}
 
-#### **Default Item Configuration Example**
+#### **默认项目配置示例**
 
-**Applied Task:** Sanding
-
-- **Name**: cnd_12  
-- **Description**: Sanding operation conditions  
-- **Coordinate System (Crd)**: Select Tool Coordinate System  
-- **Tool ID**: Use Force Control Tool Data ID 0 (Mass and Center of Gravity applied)  
-- **Zeroing Function (Zeros)**: ON → Initializes the sensor value to 0 when force control starts 
+**应用任务：** 打磨
+- **名称**: cnd_12  
+- **描述**: 打磨操作条件  
+- **坐标系统 (Crd)**: 选择工具坐标系统  
+- **工具 ID**: 使用力控制工具数据 ID 0 (应用质量和重心)  
+- **归零功能 (Zeros)**: 开 → 在开始力控制时将传感器值初始化为 0  
 
 {% endhint %}
 
----
 [__SOURCE](2-settings/4-condition-settings/2-control.md)
-### 2.4.2 Force Control Condition Setup - Control
+### 2.4.2 力控制条件设置 - 控制
 
-Select the force control axes and set the target force value, stiffness, speed, and pose limit for each direction.
+选择力控制轴并设置每个方向的目标力值、刚度、速度和姿态限制。
 
-This section is the core of force control and determines the responsiveness of the actual robot movement.
+本节是力控制的核心，决定了实际机器人运动的响应性。
 
 <br>
 
@@ -329,56 +308,52 @@ This section is the core of force control and determines the responsiveness of t
 
 ![](../../_assets/_07_fctrl_ctrl_cnd_control.png)
 
+#### **控制配置项**
 
-#### **Control Configuration Items**
-
-| Item | Description |
+| 项目 | 描述 |
 |------------|------|
-| **Axis** | Controllable axes (X, Y, Z, Rx, Ry, Rz) |
-| **Act** | Whether to activate control for the corresponding axis (Active when checked ✓) |
-| **Force / Torque** | Target Force (N) or Torque (Nm)<br>Example: Set 50N for the Z-axis |
-| **Stiff** | Stiffness ratio (%), lower values allow more flexible response |
-| **Vel** | Movement speed limit during force control (mm/s or deg/s) |
-| **(-)Pose / (+)Pose** | Position limits in negative/positive directions (mm or deg)<br>Restricts robot movement when exceeded |
+| **轴** | 可控轴 (X, Y, Z, Rx, Ry, Rz) |
+| **激活** | 是否激活对应轴的控制 (选中时为激活状态 ✓) |
+| **力 / 转矩** | 目标力 (N) 或 转矩 (Nm)<br>示例：将 Z 轴设置为 50N |
+| **刚度** | 刚度比 (%), 较低的值允许更灵活的响应 |
+| **速度** | 力控制期间的移动速度限制 (mm/s 或 deg/s) |
+| **(-)姿态 / (+)姿态** | 负/正方向的位置限制 (mm 或 deg)<br>超出限制时限制机器人运动 |
 
 <br>
 
 ---
 
-#### **Control Configuration Example**
+#### **控制配置示例**
 
-The following settings are for a **vertical sanding** operation:
+以下设置适用于 **垂直打磨** 操作：
 
-| Axis | Act | Force / Torque | Stiff | Vel | Pose Limit |
+| 轴 | 激活 | 力 / 转矩 | 刚度 | 速度 | 姿态限制 |
 |------|------|----|------|------|-------------|
 | **Z** | ✓ | 50N | 30% | 20 mm/s | -50 ~ +50 mm |
 | **Rx** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
 | **Ry** | ✓ | 0 Nm | 10% | 5 deg/s | -10 ~ +10 deg |
 | **X**, **Y**, **Rz** | - | - | - | - | - | 
 
-→ The robot maintains a force of 50N in the Z-axis direction, while the tool rotation directions (Rx, Ry) respond flexibly.
+→ 机器人在 Z 轴方向维持 50N 的力，而工具旋转方向 (Rx, Ry) 灵活响应。
 
 <br> 
 
 ---
 
-
 {% hint style="info" %}
 
 
-Detailed control for each axis must be adjusted based on actual working conditions (e.g., surface curvature, precision requirements, etc.). Lower gains result in a more flexible response.
-
-While lower stiffness ratios provide a flexible response, they may cause vibration and noise depending on the robot's responsiveness and the surrounding environment.
+每个轴的详细控制必须根据实际工作条件进行调整 (例如，表面曲率、精度要求等)。较低的增益会导致更灵活的响应。
+虽然较低的刚度比提供了灵活的响应，但它们可能会导致振动和噪音，这取决于机器人响应能力和周围环境。
 
 {% endhint %}
 
-
 [__SOURCE](2-settings/4-condition-settings/3-filtering.md)
-### 2.4.3 Force Control Condition Setup - Filtering
+### 2.4.3 力控制条件设置 - 滤波
 
-Filtering functions are provided to reduce noise from the force sensor and ensure that input values can be used stably for control.
+提供了滤波功能，以减少力传感器的噪声，并确保输入值可以稳定用于控制。
 
-Additionally, it offers scaling options to adjust control intensity within a specific force/torque range, as well as a bypass option to make the response to force input more sensitive.
+此外，它还提供了缩放选项，以在特定的力/扭矩范围内调整控制强度，以及一个旁路选项，以使对力输入的响应更加敏感。
 
 <br>
 
@@ -386,14 +361,14 @@ Additionally, it offers scaling options to adjust control intensity within a spe
 
 ![](../../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
 
-#### **Force Filtering**
+#### **力滤波**
 
-Applies a **filter** to the sensor's force signals to eliminate jitter and smooth the output.
+对传感器的力信号应用**滤波器**，消除抖动并平滑输出。
 
-| Item | Description |
+| 项目 | 描述 |
 |------|------|
-| **Enable** | Apply filter when checked |
-| **Frequency (Freq)** | Set the filter cutoff frequency (e.g., 20 Hz)<br>→ Lower values result in smoother motion but slower response. |
+| **启用** | 选中时应用滤波器 |
+| **频率 (Freq)** | 设置滤波器截止频率（例如，20 Hz）<br>→ 较低的值会导致运动更平滑，但响应更慢。 |
 
 <br>
 
@@ -401,30 +376,28 @@ Applies a **filter** to the sensor's force signals to eliminate jitter and smoot
 
 ![](../../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
 
+#### **力缩放**
 
-#### **Force Scaling**
+此功能在特定的力或扭矩范围内平滑地缩放控制强度。  
+它对需要灵敏度调整的任务非常有用，通常保持关闭状态。
 
-This function smoothly scales the control intensity within a specific force or torque range.  
-It is useful for tasks requiring sensitivity adjustments and is typically kept off.
+可以设计为抑制微小力变化的控制，仅对超过某一水平的力作出敏感响应。
 
-It can be designed to suppress control for minute force changes and respond sensitively only to forces above a certain level.
-
-| Item | Description |
+| 项目 | 描述 |
 |------|------|
-| **Enable** | When checked, scaling is applied only within the ranges below |
-| **Force Range** | Force range (e.g., 2 ~ 8 N) |
-| **Torque Range** | Torque range (e.g., 0 ~ 0 Nm) |
+| **启用** | 选中时，仅在以下范围内应用缩放 |
+| **力范围** | 力范围（例如，2 ~ 8 N） |
+| **扭矩范围** | 扭矩范围（例如，0 ~ 0 Nm） |
 
 ![](../../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
 
 {% hint style="info" %}
 
-- When entering the force range, if the input force is smaller than the **Start Force**, the output force is 0. If it is greater than the **End Force**, the original input force value is output.
+- 当输入力低于**起始力**时，输出力为0。如果大于**结束力**，则输出原始输入力值。
 
-- If the **Start Force** and **End Force** are equal, the scaling function will not operate.
+- 如果**起始力**和**结束力**相等，则缩放功能将不执行。
 
 {% endhint %}
-
 <br>
 
 --- 
@@ -432,20 +405,20 @@ It can be designed to suppress control for minute force changes and respond sens
 
 ![](../../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
 
-#### **Command Method**
+#### **命令方法**
 
-Sets the **processing method** for the command signals transmitted to the robot.
+设置发送到机器人的**处理方法**。
 
-| Item | Description |
+| 项目 | 描述 |
 |------|------|
-| **Mode** | **Normal**: Standard command transmission method. <br>**Bypass**: Command transmission method for highly sensitive responses. |
-| **Freq** | Filter frequency setting used in Bypass mode (Hz). |
+| **模式** | **正常**: 标准命令传输方法。 <br>**旁路**: 高灵敏度响应的命令传输方法。 |
+| **频率** | 在旁路模式下使用的滤波频率设置（Hz）。 |
 
 {% hint style="info" %}
 
-- **Bypass** mode is used when you want to **reflect sensor data immediately**.
-- It is recommended only for experimental situations requiring extremely sensitive control.
-- Since there is a **risk of noise or vibration**, it is recommended to use **Normal** mode for general operations.
+- **旁路**模式用于当您想要**立即反映传感器数据**时。
+- 仅建议在需要极高灵敏度控制的实验情况下使用。
+- 由于存在**噪声或振动的风险**，推荐在一般操作中使用**正常**模式。
 
 {% endhint %}
 
@@ -453,37 +426,33 @@ Sets the **processing method** for the command signals transmitted to the robot.
 
 --- 
 
-### **Configuration Guide**
+### **配置指南**
 
-| Task Type | Recommended Settings |
+| 任务类型 | 推荐设置 |
 |------------------|-----------------------------|
-| Polishing / Sanding | Smooth Force = ON, Freq = 20 Hz |
-| Smooth Assembly | Smooth Scaling = ON, Conservative range setting |
-| High-speed Response / Research | Command Flow = Bypass |
+| 打磨 / 砂光 | 平滑力 = 开, 频率 = 20 Hz |
+| 平滑组装 | 平滑缩放 = 开, 保守范围设置 |
+| 高速响应 / 研究 | 命令流 = 旁路 |
 
 --- 
 
 {% hint style="info" %}
 
-- **Filtering**, **Scaling**, and **Command Flow** settings all work together; therefore, they must be **tuned integrally** according to the specific objective of the task.
+- **滤波**、**缩放**和**命令流**设置共同工作；因此，必须根据任务的具体目标进行**整体调优**。
 
 {% endhint %}
-
 [__SOURCE](2-settings/4-condition-settings/4-motion/README.md)
-### 2.4.4 Force Control Condition - Motion
+### 2.4.4 力控制条件 - 运动
 
-During force control operations, motion-related conditions can also be configured.
+在力控制操作中，运动相关的条件也可以进行配置。
 
-You can define a **surface contact detection** criterion to determine whether the tool has made full contact with the surface, based on tool orientation.  
+您可以定义一个**表面接触检测**标准，以根据工具方向确定工具是否已与表面充分接触。
 
-Additionally, without using a separate `move` command, the system can automatically generate **spiral**, **bidirectional**, or **zigzag** trajectories  
-
+此外，系统可以在不使用单独的`移动 (move)`命令的情况下，自动生成**螺旋**、**双向**或**锯齿形**轨迹。
 [__SOURCE](2-settings/4-condition-settings/4-motion/1-contact.md)
-#### 2.4.4.1 Force Control Condition Setup - Motion - Contact Detection
+#### 2.4.4.1 力控制条件设置 - 动作 - 接触检测
 
-This function determines in real-time whether the robot has properly made contact with the surface during a force control operation (in the Tool Z direction).
-
-
+此功能实时判断机器人在力控制操作中（在工具Z方向）是否与表面正确接触。
 
 <br>
 
@@ -499,49 +468,46 @@ This function determines in real-time whether the robot has properly made contac
 
 ---
 
-### **Contact Surface Detection Criteria Setup**
+### **接触 surface 检测标准设置**
 
-Contact is determined to be complete when all of the following conditions are met:
+当满足以下所有条件时，接触被判定为完成：
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Force Thresh** | Error threshold between the target force and current force (Unit: N) |
-| **Dev Angle Thresh** | Instantaneous change in the direction of the Z-axis force relative to the tool coordinates (Unit: deg) |
-| **Tilt Angle Thresh** | Angle between the contact surface and the direction of the force (Unit: deg) |
-| **Confirm time** | Duration the conditions must be maintained (Unit: sec) |
+| **力阈值** | 目标力与当前力之间的误差阈值（单位：N） |
+| **偏差角度阈值** | Z轴力相对于工具坐标的方向瞬时变化（单位：度） |
+| **倾斜角度阈值** | 接触表面与力的方向之间的角度（单位：度） |
+| **确认时间** | 条件必须维持的持续时间（单位：秒） |
 
 <br>
 
 ---
 
-### **Configuration Example**
+### **配置示例**
 
-- **Criteria**: If contact is maintained according to the following standards for 3 seconds, the contact surface detection is confirmed (OK).
+- **标准**：如果接触在以下标准下保持3秒，接触表面检测被确认（OK）。
 
-| Item | Value |
+| 项目 | 值 |
 |------------------|---------|
-| Force Error (Thresh) | 3 N |
-| Force Direction Change (Dev Angle) | 20 deg |
-| Contact Angle (Tilt Angle) | 30 deg |
-| Confirmation Time | 3 sec |
+| 力误差（阈值） | 3 N |
+| 力方向变化（偏差角度） | 20 度 |
+| 接触角度（倾斜角度） | 30 度 |
+| 确认时间 | 3 秒 |
 
 <br>
 
 ---
-
 {% hint style="info" %}
 
-- To ensure the **Contact Surface Detection** function operates correctly, the selected coordinate system must be set to the **Tool Coordinate System**.
+- 为了确保 **接触面检测** 功能正常运行，所选的坐标系统必须设置为 **工具坐标系统**。
 
 {% endhint %}
-
-
 [__SOURCE](2-settings/4-condition-settings/4-motion/2-raster.md)
-#### 2.4.4.2 Force Control Condition Setup - Motion - Auto Path Generation
+#### 2.4.4.2 力控制条件设置 - 运动 - 自动路径生成
 
-Sets the motion control conditions to be executed during force control operations.
+设置在力控制操作期间执行的运动控制条件。
 
-This section is specifically used to configure **Spiral, Bi-directional, and Zig-zag** paths and trajectories.
+本节专门用于配置 **螺旋、双向和锯齿形** 路径和轨迹。
 
 
 <br>
@@ -555,13 +521,13 @@ This section is specifically used to configure **Spiral, Bi-directional, and Zig
 ![](../../../_assets/_15_fctrl_ctrl_cnd_motion_raster3.png)
 
 
-### **Motion Types**
+### **运动类型**
 
-| Item |
+| 项目 |
 |----------------|
-| **Spiral Motion** |
-| **Bi-directional Motion** |
-| **Zig-zag Motion** |
+| **螺旋运动** |
+| **双向运动** |
+| **锯齿形运动** |
 
 <br>
 
@@ -569,15 +535,15 @@ This section is specifically used to configure **Spiral, Bi-directional, and Zig
 
 ![](../../../_assets/_14_fctrl_ctrl_cnd_motion_raster2.png)
 
-### **Spiral Motion**
+### **螺旋运动**
 
-A function that generates a spiral path and trajectory.
+生成螺旋路径和轨迹的功能。
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Velocity** | Rotational linear velocity (mm/s) |
-| **Radius** | Maximum radius setting (mm) - The final size of the spiral |
-| **Revolutions** | Number of revolutions (rev) - Total count of rotations |
+| **速度** | 旋转线速度 (mm/s) |
+| **半径** | 最大半径设置 (mm) - 螺旋的最终大小 |
+| **旋转次数** | 旋转次数 (rev) - 总旋转计数 |
 
 
 <br>
@@ -585,35 +551,34 @@ A function that generates a spiral path and trajectory.
 ---
 
 
-### **Bi-directional Motion**
-
+### **双向运动**
 A function that generates a bi-directional path and trajectory.
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Velocity** | Linear velocity (mm/s) |
-| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
-| **Mov Length** | Movement Length (mm) |
-| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
-| **Shift Length** | Shift (Pitch) Length (mm) |
-| **Num Lines** | Number of lines to be generated in the movement direction |
+| **速度** | 线性速度 (mm/s) |
+| **运动方向** | 运动方向 (+X, -X, +Y, -Y) |
+| **运动长度** | 运动长度 (mm) |
+| **位移方向** | 位移方向 (+X, -X, +Y, -Y) |
+| **位移长度** | 位移 (步距) 长度 (mm) |
+| **生成线数** | 在运动方向生成的线数 |
 
 <br>
 
 ---
 
-### **Zig-zag Motion**
+### **锯齿形运动**
 
 A function that generates a zig-zag path and trajectory.
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Velocity** | Linear velocity (mm/s) |
-| **Mov Dir** | Movement Direction (+X, -X, +Y, -Y) |
-| **Mov Length** | Movement Length (mm) |
-| **Shift Dir** | Shift Direction (+X, -X, +Y, -Y) |
-| **Shift Length** | Shift (Pitch) Length (mm) |
-| **Num Lines** | Number of lines to be generated relative to the movement direction |
+| **速度** | 线性速度 (mm/s) |
+| **运动方向** | 运动方向 (+X, -X, +Y, -Y) |
+| **运动长度** | 运动长度 (mm) |
+| **位移方向** | 位移方向 (+X, -X, +Y, -Y) |
+| **位移长度** | 位移 (步距) 长度 (mm) |
+| **生成线数** | 相对于运动方向生成的线数 |
 
 <br>
 
@@ -621,183 +586,178 @@ A function that generates a zig-zag path and trajectory.
 
 {% hint style="info" %}
 
-- This motion generates a path based on the **XY plane** relative to the coordinate system selected in **2.4.1 (Force Control Condition Setup - Basic)**.
+- 此运动基于在 **2.4.1 (力控制条件设置 - 基础)** 中选择的坐标系统相对的 **XY 平面** 生成路径。
 
 {% endhint %}
 [__SOURCE](3-roblang/README.md)
-# 3. Force Control Commands
+# 3. 力控制命令
 
-This section provides an overview of the main commands related to the force control feature.  
-Each command is used to configure force settings, start/stop control, and execute motions like spiral, bidirectional anc zig-zag movement.
+本节概述与力控制功能相关的主要命令。  
+每个命令用于配置力设置，启动/停止控制，以及执行螺旋、双向和锯齿形运动等操作。
 
 <br>
 
 ---
 
-### List of Force Control Commands
+### 力控制命令列表
 
-| Command               | Description                              | Argument                | Note                     |
+| 命令                   | 描述                                      | 参数                      | 注释                     |
 |------------------------|------------------------------------------|--------------------------|--------------------------|
-| `fctrl on, cnd=`       | Start force control with given condition | `cnd=condition number`   | Required to start control |
-| `fctrl control, cnd=`  | Change control condition only            | `cnd=condition number`   | Changes only control set during operation |
-| `fctrl off`            | Stop force control                       | None                     | -                        |
-| `fctrl motion_on`      | Start raster motion                      | None                     | Uses preset raster motion |
-| `fctrl motion_off`     | Stop raster motion                       | None                     | Stops immediately        |
-| `motion_state()`         | Check raster motion status               | None                     | -                        |
-| `contact_state()`         | Check contact status               | None                     | -                        |
-| `cfo(crd, type)` | Retrieves current FT sensor data | `crd`: coordinate frame defined in cnd<br>`type`: must be `"sensor"` | If the coordinate frame does not match the one configured in cnd, values will not update. The type parameter must be `"sensor"` to acquire FT sensor data. |
+| `fctrl on, cnd=`       | 在给定条件下启动力控制                   | `cnd=条件编号`           | 启动控制所需              |
+| `fctrl control, cnd=`  | 仅更改控制条件                            | `cnd=条件编号`           | 仅在操作过程中更改控制设置 |
+| `fctrl off`            | 停止力控制                               | 无                       | -                        |
+| `fctrl motion_on`      | 启动栅格运动                             | 无                       | 使用预设的栅格运动        |
+| `fctrl motion_off`     | 停止栅格运动                             | 无                       | 立即停止                 |
+| `motion_state()`         | 检查栅格运动状态                         | 无                       | -                        |
+| `contact_state()`         | 检查接触状态                             | 无                       | -                        |
+| `cfo(crd, type)` | 检索当前FT传感器数据                     | `crd`: 在cnd中定义的坐标系<br>`类型 (type)`: 必须为`"sensor"` | 如果坐标系与cnd中配置的坐标系不匹配，值将不会更新。类型参数必须为`"sensor"`以获取FT传感器数据。 |
 
 <br>
-
 [__SOURCE](3-roblang/1-example-2-axis-directional-force-control.md)
-## 3.1 Example: Z-axis Force Control
+## 3.1 示例：Z轴力控制
 
-The following is an example of a Job program using the **Sensor-based Force Control function**.
-This example is designed to wait until the **external force applied in the Z-axis direction reaches 35N or more** before performing the task.
-
-<br>
-
----
-
-### **Operation Overview**
-
-- By using a **delay** command to secure time before starting force control, you can suppress sensor noise or initial vibrations, enabling more stable force control.
-
-- When selecting a coordinate system in the **CFO (Force Control Output)** command, it must match the coordinate system selected in the **Force Control Settings** to properly receive force data.
+以下是使用**基于传感器的力控制功能**的作业程序示例。此示例旨在等待**施加在Z轴方向上的外力达到35N或更高**后再执行任务。
 
 <br>
 
 ---
 
-### **JOB Program Example**
+### **操作概述**
+
+- 通过使用**延迟**命令在开始力控制之前确保时间，您可以抑制传感器噪声或初始振动，从而实现更稳定的力控制。
+
+- 在**CFO（力控制输出）**命令中选择坐标系时，必须与**力控制设置**中选择的坐标系匹配，以正确接收力数据。
+
+<br>
+
+---
+
+### **JOB程序示例**
 
 ```python
-delay 1.0                           # Wait for stabilization before starting control
-fctrl on,cnd=2                      # Start force control (Using condition set No. 2)
+delay 1.0                           # 等待稳定后开始控制
+fctrl on,cnd=2                      # 开始力控制（使用条件集编号2）
 delay 0.5
 
 #get_current_force
-var force = cfo("tool", "sensor")   # Receive external force data based on the Tool coordinates
+var force = cfo("tool", "sensor")   # 根据工具坐标接收外部力数据
 
-# Conditional Loop: Wait until the Z-axis external force reaches 35N or more
+# 条件循环：等待Z轴外力达到35N或更高
 if abs(force.z) < 35 then *get_current_force
-delay 5                             # Wait for external force stabilization 
-fctrl off                           # End force control 
+delay 5                             # 等待外部力稳定 
+fctrl off                           # 结束力控制
 [__SOURCE](3-roblang/2-example-change-control-settings.md)
-## 3.2 Example: Modifying Control Settings
+## 3.2 示例：修改控制设置
 
-The following is a Job program example for **modifying only the 'Control' parameters** within the force control conditions.  
-This method is useful when you want to change only the external force response characteristics during real-time operation while maintaining other settings such as filters, coordinate systems, and motion profiles.
-
-<br>
-
----
-
-### **Operation Overview**
-
-- **fctrl on, cnd=2**: Applies the complete configuration from set No. 2 when starting force control.
-- **fctrl control, cnd=1**: Changes **only the 'Control' parameters** to those of set No. 1.
-  (Other settings such as coordinate system, filters, and motion profiles remain as they were in set No. 2.)
+以下是一个作业程序示例，**仅修改“控制”参数**在力控制条件下。  
+当你想在实时操作中仅更改外部力响应特性，同时保持过滤器、坐标系统和运动轮廓等其他设置时，此方法非常有用。
 
 <br>
 
 ---
 
-### **JOB Program Example**
+### **操作概述**
+
+- **fctrl on, cnd=2**：在启动力控制时应用设置编号 2 的完整配置。
+- **fctrl control, cnd=1**：将**仅“控制”参数**更改为设置编号 1 的值。
+  （其他设置，例如坐标系统、过滤器和运动轮廓，将保持为设置编号 2 的值。）
+
+<br>
+
+---
+
+### **作业程序示例**
 
 ```python
-delay 1.0                           # Wait for stabilization before starting control
-fctrl on, cnd=2                     # Start force control (Initial: Using set No. 2)
+delay 1.0                           # 等待稳定后开始控制
+fctrl on, cnd=2                     # 启动力控制（初始：使用设置编号 2）
 delay 0.5
 
-fctrl control, cnd=1                # Update ONLY 'Control' parameters (Switch to set No. 1)
-                                    # (Coordinates, Filters, and Motion remain from No. 2)
+fctrl control, cnd=1                # 仅更新“控制”参数（切换到设置编号 1）
+                                    # （坐标、过滤器和运动仍然使用编号 2 的值）
 
-delay 5                             # Wait for stabilization of external force
-fctrl off                           # End force control
+delay 5                             # 等待外部力稳定
+fctrl off                           # 结束力控制
 
 [__SOURCE](3-roblang/3-example-motion-contact.md)
-## 3.3 Example: Contact Surface Detection
+## 3.3 示例：接触表面检测
 
-The following is a Job program example for using the **Contact Surface Detection** function in the robot. 
+以下是使用机器人**接触表面检测**功能的作业程序示例。
 
 <br>
 
 ---
 
-### **Operation Overview**
+### **操作概述**
 
-Configure the **Contact Check** conditions in the **Settings** as follows:
+在**设置**中配置**接触检查**条件如下：
 
-- **Criteria**: If contact is maintained according to the standards below for 5 seconds, the contact surface detection is confirmed (OK).
+- **标准**：如果根据以下标准保持接触5秒，则确认接触表面检测（OK）。
 
-| Item | Value |
+| 项目 | 值 |
 |------------------|---------|
-| Force Error (Thresh) | 3 N |
-| Force Direction Change (Dev Angle) | 20 deg |
-| Contact Angle (Tilt Angle) | 40 deg |
-| Confirmation Time | 5 sec |
+| 力误差（阈值） | 3 N |
+| 力方向变化（偏差角度） | 20 度 |
+| 接触角度（倾斜角） | 40 度 |
+| 确认时间 | 5 秒 |
 
 <br> 
 
 ---
 
-### **JOB Program Example** 
+### **作业程序示例** 
 
 ```python
-delay 1.0                           # Wait for stabilization before starting control
-fctrl on, cnd=1                     # Start force control (Using condition set No. 1)
-delay 0.5                           # Wait 0.5s before executing contact detection
+delay 1.0                           # 在开始控制之前等待稳定
+fctrl on, cnd=1                     # 开始力控制（使用条件集 No. 1）
+delay 0.5                           # 在执行接触检测之前等待 0.5 秒
 
-wait contact_state()                # Execute contact detection; wait until "OK"
+wait contact_state()                # 执行接触检测；等待直到“OK”
 
-fctrl off                           # End force control
-
-
+fctrl off                           # 结束力控制
 [__SOURCE](3-roblang/4-example-motion-spiral.md)
-## 3.4 Example: Spiral Motion
+## 3.4 示例：螺旋运动
 
-This is a Job program example that uses the **Spiral Motion** feature in the robotic force control system.  
-The robot maintains a constant **external force of 20N in the Z-axis direction** while performing the spiral path.
-
-<br>
-
----
-
-### **Operation Overview**
-
-- Make sure to set the **Motion Type** to **Spiral** in the **configuration settings**.
-
-- It is recommended to insert a **delay** command before **fctrl motion_on** to suppress vibration and ensure more stable force control.
+这是一个使用**螺旋运动**功能的机器人力控制系统的作业程序示例。  
+机器人在执行螺旋路径时保持**Z轴方向上恒定的外部力为20N**。
 
 <br>
 
 ---
 
-### **JOB Program Example** 
+### **操作概述**
+
+- 确保在**配置设置**中将**运动类型**设置为**螺旋**。
+
+- 建议在**fctrl motion_on**之前插入**延迟**命令，以抑制振动并确保更稳定的力控制。
+
+<br>
+
+---
+
+### **JOB程序示例** 
 
 ```python
-delay 1.0                            # Wait to stabilize before starting control
-fctrl on,cnd=1                       # Start force control (using condition set No. 1)
-delay 0.5                            # Wait before starting spiral motion
+delay 1.0                            # 等待以在开始控制之前稳定
+fctrl on,cnd=1                       # 开始力控制（使用条件集编号1）
+delay 0.5                            # 在开始螺旋运动之前等待
 
-fctrl motion_on                      # Start spiral motion
-wait motion_state() == 0             # Wait until spiral motion is complete
-fctrl motion_off                     # Stop spiral motion
+fctrl motion_on                      # 开始螺旋运动
+wait motion_state() == 0             # 等待直到螺旋运动完成
+fctrl motion_off                     # 停止螺旋运动
 
-fctrl off                            # Stop force control
+fctrl off                            # 停止力控制
 
 [__SOURCE](4-monitoring/README.md)
-# 4. Monitoring
+# 4. 监控
 
-While the sensor-based force control function is active,  
-users can monitor the following status information in real-time through the UI.
-
+在传感器基础的力控制功能激活时，  
+用户可以通过用户界面实时监控以下状态信息。
 [__SOURCE](4-monitoring/1-force-data-monitoring.md)
-## 4.1 Force Data Monitoring
+## 4.1 力数据监测
 
-This function allows you to monitor the external force applied to the robot in real time.  
-It is essential to check this information when using the Force Control function.
+此功能允许您实时监测施加到机器人上的外部力。  
+在使用力控制功能时，检查此信息是必不可少的。
 
 <br>
 
@@ -805,13 +765,13 @@ It is essential to check this information when using the Force Control function.
 
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
 
-| Item         | Description |
-|--------------|-------------|
-| **Cartesian** | External force (N or Nm) displayed in the selected coordinate system |
-| **Joint**     | Not used in force control |
+| 项目         | 描述         |
+|--------------|--------------|
+| **笛卡尔**   | 在选定坐标系中显示的外部力 (N 或 Nm) |
+| **关节**     | 在力控制中未使用 |
 
-- The coordinate system of the Cartesian external force follows the coordinate frame defined in the force control condition (cnd).
-- Data is updated **only when force control (fctrl) is active**.
+- 笛卡尔外部力的坐标系统遵循在力控制条件 (cnd) 中定义的坐标框架。
+- 数据**仅在力控制 (fctrl) 激活时更新**。
 
 <br>
 
@@ -819,15 +779,15 @@ It is essential to check this information when using the Force Control function.
 
 {% hint style="info" %}
 
-**TP Navigation Path**
+**TP 导航路径**
 
 [pane layout] – [F1: select] – [force data]
 
 {% endhint %}
 [__SOURCE](4-monitoring/2-force-motion-monitoring.md)
-## 4.2 Force Motion Monitoring
+## 4.2 力量运动监控
 
-This function allows for real-time monitoring of the external forces applied to the robot, the error relative to the target force, and the commanded position during operation.
+此功能允许实时监控施加在机器人上的外部力量、相对于目标力的误差以及操作过程中命令的位置。
 
 <br>
 
@@ -835,13 +795,13 @@ This function allows for real-time monitoring of the external forces applied to 
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Fext** | Force Error (Error between target force and external force) [N or Nm] |
-| **Cmd** | Command Position for force control (mm or deg) |
+| **Fext** | 力量误差（目标力量与外部力量之间的误差）[N 或 Nm] |
+| **Cmd** | 力量控制的命令位置（mm 或度） |
 
-- The coordinate system for **Fext** and **Cmd** follows the coordinate system selected in the settings (cnd).
-- This data is only active while **fctrl on** is in effect.
+- **Fext** 和 **Cmd** 的坐标系统遵循设置中选择的坐标系统（cnd）。
+- 此数据仅在 **fctrl on** 处于有效状态时激活。
 
 <br>
 
@@ -849,40 +809,40 @@ This function allows for real-time monitoring of the external forces applied to 
 
 {% hint style="info" %}
 
-**TP Navigation Path**
+**TP导航路径**
 
 [pane layout] – [F1: select] – [force motion]
 
 {% endhint %}
 [__SOURCE](5-error/README.md)
-# 5. Errors & Troubleshooting
+# 5. 错误与故障排除
 
-During force control operation with an external FT sensor,  
-the user can monitor the **status and exception events** in real time via the UI.
+在使用外部 FT 传感器进行力控制操作时，  
+用户可以通过 UI 实时监控 **状态和异常事件**。
 
 ---
 
-### Force Control Exception Events & Corrective Actions
+### 力控制异常事件及纠正措施
 
-| Error Code | Primary Cause | Guide |
+| 错误代码 | 主要原因 | 指南 |
 |:--:|---|---|
-| E0260 | Force control disabled | Enable force control in the configuration |
-| E0353 | Invalid force control tool number | Configure a valid tool number for force control |
-| E1336 | Invalid user coordinate frame number | Configure or add a valid user coordinate frame |
-| E0259 | FT sensor communication issue | Check sensor and cable connections |
-| E0272 | Unsupported FT sensor | Contact customer support (sensor interface required) |
-| E0273 | FT sensor communication issue | Check sensor and cable connections |
-| E0274 | FT sensor communication issue | Check sensor and cable connections |
+| E0260 | 力控制已禁用 | 在配置中启用力控制 |
+| E0353 | 无效的力控制工具编号 | 配置有效的工具编号以进行力控制 |
+| E1336 | 无效的用户坐标框架编号 | 配置或添加有效的用户坐标框架 |
+| E0259 | FT 传感器通信问题 | 检查传感器和电缆连接 |
+| E0272 | 不支持的 FT 传感器 | 联系客户支持（需传感器接口） |
+| E0273 | FT 传感器通信问题 | 检查传感器和电缆连接 |
+| E0274 | FT 传感器通信问题 | 检查传感器和电缆连接 |
 
-> In all exception cases, the system performs a **temporary Safe-Stop** operation as the highest priority.
+> 在所有异常情况下，系统执行 **临时安全停止** 操作作为最高优先级。
 
 ---
 
-### Troubleshooting Workflow
+### 故障排除工作流程
 
-1. Check the FT sensor connection  
-2. Verify the tool number and coordinate frame  
-3. Confirm whether the sensor is supported  
-4. Review and back up logs  
+1. 检查 FT 传感器连接  
+2. 验证工具编号和坐标框架  
+3. 确认传感器是否被支持  
+4. 查看并备份日志  
 
 ---

@@ -1,6 +1,6 @@
-﻿## 4.2 Force Motion Monitoring
+## 4.2 力量运动监控
 
-This function allows for real-time monitoring of the external forces applied to the robot, the error relative to the target force, and the commanded position during operation.
+此功能允许实时监控施加在机器人上的外部力量、相对于目标力的误差以及操作过程中命令的位置。
 
 <br>
 
@@ -8,13 +8,13 @@ This function allows for real-time monitoring of the external forces applied to 
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Fext** | Force Error (Error between target force and external force) [N or Nm] |
-| **Cmd** | Command Position for force control (mm or deg) |
+| **Fext** | 力量误差（目标力量与外部力量之间的误差）[N 或 Nm] |
+| **Cmd** | 力量控制的命令位置（mm 或度） |
 
-- The coordinate system for **Fext** and **Cmd** follows the coordinate system selected in the settings (cnd).
-- This data is only active while **fctrl on** is in effect.
+- **Fext** 和 **Cmd** 的坐标系统遵循设置中选择的坐标系统（cnd）。
+- 此数据仅在 **fctrl on** 处于有效状态时激活。
 
 <br>
 
@@ -22,7 +22,7 @@ This function allows for real-time monitoring of the external forces applied to 
 
 {% hint style="info" %}
 
-**TP Navigation Path**
+**TP导航路径**
 
 [pane layout] – [F1: select] – [force motion]
 

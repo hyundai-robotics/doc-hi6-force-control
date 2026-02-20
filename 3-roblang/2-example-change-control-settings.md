@@ -1,31 +1,31 @@
-﻿## 3.2 Example: Modifying Control Settings
+## 3.2 示例：修改控制设置
 
-The following is a Job program example for **modifying only the 'Control' parameters** within the force control conditions.  
-This method is useful when you want to change only the external force response characteristics during real-time operation while maintaining other settings such as filters, coordinate systems, and motion profiles.
-
-<br>
-
----
-
-### **Operation Overview**
-
-- **fctrl on, cnd=2**: Applies the complete configuration from set No. 2 when starting force control.
-- **fctrl control, cnd=1**: Changes **only the 'Control' parameters** to those of set No. 1.
-  (Other settings such as coordinate system, filters, and motion profiles remain as they were in set No. 2.)
+以下是一个作业程序示例，**仅修改“控制”参数**在力控制条件下。  
+当你想在实时操作中仅更改外部力响应特性，同时保持过滤器、坐标系统和运动轮廓等其他设置时，此方法非常有用。
 
 <br>
 
 ---
 
-### **JOB Program Example**
+### **操作概述**
+
+- **fctrl on, cnd=2**：在启动力控制时应用设置编号 2 的完整配置。
+- **fctrl control, cnd=1**：将**仅“控制”参数**更改为设置编号 1 的值。
+  （其他设置，例如坐标系统、过滤器和运动轮廓，将保持为设置编号 2 的值。）
+
+<br>
+
+---
+
+### **作业程序示例**
 
 ```python
-delay 1.0                           # Wait for stabilization before starting control
-fctrl on, cnd=2                     # Start force control (Initial: Using set No. 2)
+delay 1.0                           # 等待稳定后开始控制
+fctrl on, cnd=2                     # 启动力控制（初始：使用设置编号 2）
 delay 0.5
 
-fctrl control, cnd=1                # Update ONLY 'Control' parameters (Switch to set No. 1)
-                                    # (Coordinates, Filters, and Motion remain from No. 2)
+fctrl control, cnd=1                # 仅更新“控制”参数（切换到设置编号 1）
+                                    # （坐标、过滤器和运动仍然使用编号 2 的值）
 
-delay 5                             # Wait for stabilization of external force
-fctrl off                           # End force control
+delay 5                             # 等待外部力稳定
+fctrl off                           # 结束力控制

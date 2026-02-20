@@ -1,11 +1,11 @@
-﻿## 2.3 Force Control Tool Information
+## 2.3 力控制工具信息
 
-By entering the physical characteristics of the tool mounted on the robot, the accuracy of the force control algorithm is improved.  
-The force and torque perceived by the sensor are calibrated based on the tool's weight and center of gravity coordinates. 
+通过输入安装在机器上的工具的物理特性，力控制算法的准确性得以提高。  
+传感器感知的力和扭矩是基于工具的重量和重心坐标进行校准的。
 
-The Force Control Tool Information setup can be accessed through the following path: 
+力控制工具信息设置可以通过以下路径访问：
 
-`[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data`
+`[F2: 系统] – 4: 应用参数 – 17: 力控制 – 2: 力控制工具数据`
 
 <br>
 
@@ -13,18 +13,17 @@ The Force Control Tool Information setup can be accessed through the following p
 
 ![](../_assets/_04_fctrl_ctrl_tool_data.png)
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Name** | Tool data name (Automatically entered) |
-| **Description** | Tool description or purpose (Optional entry) |
-| **Weight [kg]** | Weight of the tool. Used for gravity compensation when calculating force errors. |
-| **Center [X, Y, Z]** | Position of the tool's center of gravity (Based on the sensor, Unit: mm) |
-| **Sensor coordinate** | Direction of the sensor reference coordinate system (Refer to the image on the right of the UI) |
-
+| **名称** | 工具数据名称（自动输入） |
+| **描述** | 工具描述或用途（可选输入） |
+| **重量 [kg]** | 工具的重量。在计算力误差时用于重力补偿。 |
+| **中心 [X, Y, Z]** | 工具重心的位置（基于传感器，单位：毫米） |
+| **传感器坐标** | 传感器参考坐标系的方向（参考用户界面右侧的图像） |
 
 {% hint style="info" %}
 
- - Up to 10 sets of tool information can be configured. 
- - The sensor-based load estimation function provided in Hi5a is currently not supported. 
+ - 最多可以配置10组工具信息。  
+ - Hi5a提供的基于传感器的负载估计功能目前不被支持。
 
 {% endhint %}

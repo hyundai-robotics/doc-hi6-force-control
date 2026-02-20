@@ -1,8 +1,6 @@
-﻿#### 2.4.4.1 Force Control Condition Setup - Motion - Contact Detection
+#### 2.4.4.1 力控制条件设置 - 动作 - 接触检测
 
-This function determines in real-time whether the robot has properly made contact with the surface during a force control operation (in the Tool Z direction).
-
-
+此功能实时判断机器人在力控制操作中（在工具Z方向）是否与表面正确接触。
 
 <br>
 
@@ -18,39 +16,37 @@ This function determines in real-time whether the robot has properly made contac
 
 ---
 
-### **Contact Surface Detection Criteria Setup**
+### **接触 surface 检测标准设置**
 
-Contact is determined to be complete when all of the following conditions are met:
+当满足以下所有条件时，接触被判定为完成：
 
-| Item | Description |
+| 项目 | 描述 |
 |--------------|------|
-| **Force Thresh** | Error threshold between the target force and current force (Unit: N) |
-| **Dev Angle Thresh** | Instantaneous change in the direction of the Z-axis force relative to the tool coordinates (Unit: deg) |
-| **Tilt Angle Thresh** | Angle between the contact surface and the direction of the force (Unit: deg) |
-| **Confirm time** | Duration the conditions must be maintained (Unit: sec) |
+| **力阈值** | 目标力与当前力之间的误差阈值（单位：N） |
+| **偏差角度阈值** | Z轴力相对于工具坐标的方向瞬时变化（单位：度） |
+| **倾斜角度阈值** | 接触表面与力的方向之间的角度（单位：度） |
+| **确认时间** | 条件必须维持的持续时间（单位：秒） |
 
 <br>
 
 ---
 
-### **Configuration Example**
+### **配置示例**
 
-- **Criteria**: If contact is maintained according to the following standards for 3 seconds, the contact surface detection is confirmed (OK).
+- **标准**：如果接触在以下标准下保持3秒，接触表面检测被确认（OK）。
 
-| Item | Value |
+| 项目 | 值 |
 |------------------|---------|
-| Force Error (Thresh) | 3 N |
-| Force Direction Change (Dev Angle) | 20 deg |
-| Contact Angle (Tilt Angle) | 30 deg |
-| Confirmation Time | 3 sec |
+| 力误差（阈值） | 3 N |
+| 力方向变化（偏差角度） | 20 度 |
+| 接触角度（倾斜角度） | 30 度 |
+| 确认时间 | 3 秒 |
 
 <br>
 
 ---
-
 {% hint style="info" %}
 
-- To ensure the **Contact Surface Detection** function operates correctly, the selected coordinate system must be set to the **Tool Coordinate System**.
+- 为了确保 **接触面检测** 功能正常运行，所选的坐标系统必须设置为 **工具坐标系统**。
 
 {% endhint %}
-

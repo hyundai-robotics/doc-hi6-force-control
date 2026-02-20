@@ -1,23 +1,23 @@
-﻿# 3. Force Control Commands
+﻿# 3. 力控制命令
 
-This section provides an overview of the main commands related to the force control feature.  
-Each command is used to configure force settings, start/stop control, and execute motions like spiral, bidirectional anc zig-zag movement.
+本节概述与力控制功能相关的主要命令。  
+每个命令用于配置力设置，启动/停止控制，以及执行螺旋、双向和锯齿形运动等操作。
 
 <br>
 
 ---
 
-### List of Force Control Commands
+### 力控制命令列表
 
-| Command               | Description                              | Argument                | Note                     |
+| 命令                   | 描述                                      | 参数                      | 注释                     |
 |------------------------|------------------------------------------|--------------------------|--------------------------|
-| `fctrl on, cnd=`       | Start force control with given condition | `cnd=condition number`   | Required to start control |
-| `fctrl control, cnd=`  | Change control condition only            | `cnd=condition number`   | Changes only control set during operation |
-| `fctrl off`            | Stop force control                       | None                     | -                        |
-| `fctrl motion_on`      | Start raster motion                      | None                     | Uses preset raster motion |
-| `fctrl motion_off`     | Stop raster motion                       | None                     | Stops immediately        |
-| `motion_state()`         | Check raster motion status               | None                     | -                        |
-| `contact_state()`         | Check contact status               | None                     | -                        |
-| `cfo(crd, type)` | Retrieves current FT sensor data | `crd`: coordinate frame defined in cnd<br>`type`: must be `"sensor"` | If the coordinate frame does not match the one configured in cnd, values will not update. The type parameter must be `"sensor"` to acquire FT sensor data. |
+| `fctrl on, cnd=`       | 在给定条件下启动力控制                   | `cnd=条件编号`           | 启动控制所需              |
+| `fctrl control, cnd=`  | 仅更改控制条件                            | `cnd=条件编号`           | 仅在操作过程中更改控制设置 |
+| `fctrl off`            | 停止力控制                               | 无                       | -                        |
+| `fctrl motion_on`      | 启动栅格运动                             | 无                       | 使用预设的栅格运动        |
+| `fctrl motion_off`     | 停止栅格运动                             | 无                       | 立即停止                 |
+| `motion_state()`         | 检查栅格运动状态                         | 无                       | -                        |
+| `contact_state()`         | 检查接触状态                             | 无                       | -                        |
+| `cfo(crd, type)` | 检索当前FT传感器数据                     | `crd`: 在cnd中定义的坐标系<br>`类型 (type)`: 必须为`"sensor"` | 如果坐标系与cnd中配置的坐标系不匹配，值将不会更新。类型参数必须为`"sensor"`以获取FT传感器数据。 |
 
 <br>

@@ -1,9 +1,9 @@
-﻿## 2.2 Force Control Environment Setup
+## 2.2 力控制环境设置
 
-To use sensor-based force control functions, the following key items must be configured.  
-These settings serve as the **starting point** for all controller operations. 
+要使用基于传感器的力控制功能，必须配置以下关键项目。  
+这些设置作为所有控制器操作的**起始点**。
 
-You can access the Force Control Environment Setup through the following path: 
+您可以通过以下路径访问力控制环境设置：
 
 `[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup`
 
@@ -12,65 +12,62 @@ You can access the Force Control Environment Setup through the following path:
 ---
 
 
-### **Enable Function**
+### **启用功能**
 
-Set whether to use the sensor-based force control function.
+设置是否使用基于传感器的力控制功能。
 
-- Enable: Function **Activated**
-- Disable: Function **Deactivated**
+- 启用：功能**已激活**
+- 禁用：功能**已停用**
 
-The setting must be set to Enable for the force control function to operate.
+力控制功能的操作必须设置为启用。
 
 <br>
 
 ---
 
-### **Sensor Manufacturer and Model**
+### **传感器制造商和型号**
 
-Select the **manufacturer and model of the force sensor** to be used.
+选择要使用的**力传感器的制造商和型号**。
 
-- Examples:
-  - ATI: Standard ATI models
-  - ATI: Delta-SI-660-60
-  - ATI: Theta-SI2500-400
-  - ATI: Omega-SI7200-1400 
-  - OnRobot: HEX-E 
-  - Robotiq: FT-300S 
+- 示例：
+  - ATI：标准ATI型号
+  - ATI：Delta-SI-660-60
+  - ATI：Theta-SI2500-400
+  - ATI：Omega-SI7200-1400 
+  - OnRobot：HEX-E 
+  - Robotiq：FT-300S 
 
-The **data format and communication method** vary depending on the sensor, so an accurate selection is required.
+**数据格式和通信方式**因传感器而异，因此需要准确选择。
 
 {% hint style="info" %}
 
-The following ATI models are supported in **version V60.32-05 or later**.  
-- Standard ATI models  
+以下ATI型号在**版本V60.32-05或更高版本**中受支持。  
+- 标准ATI型号  
 - Theta-SI2500-400  
 - Omega-SI7200-1400
 
 {% endhint %}
-
-<br>
-
 --- 
 
-### **Communication Protocol**
+### **通信协议**
 
-Set the **communication method** provided by the selected sensor.
+设置所选传感器提供的**通信方法**。
 
 - UDP
 - SCI
 - TCP
 
-Configure the port settings and internal parsing methods according to the protocol as follows:
+根据协议配置端口设置和内部解析方法如下：
 
 <br>
 
 --- 
 
-### **Configuration Method by ATI Model**
+### **按ATI模型的配置方法**
 
-- **Communication Protocol**: UDP
-- **IP Address**: 192.168.1.2
-- **Remote Port**: 49152
+- **通信协议**：UDP
+- **IP地址**：192.168.1.2
+- **远程端口**：49152
 
 <br>
 
@@ -90,20 +87,19 @@ Configure the port settings and internal parsing methods according to the protoc
 
 <br>
 
-#### **ATI(Generic ATI Model)**
+#### **ATI(通用ATI模型)**
 ![](../_assets/_01_04_fctrl_env_setting_ATI_Generic_UDP.png)
 
-- Instead of registering models individually, this method involves the **user manually entering and applying the scaling values provided by ATI for each specific model.**
+- 此方法不需要单独注册模型，而是**用户手动输入并应用ATI为每个特定模型提供的缩放值。**
 
 <br>
 
 ---
+### **OnRobot HEX-E 配置方法**
 
-### **OnRobot HEX-E Configuration Method**
-
-- **Communication Protocol**: UDP
-- **IP Address**: 192.168.1.1
-- **Remote Port**: 49152
+- **通信协议**: UDP
+- **IP 地址**: 192.168.1.1
+- **远程端口**: 49152
 
 ![](../_assets/_02_fctrl_env_setting_OnRobot_HEX_E_UDP.png)
 
@@ -113,10 +109,10 @@ Configure the port settings and internal parsing methods according to the protoc
 
 ---
 
-### **SCI Communication Method: Robotiq(FT-300S)**
+### **SCI 通信方法: Robotiq(FT-300S)**
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
-`[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration`
+`[F2: 系统] – 2: 控制参数 – 3: 串口 – 1: 配置`
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
@@ -128,8 +124,7 @@ Configure the port settings and internal parsing methods according to the protoc
 
 {% hint style="info" %}
  
-- These settings are examples based on standard models.  
-- **Some ATI models may use network values that differ from the settings above.**
+- 这些设置是基于标准模型的示例。  
+- **某些 ATI 模型可能使用与上述设置不同的网络值。**
 
 {% endhint %}
-

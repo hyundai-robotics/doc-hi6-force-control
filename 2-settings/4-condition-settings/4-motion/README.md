@@ -1,7 +1,7 @@
-﻿### 2.4.4 Force Control Condition - Motion
+﻿### 2.4.4 力控制条件 - 运动
 
-During force control operations, motion-related conditions can also be configured.
+在力控制操作中，运动相关的条件也可以进行配置。
 
-You can define a **surface contact detection** criterion to determine whether the tool has made full contact with the surface, based on tool orientation.  
+您可以定义一个**表面接触检测**标准，以根据工具方向确定工具是否已与表面充分接触。
 
-Additionally, without using a separate `move` command, the system can automatically generate **spiral**, **bidirectional**, or **zigzag** trajectories  
+此外，系统可以在不使用单独的`移动 (move)`命令的情况下，自动生成**螺旋**、**双向**或**锯齿形**轨迹。

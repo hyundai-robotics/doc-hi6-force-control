@@ -1,8 +1,8 @@
-﻿### 2.4.3 Force Control Condition Setup - Filtering
+### 2.4.3 力控制条件设置 - 滤波
 
-Filtering functions are provided to reduce noise from the force sensor and ensure that input values can be used stably for control.
+提供了滤波功能，以减少力传感器的噪声，并确保输入值可以稳定用于控制。
 
-Additionally, it offers scaling options to adjust control intensity within a specific force/torque range, as well as a bypass option to make the response to force input more sensitive.
+此外，它还提供了缩放选项，以在特定的力/扭矩范围内调整控制强度，以及一个旁路选项，以使对力输入的响应更加敏感。
 
 <br>
 
@@ -10,14 +10,14 @@ Additionally, it offers scaling options to adjust control intensity within a spe
 
 ![](../../_assets/_08_fctrl_ctrl_cnd_filtering_smooth_force.png)
 
-#### **Force Filtering**
+#### **力滤波**
 
-Applies a **filter** to the sensor's force signals to eliminate jitter and smooth the output.
+对传感器的力信号应用**滤波器**，消除抖动并平滑输出。
 
-| Item | Description |
+| 项目 | 描述 |
 |------|------|
-| **Enable** | Apply filter when checked |
-| **Frequency (Freq)** | Set the filter cutoff frequency (e.g., 20 Hz)<br>→ Lower values result in smoother motion but slower response. |
+| **启用** | 选中时应用滤波器 |
+| **频率 (Freq)** | 设置滤波器截止频率（例如，20 Hz）<br>→ 较低的值会导致运动更平滑，但响应更慢。 |
 
 <br>
 
@@ -25,30 +25,28 @@ Applies a **filter** to the sensor's force signals to eliminate jitter and smoot
 
 ![](../../_assets/_09_fctrl_ctrl_cnd_filtering_smooth_scaling.png)
 
+#### **力缩放**
 
-#### **Force Scaling**
+此功能在特定的力或扭矩范围内平滑地缩放控制强度。  
+它对需要灵敏度调整的任务非常有用，通常保持关闭状态。
 
-This function smoothly scales the control intensity within a specific force or torque range.  
-It is useful for tasks requiring sensitivity adjustments and is typically kept off.
+可以设计为抑制微小力变化的控制，仅对超过某一水平的力作出敏感响应。
 
-It can be designed to suppress control for minute force changes and respond sensitively only to forces above a certain level.
-
-| Item | Description |
+| 项目 | 描述 |
 |------|------|
-| **Enable** | When checked, scaling is applied only within the ranges below |
-| **Force Range** | Force range (e.g., 2 ~ 8 N) |
-| **Torque Range** | Torque range (e.g., 0 ~ 0 Nm) |
+| **启用** | 选中时，仅在以下范围内应用缩放 |
+| **力范围** | 力范围（例如，2 ~ 8 N） |
+| **扭矩范围** | 扭矩范围（例如，0 ~ 0 Nm） |
 
 ![](../../_assets/_11_fctrl_ctrl_cnd_filtering_scaling_graph.png)
 
 {% hint style="info" %}
 
-- When entering the force range, if the input force is smaller than the **Start Force**, the output force is 0. If it is greater than the **End Force**, the original input force value is output.
+- 当输入力低于**起始力**时，输出力为0。如果大于**结束力**，则输出原始输入力值。
 
-- If the **Start Force** and **End Force** are equal, the scaling function will not operate.
+- 如果**起始力**和**结束力**相等，则缩放功能将不执行。
 
 {% endhint %}
-
 <br>
 
 --- 
@@ -56,20 +54,20 @@ It can be designed to suppress control for minute force changes and respond sens
 
 ![](../../_assets/_10_fctrl_ctrl_cnd_filtering_cmd_flow.png)
 
-#### **Command Method**
+#### **命令方法**
 
-Sets the **processing method** for the command signals transmitted to the robot.
+设置发送到机器人的**处理方法**。
 
-| Item | Description |
+| 项目 | 描述 |
 |------|------|
-| **Mode** | **Normal**: Standard command transmission method. <br>**Bypass**: Command transmission method for highly sensitive responses. |
-| **Freq** | Filter frequency setting used in Bypass mode (Hz). |
+| **模式** | **正常**: 标准命令传输方法。 <br>**旁路**: 高灵敏度响应的命令传输方法。 |
+| **频率** | 在旁路模式下使用的滤波频率设置（Hz）。 |
 
 {% hint style="info" %}
 
-- **Bypass** mode is used when you want to **reflect sensor data immediately**.
-- It is recommended only for experimental situations requiring extremely sensitive control.
-- Since there is a **risk of noise or vibration**, it is recommended to use **Normal** mode for general operations.
+- **旁路**模式用于当您想要**立即反映传感器数据**时。
+- 仅建议在需要极高灵敏度控制的实验情况下使用。
+- 由于存在**噪声或振动的风险**，推荐在一般操作中使用**正常**模式。
 
 {% endhint %}
 
@@ -77,18 +75,18 @@ Sets the **processing method** for the command signals transmitted to the robot.
 
 --- 
 
-### **Configuration Guide**
+### **配置指南**
 
-| Task Type | Recommended Settings |
+| 任务类型 | 推荐设置 |
 |------------------|-----------------------------|
-| Polishing / Sanding | Smooth Force = ON, Freq = 20 Hz |
-| Smooth Assembly | Smooth Scaling = ON, Conservative range setting |
-| High-speed Response / Research | Command Flow = Bypass |
+| 打磨 / 砂光 | 平滑力 = 开, 频率 = 20 Hz |
+| 平滑组装 | 平滑缩放 = 开, 保守范围设置 |
+| 高速响应 / 研究 | 命令流 = 旁路 |
 
 --- 
 
 {% hint style="info" %}
 
-- **Filtering**, **Scaling**, and **Command Flow** settings all work together; therefore, they must be **tuned integrally** according to the specific objective of the task.
+- **滤波**、**缩放**和**命令流**设置共同工作；因此，必须根据任务的具体目标进行**整体调优**。
 
 {% endhint %}

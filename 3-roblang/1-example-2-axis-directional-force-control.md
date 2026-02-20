@@ -1,33 +1,32 @@
-﻿## 3.1 Example: Z-axis Force Control
+## 3.1 示例：Z轴力控制
 
-The following is an example of a Job program using the **Sensor-based Force Control function**.
-This example is designed to wait until the **external force applied in the Z-axis direction reaches 35N or more** before performing the task.
-
-<br>
-
----
-
-### **Operation Overview**
-
-- By using a **delay** command to secure time before starting force control, you can suppress sensor noise or initial vibrations, enabling more stable force control.
-
-- When selecting a coordinate system in the **CFO (Force Control Output)** command, it must match the coordinate system selected in the **Force Control Settings** to properly receive force data.
+以下是使用**基于传感器的力控制功能**的作业程序示例。此示例旨在等待**施加在Z轴方向上的外力达到35N或更高**后再执行任务。
 
 <br>
 
 ---
 
-### **JOB Program Example**
+### **操作概述**
+
+- 通过使用**延迟**命令在开始力控制之前确保时间，您可以抑制传感器噪声或初始振动，从而实现更稳定的力控制。
+
+- 在**CFO（力控制输出）**命令中选择坐标系时，必须与**力控制设置**中选择的坐标系匹配，以正确接收力数据。
+
+<br>
+
+---
+
+### **JOB程序示例**
 
 ```python
-delay 1.0                           # Wait for stabilization before starting control
-fctrl on,cnd=2                      # Start force control (Using condition set No. 2)
+delay 1.0                           # 等待稳定后开始控制
+fctrl on,cnd=2                      # 开始力控制（使用条件集编号2）
 delay 0.5
 
 #get_current_force
-var force = cfo("tool", "sensor")   # Receive external force data based on the Tool coordinates
+var force = cfo("tool", "sensor")   # 根据工具坐标接收外部力数据
 
-# Conditional Loop: Wait until the Z-axis external force reaches 35N or more
+# 条件循环：等待Z轴外力达到35N或更高
 if abs(force.z) < 35 then *get_current_force
-delay 5                             # Wait for external force stabilization 
-fctrl off                           # End force control 
+delay 5                             # 等待外部力稳定 
+fctrl off                           # 结束力控制

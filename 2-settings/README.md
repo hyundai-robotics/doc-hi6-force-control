@@ -1,9 +1,9 @@
-﻿# 2. Configuration
+﻿# 2. 配置
 
-To use the sensor-based force control functionality, the following basic components must be configured first.  
-These settings are entered through the user interface (UI) and serve as the foundation for all control features.
+要使用基于传感器的力控制功能，必须首先配置以下基本组件。  
+这些设置通过用户界面 (UI) 输入，并作为所有控制功能的基础。
 
-- Force Sensor Coordinate System  
-- Force Control Environment Setup  
-- Force Control Tool Information  
-- Force Control Conditions  
+- 力传感器坐标系  
+- 力控制环境设置  
+- 力控制工具信息  
+- 力控制条件  

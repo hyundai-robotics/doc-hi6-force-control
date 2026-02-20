@@ -1,24 +1,24 @@
-﻿# 1. Introduction
+﻿# 1. 引言
 
-This manual provides instructions for using the sensor-based force control system.  
-The system utilizes a force/torque sensor mounted on a robot to perform responsive control to external forces,  
-enabling precise and safe contact operations.
-
---- 
-
-### **Features Covered**
-
-- Sensor environment configuration  
-- Force control parameter setup  
-- Command structure  
-- Monitoring interface  
-- Basic usage examples
+本手册提供传感器基础的力控制系统的使用说明。  
+该系统利用安装在机器人上的力/扭矩传感器对外部力量进行响应控制，  
+实现精确和安全的接触操作。
 
 --- 
 
-### **Purpose**
+### **涵盖的特性**
 
-This document is intended for end-users and maintenance engineers.  
-It describes all necessary procedures for configuring the system and understanding its operational status.
+- 传感器环境配置  
+- 力控制参数设置  
+- 命令结构  
+- 监视接口  
+- 基本使用示例
 
-This feature is available from version V60.32-01 and requires a separate functional license.
+--- 
+
+### **目的**
+
+本文件面向最终用户和维护工程师。  
+它描述了配置系统和理解其操作状态所需的所有必要程序。
+
+该功能自版本 V60.32-01 起提供，并需要单独的功能许可证。

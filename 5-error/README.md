@@ -1,31 +1,31 @@
-﻿# 5. Errors & Troubleshooting
+﻿# 5. 错误与故障排除
 
-During force control operation with an external FT sensor,  
-the user can monitor the **status and exception events** in real time via the UI.
+在使用外部 FT 传感器进行力控制操作时，  
+用户可以通过 UI 实时监控 **状态和异常事件**。
 
 ---
 
-### Force Control Exception Events & Corrective Actions
+### 力控制异常事件及纠正措施
 
-| Error Code | Primary Cause | Guide |
+| 错误代码 | 主要原因 | 指南 |
 |:--:|---|---|
-| E0260 | Force control disabled | Enable force control in the configuration |
-| E0353 | Invalid force control tool number | Configure a valid tool number for force control |
-| E1336 | Invalid user coordinate frame number | Configure or add a valid user coordinate frame |
-| E0259 | FT sensor communication issue | Check sensor and cable connections |
-| E0272 | Unsupported FT sensor | Contact customer support (sensor interface required) |
-| E0273 | FT sensor communication issue | Check sensor and cable connections |
-| E0274 | FT sensor communication issue | Check sensor and cable connections |
+| E0260 | 力控制已禁用 | 在配置中启用力控制 |
+| E0353 | 无效的力控制工具编号 | 配置有效的工具编号以进行力控制 |
+| E1336 | 无效的用户坐标框架编号 | 配置或添加有效的用户坐标框架 |
+| E0259 | FT 传感器通信问题 | 检查传感器和电缆连接 |
+| E0272 | 不支持的 FT 传感器 | 联系客户支持（需传感器接口） |
+| E0273 | FT 传感器通信问题 | 检查传感器和电缆连接 |
+| E0274 | FT 传感器通信问题 | 检查传感器和电缆连接 |
 
-> In all exception cases, the system performs a **temporary Safe-Stop** operation as the highest priority.
+> 在所有异常情况下，系统执行 **临时安全停止** 操作作为最高优先级。
 
 ---
 
-### Troubleshooting Workflow
+### 故障排除工作流程
 
-1. Check the FT sensor connection  
-2. Verify the tool number and coordinate frame  
-3. Confirm whether the sensor is supported  
-4. Review and back up logs  
+1. 检查 FT 传感器连接  
+2. 验证工具编号和坐标框架  
+3. 确认传感器是否被支持  
+4. 查看并备份日志  
 
 ---

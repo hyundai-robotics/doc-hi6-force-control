@@ -1,4 +1,4 @@
-﻿# 4. Monitoring
+# 4. 监控
 
-While the sensor-based force control function is active,  
-users can monitor the following status information in real-time through the UI.
+在传感器基础的力控制功能激活时，  
+用户可以通过用户界面实时监控以下状态信息。

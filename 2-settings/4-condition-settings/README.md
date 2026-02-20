@@ -1,10 +1,10 @@
-﻿## 2.4 Force Control Condition Settings
+## 2.4 力控制条件设置
 
-To use the force control function effectively, it is essential to configure the control conditions properly based on the task requirements,  
-including target force, control direction, and sensitivity.
+要有效使用力控制功能，必须根据任务要求正确配置控制条件，  
+包括目标力、控制方向和灵敏度。
 
-These settings determine how the robot responds to external forces and directly affect the quality of the task.
+这些设置决定了机器人如何响应外部力量，并直接影响任务的质量。
 
-Access the force control condition settings via:
+通过以下方式访问力控制条件设置：
 
-📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🎛 4: Condition Settings
+📂 系统 → ⚙️ 4: 应用参数 → 💪 17: 力控制 → 🎛 4: 条件设置
