@@ -5,7 +5,7 @@ These settings serve as the **starting point** for all controller operations.
 
 You can access the Force Control Environment Setup through the following path: 
 
-[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup
+`[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup`
 
 <br>
 
@@ -116,7 +116,7 @@ Configure the port settings and internal parsing methods according to the protoc
 ### **SCI Communication Method: Robotiq(FT-300S)**
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
-[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration
+`[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration`
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
