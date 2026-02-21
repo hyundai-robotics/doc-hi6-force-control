@@ -1,7 +1,7 @@
 ﻿# Table of contents
 
-          * [${cont_model} 控制器 - 带传感器的力控制手册](README.md)
-          * [注意事项](0-about-this-manual/precautions.md)
+* [${cont_model} 控制器 - 带传感器的力控制手册](README.md)
+* [注意事项](0-about-this-manual/precautions.md)
 * [1. 引言](1-intro/README.md)
 * [2. 配置](2-settings/README.md)
   * [2.1 力传感器坐标系统](2-settings/1-force-sensor-coordinate-system.md)
