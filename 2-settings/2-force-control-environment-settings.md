@@ -5,7 +5,7 @@ These settings serve as the **starting point** for all controller operations.
 
 You can access the Force Control Environment Setup through the following path: 
 
-`[F2: System] – 4: Application Parameters – 8: Force Control – 1: User Environment Setup`
+`[F2: System] – 4: Application Parameters – 24: Force Control – 1: User Environment Setup`
 
 <br>
 

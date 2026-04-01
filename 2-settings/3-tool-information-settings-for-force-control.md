@@ -5,7 +5,7 @@ The force and torque perceived by the sensor are calibrated based on the tool's 
 
 The Force Control Tool Information setup can be accessed through the following path: 
 
-`[F2: System] – 4: Application Parameters – 8: Force Control – 2: Force Control Tool Data`
+`[F2: System] – 4: Application Parameters – 24: Force Control – 2: Force Control Tool Data`
 
 <br>
 
