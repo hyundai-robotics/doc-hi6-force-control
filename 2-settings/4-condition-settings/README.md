@@ -7,4 +7,4 @@ These settings determine how the robot responds to external forces and directly 
 
 Access the force control condition settings via:
 
-📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🎛 4: Condition Settings
+[F2: System] – 4: Application Parameters – 8: Force Control – 3: Force Control Option

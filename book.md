@@ -5,7 +5,7 @@
 [__SOURCE](0-about-this-manual/precautions.md)
 # Precautions
 
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/en/precautions.md" %}
+{% include file="en/precautions.md" %}
 
 [__SOURCE](1-intro/README.md)
 # 1. Introduction
@@ -83,7 +83,7 @@ These settings serve as the **starting point** for all controller operations.
 
 You can access the Force Control Environment Setup through the following path: 
 
-[F2: System] – 4: Application Parameters – 17: Force Control – 1: User Environment Setup
+`[F2: System] – 4: Application Parameters – 8: Force Control – 1: User Environment Setup`
 
 <br>
 
@@ -194,7 +194,7 @@ Configure the port settings and internal parsing methods according to the protoc
 ### **SCI Communication Method: Robotiq(FT-300S)**
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
-[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration
+`[F2: System] – 2: Control Parameters – 3: Serial Port – 1: Configuration`
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
@@ -220,7 +220,7 @@ The force and torque perceived by the sensor are calibrated based on the tool's 
 
 The Force Control Tool Information setup can be accessed through the following path: 
 
-[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data
+`[F2: System] – 4: Application Parameters – 8: Force Control – 2: Force Control Tool Data`
 
 <br>
 
@@ -253,8 +253,7 @@ These settings determine how the robot responds to external forces and directly 
 
 Access the force control condition settings via:
 
-📂 System → ⚙️ 4: Application Parameters → 💪 17: Force Control → 🎛 4: Condition Settings
-
+[F2: System] – 4: Application Parameters – 8: Force Control – 3: Force Control Option
 [__SOURCE](2-settings/4-condition-settings/1-basic.md)
 ### 2.4.1 Force Control Condition Setup - Basic
 
@@ -291,7 +290,7 @@ These items are the core of force control and determine the responsiveness of th
 - If the User Coordinate System is selected and the ID is set to 0, it is identical to the Robot Coordinate System.
 
 - The Tool ID refers to the tool number configured in:  
-  **"[F2: System] – 4: Application Parameters – 17: Force Control – 2: Force Control Tool Data"**
+  `[F2: System] – 4: Application Parameters – 8: Force Control – 2: Force Control Tool Data`
 
 - If the Zeroing function is not used (**Off**), the system outputs values calibrated based on the tool information (weight and center of gravity) assigned to the set tool number, relative to the raw output from the sensor.
 
