@@ -33,7 +33,7 @@ These items are the core of force control and determine the responsiveness of th
 - If the User Coordinate System is selected and the ID is set to 0, it is identical to the Robot Coordinate System.
 
 - The Tool ID refers to the tool number configured in:  
-  `[F2: System] – 4: Application Parameters – 24: Force Control – 2: Force Control Tool Data`
+  `[F2: System] - 4: Application Parameters - 24: Force Control - 2: Force Control Tool Data`
 
 - If the Zeroing function is not used (**Off**), the system outputs values calibrated based on the tool information (weight and center of gravity) assigned to the set tool number, relative to the raw output from the sensor.
 

@@ -24,6 +24,6 @@ This function allows for real-time monitoring of the external forces applied to 
 
 **TP Navigation Path**
 
-[pane layout] – [F1: select] – [force motion]
+[pane layout] - [F1: select] - [force motion]
 
 {% endhint %}

@@ -25,6 +25,6 @@ It is essential to check this information when using the Force Control function.
 
 **TP Navigation Path**
 
-[pane layout] – [F1: select] – [force data]
+[pane layout] - [F1: select] - [force data]
 
 {% endhint %}
