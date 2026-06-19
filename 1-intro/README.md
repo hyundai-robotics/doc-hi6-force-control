@@ -1,24 +1,17 @@
-﻿# 1. Introduction
+﻿# 1. Overview
 
-This manual provides instructions for using the sensor-based force control system.  
-The system utilizes a force/torque sensor mounted on a robot to perform responsive control to external forces,  
-enabling precise and safe contact operations.
+This manual provides guidance on how to use the sensor-based force control system.  
+The system utilizes a force/torque sensor mounted on the robot to perform control that responds to external forces, enabling more precise and safer contact operations.
 
---- 
+This manual covers the following features:
 
-### **Features Covered**
+- Sensor configuration methods
+- Tool data configuration methods
+- Force control condition settings
+- Commands
+- Monitoring configuration
+- Basic examples
 
-- Sensor environment configuration  
-- Force control parameter setup  
-- Command structure  
-- Monitoring interface  
-- Basic usage examples
+This document describes all procedures necessary for users or maintenance engineers to configure the features and understand the operational status.
 
---- 
-
-### **Purpose**
-
-This document is intended for end-users and maintenance engineers.  
-It describes all necessary procedures for configuring the system and understanding its operational status.
-
-This feature is available from version V60.32-01 and requires a separate functional license.
+This feature is available from version V60.32-01 and requires a separate feature license.

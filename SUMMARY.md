@@ -6,33 +6,51 @@
   * [Precautions](0-about-this-manual/precautions.md)
   * [Safety Cautions](0-about-this-manual/safety-notice.md)
 
-## 1. Overview
+## Overview
 * [1. Overview](1-intro/README.md)
 
-## 2. Configuration
-* [2. Configuration](2-settings/README.md)
-  * [2.1 Force Sensor Coordinate System](2-settings/1-force-sensor-coordinate-system.md)
-  * [2.2 Force Control Environment Settings](2-settings/2-force-control-environment-settings.md)
-  * [2.3 Tool Information for Force Control](2-settings/3-tool-information-settings-for-force-control.md)
-  * [2.4 Force Control Condition Settings](2-settings/4-condition-settings/README.md)
-    * [2.4.1 Condition Settings - Basic](2-settings/4-condition-settings/1-basic.md)
-    * [2.4.2 Condition Settings - Control](2-settings/4-condition-settings/2-control.md)
-    * [2.4.3 Condition Settings - Filtering](2-settings/4-condition-settings/3-filtering.md)
-    * [2.4.4 Condition Settings - Motion](2-settings/4-condition-settings/4-motion/README.md)
-      * [2.4.4.1 Motion - Contact Detection](2-settings/4-condition-settings/4-motion/1-contact.md)
-      * [2.4.4.2 Motion - Auto Trajectory Generation](2-settings/4-condition-settings/4-motion/2-raster.md)
+## Configuration
+* [2. Configuration](2-config/README.md)
+  * [2.1 F/T Sensor Installation](2-config/2-1-sensor-mounting.md)
+  * [2.2 F/T Sensor Communication](2-config/2-2-env-set-comm.md)
+    * [2.2.1 ATI Configuration](2-config/2-2-1-env-set-ATI.md)
+    * [2.2.2 OnRobot Configuration](2-config/2-2-2-env-set-OnRobot.md)
+    * [2.2.3 Robotiq Configuration](2-config/2-2-3-env-set-Robotiq.md)
+    * [2.2.4 AIDIN Configuration](2-config/2-2-4-env-set-AIDIN.md)
+  * [2.3 F/T Sensor Offset Settings](2-config/2-3-env-set-offset.md)
 
-## 3. Command Reference
-* [3. Force Control Commands](3-roblang/README.md)
-  * [3.1 Example - Force Control in Z-Axis](3-roblang/1-example-2-axis-directional-force-control.md)
-  * [3.2 Example - Changing Control Parameters](3-roblang/2-example-change-control-settings.md)
-  * [3.3 Example - Contact Detection](3-roblang/3-example-motion-contact.md)
-  * [3.4 Example - Spiral Motion](3-roblang/4-example-motion-spiral.md)
+## Tool Information
+* [3. Tool Information](3-tool/README.md)
+  * [3.1 Tool Information Settings](3-tool/3-1-tool-info.md)
+  * [3.2 Dynamic Load Identification](3-tool/3-2-tool-info-dyna-id.md)
 
-## 4. Monitoring
-* [4. Monitoring](4-monitoring/README.md)
-  * [4.1 Force Data Monitoring](4-monitoring/1-force-data-monitoring.md)
-  * [4.2 Force Motion Monitoring](4-monitoring/2-force-motion-monitoring.md)
+## Force Control Options
+* [4. Force Control Options](4-condition/README.md)
+  * [4.1 Basic Settings](4-condition/4-1-basic.md)
+  * [4.2 Control Parameters](4-condition/4-2-control.md)
+  * [4.3 Filtering](4-condition/4-3-filtering.md)
+  * [4.4.1 Profile: Soft Start](4-condition/4-4-1-profile-softstart.md)
+  * [4.4.2 Profile: Velocity Limit](4-condition/4-4-2-profile-velclamp.md)
+  * [4.4.3 Profile: Scaling](4-condition/4-4-3-profile-scaling.md)
+  * [4.5.1 Motion: Contact Conditions](4-condition/4-5-1-motion-contact.md)
+  * [4.5.2 Motion: Automatic Path Generation](4-condition/4-5-2-motion-raster.md)
+ 
+## Commands
+* [5. Force Control Commands](5-roblang/README.md)
+  * [5.1 Z-Axis Force Control](5-roblang/1-ex-fctrl-z.md)
+  * [5.2 Changing Control Settings](5-roblang/2-ex-change-control.md)
+  * [5.3 Contact Detection Function](5-roblang/3-ex-mot-contact.md)
+  * [5.4 Spiral Motion](5-roblang/4-ex-mot-spiral.md)
+  * [5.5 Sequential Condition Switching using FOR Loop](5-roblang/5-ex-var-cnd.md)
+  * [5.6 Agility Mode Termination Characteristics](5-roblang/6-ex-agility-mode-end.md)
 
-## 5. Errors & Troubleshooting
-* [5. Error List and Recovery Actions](5-error/README.md)
+## Monitoring
+* [6. Monitoring](6-monitoring/README.md)
+  * [6.1 Force Data Monitoring](6-monitoring/1-force-data-monitoring.md)
+  * [6.2 Force Motion Monitoring](6-monitoring/2-force-motion-monitoring.md)
+
+## Troubleshooting
+* [7. Error Codes & Troubleshooting](7-error/README.md)
+
+## Release Notes 
+* [8. Release Notes](8-release-note/README.md)
