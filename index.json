@@ -36,152 +36,152 @@
 	},
 	{
 		"link": "2-config/2-2-env-set-comm.md",
-		"char_ofs": 2153,
-		"byte_ofs": 4411
+		"char_ofs": 2155,
+		"byte_ofs": 4413
 	},
 	{
 		"link": "2-config/2-2-1-env-set-ATI.md",
-		"char_ofs": 3182,
-		"byte_ofs": 6376
+		"char_ofs": 3191,
+		"byte_ofs": 6386
 	},
 	{
 		"link": "2-config/2-2-2-env-set-OnRobot.md",
-		"char_ofs": 4217,
-		"byte_ofs": 8109
+		"char_ofs": 4226,
+		"byte_ofs": 8119
 	},
 	{
 		"link": "2-config/2-2-3-env-set-Robotiq.md",
-		"char_ofs": 4606,
-		"byte_ofs": 8772
+		"char_ofs": 4615,
+		"byte_ofs": 8782
 	},
 	{
 		"link": "2-config/2-2-4-env-set-AIDIN.md",
-		"char_ofs": 5280,
-		"byte_ofs": 9975
+		"char_ofs": 5289,
+		"byte_ofs": 9985
 	},
 	{
 		"link": "2-config/2-3-env-set-offset.md",
-		"char_ofs": 5863,
-		"byte_ofs": 11057
+		"char_ofs": 5872,
+		"byte_ofs": 11067
 	},
 	{
 		"link": "3-tool/README.md",
-		"char_ofs": 7287,
-		"byte_ofs": 13837
+		"char_ofs": 7320,
+		"byte_ofs": 13873
 	},
 	{
 		"link": "3-tool/3-1-tool-info.md",
-		"char_ofs": 7618,
-		"byte_ofs": 14538
+		"char_ofs": 7651,
+		"byte_ofs": 14574
 	},
 	{
 		"link": "3-tool/3-2-tool-info-dyna-id.md",
-		"char_ofs": 8575,
-		"byte_ofs": 16330
+		"char_ofs": 8608,
+		"byte_ofs": 16366
 	},
 	{
 		"link": "4-condition/README.md",
-		"char_ofs": 11756,
-		"byte_ofs": 22460
+		"char_ofs": 11789,
+		"byte_ofs": 22496
 	},
 	{
 		"link": "4-condition/4-1-basic.md",
-		"char_ofs": 12154,
-		"byte_ofs": 23320
+		"char_ofs": 12187,
+		"byte_ofs": 23356
 	},
 	{
 		"link": "4-condition/4-2-control.md",
-		"char_ofs": 13502,
-		"byte_ofs": 25914
+		"char_ofs": 13526,
+		"byte_ofs": 25942
 	},
 	{
 		"link": "4-condition/4-3-filtering.md",
-		"char_ofs": 15976,
-		"byte_ofs": 30398
+		"char_ofs": 15983,
+		"byte_ofs": 30409
 	},
 	{
 		"link": "4-condition/4-4-1-profile-softstart.md",
-		"char_ofs": 17345,
-		"byte_ofs": 33138
+		"char_ofs": 17440,
+		"byte_ofs": 33299
 	},
 	{
 		"link": "4-condition/4-4-2-profile-velclamp.md",
-		"char_ofs": 18840,
-		"byte_ofs": 36127
+		"char_ofs": 18863,
+		"byte_ofs": 36125
 	},
 	{
 		"link": "4-condition/4-4-3-profile-scaling.md",
-		"char_ofs": 20857,
-		"byte_ofs": 40033
+		"char_ofs": 20813,
+		"byte_ofs": 39880
 	},
 	{
 		"link": "4-condition/4-5-1-motion-contact.md",
-		"char_ofs": 22581,
-		"byte_ofs": 43240
+		"char_ofs": 22388,
+		"byte_ofs": 42777
 	},
 	{
 		"link": "4-condition/4-5-2-motion-raster.md",
-		"char_ofs": 23907,
-		"byte_ofs": 45805
+		"char_ofs": 23714,
+		"byte_ofs": 45342
 	},
 	{
 		"link": "5-roblang/README.md",
-		"char_ofs": 25867,
-		"byte_ofs": 49322
+		"char_ofs": 25674,
+		"byte_ofs": 48859
 	},
 	{
 		"link": "5-roblang/1-ex-fctrl-z.md",
-		"char_ofs": 28694,
-		"byte_ofs": 54348
+		"char_ofs": 28501,
+		"byte_ofs": 53885
 	},
 	{
 		"link": "5-roblang/2-ex-change-control.md",
-		"char_ofs": 29364,
-		"byte_ofs": 55459
+		"char_ofs": 29171,
+		"byte_ofs": 54996
 	},
 	{
 		"link": "5-roblang/3-ex-mot-contact.md",
-		"char_ofs": 29975,
-		"byte_ofs": 56471
+		"char_ofs": 29782,
+		"byte_ofs": 56008
 	},
 	{
 		"link": "5-roblang/4-ex-mot-spiral.md",
-		"char_ofs": 30679,
-		"byte_ofs": 57561
+		"char_ofs": 30486,
+		"byte_ofs": 57098
 	},
 	{
 		"link": "5-roblang/5-ex-var-cnd.md",
-		"char_ofs": 31370,
-		"byte_ofs": 58674
+		"char_ofs": 31177,
+		"byte_ofs": 58211
 	},
 	{
 		"link": "5-roblang/6-ex-agility-mode-end.md",
-		"char_ofs": 32369,
-		"byte_ofs": 60425
+		"char_ofs": 32176,
+		"byte_ofs": 59962
 	},
 	{
 		"link": "6-monitoring/README.md",
-		"char_ofs": 33789,
-		"byte_ofs": 62939
+		"char_ofs": 33596,
+		"byte_ofs": 62476
 	},
 	{
 		"link": "6-monitoring/1-force-data-monitoring.md",
-		"char_ofs": 34619,
-		"byte_ofs": 64650
+		"char_ofs": 34426,
+		"byte_ofs": 64187
 	},
 	{
 		"link": "6-monitoring/2-force-motion-monitoring.md",
-		"char_ofs": 35549,
-		"byte_ofs": 66395
+		"char_ofs": 35356,
+		"byte_ofs": 65932
 	},
 	{
 		"link": "7-error/README.md",
-		"char_ofs": 36596,
-		"byte_ofs": 68422
+		"char_ofs": 36403,
+		"byte_ofs": 67959
 	},
 	{
 		"link": "8-release-note/README.md",
-		"char_ofs": 37735,
-		"byte_ofs": 70751
+		"char_ofs": 37542,
+		"byte_ofs": 70288
 	}
 ]
