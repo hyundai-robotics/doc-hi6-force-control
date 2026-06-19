@@ -171,17 +171,17 @@
 	},
 	{
 		"link": "6-monitoring/2-force-motion-monitoring.md",
-		"char_ofs": 35222,
-		"byte_ofs": 65661
+		"char_ofs": 35204,
+		"byte_ofs": 65643
 	},
 	{
 		"link": "7-error/README.md",
-		"char_ofs": 36269,
-		"byte_ofs": 67688
+		"char_ofs": 36251,
+		"byte_ofs": 67670
 	},
 	{
 		"link": "8-release-note/README.md",
-		"char_ofs": 37425,
-		"byte_ofs": 70034
+		"char_ofs": 37407,
+		"byte_ofs": 70016
 	}
 ]
