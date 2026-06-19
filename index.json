@@ -81,107 +81,107 @@
 	},
 	{
 		"link": "4-condition/README.md",
-		"char_ofs": 11776,
-		"byte_ofs": 22451
+		"char_ofs": 11744,
+		"byte_ofs": 22413
 	},
 	{
 		"link": "4-condition/4-1-basic.md",
-		"char_ofs": 12174,
-		"byte_ofs": 23311
+		"char_ofs": 12142,
+		"byte_ofs": 23273
 	},
 	{
 		"link": "4-condition/4-2-control.md",
-		"char_ofs": 13515,
-		"byte_ofs": 25899
+		"char_ofs": 13483,
+		"byte_ofs": 25861
 	},
 	{
 		"link": "4-condition/4-3-filtering.md",
-		"char_ofs": 15974,
-		"byte_ofs": 30368
+		"char_ofs": 15942,
+		"byte_ofs": 30330
 	},
 	{
 		"link": "4-condition/4-4-1-profile-softstart.md",
-		"char_ofs": 17431,
-		"byte_ofs": 33258
+		"char_ofs": 17399,
+		"byte_ofs": 33220
 	},
 	{
 		"link": "4-condition/4-4-2-profile-velclamp.md",
-		"char_ofs": 18860,
-		"byte_ofs": 36090
+		"char_ofs": 18828,
+		"byte_ofs": 36052
 	},
 	{
 		"link": "4-condition/4-4-3-profile-scaling.md",
-		"char_ofs": 20794,
-		"byte_ofs": 39829
+		"char_ofs": 20747,
+		"byte_ofs": 39775
 	},
 	{
 		"link": "4-condition/4-5-1-motion-contact.md",
-		"char_ofs": 22384,
-		"byte_ofs": 42740
+		"char_ofs": 22302,
+		"byte_ofs": 42645
 	},
 	{
 		"link": "4-condition/4-5-2-motion-raster.md",
-		"char_ofs": 23714,
-		"byte_ofs": 45309
+		"char_ofs": 23608,
+		"byte_ofs": 45190
 	},
 	{
 		"link": "5-roblang/README.md",
-		"char_ofs": 25665,
-		"byte_ofs": 48797
+		"char_ofs": 25559,
+		"byte_ofs": 48678
 	},
 	{
 		"link": "5-roblang/1-ex-fctrl-z.md",
-		"char_ofs": 28478,
-		"byte_ofs": 53771
+		"char_ofs": 28376,
+		"byte_ofs": 53656
 	},
 	{
 		"link": "5-roblang/2-ex-change-control.md",
-		"char_ofs": 29151,
-		"byte_ofs": 54883
+		"char_ofs": 29049,
+		"byte_ofs": 54768
 	},
 	{
 		"link": "5-roblang/3-ex-mot-contact.md",
-		"char_ofs": 29763,
-		"byte_ofs": 55892
+		"char_ofs": 29661,
+		"byte_ofs": 55777
 	},
 	{
 		"link": "5-roblang/4-ex-mot-spiral.md",
-		"char_ofs": 30466,
-		"byte_ofs": 56977
+		"char_ofs": 30358,
+		"byte_ofs": 56856
 	},
 	{
 		"link": "5-roblang/5-ex-var-cnd.md",
-		"char_ofs": 31159,
-		"byte_ofs": 58088
+		"char_ofs": 31051,
+		"byte_ofs": 57967
 	},
 	{
 		"link": "5-roblang/6-ex-agility-mode-end.md",
-		"char_ofs": 32159,
-		"byte_ofs": 59836
+		"char_ofs": 32055,
+		"byte_ofs": 59719
 	},
 	{
 		"link": "6-monitoring/README.md",
-		"char_ofs": 33563,
-		"byte_ofs": 62318
+		"char_ofs": 33459,
+		"byte_ofs": 62201
 	},
 	{
 		"link": "6-monitoring/1-force-data-monitoring.md",
-		"char_ofs": 34396,
-		"byte_ofs": 64033
+		"char_ofs": 34292,
+		"byte_ofs": 63916
 	},
 	{
 		"link": "6-monitoring/2-force-motion-monitoring.md",
-		"char_ofs": 35326,
-		"byte_ofs": 65778
+		"char_ofs": 35222,
+		"byte_ofs": 65661
 	},
 	{
 		"link": "7-error/README.md",
-		"char_ofs": 36373,
-		"byte_ofs": 67805
+		"char_ofs": 36269,
+		"byte_ofs": 67688
 	},
 	{
 		"link": "8-release-note/README.md",
-		"char_ofs": 37529,
-		"byte_ofs": 70151
+		"char_ofs": 37425,
+		"byte_ofs": 70034
 	}
 ]
