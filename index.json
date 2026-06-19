@@ -31,157 +31,157 @@
 	},
 	{
 		"link": "2-config/2-1-sensor-mounting.md",
-		"char_ofs": 1198,
-		"byte_ofs": 2408
+		"char_ofs": 1193,
+		"byte_ofs": 2403
 	},
 	{
 		"link": "2-config/2-2-env-set-comm.md",
-		"char_ofs": 2164,
-		"byte_ofs": 4425
+		"char_ofs": 2149,
+		"byte_ofs": 4407
 	},
 	{
 		"link": "2-config/2-2-1-env-set-ATI.md",
-		"char_ofs": 3193,
-		"byte_ofs": 6391
+		"char_ofs": 3177,
+		"byte_ofs": 6371
 	},
 	{
 		"link": "2-config/2-2-2-env-set-OnRobot.md",
-		"char_ofs": 4211,
-		"byte_ofs": 8103
+		"char_ofs": 4199,
+		"byte_ofs": 8089
 	},
 	{
 		"link": "2-config/2-2-3-env-set-Robotiq.md",
-		"char_ofs": 4608,
-		"byte_ofs": 8781
+		"char_ofs": 4586,
+		"byte_ofs": 8750
 	},
 	{
 		"link": "2-config/2-2-4-env-set-AIDIN.md",
-		"char_ofs": 5273,
-		"byte_ofs": 9973
+		"char_ofs": 5258,
+		"byte_ofs": 9951
 	},
 	{
 		"link": "2-config/2-3-env-set-offset.md",
-		"char_ofs": 5864,
-		"byte_ofs": 11070
+		"char_ofs": 5839,
+		"byte_ofs": 11031
 	},
 	{
 		"link": "3-tool/README.md",
-		"char_ofs": 7282,
-		"byte_ofs": 13844
+		"char_ofs": 7259,
+		"byte_ofs": 13807
 	},
 	{
 		"link": "3-tool/3-1-tool-info.md",
-		"char_ofs": 7608,
-		"byte_ofs": 14540
+		"char_ofs": 7587,
+		"byte_ofs": 14505
 	},
 	{
 		"link": "3-tool/3-2-tool-info-dyna-id.md",
-		"char_ofs": 8571,
-		"byte_ofs": 16340
+		"char_ofs": 8544,
+		"byte_ofs": 16297
 	},
 	{
 		"link": "4-condition/README.md",
-		"char_ofs": 11756,
-		"byte_ofs": 22476
+		"char_ofs": 11721,
+		"byte_ofs": 22422
 	},
 	{
 		"link": "4-condition/4-1-basic.md",
-		"char_ofs": 12154,
-		"byte_ofs": 23336
+		"char_ofs": 12119,
+		"byte_ofs": 23282
 	},
 	{
 		"link": "4-condition/4-2-control.md",
-		"char_ofs": 13514,
-		"byte_ofs": 25946
+		"char_ofs": 13466,
+		"byte_ofs": 25875
 	},
 	{
 		"link": "4-condition/4-3-filtering.md",
-		"char_ofs": 16004,
-		"byte_ofs": 30452
+		"char_ofs": 15938,
+		"byte_ofs": 30357
 	},
 	{
 		"link": "4-condition/4-4-1-profile-softstart.md",
-		"char_ofs": 17389,
-		"byte_ofs": 33214
+		"char_ofs": 17305,
+		"byte_ofs": 33095
 	},
 	{
 		"link": "4-condition/4-4-2-profile-velclamp.md",
-		"char_ofs": 18887,
-		"byte_ofs": 36208
+		"char_ofs": 18797,
+		"byte_ofs": 36081
 	},
 	{
 		"link": "4-condition/4-4-3-profile-scaling.md",
-		"char_ofs": 20907,
-		"byte_ofs": 40119
+		"char_ofs": 20811,
+		"byte_ofs": 39984
 	},
 	{
 		"link": "4-condition/4-5-1-motion-contact.md",
-		"char_ofs": 22634,
-		"byte_ofs": 43331
+		"char_ofs": 22532,
+		"byte_ofs": 43188
 	},
 	{
 		"link": "4-condition/4-5-2-motion-raster.md",
-		"char_ofs": 23957,
-		"byte_ofs": 45893
+		"char_ofs": 23856,
+		"byte_ofs": 45751
 	},
 	{
 		"link": "5-roblang/README.md",
-		"char_ofs": 25910,
-		"byte_ofs": 49403
+		"char_ofs": 25812,
+		"byte_ofs": 49264
 	},
 	{
 		"link": "5-roblang/1-ex-fctrl-z.md",
-		"char_ofs": 28749,
-		"byte_ofs": 54445
+		"char_ofs": 28635,
+		"byte_ofs": 54286
 	},
 	{
 		"link": "5-roblang/2-ex-change-control.md",
-		"char_ofs": 29421,
-		"byte_ofs": 55560
+		"char_ofs": 29303,
+		"byte_ofs": 55395
 	},
 	{
 		"link": "5-roblang/3-ex-mot-contact.md",
-		"char_ofs": 30034,
-		"byte_ofs": 56576
+		"char_ofs": 29912,
+		"byte_ofs": 56405
 	},
 	{
 		"link": "5-roblang/4-ex-mot-spiral.md",
-		"char_ofs": 30740,
-		"byte_ofs": 57669
+		"char_ofs": 30614,
+		"byte_ofs": 57493
 	},
 	{
 		"link": "5-roblang/5-ex-var-cnd.md",
-		"char_ofs": 31433,
-		"byte_ofs": 58785
+		"char_ofs": 31303,
+		"byte_ofs": 58604
 	},
 	{
 		"link": "5-roblang/6-ex-agility-mode-end.md",
-		"char_ofs": 32434,
-		"byte_ofs": 60539
+		"char_ofs": 32300,
+		"byte_ofs": 60353
 	},
 	{
 		"link": "6-monitoring/README.md",
-		"char_ofs": 33861,
-		"byte_ofs": 63063
+		"char_ofs": 33715,
+		"byte_ofs": 62862
 	},
 	{
 		"link": "6-monitoring/1-force-data-monitoring.md",
-		"char_ofs": 34680,
-		"byte_ofs": 64759
+		"char_ofs": 34542,
+		"byte_ofs": 64570
 	},
 	{
 		"link": "6-monitoring/2-force-motion-monitoring.md",
-		"char_ofs": 35620,
-		"byte_ofs": 66517
+		"char_ofs": 35471,
+		"byte_ofs": 66314
 	},
 	{
 		"link": "7-error/README.md",
-		"char_ofs": 36678,
-		"byte_ofs": 68559
+		"char_ofs": 36517,
+		"byte_ofs": 68340
 	},
 	{
 		"link": "8-release-note/README.md",
-		"char_ofs": 37825,
-		"byte_ofs": 70900
+		"char_ofs": 37654,
+		"byte_ofs": 70667
 	}
 ]

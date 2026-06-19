@@ -4,8 +4,6 @@
 
 [F2: 시스템] ➔ [4: 응용 파라미터] ➔ [24: 힘 제어] ➔ [3: 힘 제어 옵션] ➔ **[Profile] 탭 선택**
 
-<br>
-
 ---
 
 ![](../_assets/_09_fctrl_ctrl_soft_start.png)
