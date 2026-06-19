@@ -12,7 +12,7 @@
 
 ![](../_assets/_27_fctrl_option_basic_usr.png) 
 
-#### **기본(Settings) 설정 항목**
+##### **기본(Settings) 설정 항목**
 
 | 항목 | 설명 |
 | :--- | :--- |
