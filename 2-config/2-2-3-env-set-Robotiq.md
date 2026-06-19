@@ -5,7 +5,7 @@ Robotiq 센서(FT 300S 등)는 시리얼 통신(SCI) 방식을 사용하므로, 
 ### **[1단계: 힘 제어 센서 설정]**
 우선 힘 제어 사용자 환경 설정 화면에서 통신 프로토콜을 시리얼 통신(SCI)로 지정합니다.
 
-![Robotiq 센서 지정](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
+![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
 ---
 
@@ -14,12 +14,12 @@ Robotiq 센서(FT 300S 등)는 시리얼 통신(SCI) 방식을 사용하므로, 
 
 > **[F2: 시스템]** → **2: 제어파라미터** → **3: 시리얼포트** → **1: 환경설정**
 
-![Robotiq 시리얼 포트 설정](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
+![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
 {% hint style="info" %}
 
-> 💡 **참고**
-> * Robotiq 센서는 별도의 IP 주소 입력 대신, 제어기 후면 또는 내부의 물리적인 시리얼 포트(SCI) 채널 및 통신 속도(Baud rate) 매칭이 필수적입니다.
-> * 1단계 센서 지정 후, 반드시 2단계 시리얼 포트 설정을 누락 없이 진행해야 통신 에러가 발생하지 않습니다.
+Robotiq 센서는 별도의 IP 주소 입력 대신, 제어기 후면 또는 내부의 물리적인 시리얼 포트(SCI) 채널 및 통신 속도(Baud rate) 매칭이 필수적입니다.
+
+1단계 센서 지정 후, 반드시 2단계 시리얼 포트 설정을 누락 없이 진행해야 통신 에러가 발생하지 않습니다.
 
 {% endhint %}

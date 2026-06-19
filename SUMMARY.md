@@ -26,23 +26,23 @@
 
 ## 조건 설정
 * [4. 힘 제어 옵션](4-condition/README.md)
-  * [4.1 힘 제어 옵션 - 기본](4-condition/4-1-basic.md)
-  * [4.2 힘 제어 옵션 - 제어](4-condition/4-2-control.md)
-  * [4.3 힘 제어 옵션 - 필터링](4-condition/4-3-filtering.md)
-  * [4.4.1 힘 제어 옵션 - 프로파일 : 소프트 스타트](4-condition/4-4-1-profile-softstart.md)
-  * [4.4.1 힘 제어 옵션 - 프로파일 : 속도 제한](4-condition/4-4-2-profile-velclamp.md)
-  * [4.4.1 힘 제어 옵션 - 프로파일 : 스케일링](4-condition/4-4-3-profile-scaling.md)
-  * [4.4.1 힘 제어 옵션 - 모션 : 접촉 조건](4-condition/4-5-1-motion-contact.md)
-  * [4.4.1 힘 제어 옵션 - 모션 : 자동 경로 생성](4-condition/4-5-2-motion-raster.md)
+  * [4.1 기본](4-condition/4-1-basic.md)
+  * [4.2 제어](4-condition/4-2-control.md)
+  * [4.3 필터링](4-condition/4-3-filtering.md)
+  * [4.4.1 프로파일 : 소프트 스타트](4-condition/4-4-1-profile-softstart.md)
+  * [4.4.1 프로파일 : 속도 제한](4-condition/4-4-2-profile-velclamp.md)
+  * [4.4.1 프로파일 : 스케일링](4-condition/4-4-3-profile-scaling.md)
+  * [4.4.1 모션 : 접촉 조건](4-condition/4-5-1-motion-contact.md)
+  * [4.4.1 모션 : 자동 경로 생성](4-condition/4-5-2-motion-raster.md)
  
 ## 명령어
-* [5. 힘 제어 명령문](5-roblang/README.md)
-  * [5.1 예제 - Z축 방향 힘 제어](5-roblang/1-ex-fctrl-z.md)
-  * [5.2 예제 - 제어 설정 변경](5-roblang/2-ex-change-control.md)
-  * [5.3 예제 - 접촉 판단 기능](5-roblang/3-ex-mot-contact.md)
-  * [5.4 예제 - 나선 모션](5-roblang/4-ex-mot-spiral.md)
-  * [5.5 예제 - for문을 활용한 제어 조건 연속 전환](5-roblang/5-ex-var-cnd.md)
-  * [5.6 예제 - 민첩 모드 종료 특성](5-roblang/6-ex-agility-mode-end.md)
+* [5. 힘 제어 명령어](5-roblang/README.md)
+  * [5.1 Z축 방향 힘 제어](5-roblang/1-ex-fctrl-z.md)
+  * [5.2 제어 설정 변경](5-roblang/2-ex-change-control.md)
+  * [5.3 접촉 판단 기능](5-roblang/3-ex-mot-contact.md)
+  * [5.4 나선 모션](5-roblang/4-ex-mot-spiral.md)
+  * [5.5 for문을 활용한 제어 조건 연속 전환](5-roblang/5-ex-var-cnd.md)
+  * [5.6 민첩 모드 종료 특성](5-roblang/6-ex-agility-mode-end.md)
 
 ## 모니터링
 * [6. 모니터링](6-monitoring/README.md)
