@@ -5,108 +5,183 @@
 		"byte_ofs": 0
 	},
 	{
+		"link": "0-about-this-manual/README.md",
+		"char_ofs": 39,
+		"byte_ofs": 73
+	},
+	{
+		"link": "0-about-this-manual/precautions.md",
+		"char_ofs": 53,
+		"byte_ofs": 108
+	},
+	{
+		"link": "0-about-this-manual/safety-notice.md",
+		"char_ofs": 103,
+		"byte_ofs": 176
+	},
+	{
 		"link": "1-intro/README.md",
-		"char_ofs": 262,
-		"byte_ofs": 526
+		"char_ofs": 156,
+		"byte_ofs": 247
 	},
 	{
-		"link": "2-settings/README.md",
-		"char_ofs": 607,
-		"byte_ofs": 1327
+		"link": "2-config/README.md",
+		"char_ofs": 512,
+		"byte_ofs": 1074
 	},
 	{
-		"link": "2-settings/2.1-force_sensor_coordinate_system.md",
-		"char_ofs": 758,
-		"byte_ofs": 1661
+		"link": "2-config/2-1-sensor-mounting.md",
+		"char_ofs": 1198,
+		"byte_ofs": 2408
 	},
 	{
-		"link": "2-settings/2.2-force_control_environment_settings.md",
-		"char_ofs": 1284,
-		"byte_ofs": 2737
+		"link": "2-config/2-2-env-set-comm.md",
+		"char_ofs": 1709,
+		"byte_ofs": 3393
 	},
 	{
-		"link": "2-settings/2.3-tool_information_settings_for_force_control.md",
-		"char_ofs": 3277,
-		"byte_ofs": 5883
+		"link": "2-config/2-2-1-env-set-ATI.md",
+		"char_ofs": 2737,
+		"byte_ofs": 5358
 	},
 	{
-		"link": "2-settings/2.4-force_control_condition_settings.md",
-		"char_ofs": 3888,
-		"byte_ofs": 6981
+		"link": "2-config/2-2-2-env-set-OnRobot.md",
+		"char_ofs": 3814,
+		"byte_ofs": 7158
 	},
 	{
-		"link": "2-settings/2.4.1-condition_setting_basic.md",
-		"char_ofs": 4127,
-		"byte_ofs": 7519
+		"link": "2-config/2-2-3-env-set-Robotiq.md",
+		"char_ofs": 4225,
+		"byte_ofs": 7854
 	},
 	{
-		"link": "2-settings/2.4.2-condition_setting_control.md",
-		"char_ofs": 5471,
-		"byte_ofs": 9877
+		"link": "2-config/2-2-4-env-set-AIDIN.md",
+		"char_ofs": 4939,
+		"byte_ofs": 9123
 	},
 	{
-		"link": "2-settings/2.4.3-condition_setting_filtering.md",
-		"char_ofs": 6635,
-		"byte_ofs": 11755
+		"link": "2-config/2-3-env-set-offset.md",
+		"char_ofs": 5560,
+		"byte_ofs": 10264
 	},
 	{
-		"link": "2-settings/2.4.4-condition_setting_motion.md",
-		"char_ofs": 8464,
-		"byte_ofs": 14951
+		"link": "3-tool/README.md",
+		"char_ofs": 6995,
+		"byte_ofs": 13060
 	},
 	{
-		"link": "2-settings/2.4.4.1-condition_setting_motion_contact.md",
-		"char_ofs": 8677,
-		"byte_ofs": 15424
+		"link": "3-tool/3-1-tool-info.md",
+		"char_ofs": 7321,
+		"byte_ofs": 13756
 	},
 	{
-		"link": "2-settings/2.4.4.2-condition_setting_motion_raster.md",
-		"char_ofs": 9472,
-		"byte_ofs": 16737
+		"link": "3-tool/3-2-tool-info-dyna-id.md",
+		"char_ofs": 8284,
+		"byte_ofs": 15556
 	},
 	{
-		"link": "3-roblang/README.md",
-		"char_ofs": 10888,
-		"byte_ofs": 18879
+		"link": "4-condition/README.md",
+		"char_ofs": 11494,
+		"byte_ofs": 21721
 	},
 	{
-		"link": "3-roblang/3.1-example_2-axis_directional_force_control.md",
-		"char_ofs": 12043,
-		"byte_ofs": 20538
+		"link": "4-condition/4-1-basic.md",
+		"char_ofs": 11894,
+		"byte_ofs": 22583
 	},
 	{
-		"link": "3-roblang/3.2-example_change_control_settings.md",
-		"char_ofs": 12823,
-		"byte_ofs": 21849
+		"link": "4-condition/4-2-control.md",
+		"char_ofs": 13279,
+		"byte_ofs": 25226
 	},
 	{
-		"link": "3-roblang/3.3-example_motion_contact.md",
-		"char_ofs": 13471,
-		"byte_ofs": 22906
+		"link": "4-condition/4-3-filtering.md",
+		"char_ofs": 15785,
+		"byte_ofs": 29756
 	},
 	{
-		"link": "3-roblang/3.4-example_motion_spiral.md",
-		"char_ofs": 14174,
-		"byte_ofs": 23980
+		"link": "4-condition/4-4-1-profile-softstart.md",
+		"char_ofs": 17185,
+		"byte_ofs": 32542
 	},
 	{
-		"link": "4-monitoring/README.md",
-		"char_ofs": 14881,
-		"byte_ofs": 25123
+		"link": "4-condition/4-4-2-profile-velclamp.md",
+		"char_ofs": 18696,
+		"byte_ofs": 35558
 	},
 	{
-		"link": "4-monitoring/4.1-force_data_monitoring.md",
-		"char_ofs": 14965,
-		"byte_ofs": 25314
+		"link": "4-condition/4-4-3-profile-scaling.md",
+		"char_ofs": 20730,
+		"byte_ofs": 39493
 	},
 	{
-		"link": "4-monitoring/4.2-force_motion_monitoring.md",
-		"char_ofs": 15393,
-		"byte_ofs": 26056
+		"link": "4-condition/4-5-1-motion-contact.md",
+		"char_ofs": 22471,
+		"byte_ofs": 42729
 	},
 	{
-		"link": "5-error/README.md",
-		"char_ofs": 15751,
-		"byte_ofs": 26630
+		"link": "4-condition/4-5-2-motion-raster.md",
+		"char_ofs": 23808,
+		"byte_ofs": 45315
+	},
+	{
+		"link": "5-roblang/README.md",
+		"char_ofs": 25775,
+		"byte_ofs": 48849
+	},
+	{
+		"link": "5-roblang/1-ex-fctrl-z.md",
+		"char_ofs": 28620,
+		"byte_ofs": 53897
+	},
+	{
+		"link": "5-roblang/2-ex-change-control.md",
+		"char_ofs": 29296,
+		"byte_ofs": 55020
+	},
+	{
+		"link": "5-roblang/3-ex-mot-contact.md",
+		"char_ofs": 29913,
+		"byte_ofs": 56044
+	},
+	{
+		"link": "5-roblang/4-ex-mot-spiral.md",
+		"char_ofs": 30623,
+		"byte_ofs": 57145
+	},
+	{
+		"link": "5-roblang/5-ex-var-cnd.md",
+		"char_ofs": 31320,
+		"byte_ofs": 58269
+	},
+	{
+		"link": "5-roblang/6-ex-agility-mode-end.md",
+		"char_ofs": 32325,
+		"byte_ofs": 60031
+	},
+	{
+		"link": "6-monitoring/README.md",
+		"char_ofs": 33756,
+		"byte_ofs": 62563
+	},
+	{
+		"link": "6-monitoring/1-force-data-monitoring.md",
+		"char_ofs": 34577,
+		"byte_ofs": 64261
+	},
+	{
+		"link": "6-monitoring/2-force-motion-monitoring.md",
+		"char_ofs": 35524,
+		"byte_ofs": 66027
+	},
+	{
+		"link": "7-error/README.md",
+		"char_ofs": 36631,
+		"byte_ofs": 68114
+	},
+	{
+		"link": "8-release-note/README.md",
+		"char_ofs": 37778,
+		"byte_ofs": 70455
 	}
 ]
