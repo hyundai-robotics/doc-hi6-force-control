@@ -1,4 +1,4 @@
-﻿# 1. Overview
+﻿## 1. Overview
 
 This manual provides guidance on how to use the sensor-based force control system.  
 The system utilizes a force/torque sensor mounted on the robot to perform control that responds to external forces, enabling more precise and safer contact operations.

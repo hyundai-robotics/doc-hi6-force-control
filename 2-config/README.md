@@ -1,10 +1,10 @@
-﻿## 2 Configuration
+﻿## 2. Configuration
 
 To use the sensor-based force control function, the following key items must be configured. These items serve as the **criteria** for all controller operations.
 
 ---
 
-### **Setting Menu Access Path**
+#### **Setting Menu Access Path**
 
 The force control environment settings can be accessed through the following path on the teaching pendant.
 
@@ -12,7 +12,7 @@ The force control environment settings can be accessed through the following pat
 
 ---
 
-### **Function Enable/Disable Settings**
+#### **Function Enable/Disable Settings**
 
 Determines whether to globally activate the sensor-based force control function. To normally operate the force control loop within the system, it **must be set to `Enable`**.
 

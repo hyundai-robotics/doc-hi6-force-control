@@ -1,48 +1,48 @@
-﻿## 5.6 민첩 모드 종료 특성 회피 방법
+﻿## 5.6 Methods to Work Around Agility Mode Termination Characteristics
 
-민첩 모드는 `fctrl off`(종료) 명령 시 해당 지점에서 무조건 **0.5초간** 멈춘 뒤 종료 되는 사양을 가집니다. 
+Agility Mode has a specification where it unconditionally **pauses for 0.5 seconds** at that specific point before terminating when the `fctrl off` (termination) command is executed. 
 
-* **예상 문제:** 가공이나 도포가 끝난 직후 표면에 접촉한 상태 그대로 제어가 종료되면, 0.5초간 가압이 유지되어 제품 표면이 손상되거나 자국이 남을 수 있습니다.
+* **Expected Issue:** If control is terminated while maintaining contact with the surface immediately after machining or dispensing is completed, the pressure is maintained for 0.5 seconds, which may damage the product surface or leave marks.
 
-* **해결 방법:** 힘 제어 중에는 위치 보정 명령어(`shift`)를 사용할 수 없으므로, `fctrl off`를 하기 전에 **가압 방향과 반대 방향의 힘을 인가하는 회피 조건(cnd)** 으로 실시간 전환하여 로봇을 표면에서 먼저 떼어냅니다. 이후 비접촉(공중) 상태에서 0.5초 대기를 거쳐 안전하게 종료합니다.
+* **Solution:** Since position offset commands (`shift`) cannot be used during force control, you must switch in real time to a **workaround condition (cnd) that applies a force in the direction opposite to the pressurizing direction** before executing `fctrl off` to detach the robot from the surface first. Afterwards, it safely terminates following a 0.5-second pause in a non-contact (air) state.
 
 ---
 
-##### **[조건 설정 구성]**
+##### **[Condition Settings Configuration]**
 
-* **메인 제어 조건 (cnd=4):** 민첩 모드를 활성화하여 표면 가공 및 자동 경로 모션을 수행하는 조건입니다.
+* **Main Control Condition (cnd=4):** A condition that activates Agility Mode to perform surface machining and automatic path motions.
 
-* **회피 조건 (cnd=5):** 제품 손상을 방지하기 위해 메인 가압 방향의 반대 방향으로 이탈하도록 설정한 조건입니다.
+* **Workaround Condition (cnd=5):** A condition configured to escape in the direction opposite to the main pressurizing direction to prevent product damage.
 
 ![](../_assets/_29_agility_main_cnd.png)
-*▲ 그림: 민첩 모드가 활성화된 메인 힘 제어 조건 (cnd=4) 설정 화면*
+*▲ Figure: Main force control condition (cnd=4) configuration screen with Agility Mode activated*
 
 ![](../_assets/_30_agility_escape_cnd.png)
-*▲ 그림: 표면 이탈을 위해 반대 방향 외력을 인가하도록 설정한 회피 조건 (cnd=5) 설정 화면*
+*▲ Figure: Workaround condition (cnd=5) configuration screen set to apply an external force in the opposite direction for surface detachment*
 
 
 ---
 
-##### **[JOB 프로그램]** 
+##### **[JOB Program]**
 
 ```python
-# 홈 포지션 및 가공 접근 위치로 이동
+# Move to home position and machining approach position
 S1   move P,spd=5%,accu=0,tool=0  
 S2   move L,spd=5%,accu=0,tool=0  
      delay 2
      
-# 메인 힘 제어 구동 및 자동 경로 수행
-     fctrl on,cnd=4                # 메인 힘 제어(민첩 모드) 시작
-     wait _fctrl.contact,20        # 표면 접촉 완료 대기 (타임아웃 20초)
-     fctrl motion_on               # 자동 경로 생성 모션 시작
-     wait _fctrl.motion==0         # 모션 패스 완료 시까지 대기
+# Execute main force control and automatic path
+     fctrl on,cnd=4                # Start main force control (Agility Mode)
+     wait _fctrl.contact,20        # Wait for surface contact completion (Timeout 20 seconds)
+     fctrl motion_on               # Start automatic path generation motion
+     wait _fctrl.motion==0         # Wait until motion path is complete
     
-# 제품 보호를 위한 반대 방향 탈출 시퀀스
-     fctrl control,cnd=5           # 접촉면 반대 방향(공중)으로 실시간 회피 조건 전환
-     delay 2                       # 로봇이 표면에서 완전히 떨어질 때까지 대기
+# Escape sequence in the opposite direction for product protection
+     fctrl control,cnd=5           # Switch in real time to the workaround condition in the direction opposite to the contact surface (air)
+     delay 2                       # Wait until the robot completely detaches from the surface
      
-# 비접촉 상태에서 안전 종료
-     fctrl off                     # 힘 제어 종료 (비접촉 상태이므로 0.5초 멈춤 시 제품 영향 없음)
+# Safe termination in a non-contact state
+     fctrl off                     # Terminate force control (Since it is in a non-contact state, the 0.5-second pause has no impact on the product)
      delay 1
   
 end

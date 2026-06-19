@@ -13,7 +13,9 @@ This is an example of sequentially and automatically switching multiple force co
 
 ---
 
-##### **[JOB Program]** ```python
+##### **[JOB Program]** 
+
+```python
 S1   move P,spd=5%,accu=0,tool=0  
 S2   move L,spd=5%,accu=0,tool=0   # Move to home position and approach position
      delay 2

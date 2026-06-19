@@ -20,7 +20,9 @@ Configure the **contact** conditions in the **settings** as follows:
 
 ---
 
-##### **[JOB Program]** ```python
+##### **[JOB Program]**
+
+```python
 delay 1.0                            # Stabilization wait before starting control
 fctrl on,cnd=1                       # Start force control (Uses condition number 1)
 delay 0.5                            # Wait for 0.5 seconds before executing the contact surface detection condition

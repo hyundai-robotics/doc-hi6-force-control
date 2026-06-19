@@ -13,7 +13,9 @@ This approach is useful when you want to change only the external force response
 
 ---
 
-##### **[JOB Program]** ```python
+##### **[JOB Program]** 
+
+```python
 delay 1.0                           # Stabilization wait before starting control
 fctrl on,cnd=2                      # Start force control (Uses condition number 2)
 delay 0.5
