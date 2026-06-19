@@ -30,10 +30,10 @@
   * [4.2 제어](4-condition/4-2-control.md)
   * [4.3 필터링](4-condition/4-3-filtering.md)
   * [4.4.1 프로파일 : 소프트 스타트](4-condition/4-4-1-profile-softstart.md)
-  * [4.4.1 프로파일 : 속도 제한](4-condition/4-4-2-profile-velclamp.md)
-  * [4.4.1 프로파일 : 스케일링](4-condition/4-4-3-profile-scaling.md)
-  * [4.4.1 모션 : 접촉 조건](4-condition/4-5-1-motion-contact.md)
-  * [4.4.1 모션 : 자동 경로 생성](4-condition/4-5-2-motion-raster.md)
+  * [4.4.2 프로파일 : 속도 제한](4-condition/4-4-2-profile-velclamp.md)
+  * [4.4.3 프로파일 : 스케일링](4-condition/4-4-3-profile-scaling.md)
+  * [4.5.1 모션 : 접촉 조건](4-condition/4-5-1-motion-contact.md)
+  * [4.5.2 모션 : 자동 경로 생성](4-condition/4-5-2-motion-raster.md)
  
 ## 명령어
 * [5. 힘 제어 명령어](5-roblang/README.md)
