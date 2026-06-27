@@ -1,30 +1,30 @@
-﻿# 7. Errors and Troubleshooting
+# 7. 错误与故障排除
 
-This section provides the causes and on-site corrective action guides for major exceptional situations (error codes) occurring within the controller and F/T sensor unit during the force control process.
+本节提供了在力控制过程中控制器和F/T传感器单元中发生的主要异常情况（错误代码）的原因和现场纠正措施指南。
 
 ---
 
-##### **[Force Control Exception Situations and Response Guide]**
+##### **[力控制异常情况与响应指南]**
 
-| Error Code | Error Name & Primary Cause | On-Site Corrective Action Guide |
+| 错误代码 | 错误名称及主要原因 | 现场纠正措施指南 |
 |:--:|---|---|
-| **E0260** | **Force Control Function Disabled**<br>When the force control utilization setting within the system parameters is turned off. | Switch the function utilization setting to **On** in the [System ➔ Application Parameter ➔ Force Control] menu. |
-| **E0355** | **Force Control Tool Number Error**<br>When there is no currently loaded tool number information or the designated tool setting within the force control condition (`cnd`) is mismatched. | Verify that a valid tool number is defined in the current teaching program, and reassign the tool parameters within the force control settings. |
-| **E1336** | **User Coordinate System Number Error**<br>When the reference coordinate system of the force control condition (`cnd`) is designated as a non-existent user coordinate system. | Verify in the [Coordinate System Settings] menu whether the selected user coordinate system number is properly configured and recorded. |
-| **E0259** | F/T Sensor Communication Issue | Inspect the sensor hardware and cable connections. |
-| **E0272** | Unsupported Sensor | Contact the customer service center (Sensor Interface implementation required). |
-| **E0273** | F/T Sensor Communication Issue | Inspect the sensor hardware and cable connections. |
-| **E0274** | F/T Sensor Communication Issue | Inspect the sensor hardware and cable connections. |
+| **E0260** | **力控制功能禁用**<br>当系统参数中的力控制使用设置被关闭时。 | 在[系统 ➔ 应用参数 ➔ 力控制]菜单中将功能使用设置切换为**启用**。 |
+| **E0355** | **力控制工具号码错误**<br>当当前没有加载的工具号码信息或力控制条件中的指定工具设置（`cnd`）不匹配时。 | 验证当前教学程序中是否定义了有效的工具号码，并在力控制设置中重新分配工具参数。 |
+| **E1336** | **用户坐标系号码错误**<br>当力控制条件（`cnd`）的参考坐标系被指定为不存在的用户坐标系时。 | 在[坐标系统设置]菜单中确认所选用户坐标系号码是否正确配置和记录。 |
+| **E0259** | F/T传感器通信问题 | 检查传感器硬件和电缆连接。 |
+| **E0272** | 不支持的传感器 | 联系客服中心（需要传感器接口的实现）。 |
+| **E0273** | F/T传感器通信问题 | 检查传感器硬件和电缆连接。 |
+| **E0274** | F/T传感器通信问题 | 检查传感器硬件和电缆连接。 |
 
 
-* **System Protection Behavior:** Upon the occurrence of any of the exceptional situations listed above, the robot immediately halts pressurizing operations and switches to a **Safe-Stop** state.
+* **系统保护行为：** 一旦发生上述任何异常情况，机器人立刻停止加压操作并切换至**安全停机**状态。
 
 ---
 
-##### **[Troubleshooting Diagnostic Procedure]**
+##### **[故障排除诊断程序]**
 
-When an unknown force control error or abnormal behavior occurs on-site, proceed with the diagnosis in the following order:
+当现场发生未知的力控制错误或异常行为时，按照以下顺序进行诊断：
 
-1. **Inspect F/T Sensor Physical Connections:** Check the LED status on the sensor body connector and the reception line inside the controller.
-2. **Verify Software Parameters:** Re-verify the tool data and reference coordinate system assignment numbers inside the currently running program.
-3. **Check Communication Quality and Logs:** Verify whether raw sensor data is normally outputting to the monitoring window, and then perform a backup of the controller system log (`Log`).
+1. **检查F/T传感器物理连接：** 检查传感器主体连接器上的LED状态和控制器内部的接收线路。
+2. **验证软件参数：** 重新验证当前运行程序中的工具数据和参考坐标系分配号码。
+3. **检查通信质量和日志：** 验证原始传感器数据是否正常输出到监控窗口，然后备份控制器系统日志（`Log`）。

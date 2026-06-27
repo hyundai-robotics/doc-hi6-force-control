@@ -1,104 +1,116 @@
-﻿# ${cont_model} Controller - Force Control with sensors Manual
-# About the Manual
-# Precautions
+﻿
+[__SOURCE](README.md)
+# ${cont_model} 控制器 - 带传感器的力控制手册
+[__SOURCE](0-about-this-manual/README.md)
+# 关于手册
+[__SOURCE](0-about-this-manual/precautions.md)
+# 注意事项
 
-{% include file="en/precautions.md" %}
-# Safety Cautions
+{% include file="zh/precautions.md" %}
+[__SOURCE](0-about-this-manual/safety-notice.md)
+# 安全注意事项
 
-{% include file="en/safety-notice.md" %}
-## 1. Overview
+{% include file="zh/safety-notice.md" %}
+[__SOURCE](1-intro/README.md)
+## 1. 概述
 
-This manual provides guidance on how to use the sensor-based force control system.  
-The system utilizes a force/torque sensor mounted on the robot to perform control that responds to external forces, enabling more precise and safer contact operations.
+本手册提供了如何使用基于传感器的力控制系统的指导。  
+该系统利用安装在机器人上的力/扭矩传感器，执行对外部力量做出响应的控制，从而实现更精确和安全的接触操作。
 
-This manual covers the following features:
+本手册涵盖以下功能：
 
-- Sensor configuration methods
-- Tool data configuration methods
-- Force control condition settings
-- Commands
-- Monitoring configuration
-- Basic examples
+- 传感器配置方法
+- 工具数据配置方法
+- 力控制条件设置
+- 命令
+- 监控配置
+- 基本示例
 
-This document describes all procedures necessary for users or maintenance engineers to configure the features and understand the operational status.
+本文件描述了用户或维护工程师配置功能和理解操作状态所需的所有程序。
 
-This feature is available from version V60.32-01 and requires a separate feature license.## 2. Configuration
+此功能自版本 V60.32-01 可用，并需要单独的功能许可证。
+[__SOURCE](2-config/README.md)
+## 2. 配置
 
-To use the sensor-based force control function, the following key items must be configured. These items serve as the **criteria** for all controller operations.
+要使用基于传感器的力控制功能，必须配置以下关键项目。这些项目作为所有控制器操作的 **标准**。
 
 ---
 
-#### **Setting Menu Access Path**
+#### **设置菜单访问路径**
 
-The force control environment settings can be accessed through the following path on the teaching pendant.
+可以通过以下路径在教学挂件上访问力控制环境设置。
 
-> [F2: System] ➔ 4: Application Parameter ➔ 24: Force Control ➔ 1: System Config 
+> [F2: 系统] ➔ 4: 应用参数 ➔ 24: 力控制 ➔ 1: 系统配置
 
 ---
 
-#### **Function Enable/Disable Settings**
+#### **功能启用/禁用设置**
 
-Determines whether to globally activate the sensor-based force control function. To normally operate the force control loop within the system, it **must be set to `Enable`**.
+确定是否全局激活基于传感器的力控制功能。要在系统内正常运行力控制回路，**必须设置为 `启用 (Enable)`**。
 
-* **Enable:** Activates the force control function (runs the real-time loop)
-* **Disable:** Deactivates the force control function (operates in normal position control mode)
+* **启用:** 激活力控制功能（运行实时循环）
+* **禁用:** 禁用力控制功能（在正常位置控制模式下操作）
 
 <br>
 
-**[Setting Screen Example]**
+**[设置屏幕示例]**
 
-* **Function Deactivated State `Disable`**
+* **功能禁用状态 `不执行 (Disable)`**
   
   ![](../_assets/_19_fctrl_func_off.png)
 
-* **Function Activated State `Enable`**
+* **功能启用状态 `启用 (Enable)`**
   
   ![](../_assets/_20_fctrl_func_on.png)
 
 <br>
 
-After activating the function by setting the function usage to **`Enable`**, proceed with the configuration of the sensor communication information and tool offset (length).
+通过将功能使用设置为 **`启用 (Enable)`** 激活功能后，继续配置传感器通信信息和工具偏移（长度）。
 
 ---
 
 {% hint style="info" %}
 
-**Prerequisites**
-The function usage must be changed to `Enable` and applied before you can proceed with the subsequent steps of sensor parameter configuration, communication connection, and dynamic load identification (calibration).
+**前提条件**
+功能使用必须更改为 `启用 (Enable)` 并应用，然后才能继续进行传感器参数配置、通信连接和动态负载识别（校准）的后续步骤。
 
-{% endhint %}## 2.1 F/T Sensor Installation 
+{% endhint %}
+[__SOURCE](2-config/2-1-sensor-mounting.md)
+## 2.1 F/T传感器安装
 
-When mounting an F/T sensor for precise force control, the physical attachment direction of the sensor must perfectly match the sensor coordinate system configuration within the robot controller. 
+在为精确的力控制安装F/T传感器时，传感器的物理安装方向必须与机器人控制器中的传感器坐标系统配置完全匹配。
 
-If the sensor mounting direction or coordinate system configuration is misaligned, the direction of the force/torque recognized by the controller will differ from the actual direction, which may cause the force control loop to diverge or the robot to malfunction.
+如果传感器安装方向或坐标系统配置未对齐，控制器所识别的力/扭矩方向将与实际方向不同，这可能导致力控制环路发散或机器人故障。
 
 ---
 
-##### **[Definition of F/T Sensor Coordinate System]**
+##### **[F/T传感器坐标系统定义]**
 
-* **Controller-Based Sensor Coordinate System Rule:** The directions of the `X, Y, and Z axes` of the default sensor coordinate system defined by our robot controller are shown in the figure below.
+* **基于控制器的传感器坐标系统规则：** 我们机器人控制器定义的默认传感器坐标系统的`X、Y和Z轴`方向如下面的图所示。
 
-* **Physical Direction Alignment:** The sensor must be oriented and assembled so that the unique `X, Y, and Z axis` index lines engraved (or printed) on the side of the circular F/T sensor body perfectly align with the direction of the robot's sensor coordinate system.
+* **物理方向对齐：** 传感器必须被定向和组装，以使在圆形F/T传感器主体侧面刻印（或印刷）的独特`X、Y和Z轴`索引线与机器人的传感器坐标系统方向完美对齐。
 
 ![](../_assets/_05_fctrl_ctrl_sensor_crd.png)
 
-* **Coordinate System Reference Pose:** The manual figure above shows the sensor coordinate system defined based on the robot being in its standard home position.
+* **坐标系统参考姿态：** 上述手册图示显示了基于机器人处于标准原点位置所定义的传感器坐标系统。
 
-* **Precautions during Assembly:** When assembling the sensor mechanism, cross-reference the cable outlet direction or the sensor dowel pin positions with the axis definitions in the manual to ensure it is not mounted in the reverse direction or with an incorrect phase.
+* **组装过程中的注意事项：** 在组装传感器机制时，应交叉参考电缆出口方向或传感器定位销位置与手册中的轴定义，以确保传感器未反向安装或相位不正确。
 
 ---
 
 {% hint style="info" %}
 
-**Tool Load Information Reference:** When identifying dynamic loads and registering tool load information, the center of gravity position must be measured and entered based on the **origin of the F/T sensor reference coordinate system**, not the robot flange coordinate system.
+**工具负载信息参考：** 在识别动态负载和登记工具负载信息时，重心位置必须基于**F/T传感器参考坐标系统的原点**进行测量和输入，而不是机器人法兰坐标系统。
 
-**Prerequisite Check Before Sensor Zero Offset (Bias) Calibration:** Before performing the zero offset (Bias) calibration of the sensor signal, always verify qualitatively on the sensor diagnostic screen that the signs (+/-) of the forces (Fx, Fy, Fz) for the corresponding axes match the actual directions when the robot tool is pushed in a specific direction.
+**传感器零偏校准前的前提检查：** 在进行传感器信号的零偏（Bias）校准之前，总是要在传感器诊断屏幕上定性验证相应轴的力（Fx、Fy、Fz）的符号（+/-）与实际方向一致，当机器人工具沿特定方向推动时。
 
-{% endhint %}## 2.2 F/T Sensor Communication Settings
+{% endhint %}
+[__SOURCE](2-config/2-2-env-set-comm.md)
+## 2.2 F/T 传感器通信设置
 
-This section describes how to activate real-time data communication with the force/torque (F/T) sensor, which serves as the reference for the control loop during actual force control operations, and how to configure the connection parameters.
+本节介绍如何激活与力/扭矩（F/T）传感器的实时数据通信，该传感器在实际力控制操作期间作为控制环路的参考，以及如何配置连接参数。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [1: System Environment] ➔ **Select [Communication] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [1: 系统环境] ➔ **选择 [通信] 选项卡**
 
 ---
 
@@ -106,203 +118,212 @@ This section describes how to activate real-time data communication with the for
 
 
 
-##### **[Key Configuration Items Guide]**
+##### **[关键配置项指南]**
 
-| Configuration Item | Description |
+| 配置项 | 描述 |
 | :--- | :--- |
-| **Function Use** | Selects whether to activate the force control loop. To use the function normally, it must be set to **[Enable]**. |
-| **Sensor Type** | Selects the F/T sensor manufacturer profile that matches the hardware interface. `(ATI, OnRobot, Robotiq, AIDIN)` |
-| **Protocol** | Specifies the method for transmitting and receiving real-time data packets between the sensor controller and the robot controller. Available options are `[UDP]`, `[TCP]`, and `[SCI]`. |
-| **Bias** | An offset filter used to cancel the tool dead weight and residual noise at the time of sensor initialization.<br>**⚠️ Note:** In the current version, this is in a **Disabled state** where only the UI component is placed. (Sequential support is planned for the future) |
-| **Network Parameters** | • **IP Address:** Enter the unique IP address assigned to the F/T sensor controller.<br>• **Local Port:** The data reception port number on the robot controller side. (Mainly 50001, 50100 are used)<br>• **Remote Port:** The data transmission port number on the F/T sensor side. (Enter the fixed port specified in the manufacturer's specification manual) |## 2.2.1 ATI Configuration
+| **功能使用** | 选择是否激活力控制环路。要正常使用该功能，必须设置为 **[启用]**。 |
+| **传感器类型** | 选择与硬件接口匹配的 F/T 传感器制造商配置文件。 `(ATI, OnRobot, Robotiq, AIDIN)` |
+| **协议** | 指定传感器控制器与机器人控制器之间传输和接收实时数据包的方法。可用的选项是 `[UDP]`、`[TCP]` 和 `[SCI]`。 |
+| **偏置** | 用于在传感器初始化时取消工具静重和残余噪声的偏移滤波器。<br>**⚠️ 注意：** 在当前版本中，此状态为 **禁用状态**，仅放置了 UI 组件。 （计划在未来实现顺序支持） |
+| **网络参数** | • **IP 地址：** 输入分配给 F/T 传感器控制器的唯一 IP 地址。<br>• **本地端口：** 机器人控制器侧的数据接收端口号。（主要使用 50001、50100）<br>• **远程端口：** F/T 传感器侧的数据传输端口号。（输入制造商规格手册中指定的固定端口） |
+[__SOURCE](2-config/2-2-1-env-set-ATI.md)
+## 2.2.1 ATI 配置
 
-The model-specific configuration methods and communication parameters for ATI sensors are as follows.
-
----
-
-##### **[Default Communication Parameters]**
-All ATI sensor models use the same communication settings below.
-
-* **Protocol:** UDP
-* **IP Address:** 192.168.1.2
-* **Remote Port:** 49152
+ATI 传感器的特定模型配置方法和通信参数如下。
 
 ---
 
-##### **[Model-Specific Configuration Methods]** <br>
+##### **[默认通信参数]**
+所有 ATI 传感器模型使用以下相同的通信设置。
 
-##### **1. ATI (Generic Model)**
-This method does not register an individual model separately, but instead **the user manually enters and applies the model-specific scaling values provided by ATI**.
+* **协议:** UDP
+* **IP 地址:** 192.168.1.2
+* **远程端口:** 49152
+
+---
+
+##### **[特定模型配置方法]** <br>
+
+##### **1. ATI (通用模型)**
+此方法不会单独注册个别模型，而是 **用户手动输入并应用 ATI 提供的特定模型缩放值**。
 
 ![](../_assets/_01_04_fctrl_env_setting_ATI_Generic_UDP.png)
 
 ---
 
 ##### **2. ATI (Delta-SI-660-60)**
-By using the dedicated Delta model profile pre-registered in the controller, optimized scaling values for the corresponding model are automatically applied.
+通过使用控制器中预注册的专用 Delta 模型配置文件，相应模型的优化缩放值将自动应用。
 
 ![](../_assets/_01_01_fctrl_env_setting_ATI_Delta_UDP.png)
 
 ---
 
 ##### **3. ATI (Theta-SI2500-400)**
-By using the dedicated Theta model profile pre-registered in the controller, optimized scaling values for the corresponding model are automatically applied.
+通过使用控制器中预注册的专用 Theta 模型配置文件，相应模型的优化缩放值将自动应用。
 
 ![](../_assets/_01_02_fctrl_env_setting_ATI_Theta_UDP.png)
 
 ---
 
 ##### **4. ATI (Omega-SI7200-1400)**
-By using the dedicated Omega model profile pre-registered in the controller, optimized scaling values for the corresponding model are automatically applied.
+通过使用控制器中预注册的专用 Omega 模型配置文件，相应模型的优化缩放值将自动应用。
 
 ![](../_assets/_01_03_fctrl_env_setting_ATI_Omega_UDP.png)
 
 {% hint style="info" %}
 
-Since the Delta, Theta, and Omega models (excluding the Generic model) provide predefined parameters, malfunctions caused by incorrectly entered scaling values can be prevented.
+由于 Delta、Theta 和 Omega 模型（不包括通用模型）提供预定义参数，因此可以防止因输入错误的缩放值而导致的故障。
 
-{% endhint %}## 2.2.2 OnRobot Configuration
+{% endhint %}
+[__SOURCE](2-config/2-2-2-env-set-OnRobot.md)
+## 2.2.2 OnRobot 配置
 
-The configuration method and communication parameters for OnRobot sensors are as follows.
-
----
-
-##### **[Default Communication Parameters]**
-Enter the settings below accurately to connect the OnRobot sensor with the controller.
-
-* **Protocol:** UDP
-* **IP Address:** 192.168.1.1
-* **Remote Port:** 49152
+OnRobot 传感器的配置方法和通信参数如下。
 
 ---
 
-##### **OnRobot HEX (HEX-E / HEX-H) Configuration**
+##### **[默认通信参数]**
+准确输入以下设置以连接 OnRobot 传感器与控制器。
 
-This is the configuration screen for using OnRobot HEX sensor models. After entering the communication parameters, verify that the settings have been applied normally.
+* **协议：** UDP
+* **IP 地址：** 192.168.1.1
+* **远程端口：** 49152
+
+---
+
+##### **OnRobot HEX (HEX-E / HEX-H) 配置**
+
+这是用于 OnRobot HEX 传感器型号的配置屏幕。在输入通信参数后，请验证设置是否已正常应用。
 
 ![](../_assets/_02_fctrl_env_setting_OnRobot_HEX_E_UDP.png)
-## 2.2.3 Robotiq Configuration
+[__SOURCE](2-config/2-2-3-env-set-Robotiq.md)
+## 2.2.3 Robotiq 配置
 
-Since Robotiq sensors (such as the FT 300S) utilize serial communication (SCI), you must complete both the force control environment configuration and the serial port settings.
+由于 Robotiq 传感器（例如 FT 300S）利用串行通信（SCI），您必须完成力控制环境配置和串口设置。
 
 ---
 
-##### **[Step 1: Force Control Sensor Configuration]**
-First, specify the communication protocol as serial communication (SCI) on the force control user environment configuration screen.
+##### **[步骤 1：力控制传感器配置]**
+首先，在力控制用户环境配置屏幕上将通信协议指定为串行通信（SCI）。
 
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
 ---
 
-##### **[Step 2: Serial Port Environment Configuration]**
-To activate serial communication, navigate to the following path and configure the communication port parameters of the controller.
+##### **[步骤 2：串口环境配置]**
+要激活串行通信，请导航到以下路径并配置控制器的通信端口参数。
 
-> **[F2: System]** → **2: Control Parameter** → **3: Serial Port** → **1: Environment Settings**
+> **[F2: 系统]** → **2: 控制参数** → **3: 串口** → **1: 环境设置**
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
 {% hint style="info" %}
 
-Instead of entering a separate IP address, it is essential for the Robotiq sensor to match the physical serial port (SCI) channel and Baud rate located on the back or inside of the controller.
+Robotiq 传感器匹配控制器后面或内部的物理串口（SCI）通道和波特率，而不是输入单独的 IP 地址是至关重要的。
 
-After specifying the sensor in Step 1, you must complete the serial port configuration in Step 2 without omission to prevent communication errors from occurring.
+在步骤 1 中指定传感器后，您必须在步骤 2 中完成串口配置，以防止通信错误的发生。
 
-{% endhint %}## 2.2.4 AIDIN Configuration
+{% endhint %}
+[__SOURCE](2-config/2-2-4-env-set-AIDIN.md)
+## 2.2.4 AIDIN 配置
 
-The configuration method and communication parameters for AIDIN sensors are as follows.
-
----
-
-##### **[Default Communication Parameters]**
-
-Enter the settings below accurately to connect the AIDIN sensor with the controller.
-
-* **Protocol:** UDP
-* **IP Address:** 192.168.1.199
-* **Remote Port:** 50000
+AIDIN 传感器的配置方法和通信参数如下。
 
 ---
 
-##### **AIDIN Sensor Configuration**
+##### **[默认通信参数]**
 
-This is the configuration screen for using AIDIN 6-axis force/torque sensor models. Enter the designated IP address and remote port values without typos, and then save the settings.
+准确输入以下设置以将 AIDIN 传感器与控制器连接。
+
+* **协议：** UDP
+* **IP 地址：** 192.168.1.199
+* **远程端口：** 50000
+
+---
+
+##### **AIDIN 传感器配置**
+
+这是用于 AIDIN 6 轴力/力矩传感器模型的配置屏幕。请输入指定的 IP 地址和远程端口值，确保没有拼写错误，然后保存设置。
 
 ![](../_assets/_21_fctrl_env_set_AIDIN.png)
 
 {% hint style="info" %}
 
-Unlike other sensors, the AIDIN sensor **uses `50000` as its remote port number**. Please note that communication will not connect if you use the controller default values or a port from another manufacturer (49152).
+与其他传感器不同，AIDIN 传感器 **使用 `50000` 作为其远程端口号**。请注意，如果您使用控制器的默认值或其他制造商的端口 (49152)，通信将无法连接。
 
-Verify that the assigned unique IP address (`192.168.1.199`) does not conflict within the controller network band before proceeding with the configuration.
+在继续配置之前，请验证分配的唯一 IP 地址 (`192.168.1.199`) 在控制器网络带宽内没有冲突。
 
-{% endhint %}## 2.3 F/T Sensor Offset Settings
+{% endhint %}
+[__SOURCE](2-config/2-3-env-set-offset.md)
+## 2.3 F/T 传感器偏置设置
 
-This section describes how to configure the **task coordinate system**, which serves as the reference for the control loop during actual force control operations, and how to enter the positional offset from the robot flange to the sensor.
+本节描述如何配置 **任务坐标系统**，该系统在实际力控制操作中作为控制回路的参考，以及如何输入从机器人法兰到传感器的位移偏置。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [1: System Environment] ➔ **Select [Mounting] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [1: 系统环境] ➔ **选择 [安装] 标签**
 
 ---
 
 ![](../_assets/_22_fctrl_env_set_offset_sensor.png)
 
+##### **[力控制操作框架设置]**
 
-##### **[Force Control Operation Frame Settings]**
+指定在力控制算法运行时用于跟踪目标力的传感器数据参考坐标系统。
 
-Specifies the sensor data reference coordinate system used to track the target force when the force control algorithm operates. 
+* **基于传感器框架：**
+  在机器人的末端执行器上基于 **F/T 传感器的独特坐标系统（传感器框架）** 执行力控制。这不适用于需要基于工具中心点（TCP）进行力控制的环境。
+* **基于工具框架：**
+  通过 **将 F/T 传感器测量的力/扭矩数据转换为最终 TCP 坐标系统** 执行力控制。当需要基于工具尖端进行精确力控制时，选择此选项。
 
-* **Based on Sensor Frame:**
-  Performs force control based on the **unique coordinate system of the F/T sensor (Sensor Frame)** mounted at the end-effector of the robot. This is not suitable for environments where force needs to be controlled based on the tool center point (TCP).
-* **Based on Tool Frame:**
-  Performs force control by **transforming the force/torque data measured by the F/T sensor into the final TCP coordinate system**. Select this option when precise force control is required based on the tool tip.
+---
 
---- 
+##### **[工具框架配置的前提条件]**
 
-##### **[Prerequisites for Tool Frame Configuration]**
+要通过将操作框架设置为 **'工具框架'** 来执行正常的坐标变换操作，必须提前配置以下 **两个几何参数**。
 
-To perform normal coordinate transformation operations by setting the operation frame to the **'Tool Frame'**, the following **two geometric parameters must be configured beforehand**.
+###### **1. 传感器偏置长度设置**
+输入从机器人法兰表面中心到 F/T 传感器坐标系统中心的精确物理距离 (Z)。当前，仅在法兰旋转中心轴与传感器中心对齐时，支持此功能。
 
-
-
-###### **1. Sensor Offset Length Settings**
-Enter the precise physical distance (Z) from the center of the robot flange surface to the center of the F/T sensor coordinate system. Currently, this function is supported only when the flange rotation center axis aligns with the center of the sensor.
-
-* **Configuration Range:** `0.0` ~ `1000.0` (mm)
+* **配置范围：** `0.0` ~ `1000.0` (mm)
 
 ![](../_assets/_23_fctrl_env_set_offset_tool.png)
 
+###### **2. 动作工具数据设置**
+必须准确输入在执行力控制的相应程序步骤（移动命令）中指定的工具编号的 **TCP 长度和方向**。控制器基于这些数据计算从法兰到 TCP 尖端的相对坐标。
 
-###### **2. Motion Tool Data Settings**
-The **TCP length and direction** of the tool number designated for the corresponding program step (Move command) where force control is executed must be entered accurately. The controller calculates the relative coordinates from the flange to the TCP tip based on this data.
-
-[F2: System] ➔ [3: Robot Parameter] ➔ [1: Tool Data]
+[F2: 系统] ➔ [3: 机器人参数] ➔ [1: 工具数据]
 
 ![](../_assets/_24_fctrl_env_set_offset_motion_tool_data.png)
 
 {% hint style="warning" %}
 
-If an invalid tool number is used while the operation frame is set to the **Tool Frame**, or if the tool data (TCP) values differ from the actual setup, the system may malfunction or diverge during force control operations due to coordinate transformation errors.
+如果在将操作框架设置为 **工具框架** 时使用了无效的工具编号，或者工具数据（TCP）值与实际设置不同，则由于坐标变换错误，系统可能在力控制操作期间发生故障或发散。
 
-After changing the parameter settings, always press the **[Apply/OK]** button at the bottom of the screen to apply them to the controller.
+更改参数设置后，请始终按屏幕底部的 **[应用/确认]** 按钮将其应用于控制器。
 
-{% endhint %}## 3. Tool Data
+{% endhint %}
+[__SOURCE](3-tool/README.md)
+## 3. 工具数据
 
-This is a basic configuration that must be performed before using the force control function. It serves as the foundation for **precisely calculating only the pure force/torque** generated during contact with the environment by removing the weight component of the tool itself from the F/T sensor measurements.
-
----
-
-##### **[Tool Data Settings]**
-
-This is the step where the user manually registers the physical specifications of the tool mounted at the end of the robot flange.
+这是在使用力控制功能之前必须执行的基本配置。它作为 **只精确计算与环境接触时产生的纯力/扭矩** 的基础，通过从F/T传感器测量中去除工具本身的重量成分。
 
 ---
 
-##### **[Dynamic Load Identification]** 
+##### **[工具数据设置]**
 
-This function directly measures physical parameters through automatic robot motions when it is difficult to know the exact specifications of the tool.## 3.1 Tool Data Settings
+这是用户手动注册安装在机器人法兰端的工具的物理规格的步骤。
 
-This step improves the accuracy of the force control algorithm by registering the physical specifications and offset values of the tool mounted at the end of the robot flange. The force and torque recognized by the sensor are calibrated in real time according to the configured tool weight and center of gravity values.
+---
 
-The force control tool information settings can be accessed through the following path: 
+##### **[动态载荷识别]**
+
+当很难知道工具的确切规格时，此功能通过自动机器人运动直接测量物理参数。
+[__SOURCE](3-tool/3-1-tool-info.md)
+## 3.1 工具数据设置
+
+此步骤通过注册安装在机器人法兰末端的工具的物理规格和偏移值，提高力控制算法的准确性。传感器识别的力和扭矩根据配置的工具重量和重心值实时校准。
+
+力控制工具信息设置可以通过以下路径访问：
 
 [F2: System] - 4: Application Parameter - 24: Force Control - 2: Tool Data
 
@@ -310,35 +331,37 @@ The force control tool information settings can be accessed through the followin
 
 ![](../_assets/_04_fctrl_ctrl_tool_data.png)
 
-##### **[UI Configuration and Status Display Items]**
+##### **[UI 配置和状态显示项目]**
 
-| Item | Description |
+| 项目 | 描述 |
 |---|---|
-| **Name** | Identification number and name of the tool data (Automatically entered) |
-| **Description** | Description or purpose of the tool (Optional entry) |
-| **Weight [kg]** | The actual weight of the mounted tool. Used as the reference value for gravity compensation during force error calculation. |
-| **Center [X, Y, Z]** | The position of the tool center of gravity based on the F/T sensor coordinate system (Unit: mm) |
-| **Force Zero [X, Y, Z]** | The zero reference value to cancel out the initial force offset of the sensor itself with the tool mounted (Unit: N) |
-| **Torque Zero [X, Y, Z]** | The zero reference value to cancel out the initial torque offset of the sensor itself with the tool mounted (Unit: Nm) |
-| **Sensor Coord.** | Definition of the direction of the sensor reference coordinate system |
-| **Dynamic Load Identification** | A function to estimate the weight and center of gravity of the tool installed in front of the F/T sensor |
+| **名称** | 工具数据的识别编号和名称（自动输入） |
+| **描述** | 工具的描述或用途（可选输入） |
+| **重量 [kg]** | 安装工具的实际重量。用于力误差计算中的重力补偿参考值。 |
+| **中心 [X, Y, Z]** | 基于 F/T 传感器坐标系的工具重心位置（单位：mm） |
+| **力零点 [X, Y, Z]** | 用于取消传感器本身的初始力偏移与所安装工具的零参考值（单位：N） |
+| **扭矩零点 [X, Y, Z]** | 用于取消传感器本身的初始扭矩偏移与所安装工具的零参考值（单位：Nm） |
+| **传感器坐标** | 传感器参考坐标系方向的定义 |
+| **动态负载识别** | 估计安装在 F/T 传感器前的工具的重量和重心的功能 |
 
 {% hint style="info" %}
 
-- From version V70.02-00 and later, up to 4 sets of tool information can be configured. 
-- The sensor-based load estimation function previously provided in Hi5a has been replaced by the "Dynamic Load Identification" function from version V70.02-00 and later. 
+- 从版本 V70.02-00 开始，最多可以配置 4 套工具信息。
+- 在 Hi5a 中提供的基于传感器的负载估计功能已被从版本 V70.02-00 开始的“动态负载识别”功能所替代。
 
-{% endhint %}## 3.2 Dynamic Load Identification
+{% endhint %}
+[__SOURCE](3-tool/3-2-tool-info-dyna-id.md)
+## 3.2 动态负载识别
 
-This function analyzes the data from the F/T sensor mounted at the end of the robot in real time to precisely identify the physical characteristics of the attached tool (Payload)—such as **mass, center of gravity, and sensor bias**—through a series of calibration motions.
+此功能实时分析安装在机器人末端的 F/T 传感器的数据，以通过一系列校准运动精确识别附加工具（负载）的物理特性，例如 **质量、重心和传感器偏差**。
 
 {% hint style="info" %}
 
-This function is supported from controller software version **V70.02-00 or later**.
+此功能支持从控制器软件版本 **V70.02-00 或更高版本**。
 
 {% endhint %}
 
-The Dynamic Load Identification function can be accessed through the following path:
+动态负载识别功能可以通过以下路径访问：
 
 [F2: System] - 4: Application Parameter - 24: Force Control - 2: Tool Data ➔ **[F1: Dynamic Load Identification]**
 
@@ -348,32 +371,32 @@ The Dynamic Load Identification function can be accessed through the following p
 
 
 
-##### **[UI Configuration and Status Display Items]**
+##### **[用户界面配置和状态显示项目]**
 
-| Execution Item | Description |
+| 执行项目 | 描述 |
 | :--- | :--- |
-| **Force Control Tool No.** | The target number to identify and save the dynamic load parameters. This refers to the **pure tool (Payload) physically attached to the front end of the F/T sensor**. |
-| **Robot Motion Tool No.** | The reference tool number used when running the dynamic identification motion. This refers to the **integrated tool information that physically includes the position and weight of the F/T sensor itself**. |
-| **Current / Target Angle** | Displays the current real-time angle of each robot axis and the matching target pose angle during the identification run (Verification/Normal Operation). |
-| **Sensor Data** | Displays the real-time force and torque data feedback collected from the F/T sensor during operation. |
-| **Limit Min / Max** | The minimum and maximum operational limit angles for each robot axis, restricted by software to ensure the identification motion runs safely. |
-| **Verification Operation** | A test run performed prior to the actual load identification to check in advance for any surrounding interference along the robot's movement path and the tension (pulling) of the sensor cable. |
-| **Normal Operation** | Activated after the Verification Operation completes normally without alarms. This is the actual identification run that collects F/T sensor data at high speed to calculate the load parameters. |
+| **力控制工具编号** | 用于识别和保存动态负载参数的目标编号。这指的是 **物理上连接到 F/T 传感器前端的纯工具（负载）**。 |
+| **机器人运动工具编号** | 在运行动态识别运动时使用的参考工具编号。这指的是 **物理上包括 F/T 传感器自身位置和重量的综合工具信息**。 |
+| **当前 / 目标角度** | 显示每个机器人轴的当前实时角度和识别运行过程中的匹配目标姿态角度（验证/正常操作）。 |
+| **传感器数据** | 显示在操作过程中从 F/T 传感器收集的实时力和扭矩数据反馈。 |
+| **限制最小 / 最大** | 每个机器人轴的最小和最大操作限制角，由软件限制以确保识别运动的安全运行。 |
+| **验证操作** | 在实际负载识别之前进行的测试运行，以提前检查机器人运动路径是否有周围干扰以及传感器电缆的拉紧（拉动）。 |
+| **正常操作** | 在验证操作正常完成且无警报后激活。这是实际识别运行，以高速收集 F/T 传感器数据以计算负载参数。 |
 
 
 {% hint style="info" %}
 
-**Robot Motion Tool Entry Sequence Guide:**
+**机器人运动工具输入顺序指南：**
 
-  1. **Before Identification:** First, enter only the approximate weight information into the 'Robot Motion Tool No.' and then proceed with the run.
+  1. **识别之前：** 首先仅将近似重量信息输入到“机器人运动工具编号”中，然后继续运行。
 
-  2. **After Identification:** Once the dynamic load identification is complete, update the data by finally adding the measured results to the dead weight and center of gravity (CoG) of the F/T sensor itself.
+  2. **识别之后：** 动态负载识别完成后，通过最终将测量结果添加到死重和 F/T 传感器自身的重心（CoG）来更新数据。
 
 {% endhint %}
 
 ---
 
-##### **[Identification Motion and Poses]** During the execution of the Verification Operation and Normal Operation, the robot's wrist axes (Axes 4, 5, and 6) automatically run through a sequence of 6 predefined default poses to accurately acquire multi-axis gravity direction matching data from the F/T sensor.
+##### **[识别运动和姿态]** 在执行验证操作和正常操作期间，机器人的手腕轴（轴 4、5 和 6）自动通过 6 个预定义的默认姿态的序列，以准确获取来自 F/T 传感器的多轴重力方向匹配数据。
 
 * **P1:** `[0, 90, 0, 0, -90, 0]`
 * **P2:** `[0, 90, 0, 0, 90, 0]`
@@ -386,53 +409,55 @@ The Dynamic Load Identification function can be accessed through the following p
 
 {% hint style="warning" %}
 
-**Prerequisites for Manual Operation:** To execute the Verification/Normal Operation, the controller mode switch must be in the **[MANUAL]** state, the motors must be ON, and the **enabling switch (Deadman Switch)** on the teaching pendant (TP) must be maintained in the On (pressed) state.
+**手动操作的前提条件：** 要执行验证/正常操作，控制器模式开关必须处于 **[MANUAL]** 状态，电机必须开启，且教学挂件（TP）上的 **使能开关（Deadman Switch）** 必须保持在开启（按下）状态。
 
-**Surrounding Environment Inspection:** Before starting the operation, check the clearance length of the F/T sensor cable to ensure there is no twisting or pulling during rotation, and secure a sufficient work area within the motion radius so that the robot body and tool do not collide with surrounding structures or safety fences.
+**周围环境检查：** 在启动操作之前，检查 F/T 传感器电缆的间隙长度，以确保在旋转过程中没有扭曲或拉动，并确保在运动半径内留出足够的工作区域，以防止机器人主体和工具与周围结构或安全围栏发生碰撞。
 
 {% endhint %}
 
-##### **[Operation Sequence and Procedures]** ###### **Step 1: Verification Operation**
-* **Purpose:** A step to first check the surrounding space and for any interference so that the robot's movement during tracking can be performed safely.
+##### **[操作顺序和过程]** ###### **步骤 1：验证操作**
+* **目的：** 首先检查周围空间和任何干扰，以确保在跟踪过程中机器人的移动能够安全进行。
 
-* **Role:** Before the full-scale identification motion, the robot moves at a low speed to verify that there are no collision paths with surrounding facilities or mechanisms.
+* **角色：** 在全面的识别运动之前，机器人以低速移动，以验证与周围设施或机制之间没有碰撞路径。
 
-###### **Step 2: Normal Operation**
-* **Purpose:** Runs the multi-axis identification motion to calculate the tool's weight and center of gravity position in real time based on the F/T sensor data.
+###### **步骤 2：正常操作**
+* **目的：** 运行多轴识别运动以实时计算工具的重量和重心位置，基于 F/T 传感器数据。
 
-* **Role:** The robot changes its pose into various configurations with predefined angular displacements to measure the component forces of the dead weight applied to the sensor.
+* **角色：** 机器人改变姿态以多种配置进行预定义角度偏移，以测量施加于传感器的死重的分力。
 
-###### **Step 3: Check Results**
-* When the measurement is complete, a pop-up window displays the currently applied `Existing Value` and the newly calculated `Estimated Value` based on the sensor.
+###### **步骤 3：检查结果**
+* 当测量完成时，将弹出窗口显示当前施加的 `Existing Value` 和基于传感器的新计算 `Estimated Value`。
 
 ![](../_assets/_31_fctrl_dyna_id_result.png)
 
-| Execution Item | Description |
+| 执行项目 | 描述 |
 | :--- | :--- |
-| **Weight [Kg]** | The total estimated mass of the tool. |
-| **Center [mm]** | The center of gravity position of the tool along the X, Y, and Z directions relative to the origin of the sensor coordinate system. |
-| **Force/Torque Bias** | The accumulated zero offset (Bias) value unique to the sensor. |
-| **Error Rate [%]** | Indicates the data reliability and error rate within the identification trajectory, displayed separately for Force and Torque. |
+| **重量 [Kg]** | 工具的总估计质量。 |
+| **重心 [mm]** | 工具在相对于传感器坐标系统原点的 X、Y 和 Z 方向上的重心位置。 |
+| **力/扭矩偏差** | 传感器特有的累积零偏（Bias）值。 |
+| **误差率 [%]** | 指出识别轨迹中的数据可靠性和误差率，分别显示力和扭矩。 |
 
 
-###### **Step 4: Apply Data**
-* Pressing the **[✓ OK]** button at the bottom right of the screen finally saves and reflects the newly estimated `Estimated Value` information into the corresponding force control tool data.
+###### **步骤 4：应用数据**
+* 按下屏幕右下角的 **[✓ OK]** 按钮，最终将新估计的 `Estimated Value` 信息保存并反映到相应的力控制工具数据中。
 
 {% hint style="info" %}
 
-**Safety Notice:** During Step 2 `Normal Operation`, the robot performs multi-axis reversal movements. Therefore, the operation must be executed only after completely securing the interference-free zone around the tool.
+**安全提示：** 在步骤 2 `正常操作` 中，机器人执行多轴反转运动。因此，操作必须在完全确保工具周围无干扰的区域后进行。
 
-**Error Rate Compliance Criterion:** The measured **error rate must be within 5%**.
+**误差率合规标准：** 测量的 **误差率必须在 5% 以内**。
 
-**Troubleshooting Tip:** If the error rate exceeds 5% and is abnormally high, there may have been external interference during measurement or tension acting on the sensor cable. Recheck the clearance and interference of the sensor cable, and then measure again.
+**故障排除提示：** 如果误差率超过 5% 并且异常高，可能在测量期间存在外部干扰或对传感器电缆施加了拉力。请重新检查传感器电缆的间隙和干扰，然后再次测量。
 
 {% endhint %}
 
----## 4. Force Control Options 
+---
+[__SOURCE](4-condition/README.md)
+## 4. 力控制选项 
 
-This menu is used to process sensor signals according to task conditions and to configure the robot's response and behavior control methods in detail, aiming to improve the quality of the force control process and system stability. 
+此菜单用于根据任务条件处理传感器信号，并详细配置机器人的响应和行为控制方法，旨在提高力控制过程的质量和系统稳定性。
 
-In addition to basic force/torque control settings, it provides advanced control options such as noise filtering, profiles, contact condition detection, and automatic path generation.
+除了基本的力/扭矩控制设置外，它还提供诸如噪声滤波、轮廓、接触状态检测和自动路径生成等高级控制选项。
 
 [F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options]
 
@@ -440,15 +465,17 @@ In addition to basic force/torque control settings, it provides advanced control
 
 {% hint style="info" %}
 
-**Precautions:** Individual parameters within the force control options are interdependent. During initial tuning, set the robot's operation speed limit low, and gradually determine the optimal values while verifying the filter and profile performances.
+**注意事项：** 力控制选项中的各个参数是相互依赖的。在初始调整期间，将机器人的操作速度限制设置为较低，并在验证滤波器和轮廓性能的同时逐渐确定最佳值。
 
-{% endhint %}### 4.1 Basic Settings
+{% endhint %}
+[__SOURCE](4-condition/4-1-basic.md)
+### 4.1 基本设置
 
-This menu is used to configure the name according to the force control operation conditions, and to set the task coordinate system, tool number, and sensor zero point (offset) function that will serve as the control reference. 
+此菜单用于根据力控制操作条件配置名称，并设置任务坐标系统、工具编号以及作为控制参考的传感器零点（偏移）功能。
 
-The force control option condition settings can be accessed through the path below, and up to 15 conditions can be configured.
+力控制选项条件设置可以通过下面的路径访问，最多可以配置15个条件。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Settings] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [3: 力控制选项] ➔ **选择 [设置] 标签**
 
 ---
 
@@ -457,610 +484,632 @@ The force control option condition settings can be accessed through the path bel
 ![](../_assets/_27_fctrl_option_basic_usr.png) 
 
 
-##### **[Basic Configuration Items]**
+##### **[基本配置项]**
 
-| Item | Description |
+| 项目 | 描述 |
 | :--- | :--- |
-| **Name** | The identification name of the force control condition. It is automatically entered when selected from the list on the right. (e.g., `cnd_1`) |
-| **Description** | Enter the purpose or task description of the current control condition. (e.g., `Contact`, `Sanding`, etc.) |
-| **Coordinate System** | Select the reference coordinate system to which the force control loop will be applied.<br>• **Base** <br>• **Robot** <br>• **Tool** <br>• **User** |
-| **User Coord. No.** | Activated when the coordinate system is set to **[User]**, and designates the unique ID number of the user coordinate system to be applied. |
-| **Tool No.** | Select the tool data number to be applied to the current control. (The weight and center of gravity information configured for the corresponding tool is linked to the control algorithm in real time) |
-| **Zero Point** | Uses a toggle switch to set whether to force-cancel the initial offset of the sensor data when force control starts.<br>• **On (Enabled):** Resets the sensor value to 0 immediately before operation (Software Bias processing)<br>• **Off (Disabled):** Maintains the existing sensor data without any separate zero calibration |
+| **名称** | 力控制条件的识别名称。当从右侧列表中选择时会自动输入。(例如，`cnd_1`) |
+| **描述** | 输入当前控制条件的目的或任务描述。(例如，`接触 (Contact)`，`打磨`，等) |
+| **坐标系统** | 选择力控制循环将应用的参考坐标系统。<br>• **基座** <br>• **机器人** <br>• **工具** <br>• **用户** |
+| **用户坐标编号** | 当坐标系统设置为**[用户]**时激活，指定要应用的用户坐标系统的唯一ID编号。 |
+| **工具编号** | 选择当前控制要应用的工具数据编号。(与对应工具配置的重量和重心信息实时链接到控制算法) |
+| **零点** | 使用切换开关设置在力控制开始时是否强制取消传感器数据的初始偏移。<br>• **开启 (启用)：** 在操作前立即将传感器值重置为0（软件偏置处理）<br>• **关闭 (禁用)：** 在没有任何单独零校准的情况下保持现有的传感器数据 |
 
 ---
 
 {% hint style="info" %}
 
-**Precautions for User Coordinate System Entry:** If the user coordinate system is selected but the number (ID) is left as **Unconfigured (None)**, it will be mapped and calculated identically to the **Robot Coordinate System**.
+**用户坐标系统输入的注意事项：** 如果选择了用户坐标系统，但编号（ID）保持为**未配置 (None)**，将与**机器人坐标系统**相同地映射和计算。
 
-**Tool Number Integration:** The tool number (ID) selected here refers to the physical parameters of the tool data pre-registered in the `[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [2: Tool Data]` menu.
+**工具编号集成：** 在此处选择的工具编号（ID）指的是在`[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [2: 工具数据]`菜单中预先注册的工具数据的物理参数。
 
-**Operation when Zero Point Function is Off:** If the zero point function is not used (Off), a statically calibrated value is utilized where the tool dead weight is canceled based solely on the tool data information (weight, center of gravity, force/torque zero) pre-mapped to the raw sensor output data.
+**零点功能关闭时的操作：** 如果未使用零点功能（关闭），将使用静态校准值，仅根据预映射到原始传感器输出数据的工具数据（重量、重心、力/扭矩零）取消工具自重。
 
-{% endhint %}### 4.2 Control Parameters
+{% endhint %}
+[__SOURCE](4-condition/4-2-control.md)
+### 4.2 控制参数
 
-This menu is used to select the degrees of freedom (axes) to apply force control, and to configure the target force/torque, responsiveness of the virtual system, viscous resistance (damping), and speed and displacement limit values. These are key parameters that determine the flexibility and reaction speed of the actual robot when it comes into contact with the environment.
+此菜单用于选择应用力控制的自由度（轴），并配置目标力/力矩、虚拟系统的响应性、粘性阻力（阻尼）和速度及位移限制值。这些是决定机器人在与环境接触时灵活性和反应速度的关键参数。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Settings] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [3: 力控制选项] ➔ **选择 [设置] 选项卡**
 
 ---
 
 ![](../_assets/_07_fctrl_ctrl_cnd_control.png)
 
 
-##### **[Control Configuration Items]**
+##### **[控制配置项]**
 
 
-| Item | Description |
+| 项目 | 描述 |
 | :--- | :--- |
-| **Axis** | Indicates the 6-DOF axes targeted for control. (X, Y, Z: Linear velocity directions / Rx, Ry, Rz: Rotational directions) |
-| **Active** | Specifies whether to activate force control for the corresponding axis. When activated, the box lights up in **yellow**. |
-| **Target** | Enter the target force (Unit: N) or target torque (Unit: Nm). |
-| **Response** | Adjusts the initial responsiveness (%) of the robot to external forces or target value changes. The **lower the set value, the faster the control response speed, allowing it to reach the target value agilely**. |
-| **Damping** | The damping ratio (%) that matches the virtual viscous damping coefficient. The **lower the set value, the more flexibly it conforms** and responds to external forces. |
-| **Limit** | Limits the maximum output speed that can occur during force control operation. (Linear axis: mm/s, Rotational axis: deg/s) |
-| **-Pos / +Pos** | The bidirectional travel limit (soft limit) range within which the robot can be forcibly pushed or moved during force control operation. (mm or deg) |
+| **轴** | 指示要控制的6自由度轴。（X, Y, Z: 线性速度方向 / Rx, Ry, Rz: 旋转方向） |
+| **激活** | 指定是否为相应的轴激活力控制。当激活时，框框将亮起为**黄色**。 |
+| **目标** | 输入目标力（单位：N）或目标力矩（单位：Nm）。 |
+| **响应** | 调整机器人对外部力或目标值变化的初始响应性（%）。**设置值越低，控制响应速度越快，可以敏捷地达到目标值。** |
+| **阻尼** | 与虚拟粘性阻尼系数匹配的阻尼比（%）。**设置值越低，适应外部力的灵活性越强。** |
+| **限制** | 限制在力控制操作期间可能发生的最大输出速度。（线性轴：mm/s，旋转轴：deg/s） |
+| **-Pos / +Pos** | 在力控制操作期间，机器人可以被强行推或移动的双向行程限制（软限制）范围。（mm或deg） |
 
 
 {% hint style="info" %}
 
-**Coordinate System Reference:** The direction definition of each axis (X, Y, Z, Rx, Ry, Rz) is mapped based on the **task coordinate system selected in the preceding [Settings] tab**.
+**坐标系统参考：** 每个轴的方向定义（X, Y, Z, Rx, Ry, Rz）基于**前面 [设置] 选项卡中选择的任务坐标系统**进行映射。
 
-**Response Tuning Guide:**
-  * **When set to 0%:** This is advantageous for mitigating the impact generated during initial contact, stably controlling the movement, and suppressing vibrations. (However, a larger damping value results in a slower response.)
-  * **When set to 1% or higher:** The target control speed and tracking performance are improved, allowing for a more agile response. However, within certain ranges, the deviation in responsiveness according to the change in the set value may be subtle.
+**响应调整指南：**
+  * **设置为0%时：** 对于减轻初始接触时产生的冲击，稳定控制运动以及抑制振动来说，这是有利的。（但较大的阻尼值会导致响应变慢。）
+  * **设置为1%或更高时：** 目标控制速度和跟踪性能得到改善，响应更敏捷。然而，在某些范围内，响应性的偏差可能随设置值变化而变得微妙。
 
-**Speed and Position Limit Management:** If the balance between response and damping settings is incorrect, or if the speed limit value is set excessively high, the robot may accelerate rapidly upon contact with an object, causing system vibrations. During initial tuning, always ensure safety by **setting the [Limit] speed value low**, and then gradually increase control performance.
+**速度和位置限制管理：** 如果响应与阻尼设置之间的平衡不正确，或速度限制值设置过高，在与物体接触时，机器人可能会快速加速，导致系统振动。在初始调整期间，始终确保通过**将 [限制] 速度值设置为低**，然后逐渐提高控制性能。
 
 {% endhint %}
 
 ---
 
-##### **Control Configuration Example (Vertical Direction Sanding Task)**
+##### **控制配置示例（垂直方向打磨任务）**
 
-This is a UI configuration matching example for a typical sanding/grinding process that maintains the posture of the actual tool while applying pressure.
+这是一个典型打磨/研磨过程的UI配置匹配示例，该过程在施加压力的同时保持实际工具的姿态。
 
 
-| Axis | Active | Target | Response | Damping | Limit | Position Limit (- / +) |
+| 轴 | 激活 | 目标 | 响应 | 阻尼 | 限制 | 位置限制 (- / +) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **X** | Off | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
-| **Y** | Off | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
-| **Z** | **On** | **20 N** | **10 %** | **20 %** | **5 mm/s** | **0 / 30 mm** |
-| **Rx** | **On** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
-| **Ry** | **On** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
-| **Rz** | Off | 0 Nm | 0 % | 100 % | 0 deg/s | 0 / 0 deg |
+| **X** | 关闭 | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
+| **Y** | 关闭 | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
+| **Z** | **开启** | **20 N** | **10 %** | **20 %** | **5 mm/s** | **0 / 30 mm** |
+| **Rx** | **开启** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
+| **Ry** | **开启** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
+| **Rz** | 关闭 | 0 Nm | 0 % | 100 % | 0 deg/s | 0 / 0 deg |
 
-* **Z-axis Control:** Gently settles onto the surface while maintaining a **constant force of 20N** in the normal direction (pressurizing axis).
-* **Rx, Ry-axis Control:** Soft motion compliance occurs as the tool is coupled with a **target torque of 0Nm and low damping (10%)** to allow it to remain flat in response to curved or warped machining surface edges.
-* The coordinate system must be configured to "Tool".
+* **Z轴控制：** 在法向方向维持**20N的恒定力**，轻柔地贴合于表面。
+* **Rx, Ry轴控制：** 工具与**0Nm和低阻尼(10%)的目标力矩**耦合时，产生软运动顺应性，以使其在响应于曲面或变形加工表面边缘时保持平坦。
+* 坐标系统必须配置为“工具”。
 
 ---
 
 {% hint style="warning" %}
 
-**Vibration and Noise Notice:** Lowering the damping and response ratios allows for a flexible response to external environment changes. However, if the static stiffness of the target object is too high or combined with high-speed robot operation conditions, it may cause **vibrations and high-frequency noise** due to control phase lag, so an adequate damping margin must be secured.
+**振动和噪音注意事项：** 降低阻尼和响应比可以对外部环境变化做出灵活响应。然而，如果目标物体的静态刚度过高或与高速机器人操作条件相结合，可能会因控制相位滞后引起**振动和高频噪声**，因此必须确保足够的阻尼余量。
 
-{% endhint %}### 4.3 Filtering
+{% endhint %}
+[__SOURCE](4-condition/4-3-filtering.md)
+### 4.3 过滤
 
-This menu is used to configure the filter function, which suppresses signal noise in F/T sensor data to establish a stable control environment, and the Agility Mode, which maximizes the system's tracking performance.
+此菜单用于配置过滤功能，该功能抑制F/T传感器数据中的信号噪声以建立稳定的控制环境，以及最大化系统跟踪性能的灵活模式。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Filtering] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [过滤] 标签**
 
 ---
 
 ![](../_assets/_08_fctrl_ctrl_filtering.png)
 
 
-##### **[Smooth Force]**
+##### **[平滑力]**
 
-Attenuates high-frequency noise from the force/torque signals collected from the sensor to prevent shakiness in robot motion and control smooth contact behavior.
+减弱从传感器收集的力/扭矩信号中的高频噪声，以防止机器人运动中的抖动并控制平滑接触行为。
 
-| Item | Description |
+| 项目 | 描述 |
 | :--- | :--- |
-| **Force Filtering** | When activated, the checkbox lights up in **yellow**. |
+| **力量过滤** | 激活时，复选框亮起为**黄色**。 |
 
 
 {% hint style="warning" %}
 
-If filtering is excessively applied when using an F/T sensor with excellent signal quality, a phase delay (Time Delay) may occur within the control loop. Since this can cause degradation in control performance during high-speed force tracking applications, determine whether to apply it after verifying the actual signal characteristics in high-speed applications.
+如果在使用信号质量优秀的F/T传感器时过度应用过滤，控制环路中可能会发生相位延迟（时间延迟）。由于这可能导致在高速力跟踪应用中的控制性能下降，因此在高速应用中验证实际信号特性后，决定是否应用。
 
 {% endhint %}
 
 ---
 
-##### **[Agility Mode]**
+##### **[灵活模式]**
 
-This mode drastically improves the robot's initial control response speed to reach the target force. It is essential in precise force control processes where the tool (TCP) moves at high speed and needs to respond immediately to changes in the environment.
+此模式大幅提高机器人到达目标力的初始控制响应速度。它在工具（TCP）以高速移动并需要立即对环境变化做出响应的精确力控制过程中至关重要。
 
-| Configuration Item | Description |
+| 配置项 | 描述 |
 | :--- | :--- |
-| **Agility Mode** | When activated, the checkbox lights up in **yellow**. |
-| **Frequency [Hz]** | Specifies the bandwidth operating frequency of the Agility Mode. The **higher the set frequency value, the faster the robot's response speed** and the higher the agility. |
+| **灵活模式** | 激活时，复选框亮起为**黄色**。 |
+| **频率 [Hz]** | 指定灵活模式的带宽操作频率。**设置的频率值越高，机器人的响应速度越快，灵活性越高。** |
 
 {% hint style="warning" %}
 
-**Agility Mode Termination Characteristics**
+**灵活模式终止特性**
 
-* **Caution Specification:** When `fctrl off` (termination) is executed, Agility Mode unconditionally **pauses in place for 0.5 seconds before terminating**.
+* **警告规范：** 当执行 `fctrl off`（终止）时，灵活模式无条件**在原地暂停0.5秒后终止**。
 
-* **On-Site Issue:** If the robot pauses for 0.5 seconds while maintaining contact with the product, continuous pressure is applied to the surface, which may damage the product or leave marks.
+* **现场问题：** 如果机器人在与产品保持接触的情况下暂停0.5秒，会持续施加压力于表面，可能会损坏产品或留下痕迹。
 
-* **Mitigation Method:** Refer### 4.4.1 Profile: Soft Start
+* **缓解方法：** 请参考
 
-This function is designed to prevent a rapid impact force that may occur when the robot initially makes contact with and enters the task object. When reaching the target control value, the target value is gradually applied in the form of a smooth curve (Profile Curve) rather than a step command.
+{% endhint %}
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Profile] Tab**
+[__SOURCE](4-condition/4-4-1-profile-softstart.md)
+### 4.4.1 概况: 软启动
+
+此功能旨在防止机器人初次接触并进入任务对象时可能发生的快速冲击力。当达到目标控制值时，目标值以平滑曲线（概况曲线）的形式逐渐应用，而不是阶跃命令。
+
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力量控制] ➔ [3: 力量控制选项] ➔ **选择 [概况] 选项卡**
 
 ---
 
 ![](../_assets/_09_fctrl_ctrl_soft_start.png)
 
-##### **[Key Configuration Items]**
+##### **[关键配置项]**
 
-| Configuration Item | Description |
+| 配置项 | 描述 |
 | :--- | :--- |
-| **Function Activation** | Specifies whether to use the function via the checkbox. |
-| **Start Ratio [%]** | Sets the force/torque threshold at the moment the function is triggered (operation start) as a percentage (%) of the final target value. Profile control begins when the sensor measurement reaches this ratio. |
-| **Time [s]** | Defines the profile curve time (Unit: seconds) required from the moment the start ratio is satisfied until the final target force/torque value is completely reached. |
+| **功能激活** | 通过复选框指定是否使用该功能。 |
+| **起始比率 [%]** | 设置功能触发时的力/扭矩阈值（操作开始）作为最终目标值的百分比（%）。当传感器测量值达到此比例时，概况控制开始。 |
+| **时间 [s]** | 定义从满足起始比率的时刻到最终目标力/扭矩值完全达到所需的概况曲线时间（单位：秒）。 |
 
 ![](../_assets/_28_fctrl_soft_start.png)
 
-##### **[Understanding through Operation Example]**
+##### **[通过操作示例理解]**
 
-This is an example of the actual robot's tuning behavior based on the settings below.
+这是基于以下设置的实际机器人的调试行为示例。
 
-* **Final Target Force:** `10 N` (Z-axis set value in the Settings tab)
-* **Start Ratio:** `50 %` (Triggers the function when reaching **5 N**, which is 50% of the final target)
-* **Profile Time:** `5 s`
+* **最终目标力:** `10 N` （设置选项卡中的 Z 轴设定值）
+* **起始比率:** `50 %` （当达到 **5 N** 时触发功能，这是最终目标的 50%）
+* **概况时间:** `5 s`
 
-###### **Step 1. Initial Contact and Standby (Initial Contact Phase)**
-As the robot descends and begins contact with the task object, the current force measured by the sensor starts to rise. At this moment, the Soft Start function is officially activated as soon as the actual measured data reaches the trigger reference point of **5 N**.
+###### **步骤 1. 初始接触与待机（初始接触阶段）**
+当机器人下降并开始与任务对象接触时，传感器测量的当前力开始上升。在这一刻，软启动功能在实际测量数据达到 **5 N** 的触发参考点时正式激活。
 
-###### **Step 2. Entering Profile Interval (Profile Control Phase)**
-From the moment the function is activated, the controller does not abruptly increase the command force in a step form. It gradually increases the force command in a smooth curve over the designated **5 seconds**, stably settling the robot until the final target value of 10 N is reached.
+###### **步骤 2. 进入概况间隔（概况控制阶段）**
+从功能激活的那一刻起，控制器不会以阶跃形式突然增加命令力，而是逐渐在指定的 **5 秒** 内以平滑曲线增加力命令，稳定地使机器人直至最终目标值 10 N 达到。
 
 {% hint style="info" %}
 
-**On-Site Application Tip:** This setting is essential when assembling parts with a high risk of damage (glass, displays, etc.) or when initially settling onto precise machined surfaces to prevent product defects and scratches caused by contact impact.
+**现场应用提示：** 当组装易损件（如玻璃、显示器等）或首次在精准加工表面上定型时，该设置至关重要，以防止因接触冲击导致的产品缺陷和划伤。
 
-**On-Site Troubleshooting Guide:** If an abrupt impact still occurs during initial entry, **lower the [Start Ratio]** to activate the function earlier, or **increase the [Time] value** to adjust the pressurizing curve more gently.
+**现场故障排除指南：** 如果在初次进入时仍然发生急剧冲击，**降低 [起始比率]** 以更早激活功能，或**提高 [时间] 值** 以使加压曲线更平缓。
 
-{% endhint %}### 4.4.2 Profile: Velocity Clamp
+{% endhint %}
+[__SOURCE](4-condition/4-4-2-profile-velclamp.md)
+### 4.4.2 Profile: Velocity Clamp
 
-During force control operation, if the speed is excessively high when the robot makes contact with the environment (object), excessive overshoot and divergence (vibration) of the control system will occur. This function is designed to fundamentally suppress mechanical vibrations and impacts of the system by forcibly clamping the robot's maximum operating speed (Vmax) to a lower level the moment the currently detected force/torque value exceeds a user-configured threshold.
+在力控制操作期间，当机器人与环境（物体）接触时，如果速度过高，会导致控制系统的过度超调和发散（振动）。此功能旨在通过在当前检测到的力/扭矩值超过用户配置的阈值时，强制将机器人的最大操作速度（Vmax）钳制到较低的水平，从根本上抑制机械振动和系统冲击。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Profile] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [Profile] 选项卡**
 
 ---
 
 ![](../_assets/_10_fctrl_ctrl_vel_clamp.png)
 
-##### **[Key Configuration Items]**
+##### **[关键配置项目]**
 
-| Configuration Item | Description |
+| 配置项目 | 描述 |
 | :--- | :--- |
-| **Function Activation** | Specifies whether to use the function via the checkbox. |
-| **Linear Velocity - Force Condition [% Target]** | Trigger condition for the linear velocity axes (X, Y, Z). When the current force reaches the set percentage (%) relative to the final target force configured in the [Settings] tab, the speed limit is executed immediately. |
-| **Linear Velocity - Limit Ratio [% Limit Speed]** | Defines the attenuation ratio (%) to scale down the maximum limit speed per axis previously configured in the [Settings] tab, once the force condition is satisfied. |
-| **Angular Velocity - Torque Condition [% Target]** | Trigger condition for the rotational axes (Rx, Ry, Rz). When the current torque reaches the set percentage (%) relative to the final target torque, the speed limit is executed. |
-| **Angular Velocity - Limit Ratio [% Limit Speed]** | Defines the attenuation ratio (%) to scale down the maximum limit speed of the rotational axes previously configured in the [Settings] tab, once the torque condition is satisfied. |
+| **功能激活** | 指定是否通过复选框使用该功能。 |
+| **线速度 - 力条件 [% 目标]** | 线速度轴（X, Y, Z）的触发条件。当当前力达到相对于在 [Settings] 选项卡中配置的最终目标力所设定的百分比（%）时，将立即执行速度限制。 |
+| **线速度 - 限制比 [% 限制速度]** | 定义当满足力条件时，按轴缩减在 [Settings] 选项卡中先前配置的最大限制速度的衰减比例（%）。 |
+| **角速度 - 扭矩条件 [% 目标]** | 旋转轴（Rx, Ry, Rz）的触发条件。当当前扭矩达到相对于最终目标扭矩设定的百分比（%）时，将执行速度限制。 |
+| **角速度 - 限制比 [% 限制速度]** | 定义当满足扭矩条件时，按轴缩减在 [Settings] 选项卡中先前配置的旋转轴的最大限制速度的衰减比例（%）。 |
 
 ![](../_assets/_14_fctrl_ctrl_vmax_clamp.png)
 
 
-##### **[Understanding through Operation Example]**
+##### **[通过操作示例理解]**
 
-* **Default Limit Speed:** `2.0 mm/s` (Set value in the [Settings] tab)
-* **Final Target Force:** `10 N` (Set value in the [Settings] tab)
-* **Force Condition [% Target]:** `50 %` (Triggers the function when reaching `5 N`, which is 50% of the final target)
-* **Limit Ratio [% Limit Speed]:** `30 %` (Clamps downward to `0.6 mm/s`, which is `30%` of the existing speed limit)
+* **默认限制速度:** `2.0 mm/s`（在 [Settings] 选项卡中设定的值）
+* **最终目标力:** `10 N`（在 [Settings] 选项卡中设定的值）
+* **力条件 [% 目标]:** `50 %`（当达到 `5 N` 时触发该功能，即最终目标的50%）
+* **限制比 [% 限制速度]:** `30 %`（钳制到 `0.6 mm/s`，即现有限制的 `30%`）
 
 ---
 
-###### **Step 1. Initial Entry and Force Trigger**
-After the robot descends and makes contact with the object, the speed limit algorithm forcibly intervenes the moment the actual measured force data rises rapidly and surpasses the trigger reference point of **5 N**.
+###### **步骤 1. 初始进入与力触发**
+在机器人下降并与物体接触后，速度限制算法在实际测量的力数据迅速上升并超过触发参考点 **5 N** 的瞬间强制干预。
 
-###### **Step 2. Velocity Clamping and Vibration Suppression**
-Before the function is activated, the robot displays vibrations up to around the maximum Vmax of `2.0 mm/s` in order to track the target force. 
+###### **步骤 2. 速度钳制与振动抑制**
+在功能激活之前，机器人在追踪目标力的过程中会显示出到大约最大 Vmax `2.0 mm/s` 的振动。
 
-However, the moment the force condition is satisfied and the limit ratio is newly applied, the robot's operating speed is **powerfully clamped within the predefined limit line of `0.6 mm/s` (30% of the original limit)**. As a result, excessive behavior of the control system is restricted, and the force data below also stops vibrating and stably converges to the target value of 10 N.
+然而，当力条件得到满足并且限制比被重新应用的瞬间，机器人的工作速度 **强力钳制在预定义的限制线 `0.6 mm/s`（原限制的30%）以内**。因此，控制系统的过度行为受到限制，下面的力数据也停止振动，并稳定地收敛到10 N的目标值。
 
 ---
 
 {% hint style="info" %}
 
-**On-Site Tuning Guide (Vibration Control):** Activate this function when initial contact vibrations (bouncing phenomena) cannot be resolved solely by adjusting response or damping. By **adjusting the [Limit Ratio] downward to an appropriate level**, the physical speed margin is restricted, allowing you to suppress vibrations effectively.
+**现场调优指南（振动控制）：** 当初始接触振动（弹跳现象）无法仅通过调整响应或阻尼来解决时，激活此功能。通过 **将 [限制比] 向下调整到适当水平**，限制物理速度余量，从而有效抑制振动。
 
 {% endhint %}
 
 {% hint style="warning" %}
 
-**Side Effects of Excessive Restriction:**
-If the [Limit Ratio] is set too low (e.g., 5% or less), the vibration will be suppressed, but the robot will lack the speed required to push into the target force. 
+**过度限制的副作用：**
+如果 [限制比] 设置得过低（例如，5% 或更低），则会抑制振动，但机器人将缺乏推进到目标力所需的速度。
 
-{% endhint %}### 4.4.3 Profile: Force/Torque Scaling
+{% endhint %}
+[__SOURCE](4-condition/4-4-3-profile-scaling.md)
+### 4.4.3 Profile: Force/Torque Scaling
 
-This function blocks the force control loop from responding when the F/T sensor data is below a certain magnitude, and smoothly connects the output to the original target control line via a smooth curve or step form once it exceeds the threshold, thereby enhancing overall contact stability.
+此功能在 F/T 传感器数据低于某一幅度时阻止力控制回路响应，并在超过阈值后通过平滑曲线或阶梯形式平滑地将输出来连接到原始目标控制线，从而增强整体接触稳定性。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Profile] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [Profile] 标签**
 
 ---
 
 ![](../_assets/_11_fctrl_ctrl_smooth_scaling.png)
 
-##### **[Key Configuration Items]**
+##### **[关键配置项目]**
 
-| Configuration Item | Description |
+| 配置项目 | 描述 |
 | :--- | :--- |
-| **Function Activation** | Specifies whether to use the function via the checkbox. |
-| **Force Range - Start [N]** | The lower limit where the deadband is applied. Measurements below this value are output as `0 N`. |
-| **Force Range - End [N]** | The upper limit where the data synchronizes 1:1 with the original data. Measurements above this value are output directly without calibration. |
-| **Torque Range - Start [Nm]** | The lower limit where the deadband is applied. Measurements below this value are output as `0 Nm`. |
-| **Torque Range - End [Nm]** | The upper limit where the data synchronizes 1:1 with the original data. Measurements above this value are output directly without calibration. |
+| **功能激活** | 通过复选框指定是否使用此功能。 |
+| **力范围 - 起始 [N]** | 应用死区的下限。低于此值的测量输出为 `0 N`。 |
+| **力范围 - 结束 [N]** | 与原始数据 1:1 同步的数据的上限。高于此值的测量直接输出而不进行校准。 |
+| **扭矩范围 - 起始 [Nm]** | 应用死区的下限。低于此值的测量输出为 `0 Nm`。 |
+| **扭矩范围 - 结束 [Nm]** | 与原始数据 1:1 同步的数据的上限。高于此值的测量直接输出而不进行校准。 |
 
 ---
 
-##### **[Understanding through Operation Examples]**
+##### **[通过操作示例理解]**
 
 <br> 
 
-###### **Scaling (Start < End)**
-* **Configuration Example:** Start `5 N` / End `15 N`
+###### **缩放 (起始 < 结束)**
+* **配置示例：** 起始 `5 N` / 结束 `15 N`
 
 ![](../_assets/_12_fctrl_ctrl_scaling_graph.png)
 
-* **Operation Analysis:**
+* **操作分析：**
   
-  A. **5 N or less:** The deadband is applied, outputting `0 N` to block fine noise and vibrations.
+  A. **5 N 或更小：** 应用死区，输出 `0 N` 以阻止细微噪声和振动。
   
-  B. **5 to 15 N:** The data is interpolated in the form of a smooth curve to prevent sudden data spikes.
+  B. **5 到 15 N：** 数据以平滑曲线的形式插值，以防止突发数据峰值。
   
-  C. **15 N or more:** The original sensor values are reflected directly (1:1 linear) into the control loop without filtering.
+  C. **15 N 或更多：** 原始传感器值直接（1:1 线性）反映到控制回路中，不进行过滤。
 
 ---
 
-###### **Step Scaling (Start ≥ End)**
-* **Configuration Example:** Start `5 N` / End `0 N` (When the start value is greater than or equal to the end value)
+###### **阶梯缩放 (起始 ≥ 结束)**
+* **配置示例：** 起始 `5 N` / 结束 `0 N` （当起始值大于或等于结束值时）
 
 ![](../_assets/_13_fctrl_ctrl_scaling_threshold_graph.png)
 
-* **Operation Analysis:**
+* **操作分析：**
 
-  A. **Less than 5 N:** Treated as `0 N` because the measurement has not reached the threshold.
+  A. **少于 5 N：** 因为测量尚未达到阈值，处理为 `0 N`。
   
-  B. **5 N or more:** Immediately jumps (Steps) to the original data line upon satisfying the criterion, and outputs the original values directly thereafter.
+  B. **5 N 或更多：** 在满足条件后立即跳（阶梯）到原始数据线，并随后直接输出原始值。
 
 ---
 
 {% hint style="info" %}
 
-**Automatic Mode Switching:** If the [Start] value is greater than or equal to the [End] value, it operates in `Dead-Zone` mode without curve interpolation.
+**自动模式切换：** 如果 [Start] 值大于或等于 [End] 值，它将在 `Dead-Zone` 模式下操作而不进行曲线插值。
 
-**On-Site Tuning Tip:** To block sensor noise caused by robot vibrations or external shaking, set the **[Start] value slightly higher than the maximum measured noise level** to secure an adequate deadband.
+**现场调试提示：** 为了阻止因机器人振动或外部摇晃而造成的传感器噪声，将 **[Start] 值设定为略高于最大测量噪声级别** 以确保充足的死区。
 
-{% endhint %}### 4.5.1 Motion: Contact Conditions
+{% endhint %}
+[__SOURCE](4-condition/4-5-1-motion-contact.md)
+### 4.5.1 运动：接触条件
 
-This function detects and determines in real time whether the robot tool center point (TCP) has stably made contact with (settled onto) the surface of the task object during force control operation.
+此功能实时检测并确定机器人工具中心点 (TCP) 在力控制操作期间是否稳定地与任务对象的表面接触（落在上面）。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Motion] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [3: 力控制选项] ➔ **选择 [运动] 标签**
 
 ---
-
 
 ![](../_assets/_12_fctrl_ctrl_cnd_motion_contact.png)
 
+##### **[关键配置项目]**
 
-##### **[Key Configuration Items]**
+系统仅在满足以下配置的四个条件后，才将状态确定为“接触完成”。
 
-The system determines the status as 'Contact Complete' only when all four conditions configured below are satisfied.
-
-| Configuration Item | Description |
+| 配置项目 | 描述 |
 | :--- | :--- |
-| **Force Threshold [N]** | The minimum applied force criterion required to acknowledge contact. |
-| **Angle Change Threshold [deg]** | The allowable limit for the instantaneous change (variation width) in the direction of the force vector occurring at the moment of initial contact. |
-| **Tilt Angle Threshold [deg]** | The allowable angular limit of the force vector to determine stable contact under the slope of the task surface or the tilted state of the tool. |
-| **Duration [s]** | The minimum duration for which all three threshold conditions above (force, angle change, and tilt angle) must be continuously maintained. |
+| **力阈值 [N]** | 确认接触所需的最低施加力标准。 |
+| **角度变化阈值 [deg]** | 初始接触时，力向量方向瞬时变化（变化幅度）的允许极限。 |
+| **倾斜角度阈值 [deg]** | 在任务表面的坡度或工具的倾斜状态下，确定稳定接触的力向量的允许角度极限。 |
+| **持续时间 [s]** | 上述三个阈值条件（力、角度变化和倾斜角度）必须持续保持的最短时间。 |
 
 ---
 
-##### **[Configuration Example]** * **Operational Behavior:** If the conditions below are **simultaneously satisfied for 3 seconds**, it is finally determined that the tool has settled onto the contact surface.
+##### **[配置示例]** * **操作行为：** 如果以下条件 **同时满足 3 秒**，则最终确认工具已落在接触表面上。
 
-| Configuration Item | UI Value | Behavior Determination Criterion |
+| 配置项目 | UI 值 | 行为判断标准 |
 | :--- | :--- | :--- |
-| **Force Threshold** | `3 N` | When the external force detected by the F/T sensor reaches 3 N or higher |
-| **Angle Change Threshold** | `10 deg` | When the instantaneous change in the force direction during contact stabilizes within 10° |
-| **Tilt Angle Threshold** | `20 deg` | When the tilt trajectory of the force vector relative to the target angle is within 20° |
-| **Duration** | `3 s` | When the above state is maintained for 3 seconds without interruption |
+| **力阈值** | `3 N` | 当 F/T 传感器检测到的外部力达到 3 N 或更高时 |
+| **角度变化阈值** | `10 deg` | 当接触期间力方向的瞬时变化稳定在 10° 以内时 |
+| **倾斜角度阈值** | `20 deg` | 当力向量相对于目标角度的倾斜轨迹在 20° 以内时 |
+| **持续时间** | `3 s` | 当上述状态持续维持 3 秒而不间断时 |
 
 ---
 
 {% hint style="info" %}
 
-**Coordinate System Configuration Rule:** Since the contact condition algorithm requires precise mapping of the tool's behavior direction and component forces, it operates normally only when the reference coordinate system is designated as the **Tool Coordinate System**.
+**坐标系统配置规则：** 由于接触条件算法需要精确映射工具的行为方向和分量力，因此仅在参考坐标系统指定为 **工具坐标系统** 时正常运行。
 
-**On-Site Tuning Tip:** If the robot pauses and fails to proceed to the next motion after making contact, it is highly likely due to the impact of the collision or surface irregularities. In this case, increasing the **[Angle Change Threshold]** and **[Tilt Angle Threshold]** by about 5° to 10° each will resolve the issue and allow normal operation.
+**现场调整提示：** 如果机器人在接触后暂停并无法进行下一步动作，很可能是由于碰撞或表面不规则性造成的。在这种情况下，分别将 **[角度变化阈值]** 和 **[倾斜角度阈值]** 提高约 5° 至 10° 将解决问题并恢复正常操作。
 
-{% endhint %}### 4.5.2 Motion: Automatic Path Generation
+{% endhint %}
+[__SOURCE](4-condition/4-5-2-motion-raster.md)
+### 4.5.2 运动：自动路径生成
 
-This function automatically generates and moves along a specific pattern trajectory on a designated plane while maintaining the force control state.
+此功能在特定平面上自动生成并沿特定模式轨迹移动，同时保持力控制状态。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Motion] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [Motion] 标签**
 
 ---
 
 ![](../_assets/_15_fctrl_motion_type.png)
 
-##### **[Motion Type]**
+##### **[运动类型]**
 
-Provides a total of three trajectory generation modes depending on the purpose of use.
+根据使用目的，提供总共三种轨迹生成模式。
 
-* **Spiral (Spiral Motion):** Generates a trajectory that expands outward in circles from a center point. (e.g., Grinding, Polishing processes)
-* **Bidir (Bidirectional Motion):** Generates a reciprocating trajectory to fill a surface. (e.g., Surface machining of large areas)
-* **Unidir (Unidirectional Motion):** Generates a trajectory that repeatedly runs in one direction and returns. (e.g., Sanding, Dispensing processes)
+* **螺旋（螺旋运动）：** 生成从中心点向外扩展的圆形轨迹。(例如，磨削、抛光过程)
+* **双向（双向运动）：** 生成往复轨迹以填充表面。(例如，大面积的表面加工)
+* **单向（单向运动）：** 生成在一个方向上重复运行并返回的轨迹。(例如，打磨、分配过程)
 
 ---
 
-###### **1. Spiral (Spiral Motion)**
+###### **1. 螺旋（螺旋运动）**
 
-This function generates a path that starts from a center point and expands its radius in a concentric circular form.
+此功能生成从中心点开始并以同心圆形状扩大半径的路径。
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Speed** | The TCP linear velocity moving along the spiral trajectory (Unit: mm/sec) |
-| **Radius** | The maximum radius of the spiral to be expanded finally (Unit: mm) |
-| **No. of Revolutions** | The total number of rotations from the start point to the end point (Unit: rev) |
+| **速度** | 沿螺旋轨迹移动的TCP线性速度（单位：mm/sec） |
+| **半径** | 最终要扩展的螺旋的最大半径（单位：mm） |
+| **旋转次数** | 从起点到终点的总旋转次数（单位：rev） |
 
 ---
 
-###### **2. Bidir (Bidirectional Motion)**
+###### **2. 双向（双向运动）**
 
-This function generates a continuous linear path in a reciprocating form while changing the direction of the end-effector machining.
+此功能以往复形式生成连续线性路径，同时改变末端执行器的加工方向。
 
 ![](../_assets/_16_fctrl_ctrl_motion_bidirectional.png)
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Speed** | The TCP linear velocity moving along the path (Unit: mm/sec) |
-| **Travel Direction** | The main machining operation direction (+X, -X, +Y, -Y) |
-| **Travel Length** | The single-run scale distance of the main machining path (Unit: mm) |
-| **Line Break Direction** | The pitch movement direction skipping to the next line (+X, -X, +Y, -Y) |
-| **Line Break Length** | The pitch distance between adjacent lines (Unit: mm) |
-| **Corner Radius** | The rounding radius of the corner section where the line changes direction (Unit: mm) |
+| **速度** | 沿路径移动的TCP线性速度（单位：mm/sec） |
+| **行进方向** | 主要加工操作方向（+X, -X, +Y, -Y） |
+| **行进长度** | 主要加工路径的单次行程距离（单位：mm） |
+| **行断方向** | 跳到下一行的间距移动方向（+X, -X, +Y, -Y） |
+| **行断长度** | 相邻行之间的间距（单位：mm） |
+| **角半径** | 线条改变方向的角落部分的圆角半径（单位：mm） |
 
 {% hint style="info" %}
 
-**Corner Radius Configuration Limit:** The maximum value of the corner radius cannot exceed half of the smaller value between the [Travel Length] and the [Line Break Length].
+**角半径配置限制：** 角半径的最大值不能超过[行进长度]和[行断长度]之间较小值的一半。
 
 {% endhint %}
 
 ---
 
-###### **3. Unidir (Unidirectional Motion)**
+###### **3. 单向（单向运动）**
 
-To always maintain a constant forward operation, this function generates a path that shifts to the next line by returning to the starting axis after a one-way travel.
+为了始终保持恒定的正向操作，此功能生成在单向行程后返回起始轴以移动到下一行的路径。
 
 ![](../_assets/_17_fctrl_ctrl_motion_unidirectional.png)
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Speed** | The TCP linear velocity moving along the path (Unit: mm/sec) |
-| **Travel Direction** | The unidirectional machining operation direction (+X, -X, +Y, -Y) |
-| **Travel Length** | The distance of a single one-way machining path (Unit: mm) |
-| **Line Break Direction** | The pitch movement direction skipping to the next line (+X, -X, +Y, -Y) |
-| **Line Break Length** | The pitch distance between adjacent lines (Unit: mm) |
-| **No. of Lines** | The total number of lines to be generated according to the designated travel direction and line break length (Unit: ea) |
+| **速度** | 沿路径移动的TCP线性速度（单位：mm/sec） |
+| **行进方向** | 单向加工操作方向（+X, -X, +Y, -Y） |
+| **行进长度** | 单次单向加工路径的距离（单位：mm） |
+| **行断方向** | 跳到下一行的间距移动方向（+X, -X, +Y, -Y） |
+| **行断长度** | 相邻行之间的间距（单位：mm） |
+| **行数** | 根据指定的行进方向和行断长度生成的总行数（单位：ea） |
 
 ---
 
 {% hint style="info" %}
 
-**Coordinate System Guide:** All automatic path generation functions (Spiral, Bidir, Unidir) calculate 2D trajectories based on the **XY plane of the reference coordinate system** specified in the force control coordinate system configuration item.
+**坐标系统指南：** 所有自动路径生成功能（螺旋、双向、单向）基于力控制坐标系统配置项中指定的**参考坐标系统的XY平面**计算2D轨迹。
 
-{% endhint %}# 5. Commands
+{% endhint %}
+[__SOURCE](5-roblang/README.md)
+# 5. 命令
 
-This document provides descriptions of the major system commands and status variables (system variables) related to the force control function. Each command is used for force control configuration, motion control, status verification, and receiving F/T sensor data.
+本文档提供了与力控制功能相关的主要系统命令和状态变量（系统变量）的描述。每个命令用于力控制配置、运动控制、状态验证和接收 F/T 传感器数据。
 
 ---
 
-##### **1. Commands (Version V70.02-00 or Later)**
+##### **1. 命令 (版本 V70.02-00 或更高版本)**
 
-In versions V70.02-00 and later, a standardized format is used where execution commands (`fctrl`) and built-in status variables (`_fctrl`) are separated for clear distinction.
+在 V70.02-00 及更高版本中，使用标准化格式，其中执行命令 (`fctrl`) 和内置状态变量 (`_fctrl`) 被分开以便于清晰区分。
 
-##### **[Commands]**
+##### **[命令]**
 
-| Command | Description | Argument | Remarks |
+| 命令 | 描述 | 参数 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `fctrl on, cnd=` | Starts force control operation and applies the designated control condition. | `cnd=Condition Number` (e.g., `cnd=1`) | Mandatory execution when starting force control |
-| `fctrl control, cnd=` | Modifies only the control parameter conditions in real time while maintaining the force control operation. | `cnd=Condition Number` (e.g., `cnd=2`) | Used to switch control conditions without stopping motion |
-| `fctrl off` | Safely terminates force control operation and returns to normal position control. | None | - |
-| `fctrl motion_on` | Starts the designated automatic path generation motion (Spiral, Bidir, Unidir). | None | Only valid while `fctrl on` is active |
-| `fctrl motion_off` | Immediately stops the automatic path generation motion currently running. | None | The force control (`fctrl on`) state is maintained |
+| `fctrl on, cnd=` | 开始力控制操作并应用指定的控制条件。 | `cnd=条件编号` (例如：`cnd=1`) | 启动力控制时强制执行 |
+| `fctrl control, cnd=` | 在保持力控制操作的同时，实时修改仅控制参数条件。 | `cnd=条件编号` (例如：`cnd=2`) | 用于在不停机的情况下切换控制条件 |
+| `fctrl off` | 安全终止力控制操作并返回正常位置控制。 | 无 | - |
+| `fctrl motion_on` | 启动指定的自动路径生成运动（螺旋、双向、单向）。 | 无 | 仅在 `fctrl on` 处于活动状态时有效 |
+| `fctrl motion_off` | 立即停止当前运行的自动路径生成运动。 | 无 | 保持力控制 (`fctrl on`) 状态 |
 
 {% hint style="info" %}
 
-**`fctrl control` Changeable Parameters (Specifications):** When switching conditions in real time using this command, only the control conditions (selected axes, activation status, target force, responsiveness, damping gain, limit speed, and $\pm$ position limit ranges) can be changed. The reference coordinate system, tool number, and filtering/profile/motion settings do not change and maintain the configuration previously set by (`fctrl on, cnd`).
+**`fctrl control` 可更改参数（规格）：** 使用此命令实时切换条件时，仅可更改控制条件（选择的轴、激活状态、目标力、响应性、阻尼增益、限制速度，以及 $\pm$ 位置限制范围）。参考坐标系、工具编号及过滤/配置/运动设置不会改变，并保持由 (`fctrl on, cnd`) 先前设置的配置。
 
 {% endhint %}
 
-##### **[Monitoring-Related System Variables]**
+##### **[监控相关系统变量]**
 
-| System Variable | Description | Data Type | Remarks |
+| 系统变量 | 描述 | 数据类型 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `_fctrl.motion` | Returns the current operation status of the automatic path generation motion. | (0: In operation, 1: Motion complete) | Used to check motion operation status (e.g., `wait _fctrl.motion==0`) |
-| `_fctrl.contact` | Returns the current contact determination status with the surface of the task object. | (0: No contact, 1: Contact complete) | Used to verify if contact conditions are satisfied (e.g., `wait _fctrl.contact`) |
-| `_fctrl.force_x` | Receives the force along the X-axis direction based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: N) | - |
-| `_fctrl.force_y` | Receives the force along the Y-axis direction based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: N) | - |
-| `_fctrl.force_z` | Receives the force along the Z-axis direction based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: N) | Primary variable for monitoring the pressurizing control axis |
-| `_fctrl.torque_rx` | Receives the rotational torque about the X-axis based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: Nm) | - |
-| `_fctrl.torque_ry` | Receives the rotational torque about the Y-axis based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: Nm) | - |
-| `_fctrl.torque_rz` | Receives the rotational torque about the Z-axis based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: Nm) | - |
-
+| `_fctrl.motion` | 返回当前自动路径生成运动的操作状态。 | (0：正在操作，1：运动完成) | 用于检查运动操作状态 (例如：`wait _fctrl.motion==0`) |
+| `_fctrl.contact` | 返回当前与任务对象表面的接触判断状态。 | (0：无接触，1：接触完成) | 用于验证接触条件是否满足 (例如：`wait _fctrl.contact`) |
+| `_fctrl.force_x` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 X 轴方向的力。 | (单位：N) | - |
+| `_fctrl.force_y` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Y 轴方向的力。 | (单位：N) | - |
+| `_fctrl.force_z` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Z 轴方向的力。 | (单位：N) | 监控加压控制轴的主要变量 |
+| `_fctrl.torque_rx` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 X 轴的旋转扭矩。 | (单位：Nm) | - |
+| `_fctrl.torque_ry` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Y 轴的旋转扭矩。 | (单位：Nm) | - |
+| `_fctrl.torque_rz` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Z 轴的旋转扭矩。 | (单位：Nm) | - |
 
 ---
 
-##### **2. Commands (Below Version V70.02-00)**
+##### **2. 命令（低于版本 V70.02-00）**
 
-In controller units and legacy program codes below version V70.02-00, the following global variable and built-in function standards are used. Please pay close attention during maintenance.
+在低于版本 V70.02-00 的控制器单元和遗留程序代码中，使用以下全局变量和内置函数标准。请在维护时给予特别注意。
 
-| Command / Function | Description | Arguments and Specific Rules | Remarks |
+| 命令 / 函数 | 描述 | 参数及具体规则 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `motion_state` | Returns the current operation status of the automatic path generation motion. | None | Identical to `_fctrl.motion` in version V70.02-00 |
-| `contact_state` | Returns the current contact determination status with the surface of the task object. | None | Identical to `_fctrl.contact` in version V70.02-00 |
-
+| `motion_state` | 返回当前自动路径生成运动的操作状态。 | 无 | 与版本 V70.02-00 中的 `_fctrl.motion` 相同 |
+| `contact_state` | 返回当前与任务对象表面的接触判断状态。 | 无 | 与版本 V70.02-00 中的 `_fctrl.contact` 相同 |
 
 ---
 
-##### **3. F/T Sensor Value Reception Function**
+##### **3. F/T 传感器值接收功能**
 
-This data reception function is compatible across all software versions.
+该数据接收功能与所有软件版本兼容。
 
-| Command / Function | Description | Arguments and Specific Rules | Remarks |
+| 命令 / 函数 | 描述 | 参数及具体规则 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `cfo(crd, type)` | Receives F/T sensor data based on the designated coordinate system. | `crd` : Reference coordinate system number configured in the force control condition (cnd)<br>`type` : Fixed to `"sensor"` | Refer to the precautions below |
-
+| `cfo(crd, type)` | 根据指定的坐标系接收 F/T 传感器数据。 | `crd` : 在力控制条件 (cnd) 中配置的参考坐标系编号<br>`类型 (type)` : 固定为 `"sensor"` | 请参阅以下注意事项 |
 
 ---
 
 {% hint style="info" %}
 
-**Precautions for Using `cfo()`:** If the entered coordinate system (`crd`) differs from the reference coordinate system of the currently applied force control condition (`cnd`), the data will not update. To receive data in real time, the `type` argument must be entered in lowercase as `"sensor"`.
+**使用 `cfo()` 的注意事项：** 如果输入的坐标系 (`crd`) 与当前应用的力控制条件 (`cnd`) 的参考坐标系不同，则数据将不会更新。要实时接收数据，`类型 (type)` 参数必须以小写输入为 `"sensor"`。
 
-**Recommendation:** It is highly recommended to use the dedicated system variables for **versions V70.02-00 and later (`_fctrl.force_x`, etc.)**, which eliminate the risk of argument matching errors.
+**建议：** 强烈建议使用针对 **版本 V70.02-00 及更高版本的专用系统变量 (`_fctrl.force_x` 等)**，以消除参数匹配错误的风险。
 
-{% endhint %}## 5.1 Z-Axis Force Control 
+{% endhint %}
+[__SOURCE](5-roblang/1-ex-fctrl-z.md)
+## 5.1 Z轴力控制
 
-The following is an example of a Job program that uses the **sensor-based force control function** on a robot.  
-This example is designed to wait until the **external force applied along the Z-axis reaches 35N or higher** before executing the subsequent tasks.
-
----
-
-##### **[Operation Overview]**
-
-- Securing time prior to starting force control via the delay command helps suppress sensor noise or initial vibrations, enabling more stable force control operation.
+以下是一个使用**基于传感器的力控制功能**的作业程序示例。  
+该示例设计为在**施加在Z轴上的外部力达到35N或更高**之前等待，然后执行后续任务。
 
 ---
 
+##### **[操作概述]**
 
-##### **[JOB Program]** 
+- 通过延迟命令在开始力控制之前确保时间，有助于抑制传感器噪声或初始振动，从而实现更稳定的力控制操作。
+
+---
+
+##### **[JOB 程序]** 
 
 ```python
-delay 1.0                           # Stabilization wait before starting control
-fctrl on,cnd=2                      # Start force control (Uses condition number 2)
+delay 1.0                           # 稳定等待以开始控制
+fctrl on,cnd=2                      # 开始力控制（使用条件编号 2）
 delay 0.5
 
 #get_current_force
-var force = _fctrl.force_z          # Current force in the Z direction based on the coordinate system configured in cnd=2
+var force = _fctrl.force_z          # 基于cnd=2中配置的坐标系统当前Z方向的力
 
-# Condition Loop: Wait until the Z-axis external force becomes 35N or higher
+# 条件循环：等待直到Z轴外部力达到35N或更高
 if abs(force.z) < 35 then *get_current_force
-delay 5                             # Wait for external force stabilization
-fctrl off                           # Terminate force control## 5.2 Changing Control Settings 
+delay 5                             # 等待外部力稳定
+fctrl off                           # 终止力控制
+[__SOURCE](5-roblang/2-ex-change-control.md)
+## 5.2 更改控制设置
 
-The following is a Job program example that **modifies only the 'Control' items among the force control conditions** on a robot.  
-This approach is useful when you want to change only the external force response characteristics during real-time operation while keeping the filter, coordinate system, and motion settings as they are.
-
----
-
-##### **[Operation Overview]**
-
-- fctrl on,cnd=2: Applies the entire configuration set number 2 when starting force control.
-- fctrl control,cnd=1: Changes **only the control parameters** to configuration set number 1.  
-  (The coordinate system, filter, motion, etc., remain in the state configured by set number 2.)
+以下是一个作业程序示例，**仅修改机器人力控制条件中的“控制”项**。  
+当您希望在实时操作中仅更改外部力响应特性，同时保持滤波器、坐标系统和运动设置不变时，此方法非常有用。
 
 ---
 
-##### **[JOB Program]** 
+##### **[操作概述]**
+
+- fctrl on,cnd=2: 在启动力控制时应用整个配置集编号 2。
+- fctrl control,cnd=1: 将**仅控制参数**更改为配置集编号 1。  
+  （坐标系统、滤波器、运动等保持在由编号 2 配置的状态。）
+
+---
+
+##### **[JOB 程序]** 
 
 ```python
-delay 1.0                           # Stabilization wait before starting control
-fctrl on,cnd=2                      # Start force control (Uses condition number 2)
+delay 1.0                           # 启动控制前的稳定等待
+fctrl on,cnd=2                      # 启动力控制 (使用条件编号 2)
 delay 0.5
 
-fctrl control,cnd=1                 # Change force control configuration (control parameters only) (Uses condition number 1)
+fctrl control,cnd=1                 # 更改力控制配置（仅控制参数）（使用条件编号 1）
 
-delay 5                             # Wait for external force stabilization
-fctrl off                           # Terminate force control## 5.3 Contact Surface Detection Function 
+delay 5                             # 等待外部力稳定
+fctrl off                           # 终止力控制
+[__SOURCE](5-roblang/3-ex-mot-contact.md)
+## 5.3 接触面检测功能
 
-The following is an example of a Job program that uses the **contact surface detection function** on a robot.
+以下是一个使用**接触面检测功能**的机器人作业程序示例。
 
 ---
 
-##### **[Operation Overview]**
+##### **[操作概述]**
 
-Configure the **contact** conditions in the **settings** as follows:
+在**设置**中配置**接触**条件如下：
 
-- Example: If contact is maintained based on the criteria below for 5 seconds, the contact surface detection is determined as OK.
+- 示例：如果在下面的标准基础上保持接触5秒钟，则接触面检测确定为OK。
 
-| Item | UI Value |
+| 项目 | UI值 |
 |---|---|
-| Force Error | 3 N |
-| Force Direction Variation | 20 deg |
-| Contact Angle | 40 deg |
-| Duration | 5 sec |
+| 力误差 | 3 N |
+| 力方向变化 | 20 deg |
+| 接触角度 | 40 deg |
+| 持续时间 | 5 sec |
 
 
 ---
 
-##### **[JOB Program]**
+##### **[作业程序]**
 
 ```python
-delay 1.0                            # Stabilization wait before starting control
-fctrl on,cnd=1                       # Start force control (Uses condition number 1)
-delay 0.5                            # Wait for 0.5 seconds before executing the contact surface detection condition
+delay 1.0                            # 开始控制前的稳定等待
+fctrl on,cnd=1                       # 开始力控制（使用条件编号1）
+delay 0.5                            # 在执行接触面检测条件前等待0.5秒
 
-wait _fctrl.contact, 20              # Execute contact surface detection condition, wait until contact surface detection is OK, check for a maximum of 20 seconds
+wait _fctrl.contact, 20              # 执行接触面检测条件，等待直到接触面检测为OK，最多检查20秒
 
-fctrl off                            # Terminate force control## 5.4 Spiral Motion 
+fctrl off                            # 终止力控制
+[__SOURCE](5-roblang/4-ex-mot-spiral.md)
+## 5.4 螺旋运动
 
-The following is an example of a Job program that uses **Spiral Motion** on a robot.  
-This example is designed to execute tasks while maintaining an **external force applied along the Z-axis at 20N**.
-
----
-
-##### **[Operation Overview]**
-
-- The **motion type** must be configured to Spiral in the **settings**. 
-
-- Including a mandatory delay command before the fctrl motion_on command helps suppress vibrations, enabling more stable force control operation.
+以下是一个使用**螺旋运动**的机器人作业程序示例。  
+此示例旨在执行任务，同时保持**施加在Z轴上的外力为20N**。
 
 ---
 
-##### **[JOB Program]** 
+##### **[操作概述]**
+
+- **运动类型**必须在**设置**中配置为螺旋。 
+
+- 在fctrl motion_on命令之前包含一个强制延迟命令有助于抑制振动，从而使力控制操作更稳定。
+
+---
+
+##### **[作业程序]**
 
 ```python
-delay 1.0                            # Stabilization wait before starting control
-fctrl on,cnd=1                       # Start force control (Uses condition number 1)
-delay 0.5                            # Wait before starting spiral motion
+delay 1.0                            # 控制开始前的稳定等待
+fctrl on,cnd=1                       # 开始力控制（使用条件编号1）
+delay 0.5                            # 在开始螺旋运动之前等待
 
-fctrl motion_on                      # Start spiral motion
-wait _fctrl.motion==0                # Wait until spiral motion terminates
-fctrl motion_off                     # Terminate spiral motion
+fctrl motion_on                      # 开始螺旋运动
+wait _fctrl.motion==0                # 等待直到螺旋运动结束
+fctrl motion_off                     # 终止螺旋运动
 
-fctrl off                            # Terminate force control## 5.5 Continuous Switching of Control Conditions Using For Loop
+fctrl off                            # 终止力控制
+[__SOURCE](5-roblang/5-ex-var-cnd.md)
+## 5.5 使用 For 循环连续切换控制条件
 
-This is an example of sequentially and automatically switching multiple force control conditions (`cnd`) using a `for` loop statement in the robot script language.
-
----
-
-##### **[Precautions During Manual Mode Step Forward/Backward]**
-
-* **Mandatory Prior Variable Declaration:** If a variable is specified as an argument in the program, such as `fctrl on, cnd=idx_cnd`, the controller will only recognize it normally if the corresponding variable is declared and initialized beforehand (`var idx_cnd=1`).
-* **Cause of Error:** If you execute only the `fctrl on` command line independently via manual step (forward/backward) without running the variable initialization line, the controller cannot determine whether the value assigned to the `idx_cnd` variable is valid (i.e., whether it is a registered condition number in the UI). As a result, it interprets it as an unknown value (garbage value) in memory, which **causes a system error**.
-* **Corrective Action:** When testing or verifying line operations manually, always execute the variable initialization statement (`var idx_cnd=1`) first to assign a valid condition number to the variable before running the `fctrl on` line.
-
+这是一个在机器人脚本语言中使用 `for` 循环语句顺序和自动切换多个力控制条件（`cnd`）的示例。
 
 ---
 
-##### **[JOB Program]** 
+##### **[手动模式向前/向后步骤的注意事项]**
+
+* **强制先声明变量：** 如果在程序中将变量指定为参数，例如 `fctrl on, cnd=idx_cnd`，控制器只有在相应变量事先声明并初始化的情况下（`var idx_cnd=1`）才能正常识别它。
+* **错误原因：** 如果您独立通过手动步骤（向前/向后）执行仅 `fctrl on` 命令行，而未运行变量初始化行，则控制器无法确定分配给 `idx_cnd` 变量的值是否有效（即是否为 UI 中注册的条件编号）。因此，它将其解释为内存中的未知值（垃圾值），这**会导致系统错误**。
+* **纠正措施：** 在手动测试或验证线路操作时，请始终先执行变量初始化语句（`var idx_cnd=1`），以在运行 `fctrl on` 行之前将有效条件编号分配给变量。
+
+---
+
+##### **[JOB 程序]** 
 
 ```python
 S1   move P,spd=5%,accu=0,tool=0  
-S2   move L,spd=5%,accu=0,tool=0   # Move to home position and approach position
+S2   move L,spd=5%,accu=0,tool=0   # 移动到 home 位置并接近位置
      delay 2
      
-     var idx_cnd=1                 # Declare force control condition number variable
-     for idx_cnd=1 to 3            # Loop operation: Sequentially apply registered force control conditions 1 through 3 
+     var idx_cnd=1                 # 声明力控制条件编号变量
+     for idx_cnd=1 to 3            # 循环操作：依次应用注册的力控制条件 1 到 3 
 
        delay 3
        fctrl on,cnd=idx_cnd
@@ -1070,177 +1119,188 @@ S3   move L,spd=5%,accu=0,tool=0
 
      next
      
-     end## 5.6 Methods to Work Around Agility Mode Termination Characteristics
+     end
+[__SOURCE](5-roblang/6-ex-agility-mode-end.md)
+## 5.6 处理灵活模式终止特性的解决方法
 
-Agility Mode has a specification where it unconditionally **pauses for 0.5 seconds** at that specific point before terminating when the `fctrl off` (termination) command is executed. 
+灵活模式具有一个规范，在执行 `fctrl off`（终止）命令时，它无条件地**在该特定点暂停 0.5 秒** 然后再终止。
 
-* **Expected Issue:** If control is terminated while maintaining contact with the surface immediately after machining or dispensing is completed, the pressure is maintained for 0.5 seconds, which may damage the product surface or leave marks.
+* **预期问题：** 如果在加工或 dispensing 完成后立即保持与表面的接触时终止控制，压力将保持 0.5 秒，这可能会损坏产品表面或留下痕迹。
 
-* **Solution:** Since position offset commands (`shift`) cannot be used during force control, you must switch in real time to a **workaround condition (cnd) that applies a force in the direction opposite to the pressurizing direction** before executing `fctrl off` to detach the robot from the surface first. Afterwards, it safely terminates following a 0.5-second pause in a non-contact (air) state.
+* **解决方案：** 由于在力控制期间无法使用位置偏移命令（`shift`），您必须实时切换到一个**施加与加压方向相反的力量的解决条件 (cnd)**，以在执行 `fctrl off` 之前先将机器人与表面分离。之后，它将在非接触（空气）状态下安全终止，暂停 0.5 秒。
 
 ---
 
-##### **[Condition Settings Configuration]**
+##### **[条件设置配置]**
 
-* **Main Control Condition (cnd=4):** A condition that activates Agility Mode to perform surface machining and automatic path motions.
+* **主要控制条件 (cnd=4)：** 启动灵活模式以执行表面加工和自动路径动作的条件。
 
-* **Workaround Condition (cnd=5):** A condition configured to escape in the direction opposite to the main pressurizing direction to prevent product damage.
+* **解决条件 (cnd=5)：** 配置为逃生到与主要加压方向相反的条件，以防止产品损坏。
 
 ![](../_assets/_29_agility_main_cnd.png)
-*▲ Figure: Main force control condition (cnd=4) configuration screen with Agility Mode activated*
+*▲ 图：激活灵活模式的主要力控制条件 (cnd=4) 配置屏幕*
 
 ![](../_assets/_30_agility_escape_cnd.png)
-*▲ Figure: Workaround condition (cnd=5) configuration screen set to apply an external force in the opposite direction for surface detachment*
-
+*▲ 图：设置为施加与表面分离相反方向外力的解决条件 (cnd=5) 配置屏幕*
 
 ---
 
-##### **[JOB Program]**
+##### **[JOB 程序]**
 
 ```python
-# Move to home position and machining approach position
+# 移动到 home 位置和加工接近位置
 S1   move P,spd=5%,accu=0,tool=0  
 S2   move L,spd=5%,accu=0,tool=0  
      delay 2
      
-# Execute main force control and automatic path
-     fctrl on,cnd=4                # Start main force control (Agility Mode)
-     wait _fctrl.contact,20        # Wait for surface contact completion (Timeout 20 seconds)
-     fctrl motion_on               # Start automatic path generation motion
-     wait _fctrl.motion==0         # Wait until motion path is complete
+# 执行主要力控制和自动路径
+     fctrl on,cnd=4                # 启动主要力控制（灵活模式）
+     wait _fctrl.contact,20        # 等待表面接触完成（超时 20 秒）
+     fctrl motion_on               # 启动自动路径生成运动
+     wait _fctrl.motion==0         # 等待直到运动路径完成
     
-# Escape sequence in the opposite direction for product protection
-     fctrl control,cnd=5           # Switch in real time to the workaround condition in the direction opposite to the contact surface (air)
-     delay 2                       # Wait until the robot completely detaches from the surface
+# 以相反方向进行逃生序列以保护产品
+     fctrl control,cnd=5           # 实时切换到与接触表面（空气）相反方向的解决条件
+     delay 2                       # 等待直到机器人完全与表面分离
      
-# Safe termination in a non-contact state
-     fctrl off                     # Terminate force control (Since it is in a non-contact state, the 0.5-second pause has no impact on the product)
+# 在非接触状态下安全终止
+     fctrl off                     # 终止力控制（由于处于非接触状态，0.5 秒的暂停对产品没有影响）
      delay 1
   
-end# 6. Monitoring
+end
+[__SOURCE](6-monitoring/README.md)
+# 6. 监控
 
-This monitoring menu allows you to intuitively verify and diagnose the robot's real-time operational status and F/T sensor data while the force control function is running. 
+此监控菜单允许您直观地验证和诊断机器人实时操作状态和F/T传感器数据，同时力控制功能正在运行。
 
-Through real-time data analysis, you can optimize control parameters and safely diagnose abnormal behaviors that may occur during the on-site teaching process.
+通过实时数据分析，您可以优化控制参数，并安全地诊断在现场教学过程中可能发生的异常行为。
 
 
 ---
 
 
-##### **Monitoring Menu Configuration**
+##### **监控菜单配置**
 
-Two dedicated monitoring screens are provided depending on the purpose of use. Please select and utilize them according to your task conditions and debugging needs.
+根据使用目的提供两个专用监控屏幕。请根据您的任务条件和调试需求进行选择和使用。
 
-###### **[Force Data Monitoring]**
-* **Purpose:** Used when you want to check the raw force and torque data measured by the F/T sensor itself.
+###### **[力数据监控]**
+* **目的：** 当您想查看F/T传感器本身测量的原始力和扭矩数据时使用。
 
-* **Primary Verification Items:** Verifies the current force data in Cartesian coordinates (X, Y, Z, RX, RY, RZ) based on the designated reference coordinate system.
+* **主要验证项目：** 根据指定的参考坐标系验证当前的笛卡尔坐标(X, Y, Z, RX, RY, RZ)下的力数据。
 
 
-###### **[Force Motion Monitoring]**
-* **Purpose:** Comprehensively diagnoses the real-time pressurizing state, the robot's tracking behavior, speed limit constraints, and contact determination status.
+###### **[力运动监控]**
+* **目的：** 全面诊断实时加压状态、机器人的追踪行为、速度限制约束和接触判定状态。
 
-* **Primary Verification Items:** Real-time target force (F), position command (Cmd), maximum limit speed (Vmax), and contact condition threshold matching status (TLT, AVG, HLD).
+* **主要验证项目：** 实时目标力(F)、位置命令(Cmd)、最大限制速度(Vmax)和接触条件阈值匹配状态(TLT, AVG, HLD)。
 
 ---
 
 {% hint style="info" %}
 
-**Safety Monitoring Guidelines:** When tuning a new process, it is highly recommended to constantly monitor the **Vmax (Maximum Limit Speed)** and **HLD (Duration)** counts on the `6.2 Force Motion Monitoring` window to check in real time whether the robot is experiencing unintended divergent vibrations or is paused due to a missing contact determination.
+**安全监控指南：** 在调整新过程时，强烈建议您在`6.2 力运动监控`窗口中不断监控**Vmax (最大限制速度)**和**HLD (持续时间)**计数，以实时检查机器人是否经历了意外的振动或因缺少接触判定而暂停。
 
-{% endhint %}## 6.1 Force Data Monitoring
+{% endhint %}
+[__SOURCE](6-monitoring/1-force-data-monitoring.md)
+## 6.1 力量数据监测
 
-This function allows for real-time monitoring of external forces and torque data applied to the robot during operation. It must be referenced to verify the precise application status when the force control function is running.
+此功能允许实时监测施加于机器人操作期间的外部力量和扭矩数据。在力量控制功能运行时，必须参考此数据以验证精确的应用状态。
 
 --- 
 
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
 
-##### **Screen Configuration Items**
+##### **屏幕配置项**
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Cartesian Coordinates (X, Y, Z, RX, RY, RZ)** | The 3-axis directional forces (N) and 3-axis rotational torque (Nm) values acting on the robot end-effector within the selected reference coordinate system. |
-| **Joint Coordinates (J1, J2, J3, J4, J5, J6)** | This item monitors the physical load status applied to each individual joint axis (Joint 1 to Joint 6) of the robot, converted in real time. |
+| **笛卡尔坐标 (X, Y, Z, RX, RY, RZ)** | 作用于机器人末端执行器的3轴方向力量 (N) 和3轴旋转扭矩 (Nm) 值，在所选参考坐标系内。 |
+| **关节坐标 (J1, J2, J3, J4, J5, J6)** | 此项监测施加于机器人每个单独关节轴 (关节1到关节6) 的物理负载状态，实时转换。 |
 
-* **Coordinate System Reference:** The direction and reference axes of the [Cartesian Coordinates] data follow and match the reference coordinate system designated by the user in the force control condition settings (`cnd`) menu.
+* **坐标系统参考：** [笛卡尔坐标] 数据的方向和参考轴遵循并匹配用户在力量控制条件设置 (`cnd`) 菜单中指定的参考坐标系统。
 
-* **Data Update Rule:** The data on this monitoring window updates in real time only when the force control operation command (`fctrl on`) is activated and the control loop is running.
+* **数据更新规则：** 仅当力量控制操作命令 (`fctrl on`) 被激活并且控制循环正在运行时，此监测窗口上的数据实时更新。
 
 
 --- 
 
 {% hint style="info" %}
 
-**Teaching Pendant (TP) Navigation Path:** [Window Adjustment] ➔ [F1: Select] ➔ [Force Data]
+**教学挂件 (TP) 导航路径：** [窗口调整] ➔ [F1: 选择] ➔ [力量数据]
 
-**On-Site Verification Tip:** If the data is not near `0.000` while the robot is stationary, verify the dead weight compensation (Gravity Compensation) or the sensor zero setting (Zeroing).
+**现场验证提示：** 如果机器人静止时数据未接近 `0.000`，请验证重力补偿（Gravity Compensation）或传感器零设置（Zeroing）。
 
-**Output Criteria:** During force control operation, F/T sensor data is output in real time exclusively to the **[Cartesian Coordinates]** item, while the **[Joint Coordinates]** item remains fixed at `0.0`.
+**输出标准：** 在力量控制操作期间，F/T 传感器数据实时输出，仅到 **[笛卡尔坐标]** 项目，而 **[关节坐标]** 项目保持固定在 `0.0`。
 
-{% endhint %}## 6.2 Force Motion Monitoring
+{% endhint %}
+[__SOURCE](6-monitoring/2-force-motion-monitoring.md)
+## 6.2 力运动监控
 
-This function allows you to comprehensively check the error and behavioral status of the real-time applied force data (F), the control command position (Cmd), and the configured speed limit value (Vmax) during force control operation.
+此功能允许您全面检查实时施加的力数据 (F)、控制命令位置 (Cmd) 和配置的速度限制值 (Vmax) 在力控制操作过程中的错误和行为状态。
 
 --- 
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
 
-##### **Screen Configuration Items**
+##### **屏幕配置项目**
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **F** | The real-time target force. [Unit: N or Nm] |
-| **Cmd** | The command position generated in real time by the system to track the force control. [Unit: mm or deg] |
-| **Vmax** | The maximum limit speed profile data configured for system stability. [Unit: mm/s] |
-| **TLT** | Monitors the **[Tilt Angle Threshold]** status among the contact conditions in real time. |
-| **AVG** | Monitors the **[Angle Change Threshold]** status among the contact conditions in real time. |
-| **HLD** | Monitors the **[Duration]** count value and retention status among the contact conditions. |
+| **F** | 实时目标力。[单位：N 或 Nm] |
+| **Cmd** | 系统实时生成的用于跟踪力控制的命令位置。[单位：mm 或 deg] |
+| **Vmax** | 为系统稳定性配置的最大限速配置数据。[单位：mm/s] |
+| **TLT** | 实时监控接触条件中的 **[倾斜角阈值]** 状态。 |
+| **AVG** | 实时监控接触条件中的 **[角度变化阈值]** 状态。 |
+| **HLD** | 监控接触条件中的 **[持续时间]** 计数值和保留状态。 |
 
-* **Coordinate System Reference:** The direction and axes of all monitored data are aligned based on the reference coordinate system designated in the force control condition settings (`cnd`).
+* **坐标系统参考：** 所有监控数据的方向和轴线基于在力控制条件设置中指定的参考坐标系统对齐 (`cnd`)。
 
-* **Data Update Rule:** The data on this monitoring window updates in real time only when the force control operation command (`fctrl on`) is activated and the real-time control loop is running.
+* **数据更新规则：** 当激活力控制操作命令 (`fctrl on`) 并且实时控制循环正在运行时，此监控窗口上的数据实时更新。
 
 --- 
 
 {% hint style="info" %}
 
-**Teaching Pendant (TP) Navigation Path:** [Window Adjustment] ➔ [F1: Select] ➔ [Force Motion]
+**教学挂件 (TP) 导航路径：** [窗口调整] ➔ [F1: 选择] ➔ [力运动]
 
-**On-Site Verification Tip:** If the robot's behavior is unstable during initial contact, check the `TLT`, `AVG`, and `HLD` status monitoring data on the right. If the `HLD` (duration) fails to reach the target value and resets after contact, it indicates that the `TLT` or `AVG` value is momentarily exceeding the threshold, causing the contact determination to be missed. In this case, the corresponding threshold conditions must be tuned.
+**现场验证提示：** 如果机器人在初始接触期间行为不稳定，请检查右侧的 `TLT`、`AVG` 和 `HLD` 状态监控数据。如果 `HLD`（持续时间）未能达到目标值并在接触后重置，则表示 `TLT` 或 `AVG` 值暂时超过了阈值，导致接触判断被错过。在这种情况下，必须调整相应的阈值条件。
 
-{% endhint %}# 7. Errors and Troubleshooting
+{% endhint %}
+[__SOURCE](7-error/README.md)
+# 7. 错误与故障排除
 
-This section provides the causes and on-site corrective action guides for major exceptional situations (error codes) occurring within the controller and F/T sensor unit during the force control process.
+本节提供了在力控制过程中控制器和F/T传感器单元中发生的主要异常情况（错误代码）的原因和现场纠正措施指南。
 
 ---
 
-##### **[Force Control Exception Situations and Response Guide]**
+##### **[力控制异常情况与响应指南]**
 
-| Error Code | Error Name & Primary Cause | On-Site Corrective Action Guide |
+| 错误代码 | 错误名称及主要原因 | 现场纠正措施指南 |
 |:--:|---|---|
-| **E0260** | **Force Control Function Disabled**<br>When the force control utilization setting within the system parameters is turned off. | Switch the function utilization setting to **On** in the [System ➔ Application Parameter ➔ Force Control] menu. |
-| **E0355** | **Force Control Tool Number Error**<br>When there is no currently loaded tool number information or the designated tool setting within the force control condition (`cnd`) is mismatched. | Verify that a valid tool number is defined in the current teaching program, and reassign the tool parameters within the force control settings. |
-| **E1336** | **User Coordinate System Number Error**<br>When the reference coordinate system of the force control condition (`cnd`) is designated as a non-existent user coordinate system. | Verify in the [Coordinate System Settings] menu whether the selected user coordinate system number is properly configured and recorded. |
-| **E0259** | F/T Sensor Communication Issue | Inspect the sensor hardware and cable connections. |
-| **E0272** | Unsupported Sensor | Contact the customer service center (Sensor Interface implementation required). |
-| **E0273** | F/T Sensor Communication Issue | Inspect the sensor hardware and cable connections. |
-| **E0274** | F/T Sensor Communication Issue | Inspect the sensor hardware and cable connections. |
+| **E0260** | **力控制功能禁用**<br>当系统参数中的力控制使用设置被关闭时。 | 在[系统 ➔ 应用参数 ➔ 力控制]菜单中将功能使用设置切换为**启用**。 |
+| **E0355** | **力控制工具号码错误**<br>当当前没有加载的工具号码信息或力控制条件中的指定工具设置（`cnd`）不匹配时。 | 验证当前教学程序中是否定义了有效的工具号码，并在力控制设置中重新分配工具参数。 |
+| **E1336** | **用户坐标系号码错误**<br>当力控制条件（`cnd`）的参考坐标系被指定为不存在的用户坐标系时。 | 在[坐标系统设置]菜单中确认所选用户坐标系号码是否正确配置和记录。 |
+| **E0259** | F/T传感器通信问题 | 检查传感器硬件和电缆连接。 |
+| **E0272** | 不支持的传感器 | 联系客服中心（需要传感器接口的实现）。 |
+| **E0273** | F/T传感器通信问题 | 检查传感器硬件和电缆连接。 |
+| **E0274** | F/T传感器通信问题 | 检查传感器硬件和电缆连接。 |
 
 
-* **System Protection Behavior:** Upon the occurrence of any of the exceptional situations listed above, the robot immediately halts pressurizing operations and switches to a **Safe-Stop** state.
+* **系统保护行为：** 一旦发生上述任何异常情况，机器人立刻停止加压操作并切换至**安全停机**状态。
 
 ---
 
-##### **[Troubleshooting Diagnostic Procedure]**
+##### **[故障排除诊断程序]**
 
-When an unknown force control error or abnormal behavior occurs on-site, proceed with the diagnosis in the following order:
+当现场发生未知的力控制错误或异常行为时，按照以下顺序进行诊断：
 
-1. **Inspect F/T Sensor Physical Connections:** Check the LED status on the sensor body connector and the reception line inside the controller.
-2. **Verify Software Parameters:** Re-verify the tool data and reference coordinate system assignment numbers inside the currently running program.
-3. **Check Communication Quality and Logs:** Verify whether raw sensor data is normally outputting to the monitoring window, and then perform a backup of the controller system log (`Log`).# 8. Release Notes
+1. **检查F/T传感器物理连接：** 检查传感器主体连接器上的LED状态和控制器内部的接收线路。
+2. **验证软件参数：** 重新验证当前运行程序中的工具数据和参考坐标系分配号码。
+3. **检查通信质量和日志：** 验证原始传感器数据是否正常输出到监控窗口，然后备份控制器系统日志（`Log`）。
+[__SOURCE](8-release-note/README.md)
+# 8. 版本说明
 
-This section covers the key changes and new feature history for each version of the force control function.
+本节介绍了力控制功能每个版本的主要更改和新特性历史。
 
 ---
 
@@ -1248,13 +1308,13 @@ This section covers the key changes and new feature history for each version of 
 
 <br>
 
-* **Added AIDIN F/T Sensor Interface**
-  > Official support for the real-time communication protocol of the AIDIN Robotics sensor lineup.
-* **Introduced F/T Sensor Offset & Dynamic Load Identification**
-  > Added an automatic identification algorithm for tool weight and center of gravity.
-* **Applied Soft Start Function**
-  > Prevents overshoot and mechanical impact at the moment of initial contact through initial pressurized ramping control.
-* **Reflected Real-Time Maximum Speed Limit Profile**
-  > Blocks rapid acceleration and control divergence of the robot during steps or surface detachment (non-contact).
-* **Provided Dedicated Structure-Type System Variables (_fctrl)**
-  > Provides intuitive monitoring variables such as `_fctrl.force_x` (maintains compatibility with legacy `cfo` functions).
+* **添加了 AIDIN F/T 传感器接口**
+  > 官方支持 AIDIN Robotics 传感器系列的实时通信协议。
+* **引入了 F/T 传感器偏移和动态负载识别**
+  > 增加了工具重量和重心的自动识别算法。
+* **应用软启动功能**
+  > 通过初始加压斜坡控制，防止在初始接触时的超调和机械冲击。
+* **反映实时最大速度限制配置**
+  > 阻止机器人在步骤或表面分离（非接触）期间的快速加速和控制偏差。
+* **提供专用结构类型系统变量 (_fctrl)**
+  > 提供直观的监控变量，如 `_fctrl.force_x`（与传统的 `cfo` 功能保持兼容）。

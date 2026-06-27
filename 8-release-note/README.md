@@ -1,6 +1,6 @@
-﻿# 8. Release Notes
+# 8. 版本说明
 
-This section covers the key changes and new feature history for each version of the force control function.
+本节介绍了力控制功能每个版本的主要更改和新特性历史。
 
 ---
 
@@ -8,13 +8,13 @@ This section covers the key changes and new feature history for each version of 
 
 <br>
 
-* **Added AIDIN F/T Sensor Interface**
-  > Official support for the real-time communication protocol of the AIDIN Robotics sensor lineup.
-* **Introduced F/T Sensor Offset & Dynamic Load Identification**
-  > Added an automatic identification algorithm for tool weight and center of gravity.
-* **Applied Soft Start Function**
-  > Prevents overshoot and mechanical impact at the moment of initial contact through initial pressurized ramping control.
-* **Reflected Real-Time Maximum Speed Limit Profile**
-  > Blocks rapid acceleration and control divergence of the robot during steps or surface detachment (non-contact).
-* **Provided Dedicated Structure-Type System Variables (_fctrl)**
-  > Provides intuitive monitoring variables such as `_fctrl.force_x` (maintains compatibility with legacy `cfo` functions).
+* **添加了 AIDIN F/T 传感器接口**
+  > 官方支持 AIDIN Robotics 传感器系列的实时通信协议。
+* **引入了 F/T 传感器偏移和动态负载识别**
+  > 增加了工具重量和重心的自动识别算法。
+* **应用软启动功能**
+  > 通过初始加压斜坡控制，防止在初始接触时的超调和机械冲击。
+* **反映实时最大速度限制配置**
+  > 阻止机器人在步骤或表面分离（非接触）期间的快速加速和控制偏差。
+* **提供专用结构类型系统变量 (_fctrl)**
+  > 提供直观的监控变量，如 `_fctrl.force_x`（与传统的 `cfo` 功能保持兼容）。

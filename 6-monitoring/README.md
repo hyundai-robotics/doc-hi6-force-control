@@ -1,32 +1,32 @@
-﻿# 6. Monitoring
+﻿# 6. 监控
 
-This monitoring menu allows you to intuitively verify and diagnose the robot's real-time operational status and F/T sensor data while the force control function is running. 
+此监控菜单允许您直观地验证和诊断机器人实时操作状态和F/T传感器数据，同时力控制功能正在运行。
 
-Through real-time data analysis, you can optimize control parameters and safely diagnose abnormal behaviors that may occur during the on-site teaching process.
+通过实时数据分析，您可以优化控制参数，并安全地诊断在现场教学过程中可能发生的异常行为。
 
 
 ---
 
 
-##### **Monitoring Menu Configuration**
+##### **监控菜单配置**
 
-Two dedicated monitoring screens are provided depending on the purpose of use. Please select and utilize them according to your task conditions and debugging needs.
+根据使用目的提供两个专用监控屏幕。请根据您的任务条件和调试需求进行选择和使用。
 
-###### **[Force Data Monitoring]**
-* **Purpose:** Used when you want to check the raw force and torque data measured by the F/T sensor itself.
+###### **[力数据监控]**
+* **目的：** 当您想查看F/T传感器本身测量的原始力和扭矩数据时使用。
 
-* **Primary Verification Items:** Verifies the current force data in Cartesian coordinates (X, Y, Z, RX, RY, RZ) based on the designated reference coordinate system.
+* **主要验证项目：** 根据指定的参考坐标系验证当前的笛卡尔坐标(X, Y, Z, RX, RY, RZ)下的力数据。
 
 
-###### **[Force Motion Monitoring]**
-* **Purpose:** Comprehensively diagnoses the real-time pressurizing state, the robot's tracking behavior, speed limit constraints, and contact determination status.
+###### **[力运动监控]**
+* **目的：** 全面诊断实时加压状态、机器人的追踪行为、速度限制约束和接触判定状态。
 
-* **Primary Verification Items:** Real-time target force (F), position command (Cmd), maximum limit speed (Vmax), and contact condition threshold matching status (TLT, AVG, HLD).
+* **主要验证项目：** 实时目标力(F)、位置命令(Cmd)、最大限制速度(Vmax)和接触条件阈值匹配状态(TLT, AVG, HLD)。
 
 ---
 
 {% hint style="info" %}
 
-**Safety Monitoring Guidelines:** When tuning a new process, it is highly recommended to constantly monitor the **Vmax (Maximum Limit Speed)** and **HLD (Duration)** counts on the `6.2 Force Motion Monitoring` window to check in real time whether the robot is experiencing unintended divergent vibrations or is paused due to a missing contact determination.
+**安全监控指南：** 在调整新过程时，强烈建议您在`6.2 力运动监控`窗口中不断监控**Vmax (最大限制速度)**和**HLD (持续时间)**计数，以实时检查机器人是否经历了意外的振动或因缺少接触判定而暂停。
 
 {% endhint %}

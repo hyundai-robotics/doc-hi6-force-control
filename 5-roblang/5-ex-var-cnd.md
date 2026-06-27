@@ -1,27 +1,26 @@
-﻿## 5.5 Continuous Switching of Control Conditions Using For Loop
+## 5.5 使用 For 循环连续切换控制条件
 
-This is an example of sequentially and automatically switching multiple force control conditions (`cnd`) using a `for` loop statement in the robot script language.
-
----
-
-##### **[Precautions During Manual Mode Step Forward/Backward]**
-
-* **Mandatory Prior Variable Declaration:** If a variable is specified as an argument in the program, such as `fctrl on, cnd=idx_cnd`, the controller will only recognize it normally if the corresponding variable is declared and initialized beforehand (`var idx_cnd=1`).
-* **Cause of Error:** If you execute only the `fctrl on` command line independently via manual step (forward/backward) without running the variable initialization line, the controller cannot determine whether the value assigned to the `idx_cnd` variable is valid (i.e., whether it is a registered condition number in the UI). As a result, it interprets it as an unknown value (garbage value) in memory, which **causes a system error**.
-* **Corrective Action:** When testing or verifying line operations manually, always execute the variable initialization statement (`var idx_cnd=1`) first to assign a valid condition number to the variable before running the `fctrl on` line.
-
+这是一个在机器人脚本语言中使用 `for` 循环语句顺序和自动切换多个力控制条件（`cnd`）的示例。
 
 ---
 
-##### **[JOB Program]** 
+##### **[手动模式向前/向后步骤的注意事项]**
+
+* **强制先声明变量：** 如果在程序中将变量指定为参数，例如 `fctrl on, cnd=idx_cnd`，控制器只有在相应变量事先声明并初始化的情况下（`var idx_cnd=1`）才能正常识别它。
+* **错误原因：** 如果您独立通过手动步骤（向前/向后）执行仅 `fctrl on` 命令行，而未运行变量初始化行，则控制器无法确定分配给 `idx_cnd` 变量的值是否有效（即是否为 UI 中注册的条件编号）。因此，它将其解释为内存中的未知值（垃圾值），这**会导致系统错误**。
+* **纠正措施：** 在手动测试或验证线路操作时，请始终先执行变量初始化语句（`var idx_cnd=1`），以在运行 `fctrl on` 行之前将有效条件编号分配给变量。
+
+---
+
+##### **[JOB 程序]** 
 
 ```python
 S1   move P,spd=5%,accu=0,tool=0  
-S2   move L,spd=5%,accu=0,tool=0   # Move to home position and approach position
+S2   move L,spd=5%,accu=0,tool=0   # 移动到 home 位置并接近位置
      delay 2
      
-     var idx_cnd=1                 # Declare force control condition number variable
-     for idx_cnd=1 to 3            # Loop operation: Sequentially apply registered force control conditions 1 through 3 
+     var idx_cnd=1                 # 声明力控制条件编号变量
+     for idx_cnd=1 to 3            # 循环操作：依次应用注册的力控制条件 1 到 3 
 
        delay 3
        fctrl on,cnd=idx_cnd

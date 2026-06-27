@@ -1,1 +1,1 @@
-﻿# ${cont_model} Controller - Force Control with sensors Manual
+﻿# ${cont_model} 控制器 - 带传感器的力控制手册

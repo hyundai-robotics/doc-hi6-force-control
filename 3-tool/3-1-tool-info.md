@@ -1,8 +1,8 @@
-﻿## 3.1 Tool Data Settings
+## 3.1 工具数据设置
 
-This step improves the accuracy of the force control algorithm by registering the physical specifications and offset values of the tool mounted at the end of the robot flange. The force and torque recognized by the sensor are calibrated in real time according to the configured tool weight and center of gravity values.
+此步骤通过注册安装在机器人法兰末端的工具的物理规格和偏移值，提高力控制算法的准确性。传感器识别的力和扭矩根据配置的工具重量和重心值实时校准。
 
-The force control tool information settings can be accessed through the following path: 
+力控制工具信息设置可以通过以下路径访问：
 
 [F2: System] - 4: Application Parameter - 24: Force Control - 2: Tool Data
 
@@ -10,22 +10,22 @@ The force control tool information settings can be accessed through the followin
 
 ![](../_assets/_04_fctrl_ctrl_tool_data.png)
 
-##### **[UI Configuration and Status Display Items]**
+##### **[UI 配置和状态显示项目]**
 
-| Item | Description |
+| 项目 | 描述 |
 |---|---|
-| **Name** | Identification number and name of the tool data (Automatically entered) |
-| **Description** | Description or purpose of the tool (Optional entry) |
-| **Weight [kg]** | The actual weight of the mounted tool. Used as the reference value for gravity compensation during force error calculation. |
-| **Center [X, Y, Z]** | The position of the tool center of gravity based on the F/T sensor coordinate system (Unit: mm) |
-| **Force Zero [X, Y, Z]** | The zero reference value to cancel out the initial force offset of the sensor itself with the tool mounted (Unit: N) |
-| **Torque Zero [X, Y, Z]** | The zero reference value to cancel out the initial torque offset of the sensor itself with the tool mounted (Unit: Nm) |
-| **Sensor Coord.** | Definition of the direction of the sensor reference coordinate system |
-| **Dynamic Load Identification** | A function to estimate the weight and center of gravity of the tool installed in front of the F/T sensor |
+| **名称** | 工具数据的识别编号和名称（自动输入） |
+| **描述** | 工具的描述或用途（可选输入） |
+| **重量 [kg]** | 安装工具的实际重量。用于力误差计算中的重力补偿参考值。 |
+| **中心 [X, Y, Z]** | 基于 F/T 传感器坐标系的工具重心位置（单位：mm） |
+| **力零点 [X, Y, Z]** | 用于取消传感器本身的初始力偏移与所安装工具的零参考值（单位：N） |
+| **扭矩零点 [X, Y, Z]** | 用于取消传感器本身的初始扭矩偏移与所安装工具的零参考值（单位：Nm） |
+| **传感器坐标** | 传感器参考坐标系方向的定义 |
+| **动态负载识别** | 估计安装在 F/T 传感器前的工具的重量和重心的功能 |
 
 {% hint style="info" %}
 
-- From version V70.02-00 and later, up to 4 sets of tool information can be configured. 
-- The sensor-based load estimation function previously provided in Hi5a has been replaced by the "Dynamic Load Identification" function from version V70.02-00 and later. 
+- 从版本 V70.02-00 开始，最多可以配置 4 套工具信息。
+- 在 Hi5a 中提供的基于传感器的负载估计功能已被从版本 V70.02-00 开始的“动态负载识别”功能所替代。
 
 {% endhint %}

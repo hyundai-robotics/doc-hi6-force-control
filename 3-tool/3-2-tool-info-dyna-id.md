@@ -1,14 +1,14 @@
-﻿## 3.2 Dynamic Load Identification
+## 3.2 动态负载识别
 
-This function analyzes the data from the F/T sensor mounted at the end of the robot in real time to precisely identify the physical characteristics of the attached tool (Payload)—such as **mass, center of gravity, and sensor bias**—through a series of calibration motions.
+此功能实时分析安装在机器人末端的 F/T 传感器的数据，以通过一系列校准运动精确识别附加工具（负载）的物理特性，例如 **质量、重心和传感器偏差**。
 
 {% hint style="info" %}
 
-This function is supported from controller software version **V70.02-00 or later**.
+此功能支持从控制器软件版本 **V70.02-00 或更高版本**。
 
 {% endhint %}
 
-The Dynamic Load Identification function can be accessed through the following path:
+动态负载识别功能可以通过以下路径访问：
 
 [F2: System] - 4: Application Parameter - 24: Force Control - 2: Tool Data ➔ **[F1: Dynamic Load Identification]**
 
@@ -18,32 +18,32 @@ The Dynamic Load Identification function can be accessed through the following p
 
 
 
-##### **[UI Configuration and Status Display Items]**
+##### **[用户界面配置和状态显示项目]**
 
-| Execution Item | Description |
+| 执行项目 | 描述 |
 | :--- | :--- |
-| **Force Control Tool No.** | The target number to identify and save the dynamic load parameters. This refers to the **pure tool (Payload) physically attached to the front end of the F/T sensor**. |
-| **Robot Motion Tool No.** | The reference tool number used when running the dynamic identification motion. This refers to the **integrated tool information that physically includes the position and weight of the F/T sensor itself**. |
-| **Current / Target Angle** | Displays the current real-time angle of each robot axis and the matching target pose angle during the identification run (Verification/Normal Operation). |
-| **Sensor Data** | Displays the real-time force and torque data feedback collected from the F/T sensor during operation. |
-| **Limit Min / Max** | The minimum and maximum operational limit angles for each robot axis, restricted by software to ensure the identification motion runs safely. |
-| **Verification Operation** | A test run performed prior to the actual load identification to check in advance for any surrounding interference along the robot's movement path and the tension (pulling) of the sensor cable. |
-| **Normal Operation** | Activated after the Verification Operation completes normally without alarms. This is the actual identification run that collects F/T sensor data at high speed to calculate the load parameters. |
+| **力控制工具编号** | 用于识别和保存动态负载参数的目标编号。这指的是 **物理上连接到 F/T 传感器前端的纯工具（负载）**。 |
+| **机器人运动工具编号** | 在运行动态识别运动时使用的参考工具编号。这指的是 **物理上包括 F/T 传感器自身位置和重量的综合工具信息**。 |
+| **当前 / 目标角度** | 显示每个机器人轴的当前实时角度和识别运行过程中的匹配目标姿态角度（验证/正常操作）。 |
+| **传感器数据** | 显示在操作过程中从 F/T 传感器收集的实时力和扭矩数据反馈。 |
+| **限制最小 / 最大** | 每个机器人轴的最小和最大操作限制角，由软件限制以确保识别运动的安全运行。 |
+| **验证操作** | 在实际负载识别之前进行的测试运行，以提前检查机器人运动路径是否有周围干扰以及传感器电缆的拉紧（拉动）。 |
+| **正常操作** | 在验证操作正常完成且无警报后激活。这是实际识别运行，以高速收集 F/T 传感器数据以计算负载参数。 |
 
 
 {% hint style="info" %}
 
-**Robot Motion Tool Entry Sequence Guide:**
+**机器人运动工具输入顺序指南：**
 
-  1. **Before Identification:** First, enter only the approximate weight information into the 'Robot Motion Tool No.' and then proceed with the run.
+  1. **识别之前：** 首先仅将近似重量信息输入到“机器人运动工具编号”中，然后继续运行。
 
-  2. **After Identification:** Once the dynamic load identification is complete, update the data by finally adding the measured results to the dead weight and center of gravity (CoG) of the F/T sensor itself.
+  2. **识别之后：** 动态负载识别完成后，通过最终将测量结果添加到死重和 F/T 传感器自身的重心（CoG）来更新数据。
 
 {% endhint %}
 
 ---
 
-##### **[Identification Motion and Poses]** During the execution of the Verification Operation and Normal Operation, the robot's wrist axes (Axes 4, 5, and 6) automatically run through a sequence of 6 predefined default poses to accurately acquire multi-axis gravity direction matching data from the F/T sensor.
+##### **[识别运动和姿态]** 在执行验证操作和正常操作期间，机器人的手腕轴（轴 4、5 和 6）自动通过 6 个预定义的默认姿态的序列，以准确获取来自 F/T 传感器的多轴重力方向匹配数据。
 
 * **P1:** `[0, 90, 0, 0, -90, 0]`
 * **P2:** `[0, 90, 0, 0, 90, 0]`
@@ -56,45 +56,45 @@ The Dynamic Load Identification function can be accessed through the following p
 
 {% hint style="warning" %}
 
-**Prerequisites for Manual Operation:** To execute the Verification/Normal Operation, the controller mode switch must be in the **[MANUAL]** state, the motors must be ON, and the **enabling switch (Deadman Switch)** on the teaching pendant (TP) must be maintained in the On (pressed) state.
+**手动操作的前提条件：** 要执行验证/正常操作，控制器模式开关必须处于 **[MANUAL]** 状态，电机必须开启，且教学挂件（TP）上的 **使能开关（Deadman Switch）** 必须保持在开启（按下）状态。
 
-**Surrounding Environment Inspection:** Before starting the operation, check the clearance length of the F/T sensor cable to ensure there is no twisting or pulling during rotation, and secure a sufficient work area within the motion radius so that the robot body and tool do not collide with surrounding structures or safety fences.
+**周围环境检查：** 在启动操作之前，检查 F/T 传感器电缆的间隙长度，以确保在旋转过程中没有扭曲或拉动，并确保在运动半径内留出足够的工作区域，以防止机器人主体和工具与周围结构或安全围栏发生碰撞。
 
 {% endhint %}
 
-##### **[Operation Sequence and Procedures]** ###### **Step 1: Verification Operation**
-* **Purpose:** A step to first check the surrounding space and for any interference so that the robot's movement during tracking can be performed safely.
+##### **[操作顺序和过程]** ###### **步骤 1：验证操作**
+* **目的：** 首先检查周围空间和任何干扰，以确保在跟踪过程中机器人的移动能够安全进行。
 
-* **Role:** Before the full-scale identification motion, the robot moves at a low speed to verify that there are no collision paths with surrounding facilities or mechanisms.
+* **角色：** 在全面的识别运动之前，机器人以低速移动，以验证与周围设施或机制之间没有碰撞路径。
 
-###### **Step 2: Normal Operation**
-* **Purpose:** Runs the multi-axis identification motion to calculate the tool's weight and center of gravity position in real time based on the F/T sensor data.
+###### **步骤 2：正常操作**
+* **目的：** 运行多轴识别运动以实时计算工具的重量和重心位置，基于 F/T 传感器数据。
 
-* **Role:** The robot changes its pose into various configurations with predefined angular displacements to measure the component forces of the dead weight applied to the sensor.
+* **角色：** 机器人改变姿态以多种配置进行预定义角度偏移，以测量施加于传感器的死重的分力。
 
-###### **Step 3: Check Results**
-* When the measurement is complete, a pop-up window displays the currently applied `Existing Value` and the newly calculated `Estimated Value` based on the sensor.
+###### **步骤 3：检查结果**
+* 当测量完成时，将弹出窗口显示当前施加的 `Existing Value` 和基于传感器的新计算 `Estimated Value`。
 
 ![](../_assets/_31_fctrl_dyna_id_result.png)
 
-| Execution Item | Description |
+| 执行项目 | 描述 |
 | :--- | :--- |
-| **Weight [Kg]** | The total estimated mass of the tool. |
-| **Center [mm]** | The center of gravity position of the tool along the X, Y, and Z directions relative to the origin of the sensor coordinate system. |
-| **Force/Torque Bias** | The accumulated zero offset (Bias) value unique to the sensor. |
-| **Error Rate [%]** | Indicates the data reliability and error rate within the identification trajectory, displayed separately for Force and Torque. |
+| **重量 [Kg]** | 工具的总估计质量。 |
+| **重心 [mm]** | 工具在相对于传感器坐标系统原点的 X、Y 和 Z 方向上的重心位置。 |
+| **力/扭矩偏差** | 传感器特有的累积零偏（Bias）值。 |
+| **误差率 [%]** | 指出识别轨迹中的数据可靠性和误差率，分别显示力和扭矩。 |
 
 
-###### **Step 4: Apply Data**
-* Pressing the **[✓ OK]** button at the bottom right of the screen finally saves and reflects the newly estimated `Estimated Value` information into the corresponding force control tool data.
+###### **步骤 4：应用数据**
+* 按下屏幕右下角的 **[✓ OK]** 按钮，最终将新估计的 `Estimated Value` 信息保存并反映到相应的力控制工具数据中。
 
 {% hint style="info" %}
 
-**Safety Notice:** During Step 2 `Normal Operation`, the robot performs multi-axis reversal movements. Therefore, the operation must be executed only after completely securing the interference-free zone around the tool.
+**安全提示：** 在步骤 2 `正常操作` 中，机器人执行多轴反转运动。因此，操作必须在完全确保工具周围无干扰的区域后进行。
 
-**Error Rate Compliance Criterion:** The measured **error rate must be within 5%**.
+**误差率合规标准：** 测量的 **误差率必须在 5% 以内**。
 
-**Troubleshooting Tip:** If the error rate exceeds 5% and is abnormally high, there may have been external interference during measurement or tension acting on the sensor cable. Recheck the clearance and interference of the sensor cable, and then measure again.
+**故障排除提示：** 如果误差率超过 5% 并且异常高，可能在测量期间存在外部干扰或对传感器电缆施加了拉力。请重新检查传感器电缆的间隙和干扰，然后再次测量。
 
 {% endhint %}
 

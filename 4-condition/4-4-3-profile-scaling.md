@@ -1,61 +1,61 @@
-﻿### 4.4.3 Profile: Force/Torque Scaling
+### 4.4.3 Profile: Force/Torque Scaling
 
-This function blocks the force control loop from responding when the F/T sensor data is below a certain magnitude, and smoothly connects the output to the original target control line via a smooth curve or step form once it exceeds the threshold, thereby enhancing overall contact stability.
+此功能在 F/T 传感器数据低于某一幅度时阻止力控制回路响应，并在超过阈值后通过平滑曲线或阶梯形式平滑地将输出来连接到原始目标控制线，从而增强整体接触稳定性。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Profile] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [Profile] 标签**
 
 ---
 
 ![](../_assets/_11_fctrl_ctrl_smooth_scaling.png)
 
-##### **[Key Configuration Items]**
+##### **[关键配置项目]**
 
-| Configuration Item | Description |
+| 配置项目 | 描述 |
 | :--- | :--- |
-| **Function Activation** | Specifies whether to use the function via the checkbox. |
-| **Force Range - Start [N]** | The lower limit where the deadband is applied. Measurements below this value are output as `0 N`. |
-| **Force Range - End [N]** | The upper limit where the data synchronizes 1:1 with the original data. Measurements above this value are output directly without calibration. |
-| **Torque Range - Start [Nm]** | The lower limit where the deadband is applied. Measurements below this value are output as `0 Nm`. |
-| **Torque Range - End [Nm]** | The upper limit where the data synchronizes 1:1 with the original data. Measurements above this value are output directly without calibration. |
+| **功能激活** | 通过复选框指定是否使用此功能。 |
+| **力范围 - 起始 [N]** | 应用死区的下限。低于此值的测量输出为 `0 N`。 |
+| **力范围 - 结束 [N]** | 与原始数据 1:1 同步的数据的上限。高于此值的测量直接输出而不进行校准。 |
+| **扭矩范围 - 起始 [Nm]** | 应用死区的下限。低于此值的测量输出为 `0 Nm`。 |
+| **扭矩范围 - 结束 [Nm]** | 与原始数据 1:1 同步的数据的上限。高于此值的测量直接输出而不进行校准。 |
 
 ---
 
-##### **[Understanding through Operation Examples]**
+##### **[通过操作示例理解]**
 
 <br> 
 
-###### **Scaling (Start < End)**
-* **Configuration Example:** Start `5 N` / End `15 N`
+###### **缩放 (起始 < 结束)**
+* **配置示例：** 起始 `5 N` / 结束 `15 N`
 
 ![](../_assets/_12_fctrl_ctrl_scaling_graph.png)
 
-* **Operation Analysis:**
+* **操作分析：**
   
-  A. **5 N or less:** The deadband is applied, outputting `0 N` to block fine noise and vibrations.
+  A. **5 N 或更小：** 应用死区，输出 `0 N` 以阻止细微噪声和振动。
   
-  B. **5 to 15 N:** The data is interpolated in the form of a smooth curve to prevent sudden data spikes.
+  B. **5 到 15 N：** 数据以平滑曲线的形式插值，以防止突发数据峰值。
   
-  C. **15 N or more:** The original sensor values are reflected directly (1:1 linear) into the control loop without filtering.
+  C. **15 N 或更多：** 原始传感器值直接（1:1 线性）反映到控制回路中，不进行过滤。
 
 ---
 
-###### **Step Scaling (Start ≥ End)**
-* **Configuration Example:** Start `5 N` / End `0 N` (When the start value is greater than or equal to the end value)
+###### **阶梯缩放 (起始 ≥ 结束)**
+* **配置示例：** 起始 `5 N` / 结束 `0 N` （当起始值大于或等于结束值时）
 
 ![](../_assets/_13_fctrl_ctrl_scaling_threshold_graph.png)
 
-* **Operation Analysis:**
+* **操作分析：**
 
-  A. **Less than 5 N:** Treated as `0 N` because the measurement has not reached the threshold.
+  A. **少于 5 N：** 因为测量尚未达到阈值，处理为 `0 N`。
   
-  B. **5 N or more:** Immediately jumps (Steps) to the original data line upon satisfying the criterion, and outputs the original values directly thereafter.
+  B. **5 N 或更多：** 在满足条件后立即跳（阶梯）到原始数据线，并随后直接输出原始值。
 
 ---
 
 {% hint style="info" %}
 
-**Automatic Mode Switching:** If the [Start] value is greater than or equal to the [End] value, it operates in `Dead-Zone` mode without curve interpolation.
+**自动模式切换：** 如果 [Start] 值大于或等于 [End] 值，它将在 `Dead-Zone` 模式下操作而不进行曲线插值。
 
-**On-Site Tuning Tip:** To block sensor noise caused by robot vibrations or external shaking, set the **[Start] value slightly higher than the maximum measured noise level** to secure an adequate deadband.
+**现场调试提示：** 为了阻止因机器人振动或外部摇晃而造成的传感器噪声，将 **[Start] 值设定为略高于最大测量噪声级别** 以确保充足的死区。
 
 {% endhint %}

@@ -1,48 +1,47 @@
-﻿## 5.6 Methods to Work Around Agility Mode Termination Characteristics
+## 5.6 处理灵活模式终止特性的解决方法
 
-Agility Mode has a specification where it unconditionally **pauses for 0.5 seconds** at that specific point before terminating when the `fctrl off` (termination) command is executed. 
+灵活模式具有一个规范，在执行 `fctrl off`（终止）命令时，它无条件地**在该特定点暂停 0.5 秒** 然后再终止。
 
-* **Expected Issue:** If control is terminated while maintaining contact with the surface immediately after machining or dispensing is completed, the pressure is maintained for 0.5 seconds, which may damage the product surface or leave marks.
+* **预期问题：** 如果在加工或 dispensing 完成后立即保持与表面的接触时终止控制，压力将保持 0.5 秒，这可能会损坏产品表面或留下痕迹。
 
-* **Solution:** Since position offset commands (`shift`) cannot be used during force control, you must switch in real time to a **workaround condition (cnd) that applies a force in the direction opposite to the pressurizing direction** before executing `fctrl off` to detach the robot from the surface first. Afterwards, it safely terminates following a 0.5-second pause in a non-contact (air) state.
+* **解决方案：** 由于在力控制期间无法使用位置偏移命令（`shift`），您必须实时切换到一个**施加与加压方向相反的力量的解决条件 (cnd)**，以在执行 `fctrl off` 之前先将机器人与表面分离。之后，它将在非接触（空气）状态下安全终止，暂停 0.5 秒。
 
 ---
 
-##### **[Condition Settings Configuration]**
+##### **[条件设置配置]**
 
-* **Main Control Condition (cnd=4):** A condition that activates Agility Mode to perform surface machining and automatic path motions.
+* **主要控制条件 (cnd=4)：** 启动灵活模式以执行表面加工和自动路径动作的条件。
 
-* **Workaround Condition (cnd=5):** A condition configured to escape in the direction opposite to the main pressurizing direction to prevent product damage.
+* **解决条件 (cnd=5)：** 配置为逃生到与主要加压方向相反的条件，以防止产品损坏。
 
 ![](../_assets/_29_agility_main_cnd.png)
-*▲ Figure: Main force control condition (cnd=4) configuration screen with Agility Mode activated*
+*▲ 图：激活灵活模式的主要力控制条件 (cnd=4) 配置屏幕*
 
 ![](../_assets/_30_agility_escape_cnd.png)
-*▲ Figure: Workaround condition (cnd=5) configuration screen set to apply an external force in the opposite direction for surface detachment*
-
+*▲ 图：设置为施加与表面分离相反方向外力的解决条件 (cnd=5) 配置屏幕*
 
 ---
 
-##### **[JOB Program]**
+##### **[JOB 程序]**
 
 ```python
-# Move to home position and machining approach position
+# 移动到 home 位置和加工接近位置
 S1   move P,spd=5%,accu=0,tool=0  
 S2   move L,spd=5%,accu=0,tool=0  
      delay 2
      
-# Execute main force control and automatic path
-     fctrl on,cnd=4                # Start main force control (Agility Mode)
-     wait _fctrl.contact,20        # Wait for surface contact completion (Timeout 20 seconds)
-     fctrl motion_on               # Start automatic path generation motion
-     wait _fctrl.motion==0         # Wait until motion path is complete
+# 执行主要力控制和自动路径
+     fctrl on,cnd=4                # 启动主要力控制（灵活模式）
+     wait _fctrl.contact,20        # 等待表面接触完成（超时 20 秒）
+     fctrl motion_on               # 启动自动路径生成运动
+     wait _fctrl.motion==0         # 等待直到运动路径完成
     
-# Escape sequence in the opposite direction for product protection
-     fctrl control,cnd=5           # Switch in real time to the workaround condition in the direction opposite to the contact surface (air)
-     delay 2                       # Wait until the robot completely detaches from the surface
+# 以相反方向进行逃生序列以保护产品
+     fctrl control,cnd=5           # 实时切换到与接触表面（空气）相反方向的解决条件
+     delay 2                       # 等待直到机器人完全与表面分离
      
-# Safe termination in a non-contact state
-     fctrl off                     # Terminate force control (Since it is in a non-contact state, the 0.5-second pause has no impact on the product)
+# 在非接触状态下安全终止
+     fctrl off                     # 终止力控制（由于处于非接触状态，0.5 秒的暂停对产品没有影响）
      delay 1
   
 end

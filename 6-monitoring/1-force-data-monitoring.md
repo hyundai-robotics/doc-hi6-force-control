@@ -1,31 +1,31 @@
-﻿## 6.1 Force Data Monitoring
+## 6.1 力量数据监测
 
-This function allows for real-time monitoring of external forces and torque data applied to the robot during operation. It must be referenced to verify the precise application status when the force control function is running.
+此功能允许实时监测施加于机器人操作期间的外部力量和扭矩数据。在力量控制功能运行时，必须参考此数据以验证精确的应用状态。
 
 --- 
 
 ![](../_assets/_16_fctrl_ctrl_panel_force_data.png)
 
-##### **Screen Configuration Items**
+##### **屏幕配置项**
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Cartesian Coordinates (X, Y, Z, RX, RY, RZ)** | The 3-axis directional forces (N) and 3-axis rotational torque (Nm) values acting on the robot end-effector within the selected reference coordinate system. |
-| **Joint Coordinates (J1, J2, J3, J4, J5, J6)** | This item monitors the physical load status applied to each individual joint axis (Joint 1 to Joint 6) of the robot, converted in real time. |
+| **笛卡尔坐标 (X, Y, Z, RX, RY, RZ)** | 作用于机器人末端执行器的3轴方向力量 (N) 和3轴旋转扭矩 (Nm) 值，在所选参考坐标系内。 |
+| **关节坐标 (J1, J2, J3, J4, J5, J6)** | 此项监测施加于机器人每个单独关节轴 (关节1到关节6) 的物理负载状态，实时转换。 |
 
-* **Coordinate System Reference:** The direction and reference axes of the [Cartesian Coordinates] data follow and match the reference coordinate system designated by the user in the force control condition settings (`cnd`) menu.
+* **坐标系统参考：** [笛卡尔坐标] 数据的方向和参考轴遵循并匹配用户在力量控制条件设置 (`cnd`) 菜单中指定的参考坐标系统。
 
-* **Data Update Rule:** The data on this monitoring window updates in real time only when the force control operation command (`fctrl on`) is activated and the control loop is running.
+* **数据更新规则：** 仅当力量控制操作命令 (`fctrl on`) 被激活并且控制循环正在运行时，此监测窗口上的数据实时更新。
 
 
 --- 
 
 {% hint style="info" %}
 
-**Teaching Pendant (TP) Navigation Path:** [Window Adjustment] ➔ [F1: Select] ➔ [Force Data]
+**教学挂件 (TP) 导航路径：** [窗口调整] ➔ [F1: 选择] ➔ [力量数据]
 
-**On-Site Verification Tip:** If the data is not near `0.000` while the robot is stationary, verify the dead weight compensation (Gravity Compensation) or the sensor zero setting (Zeroing).
+**现场验证提示：** 如果机器人静止时数据未接近 `0.000`，请验证重力补偿（Gravity Compensation）或传感器零设置（Zeroing）。
 
-**Output Criteria:** During force control operation, F/T sensor data is output in real time exclusively to the **[Cartesian Coordinates]** item, while the **[Joint Coordinates]** item remains fixed at `0.0`.
+**输出标准：** 在力量控制操作期间，F/T 传感器数据实时输出，仅到 **[笛卡尔坐标]** 项目，而 **[关节坐标]** 项目保持固定在 `0.0`。
 
 {% endhint %}

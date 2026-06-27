@@ -1,15 +1,15 @@
-﻿## 3. Tool Data
+## 3. 工具数据
 
-This is a basic configuration that must be performed before using the force control function. It serves as the foundation for **precisely calculating only the pure force/torque** generated during contact with the environment by removing the weight component of the tool itself from the F/T sensor measurements.
-
----
-
-##### **[Tool Data Settings]**
-
-This is the step where the user manually registers the physical specifications of the tool mounted at the end of the robot flange.
+这是在使用力控制功能之前必须执行的基本配置。它作为 **只精确计算与环境接触时产生的纯力/扭矩** 的基础，通过从F/T传感器测量中去除工具本身的重量成分。
 
 ---
 
-##### **[Dynamic Load Identification]** 
+##### **[工具数据设置]**
 
-This function directly measures physical parameters through automatic robot motions when it is difficult to know the exact specifications of the tool.
+这是用户手动注册安装在机器人法兰端的工具的物理规格的步骤。
+
+---
+
+##### **[动态载荷识别]**
+
+当很难知道工具的确切规格时，此功能通过自动机器人运动直接测量物理参数。

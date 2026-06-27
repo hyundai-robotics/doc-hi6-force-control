@@ -1,26 +1,26 @@
-﻿## 5.2 Changing Control Settings 
+## 5.2 更改控制设置
 
-The following is a Job program example that **modifies only the 'Control' items among the force control conditions** on a robot.  
-This approach is useful when you want to change only the external force response characteristics during real-time operation while keeping the filter, coordinate system, and motion settings as they are.
-
----
-
-##### **[Operation Overview]**
-
-- fctrl on,cnd=2: Applies the entire configuration set number 2 when starting force control.
-- fctrl control,cnd=1: Changes **only the control parameters** to configuration set number 1.  
-  (The coordinate system, filter, motion, etc., remain in the state configured by set number 2.)
+以下是一个作业程序示例，**仅修改机器人力控制条件中的“控制”项**。  
+当您希望在实时操作中仅更改外部力响应特性，同时保持滤波器、坐标系统和运动设置不变时，此方法非常有用。
 
 ---
 
-##### **[JOB Program]** 
+##### **[操作概述]**
+
+- fctrl on,cnd=2: 在启动力控制时应用整个配置集编号 2。
+- fctrl control,cnd=1: 将**仅控制参数**更改为配置集编号 1。  
+  （坐标系统、滤波器、运动等保持在由编号 2 配置的状态。）
+
+---
+
+##### **[JOB 程序]** 
 
 ```python
-delay 1.0                           # Stabilization wait before starting control
-fctrl on,cnd=2                      # Start force control (Uses condition number 2)
+delay 1.0                           # 启动控制前的稳定等待
+fctrl on,cnd=2                      # 启动力控制 (使用条件编号 2)
 delay 0.5
 
-fctrl control,cnd=1                 # Change force control configuration (control parameters only) (Uses condition number 1)
+fctrl control,cnd=1                 # 更改力控制配置（仅控制参数）（使用条件编号 1）
 
-delay 5                             # Wait for external force stabilization
-fctrl off                           # Terminate force control
+delay 5                             # 等待外部力稳定
+fctrl off                           # 终止力控制

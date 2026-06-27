@@ -1,27 +1,27 @@
-﻿## 2.2.3 Robotiq Configuration
+## 2.2.3 Robotiq 配置
 
-Since Robotiq sensors (such as the FT 300S) utilize serial communication (SCI), you must complete both the force control environment configuration and the serial port settings.
+由于 Robotiq 传感器（例如 FT 300S）利用串行通信（SCI），您必须完成力控制环境配置和串口设置。
 
 ---
 
-##### **[Step 1: Force Control Sensor Configuration]**
-First, specify the communication protocol as serial communication (SCI) on the force control user environment configuration screen.
+##### **[步骤 1：力控制传感器配置]**
+首先，在力控制用户环境配置屏幕上将通信协议指定为串行通信（SCI）。
 
 ![](../_assets/_03_01_fctrl_env_setting_Robotiq_FT300S_SCI.png)
 
 ---
 
-##### **[Step 2: Serial Port Environment Configuration]**
-To activate serial communication, navigate to the following path and configure the communication port parameters of the controller.
+##### **[步骤 2：串口环境配置]**
+要激活串行通信，请导航到以下路径并配置控制器的通信端口参数。
 
-> **[F2: System]** → **2: Control Parameter** → **3: Serial Port** → **1: Environment Settings**
+> **[F2: 系统]** → **2: 控制参数** → **3: 串口** → **1: 环境设置**
 
 ![](../_assets/_03_02_fctrl_env_setting_Robotiq_FT300S_SCI_CFG.png)
 
 {% hint style="info" %}
 
-Instead of entering a separate IP address, it is essential for the Robotiq sensor to match the physical serial port (SCI) channel and Baud rate located on the back or inside of the controller.
+Robotiq 传感器匹配控制器后面或内部的物理串口（SCI）通道和波特率，而不是输入单独的 IP 地址是至关重要的。
 
-After specifying the sensor in Step 1, you must complete the serial port configuration in Step 2 without omission to prevent communication errors from occurring.
+在步骤 1 中指定传感器后，您必须在步骤 2 中完成串口配置，以防止通信错误的发生。
 
 {% endhint %}

@@ -1,43 +1,41 @@
-﻿### 4.5.1 Motion: Contact Conditions
+### 4.5.1 运动：接触条件
 
-This function detects and determines in real time whether the robot tool center point (TCP) has stably made contact with (settled onto) the surface of the task object during force control operation.
+此功能实时检测并确定机器人工具中心点 (TCP) 在力控制操作期间是否稳定地与任务对象的表面接触（落在上面）。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Motion] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [3: 力控制选项] ➔ **选择 [运动] 标签**
 
 ---
-
 
 ![](../_assets/_12_fctrl_ctrl_cnd_motion_contact.png)
 
+##### **[关键配置项目]**
 
-##### **[Key Configuration Items]**
+系统仅在满足以下配置的四个条件后，才将状态确定为“接触完成”。
 
-The system determines the status as 'Contact Complete' only when all four conditions configured below are satisfied.
-
-| Configuration Item | Description |
+| 配置项目 | 描述 |
 | :--- | :--- |
-| **Force Threshold [N]** | The minimum applied force criterion required to acknowledge contact. |
-| **Angle Change Threshold [deg]** | The allowable limit for the instantaneous change (variation width) in the direction of the force vector occurring at the moment of initial contact. |
-| **Tilt Angle Threshold [deg]** | The allowable angular limit of the force vector to determine stable contact under the slope of the task surface or the tilted state of the tool. |
-| **Duration [s]** | The minimum duration for which all three threshold conditions above (force, angle change, and tilt angle) must be continuously maintained. |
+| **力阈值 [N]** | 确认接触所需的最低施加力标准。 |
+| **角度变化阈值 [deg]** | 初始接触时，力向量方向瞬时变化（变化幅度）的允许极限。 |
+| **倾斜角度阈值 [deg]** | 在任务表面的坡度或工具的倾斜状态下，确定稳定接触的力向量的允许角度极限。 |
+| **持续时间 [s]** | 上述三个阈值条件（力、角度变化和倾斜角度）必须持续保持的最短时间。 |
 
 ---
 
-##### **[Configuration Example]** * **Operational Behavior:** If the conditions below are **simultaneously satisfied for 3 seconds**, it is finally determined that the tool has settled onto the contact surface.
+##### **[配置示例]** * **操作行为：** 如果以下条件 **同时满足 3 秒**，则最终确认工具已落在接触表面上。
 
-| Configuration Item | UI Value | Behavior Determination Criterion |
+| 配置项目 | UI 值 | 行为判断标准 |
 | :--- | :--- | :--- |
-| **Force Threshold** | `3 N` | When the external force detected by the F/T sensor reaches 3 N or higher |
-| **Angle Change Threshold** | `10 deg` | When the instantaneous change in the force direction during contact stabilizes within 10° |
-| **Tilt Angle Threshold** | `20 deg` | When the tilt trajectory of the force vector relative to the target angle is within 20° |
-| **Duration** | `3 s` | When the above state is maintained for 3 seconds without interruption |
+| **力阈值** | `3 N` | 当 F/T 传感器检测到的外部力达到 3 N 或更高时 |
+| **角度变化阈值** | `10 deg` | 当接触期间力方向的瞬时变化稳定在 10° 以内时 |
+| **倾斜角度阈值** | `20 deg` | 当力向量相对于目标角度的倾斜轨迹在 20° 以内时 |
+| **持续时间** | `3 s` | 当上述状态持续维持 3 秒而不间断时 |
 
 ---
 
 {% hint style="info" %}
 
-**Coordinate System Configuration Rule:** Since the contact condition algorithm requires precise mapping of the tool's behavior direction and component forces, it operates normally only when the reference coordinate system is designated as the **Tool Coordinate System**.
+**坐标系统配置规则：** 由于接触条件算法需要精确映射工具的行为方向和分量力，因此仅在参考坐标系统指定为 **工具坐标系统** 时正常运行。
 
-**On-Site Tuning Tip:** If the robot pauses and fails to proceed to the next motion after making contact, it is highly likely due to the impact of the collision or surface irregularities. In this case, increasing the **[Angle Change Threshold]** and **[Tilt Angle Threshold]** by about 5° to 10° each will resolve the issue and allow normal operation.
+**现场调整提示：** 如果机器人在接触后暂停并无法进行下一步动作，很可能是由于碰撞或表面不规则性造成的。在这种情况下，分别将 **[角度变化阈值]** 和 **[倾斜角度阈值]** 提高约 5° 至 10° 将解决问题并恢复正常操作。
 
 {% endhint %}

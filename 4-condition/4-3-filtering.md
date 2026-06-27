@@ -1,46 +1,48 @@
-﻿### 4.3 Filtering
+### 4.3 过滤
 
-This menu is used to configure the filter function, which suppresses signal noise in F/T sensor data to establish a stable control environment, and the Agility Mode, which maximizes the system's tracking performance.
+此菜单用于配置过滤功能，该功能抑制F/T传感器数据中的信号噪声以建立稳定的控制环境，以及最大化系统跟踪性能的灵活模式。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Filtering] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [过滤] 标签**
 
 ---
 
 ![](../_assets/_08_fctrl_ctrl_filtering.png)
 
 
-##### **[Smooth Force]**
+##### **[平滑力]**
 
-Attenuates high-frequency noise from the force/torque signals collected from the sensor to prevent shakiness in robot motion and control smooth contact behavior.
+减弱从传感器收集的力/扭矩信号中的高频噪声，以防止机器人运动中的抖动并控制平滑接触行为。
 
-| Item | Description |
+| 项目 | 描述 |
 | :--- | :--- |
-| **Force Filtering** | When activated, the checkbox lights up in **yellow**. |
+| **力量过滤** | 激活时，复选框亮起为**黄色**。 |
 
 
 {% hint style="warning" %}
 
-If filtering is excessively applied when using an F/T sensor with excellent signal quality, a phase delay (Time Delay) may occur within the control loop. Since this can cause degradation in control performance during high-speed force tracking applications, determine whether to apply it after verifying the actual signal characteristics in high-speed applications.
+如果在使用信号质量优秀的F/T传感器时过度应用过滤，控制环路中可能会发生相位延迟（时间延迟）。由于这可能导致在高速力跟踪应用中的控制性能下降，因此在高速应用中验证实际信号特性后，决定是否应用。
 
 {% endhint %}
 
 ---
 
-##### **[Agility Mode]**
+##### **[灵活模式]**
 
-This mode drastically improves the robot's initial control response speed to reach the target force. It is essential in precise force control processes where the tool (TCP) moves at high speed and needs to respond immediately to changes in the environment.
+此模式大幅提高机器人到达目标力的初始控制响应速度。它在工具（TCP）以高速移动并需要立即对环境变化做出响应的精确力控制过程中至关重要。
 
-| Configuration Item | Description |
+| 配置项 | 描述 |
 | :--- | :--- |
-| **Agility Mode** | When activated, the checkbox lights up in **yellow**. |
-| **Frequency [Hz]** | Specifies the bandwidth operating frequency of the Agility Mode. The **higher the set frequency value, the faster the robot's response speed** and the higher the agility. |
+| **灵活模式** | 激活时，复选框亮起为**黄色**。 |
+| **频率 [Hz]** | 指定灵活模式的带宽操作频率。**设置的频率值越高，机器人的响应速度越快，灵活性越高。** |
 
 {% hint style="warning" %}
 
-**Agility Mode Termination Characteristics**
+**灵活模式终止特性**
 
-* **Caution Specification:** When `fctrl off` (termination) is executed, Agility Mode unconditionally **pauses in place for 0.5 seconds before terminating**.
+* **警告规范：** 当执行 `fctrl off`（终止）时，灵活模式无条件**在原地暂停0.5秒后终止**。
 
-* **On-Site Issue:** If the robot pauses for 0.5 seconds while maintaining contact with the product, continuous pressure is applied to the surface, which may damage the product or leave marks.
+* **现场问题：** 如果机器人在与产品保持接触的情况下暂停0.5秒，会持续施加压力于表面，可能会损坏产品或留下痕迹。
 
-* **Mitigation Method:** Refer
+* **缓解方法：** 请参考
+
+{% endhint %}

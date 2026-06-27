@@ -1,29 +1,29 @@
-﻿## 2.2.4 AIDIN Configuration
+## 2.2.4 AIDIN 配置
 
-The configuration method and communication parameters for AIDIN sensors are as follows.
-
----
-
-##### **[Default Communication Parameters]**
-
-Enter the settings below accurately to connect the AIDIN sensor with the controller.
-
-* **Protocol:** UDP
-* **IP Address:** 192.168.1.199
-* **Remote Port:** 50000
+AIDIN 传感器的配置方法和通信参数如下。
 
 ---
 
-##### **AIDIN Sensor Configuration**
+##### **[默认通信参数]**
 
-This is the configuration screen for using AIDIN 6-axis force/torque sensor models. Enter the designated IP address and remote port values without typos, and then save the settings.
+准确输入以下设置以将 AIDIN 传感器与控制器连接。
+
+* **协议：** UDP
+* **IP 地址：** 192.168.1.199
+* **远程端口：** 50000
+
+---
+
+##### **AIDIN 传感器配置**
+
+这是用于 AIDIN 6 轴力/力矩传感器模型的配置屏幕。请输入指定的 IP 地址和远程端口值，确保没有拼写错误，然后保存设置。
 
 ![](../_assets/_21_fctrl_env_set_AIDIN.png)
 
 {% hint style="info" %}
 
-Unlike other sensors, the AIDIN sensor **uses `50000` as its remote port number**. Please note that communication will not connect if you use the controller default values or a port from another manufacturer (49152).
+与其他传感器不同，AIDIN 传感器 **使用 `50000` 作为其远程端口号**。请注意，如果您使用控制器的默认值或其他制造商的端口 (49152)，通信将无法连接。
 
-Verify that the assigned unique IP address (`192.168.1.199`) does not conflict within the controller network band before proceeding with the configuration.
+在继续配置之前，请验证分配的唯一 IP 地址 (`192.168.1.199`) 在控制器网络带宽内没有冲突。
 
 {% endhint %}

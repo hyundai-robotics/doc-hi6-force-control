@@ -1,45 +1,45 @@
-﻿## 2. Configuration
+## 2. 配置
 
-To use the sensor-based force control function, the following key items must be configured. These items serve as the **criteria** for all controller operations.
-
----
-
-#### **Setting Menu Access Path**
-
-The force control environment settings can be accessed through the following path on the teaching pendant.
-
-> [F2: System] ➔ 4: Application Parameter ➔ 24: Force Control ➔ 1: System Config 
+要使用基于传感器的力控制功能，必须配置以下关键项目。这些项目作为所有控制器操作的 **标准**。
 
 ---
 
-#### **Function Enable/Disable Settings**
+#### **设置菜单访问路径**
 
-Determines whether to globally activate the sensor-based force control function. To normally operate the force control loop within the system, it **must be set to `Enable`**.
+可以通过以下路径在教学挂件上访问力控制环境设置。
 
-* **Enable:** Activates the force control function (runs the real-time loop)
-* **Disable:** Deactivates the force control function (operates in normal position control mode)
+> [F2: 系统] ➔ 4: 应用参数 ➔ 24: 力控制 ➔ 1: 系统配置
+
+---
+
+#### **功能启用/禁用设置**
+
+确定是否全局激活基于传感器的力控制功能。要在系统内正常运行力控制回路，**必须设置为 `启用 (Enable)`**。
+
+* **启用:** 激活力控制功能（运行实时循环）
+* **禁用:** 禁用力控制功能（在正常位置控制模式下操作）
 
 <br>
 
-**[Setting Screen Example]**
+**[设置屏幕示例]**
 
-* **Function Deactivated State `Disable`**
+* **功能禁用状态 `不执行 (Disable)`**
   
   ![](../_assets/_19_fctrl_func_off.png)
 
-* **Function Activated State `Enable`**
+* **功能启用状态 `启用 (Enable)`**
   
   ![](../_assets/_20_fctrl_func_on.png)
 
 <br>
 
-After activating the function by setting the function usage to **`Enable`**, proceed with the configuration of the sensor communication information and tool offset (length).
+通过将功能使用设置为 **`启用 (Enable)`** 激活功能后，继续配置传感器通信信息和工具偏移（长度）。
 
 ---
 
 {% hint style="info" %}
 
-**Prerequisites**
-The function usage must be changed to `Enable` and applied before you can proceed with the subsequent steps of sensor parameter configuration, communication connection, and dynamic load identification (calibration).
+**前提条件**
+功能使用必须更改为 `启用 (Enable)` 并应用，然后才能继续进行传感器参数配置、通信连接和动态负载识别（校准）的后续步骤。
 
 {% endhint %}

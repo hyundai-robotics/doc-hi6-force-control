@@ -1,10 +1,10 @@
-﻿### 4.1 Basic Settings
+### 4.1 基本设置
 
-This menu is used to configure the name according to the force control operation conditions, and to set the task coordinate system, tool number, and sensor zero point (offset) function that will serve as the control reference. 
+此菜单用于根据力控制操作条件配置名称，并设置任务坐标系统、工具编号以及作为控制参考的传感器零点（偏移）功能。
 
-The force control option condition settings can be accessed through the path below, and up to 15 conditions can be configured.
+力控制选项条件设置可以通过下面的路径访问，最多可以配置15个条件。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Settings] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [3: 力控制选项] ➔ **选择 [设置] 标签**
 
 ---
 
@@ -13,25 +13,25 @@ The force control option condition settings can be accessed through the path bel
 ![](../_assets/_27_fctrl_option_basic_usr.png) 
 
 
-##### **[Basic Configuration Items]**
+##### **[基本配置项]**
 
-| Item | Description |
+| 项目 | 描述 |
 | :--- | :--- |
-| **Name** | The identification name of the force control condition. It is automatically entered when selected from the list on the right. (e.g., `cnd_1`) |
-| **Description** | Enter the purpose or task description of the current control condition. (e.g., `Contact`, `Sanding`, etc.) |
-| **Coordinate System** | Select the reference coordinate system to which the force control loop will be applied.<br>• **Base** <br>• **Robot** <br>• **Tool** <br>• **User** |
-| **User Coord. No.** | Activated when the coordinate system is set to **[User]**, and designates the unique ID number of the user coordinate system to be applied. |
-| **Tool No.** | Select the tool data number to be applied to the current control. (The weight and center of gravity information configured for the corresponding tool is linked to the control algorithm in real time) |
-| **Zero Point** | Uses a toggle switch to set whether to force-cancel the initial offset of the sensor data when force control starts.<br>• **On (Enabled):** Resets the sensor value to 0 immediately before operation (Software Bias processing)<br>• **Off (Disabled):** Maintains the existing sensor data without any separate zero calibration |
+| **名称** | 力控制条件的识别名称。当从右侧列表中选择时会自动输入。(例如，`cnd_1`) |
+| **描述** | 输入当前控制条件的目的或任务描述。(例如，`接触 (Contact)`，`打磨`，等) |
+| **坐标系统** | 选择力控制循环将应用的参考坐标系统。<br>• **基座** <br>• **机器人** <br>• **工具** <br>• **用户** |
+| **用户坐标编号** | 当坐标系统设置为**[用户]**时激活，指定要应用的用户坐标系统的唯一ID编号。 |
+| **工具编号** | 选择当前控制要应用的工具数据编号。(与对应工具配置的重量和重心信息实时链接到控制算法) |
+| **零点** | 使用切换开关设置在力控制开始时是否强制取消传感器数据的初始偏移。<br>• **开启 (启用)：** 在操作前立即将传感器值重置为0（软件偏置处理）<br>• **关闭 (禁用)：** 在没有任何单独零校准的情况下保持现有的传感器数据 |
 
 ---
 
 {% hint style="info" %}
 
-**Precautions for User Coordinate System Entry:** If the user coordinate system is selected but the number (ID) is left as **Unconfigured (None)**, it will be mapped and calculated identically to the **Robot Coordinate System**.
+**用户坐标系统输入的注意事项：** 如果选择了用户坐标系统，但编号（ID）保持为**未配置 (None)**，将与**机器人坐标系统**相同地映射和计算。
 
-**Tool Number Integration:** The tool number (ID) selected here refers to the physical parameters of the tool data pre-registered in the `[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [2: Tool Data]` menu.
+**工具编号集成：** 在此处选择的工具编号（ID）指的是在`[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [2: 工具数据]`菜单中预先注册的工具数据的物理参数。
 
-**Operation when Zero Point Function is Off:** If the zero point function is not used (Off), a statically calibrated value is utilized where the tool dead weight is canceled based solely on the tool data information (weight, center of gravity, force/torque zero) pre-mapped to the raw sensor output data.
+**零点功能关闭时的操作：** 如果未使用零点功能（关闭），将使用静态校准值，仅根据预映射到原始传感器输出数据的工具数据（重量、重心、力/扭矩零）取消工具自重。
 
 {% endhint %}

@@ -1,8 +1,8 @@
-﻿## 4. Force Control Options 
+## 4. 力控制选项 
 
-This menu is used to process sensor signals according to task conditions and to configure the robot's response and behavior control methods in detail, aiming to improve the quality of the force control process and system stability. 
+此菜单用于根据任务条件处理传感器信号，并详细配置机器人的响应和行为控制方法，旨在提高力控制过程的质量和系统稳定性。
 
-In addition to basic force/torque control settings, it provides advanced control options such as noise filtering, profiles, contact condition detection, and automatic path generation.
+除了基本的力/扭矩控制设置外，它还提供诸如噪声滤波、轮廓、接触状态检测和自动路径生成等高级控制选项。
 
 [F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options]
 
@@ -10,6 +10,6 @@ In addition to basic force/torque control settings, it provides advanced control
 
 {% hint style="info" %}
 
-**Precautions:** Individual parameters within the force control options are interdependent. During initial tuning, set the robot's operation speed limit low, and gradually determine the optimal values while verifying the filter and profile performances.
+**注意事项：** 力控制选项中的各个参数是相互依赖的。在初始调整期间，将机器人的操作速度限制设置为较低，并在验证滤波器和轮廓性能的同时逐渐确定最佳值。
 
 {% endhint %}

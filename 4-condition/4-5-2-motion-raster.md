@@ -1,77 +1,77 @@
-﻿### 4.5.2 Motion: Automatic Path Generation
+### 4.5.2 运动：自动路径生成
 
-This function automatically generates and moves along a specific pattern trajectory on a designated plane while maintaining the force control state.
+此功能在特定平面上自动生成并沿特定模式轨迹移动，同时保持力控制状态。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Motion] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [Motion] 标签**
 
 ---
 
 ![](../_assets/_15_fctrl_motion_type.png)
 
-##### **[Motion Type]**
+##### **[运动类型]**
 
-Provides a total of three trajectory generation modes depending on the purpose of use.
+根据使用目的，提供总共三种轨迹生成模式。
 
-* **Spiral (Spiral Motion):** Generates a trajectory that expands outward in circles from a center point. (e.g., Grinding, Polishing processes)
-* **Bidir (Bidirectional Motion):** Generates a reciprocating trajectory to fill a surface. (e.g., Surface machining of large areas)
-* **Unidir (Unidirectional Motion):** Generates a trajectory that repeatedly runs in one direction and returns. (e.g., Sanding, Dispensing processes)
+* **螺旋（螺旋运动）：** 生成从中心点向外扩展的圆形轨迹。(例如，磨削、抛光过程)
+* **双向（双向运动）：** 生成往复轨迹以填充表面。(例如，大面积的表面加工)
+* **单向（单向运动）：** 生成在一个方向上重复运行并返回的轨迹。(例如，打磨、分配过程)
 
 ---
 
-###### **1. Spiral (Spiral Motion)**
+###### **1. 螺旋（螺旋运动）**
 
-This function generates a path that starts from a center point and expands its radius in a concentric circular form.
+此功能生成从中心点开始并以同心圆形状扩大半径的路径。
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Speed** | The TCP linear velocity moving along the spiral trajectory (Unit: mm/sec) |
-| **Radius** | The maximum radius of the spiral to be expanded finally (Unit: mm) |
-| **No. of Revolutions** | The total number of rotations from the start point to the end point (Unit: rev) |
+| **速度** | 沿螺旋轨迹移动的TCP线性速度（单位：mm/sec） |
+| **半径** | 最终要扩展的螺旋的最大半径（单位：mm） |
+| **旋转次数** | 从起点到终点的总旋转次数（单位：rev） |
 
 ---
 
-###### **2. Bidir (Bidirectional Motion)**
+###### **2. 双向（双向运动）**
 
-This function generates a continuous linear path in a reciprocating form while changing the direction of the end-effector machining.
+此功能以往复形式生成连续线性路径，同时改变末端执行器的加工方向。
 
 ![](../_assets/_16_fctrl_ctrl_motion_bidirectional.png)
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Speed** | The TCP linear velocity moving along the path (Unit: mm/sec) |
-| **Travel Direction** | The main machining operation direction (+X, -X, +Y, -Y) |
-| **Travel Length** | The single-run scale distance of the main machining path (Unit: mm) |
-| **Line Break Direction** | The pitch movement direction skipping to the next line (+X, -X, +Y, -Y) |
-| **Line Break Length** | The pitch distance between adjacent lines (Unit: mm) |
-| **Corner Radius** | The rounding radius of the corner section where the line changes direction (Unit: mm) |
+| **速度** | 沿路径移动的TCP线性速度（单位：mm/sec） |
+| **行进方向** | 主要加工操作方向（+X, -X, +Y, -Y） |
+| **行进长度** | 主要加工路径的单次行程距离（单位：mm） |
+| **行断方向** | 跳到下一行的间距移动方向（+X, -X, +Y, -Y） |
+| **行断长度** | 相邻行之间的间距（单位：mm） |
+| **角半径** | 线条改变方向的角落部分的圆角半径（单位：mm） |
 
 {% hint style="info" %}
 
-**Corner Radius Configuration Limit:** The maximum value of the corner radius cannot exceed half of the smaller value between the [Travel Length] and the [Line Break Length].
+**角半径配置限制：** 角半径的最大值不能超过[行进长度]和[行断长度]之间较小值的一半。
 
 {% endhint %}
 
 ---
 
-###### **3. Unidir (Unidirectional Motion)**
+###### **3. 单向（单向运动）**
 
-To always maintain a constant forward operation, this function generates a path that shifts to the next line by returning to the starting axis after a one-way travel.
+为了始终保持恒定的正向操作，此功能生成在单向行程后返回起始轴以移动到下一行的路径。
 
 ![](../_assets/_17_fctrl_ctrl_motion_unidirectional.png)
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **Speed** | The TCP linear velocity moving along the path (Unit: mm/sec) |
-| **Travel Direction** | The unidirectional machining operation direction (+X, -X, +Y, -Y) |
-| **Travel Length** | The distance of a single one-way machining path (Unit: mm) |
-| **Line Break Direction** | The pitch movement direction skipping to the next line (+X, -X, +Y, -Y) |
-| **Line Break Length** | The pitch distance between adjacent lines (Unit: mm) |
-| **No. of Lines** | The total number of lines to be generated according to the designated travel direction and line break length (Unit: ea) |
+| **速度** | 沿路径移动的TCP线性速度（单位：mm/sec） |
+| **行进方向** | 单向加工操作方向（+X, -X, +Y, -Y） |
+| **行进长度** | 单次单向加工路径的距离（单位：mm） |
+| **行断方向** | 跳到下一行的间距移动方向（+X, -X, +Y, -Y） |
+| **行断长度** | 相邻行之间的间距（单位：mm） |
+| **行数** | 根据指定的行进方向和行断长度生成的总行数（单位：ea） |
 
 ---
 
 {% hint style="info" %}
 
-**Coordinate System Guide:** All automatic path generation functions (Spiral, Bidir, Unidir) calculate 2D trajectories based on the **XY plane of the reference coordinate system** specified in the force control coordinate system configuration item.
+**坐标系统指南：** 所有自动路径生成功能（螺旋、双向、单向）基于力控制坐标系统配置项中指定的**参考坐标系统的XY平面**计算2D轨迹。
 
 {% endhint %}

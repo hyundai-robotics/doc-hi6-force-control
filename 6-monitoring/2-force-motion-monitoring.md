@@ -1,32 +1,32 @@
-﻿## 6.2 Force Motion Monitoring
+## 6.2 力运动监控
 
-This function allows you to comprehensively check the error and behavioral status of the real-time applied force data (F), the control command position (Cmd), and the configured speed limit value (Vmax) during force control operation.
+此功能允许您全面检查实时施加的力数据 (F)、控制命令位置 (Cmd) 和配置的速度限制值 (Vmax) 在力控制操作过程中的错误和行为状态。
 
 --- 
 
 ![](../_assets/_17_fctrl_ctrl_panel_force_motion.png)
 
-##### **Screen Configuration Items**
+##### **屏幕配置项目**
 
-| Item Name | Description |
+| 项目名称 | 描述 |
 | :--- | :--- |
-| **F** | The real-time target force. [Unit: N or Nm] |
-| **Cmd** | The command position generated in real time by the system to track the force control. [Unit: mm or deg] |
-| **Vmax** | The maximum limit speed profile data configured for system stability. [Unit: mm/s] |
-| **TLT** | Monitors the **[Tilt Angle Threshold]** status among the contact conditions in real time. |
-| **AVG** | Monitors the **[Angle Change Threshold]** status among the contact conditions in real time. |
-| **HLD** | Monitors the **[Duration]** count value and retention status among the contact conditions. |
+| **F** | 实时目标力。[单位：N 或 Nm] |
+| **Cmd** | 系统实时生成的用于跟踪力控制的命令位置。[单位：mm 或 deg] |
+| **Vmax** | 为系统稳定性配置的最大限速配置数据。[单位：mm/s] |
+| **TLT** | 实时监控接触条件中的 **[倾斜角阈值]** 状态。 |
+| **AVG** | 实时监控接触条件中的 **[角度变化阈值]** 状态。 |
+| **HLD** | 监控接触条件中的 **[持续时间]** 计数值和保留状态。 |
 
-* **Coordinate System Reference:** The direction and axes of all monitored data are aligned based on the reference coordinate system designated in the force control condition settings (`cnd`).
+* **坐标系统参考：** 所有监控数据的方向和轴线基于在力控制条件设置中指定的参考坐标系统对齐 (`cnd`)。
 
-* **Data Update Rule:** The data on this monitoring window updates in real time only when the force control operation command (`fctrl on`) is activated and the real-time control loop is running.
+* **数据更新规则：** 当激活力控制操作命令 (`fctrl on`) 并且实时控制循环正在运行时，此监控窗口上的数据实时更新。
 
 --- 
 
 {% hint style="info" %}
 
-**Teaching Pendant (TP) Navigation Path:** [Window Adjustment] ➔ [F1: Select] ➔ [Force Motion]
+**教学挂件 (TP) 导航路径：** [窗口调整] ➔ [F1: 选择] ➔ [力运动]
 
-**On-Site Verification Tip:** If the robot's behavior is unstable during initial contact, check the `TLT`, `AVG`, and `HLD` status monitoring data on the right. If the `HLD` (duration) fails to reach the target value and resets after contact, it indicates that the `TLT` or `AVG` value is momentarily exceeding the threshold, causing the contact determination to be missed. In this case, the corresponding threshold conditions must be tuned.
+**现场验证提示：** 如果机器人在初始接触期间行为不稳定，请检查右侧的 `TLT`、`AVG` 和 `HLD` 状态监控数据。如果 `HLD`（持续时间）未能达到目标值并在接触后重置，则表示 `TLT` 或 `AVG` 值暂时超过了阈值，导致接触判断被错过。在这种情况下，必须调整相应的阈值条件。
 
 {% endhint %}

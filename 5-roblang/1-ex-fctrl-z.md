@@ -1,28 +1,27 @@
-﻿## 5.1 Z-Axis Force Control 
+## 5.1 Z轴力控制
 
-The following is an example of a Job program that uses the **sensor-based force control function** on a robot.  
-This example is designed to wait until the **external force applied along the Z-axis reaches 35N or higher** before executing the subsequent tasks.
-
----
-
-##### **[Operation Overview]**
-
-- Securing time prior to starting force control via the delay command helps suppress sensor noise or initial vibrations, enabling more stable force control operation.
+以下是一个使用**基于传感器的力控制功能**的作业程序示例。  
+该示例设计为在**施加在Z轴上的外部力达到35N或更高**之前等待，然后执行后续任务。
 
 ---
 
+##### **[操作概述]**
 
-##### **[JOB Program]** 
+- 通过延迟命令在开始力控制之前确保时间，有助于抑制传感器噪声或初始振动，从而实现更稳定的力控制操作。
+
+---
+
+##### **[JOB 程序]** 
 
 ```python
-delay 1.0                           # Stabilization wait before starting control
-fctrl on,cnd=2                      # Start force control (Uses condition number 2)
+delay 1.0                           # 稳定等待以开始控制
+fctrl on,cnd=2                      # 开始力控制（使用条件编号 2）
 delay 0.5
 
 #get_current_force
-var force = _fctrl.force_z          # Current force in the Z direction based on the coordinate system configured in cnd=2
+var force = _fctrl.force_z          # 基于cnd=2中配置的坐标系统当前Z方向的力
 
-# Condition Loop: Wait until the Z-axis external force becomes 35N or higher
+# 条件循环：等待直到Z轴外部力达到35N或更高
 if abs(force.z) < 35 then *get_current_force
-delay 5                             # Wait for external force stabilization
-fctrl off                           # Terminate force control
+delay 5                             # 等待外部力稳定
+fctrl off                           # 终止力控制

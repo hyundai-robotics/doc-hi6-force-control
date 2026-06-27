@@ -1,29 +1,29 @@
-﻿## 2.1 F/T Sensor Installation 
+## 2.1 F/T传感器安装
 
-When mounting an F/T sensor for precise force control, the physical attachment direction of the sensor must perfectly match the sensor coordinate system configuration within the robot controller. 
+在为精确的力控制安装F/T传感器时，传感器的物理安装方向必须与机器人控制器中的传感器坐标系统配置完全匹配。
 
-If the sensor mounting direction or coordinate system configuration is misaligned, the direction of the force/torque recognized by the controller will differ from the actual direction, which may cause the force control loop to diverge or the robot to malfunction.
+如果传感器安装方向或坐标系统配置未对齐，控制器所识别的力/扭矩方向将与实际方向不同，这可能导致力控制环路发散或机器人故障。
 
 ---
 
-##### **[Definition of F/T Sensor Coordinate System]**
+##### **[F/T传感器坐标系统定义]**
 
-* **Controller-Based Sensor Coordinate System Rule:** The directions of the `X, Y, and Z axes` of the default sensor coordinate system defined by our robot controller are shown in the figure below.
+* **基于控制器的传感器坐标系统规则：** 我们机器人控制器定义的默认传感器坐标系统的`X、Y和Z轴`方向如下面的图所示。
 
-* **Physical Direction Alignment:** The sensor must be oriented and assembled so that the unique `X, Y, and Z axis` index lines engraved (or printed) on the side of the circular F/T sensor body perfectly align with the direction of the robot's sensor coordinate system.
+* **物理方向对齐：** 传感器必须被定向和组装，以使在圆形F/T传感器主体侧面刻印（或印刷）的独特`X、Y和Z轴`索引线与机器人的传感器坐标系统方向完美对齐。
 
 ![](../_assets/_05_fctrl_ctrl_sensor_crd.png)
 
-* **Coordinate System Reference Pose:** The manual figure above shows the sensor coordinate system defined based on the robot being in its standard home position.
+* **坐标系统参考姿态：** 上述手册图示显示了基于机器人处于标准原点位置所定义的传感器坐标系统。
 
-* **Precautions during Assembly:** When assembling the sensor mechanism, cross-reference the cable outlet direction or the sensor dowel pin positions with the axis definitions in the manual to ensure it is not mounted in the reverse direction or with an incorrect phase.
+* **组装过程中的注意事项：** 在组装传感器机制时，应交叉参考电缆出口方向或传感器定位销位置与手册中的轴定义，以确保传感器未反向安装或相位不正确。
 
 ---
 
 {% hint style="info" %}
 
-**Tool Load Information Reference:** When identifying dynamic loads and registering tool load information, the center of gravity position must be measured and entered based on the **origin of the F/T sensor reference coordinate system**, not the robot flange coordinate system.
+**工具负载信息参考：** 在识别动态负载和登记工具负载信息时，重心位置必须基于**F/T传感器参考坐标系统的原点**进行测量和输入，而不是机器人法兰坐标系统。
 
-**Prerequisite Check Before Sensor Zero Offset (Bias) Calibration:** Before performing the zero offset (Bias) calibration of the sensor signal, always verify qualitatively on the sensor diagnostic screen that the signs (+/-) of the forces (Fx, Fy, Fz) for the corresponding axes match the actual directions when the robot tool is pushed in a specific direction.
+**传感器零偏校准前的前提检查：** 在进行传感器信号的零偏（Bias）校准之前，总是要在传感器诊断屏幕上定性验证相应轴的力（Fx、Fy、Fz）的符号（+/-）与实际方向一致，当机器人工具沿特定方向推动时。
 
 {% endhint %}

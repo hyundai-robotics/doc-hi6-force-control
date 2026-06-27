@@ -1,50 +1,46 @@
-﻿## 2.3 F/T Sensor Offset Settings
+## 2.3 F/T 传感器偏置设置
 
-This section describes how to configure the **task coordinate system**, which serves as the reference for the control loop during actual force control operations, and how to enter the positional offset from the robot flange to the sensor.
+本节描述如何配置 **任务坐标系统**，该系统在实际力控制操作中作为控制回路的参考，以及如何输入从机器人法兰到传感器的位移偏置。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [1: System Environment] ➔ **Select [Mounting] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [1: 系统环境] ➔ **选择 [安装] 标签**
 
 ---
 
 ![](../_assets/_22_fctrl_env_set_offset_sensor.png)
 
+##### **[力控制操作框架设置]**
 
-##### **[Force Control Operation Frame Settings]**
+指定在力控制算法运行时用于跟踪目标力的传感器数据参考坐标系统。
 
-Specifies the sensor data reference coordinate system used to track the target force when the force control algorithm operates. 
+* **基于传感器框架：**
+  在机器人的末端执行器上基于 **F/T 传感器的独特坐标系统（传感器框架）** 执行力控制。这不适用于需要基于工具中心点（TCP）进行力控制的环境。
+* **基于工具框架：**
+  通过 **将 F/T 传感器测量的力/扭矩数据转换为最终 TCP 坐标系统** 执行力控制。当需要基于工具尖端进行精确力控制时，选择此选项。
 
-* **Based on Sensor Frame:**
-  Performs force control based on the **unique coordinate system of the F/T sensor (Sensor Frame)** mounted at the end-effector of the robot. This is not suitable for environments where force needs to be controlled based on the tool center point (TCP).
-* **Based on Tool Frame:**
-  Performs force control by **transforming the force/torque data measured by the F/T sensor into the final TCP coordinate system**. Select this option when precise force control is required based on the tool tip.
+---
 
---- 
+##### **[工具框架配置的前提条件]**
 
-##### **[Prerequisites for Tool Frame Configuration]**
+要通过将操作框架设置为 **'工具框架'** 来执行正常的坐标变换操作，必须提前配置以下 **两个几何参数**。
 
-To perform normal coordinate transformation operations by setting the operation frame to the **'Tool Frame'**, the following **two geometric parameters must be configured beforehand**.
+###### **1. 传感器偏置长度设置**
+输入从机器人法兰表面中心到 F/T 传感器坐标系统中心的精确物理距离 (Z)。当前，仅在法兰旋转中心轴与传感器中心对齐时，支持此功能。
 
-
-
-###### **1. Sensor Offset Length Settings**
-Enter the precise physical distance (Z) from the center of the robot flange surface to the center of the F/T sensor coordinate system. Currently, this function is supported only when the flange rotation center axis aligns with the center of the sensor.
-
-* **Configuration Range:** `0.0` ~ `1000.0` (mm)
+* **配置范围：** `0.0` ~ `1000.0` (mm)
 
 ![](../_assets/_23_fctrl_env_set_offset_tool.png)
 
+###### **2. 动作工具数据设置**
+必须准确输入在执行力控制的相应程序步骤（移动命令）中指定的工具编号的 **TCP 长度和方向**。控制器基于这些数据计算从法兰到 TCP 尖端的相对坐标。
 
-###### **2. Motion Tool Data Settings**
-The **TCP length and direction** of the tool number designated for the corresponding program step (Move command) where force control is executed must be entered accurately. The controller calculates the relative coordinates from the flange to the TCP tip based on this data.
-
-[F2: System] ➔ [3: Robot Parameter] ➔ [1: Tool Data]
+[F2: 系统] ➔ [3: 机器人参数] ➔ [1: 工具数据]
 
 ![](../_assets/_24_fctrl_env_set_offset_motion_tool_data.png)
 
 {% hint style="warning" %}
 
-If an invalid tool number is used while the operation frame is set to the **Tool Frame**, or if the tool data (TCP) values differ from the actual setup, the system may malfunction or diverge during force control operations due to coordinate transformation errors.
+如果在将操作框架设置为 **工具框架** 时使用了无效的工具编号，或者工具数据（TCP）值与实际设置不同，则由于坐标变换错误，系统可能在力控制操作期间发生故障或发散。
 
-After changing the parameter settings, always press the **[Apply/OK]** button at the bottom of the screen to apply them to the controller.
+更改参数设置后，请始终按屏幕底部的 **[应用/确认]** 按钮将其应用于控制器。
 
 {% endhint %}

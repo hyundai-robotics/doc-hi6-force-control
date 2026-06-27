@@ -1,54 +1,54 @@
-﻿### 4.4.2 Profile: Velocity Clamp
+### 4.4.2 Profile: Velocity Clamp
 
-During force control operation, if the speed is excessively high when the robot makes contact with the environment (object), excessive overshoot and divergence (vibration) of the control system will occur. This function is designed to fundamentally suppress mechanical vibrations and impacts of the system by forcibly clamping the robot's maximum operating speed (Vmax) to a lower level the moment the currently detected force/torque value exceeds a user-configured threshold.
+在力控制操作期间，当机器人与环境（物体）接触时，如果速度过高，会导致控制系统的过度超调和发散（振动）。此功能旨在通过在当前检测到的力/扭矩值超过用户配置的阈值时，强制将机器人的最大操作速度（Vmax）钳制到较低的水平，从根本上抑制机械振动和系统冲击。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Profile] Tab**
+[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **选择 [Profile] 选项卡**
 
 ---
 
 ![](../_assets/_10_fctrl_ctrl_vel_clamp.png)
 
-##### **[Key Configuration Items]**
+##### **[关键配置项目]**
 
-| Configuration Item | Description |
+| 配置项目 | 描述 |
 | :--- | :--- |
-| **Function Activation** | Specifies whether to use the function via the checkbox. |
-| **Linear Velocity - Force Condition [% Target]** | Trigger condition for the linear velocity axes (X, Y, Z). When the current force reaches the set percentage (%) relative to the final target force configured in the [Settings] tab, the speed limit is executed immediately. |
-| **Linear Velocity - Limit Ratio [% Limit Speed]** | Defines the attenuation ratio (%) to scale down the maximum limit speed per axis previously configured in the [Settings] tab, once the force condition is satisfied. |
-| **Angular Velocity - Torque Condition [% Target]** | Trigger condition for the rotational axes (Rx, Ry, Rz). When the current torque reaches the set percentage (%) relative to the final target torque, the speed limit is executed. |
-| **Angular Velocity - Limit Ratio [% Limit Speed]** | Defines the attenuation ratio (%) to scale down the maximum limit speed of the rotational axes previously configured in the [Settings] tab, once the torque condition is satisfied. |
+| **功能激活** | 指定是否通过复选框使用该功能。 |
+| **线速度 - 力条件 [% 目标]** | 线速度轴（X, Y, Z）的触发条件。当当前力达到相对于在 [Settings] 选项卡中配置的最终目标力所设定的百分比（%）时，将立即执行速度限制。 |
+| **线速度 - 限制比 [% 限制速度]** | 定义当满足力条件时，按轴缩减在 [Settings] 选项卡中先前配置的最大限制速度的衰减比例（%）。 |
+| **角速度 - 扭矩条件 [% 目标]** | 旋转轴（Rx, Ry, Rz）的触发条件。当当前扭矩达到相对于最终目标扭矩设定的百分比（%）时，将执行速度限制。 |
+| **角速度 - 限制比 [% 限制速度]** | 定义当满足扭矩条件时，按轴缩减在 [Settings] 选项卡中先前配置的旋转轴的最大限制速度的衰减比例（%）。 |
 
 ![](../_assets/_14_fctrl_ctrl_vmax_clamp.png)
 
 
-##### **[Understanding through Operation Example]**
+##### **[通过操作示例理解]**
 
-* **Default Limit Speed:** `2.0 mm/s` (Set value in the [Settings] tab)
-* **Final Target Force:** `10 N` (Set value in the [Settings] tab)
-* **Force Condition [% Target]:** `50 %` (Triggers the function when reaching `5 N`, which is 50% of the final target)
-* **Limit Ratio [% Limit Speed]:** `30 %` (Clamps downward to `0.6 mm/s`, which is `30%` of the existing speed limit)
+* **默认限制速度:** `2.0 mm/s`（在 [Settings] 选项卡中设定的值）
+* **最终目标力:** `10 N`（在 [Settings] 选项卡中设定的值）
+* **力条件 [% 目标]:** `50 %`（当达到 `5 N` 时触发该功能，即最终目标的50%）
+* **限制比 [% 限制速度]:** `30 %`（钳制到 `0.6 mm/s`，即现有限制的 `30%`）
 
 ---
 
-###### **Step 1. Initial Entry and Force Trigger**
-After the robot descends and makes contact with the object, the speed limit algorithm forcibly intervenes the moment the actual measured force data rises rapidly and surpasses the trigger reference point of **5 N**.
+###### **步骤 1. 初始进入与力触发**
+在机器人下降并与物体接触后，速度限制算法在实际测量的力数据迅速上升并超过触发参考点 **5 N** 的瞬间强制干预。
 
-###### **Step 2. Velocity Clamping and Vibration Suppression**
-Before the function is activated, the robot displays vibrations up to around the maximum Vmax of `2.0 mm/s` in order to track the target force. 
+###### **步骤 2. 速度钳制与振动抑制**
+在功能激活之前，机器人在追踪目标力的过程中会显示出到大约最大 Vmax `2.0 mm/s` 的振动。
 
-However, the moment the force condition is satisfied and the limit ratio is newly applied, the robot's operating speed is **powerfully clamped within the predefined limit line of `0.6 mm/s` (30% of the original limit)**. As a result, excessive behavior of the control system is restricted, and the force data below also stops vibrating and stably converges to the target value of 10 N.
+然而，当力条件得到满足并且限制比被重新应用的瞬间，机器人的工作速度 **强力钳制在预定义的限制线 `0.6 mm/s`（原限制的30%）以内**。因此，控制系统的过度行为受到限制，下面的力数据也停止振动，并稳定地收敛到10 N的目标值。
 
 ---
 
 {% hint style="info" %}
 
-**On-Site Tuning Guide (Vibration Control):** Activate this function when initial contact vibrations (bouncing phenomena) cannot be resolved solely by adjusting response or damping. By **adjusting the [Limit Ratio] downward to an appropriate level**, the physical speed margin is restricted, allowing you to suppress vibrations effectively.
+**现场调优指南（振动控制）：** 当初始接触振动（弹跳现象）无法仅通过调整响应或阻尼来解决时，激活此功能。通过 **将 [限制比] 向下调整到适当水平**，限制物理速度余量，从而有效抑制振动。
 
 {% endhint %}
 
 {% hint style="warning" %}
 
-**Side Effects of Excessive Restriction:**
-If the [Limit Ratio] is set too low (e.g., 5% or less), the vibration will be suppressed, but the robot will lack the speed required to push into the target force. 
+**过度限制的副作用：**
+如果 [限制比] 设置得过低（例如，5% 或更低），则会抑制振动，但机器人将缺乏推进到目标力所需的速度。
 
 {% endhint %}

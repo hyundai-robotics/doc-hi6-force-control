@@ -1,64 +1,64 @@
-﻿### 4.2 Control Parameters
+### 4.2 控制参数
 
-This menu is used to select the degrees of freedom (axes) to apply force control, and to configure the target force/torque, responsiveness of the virtual system, viscous resistance (damping), and speed and displacement limit values. These are key parameters that determine the flexibility and reaction speed of the actual robot when it comes into contact with the environment.
+此菜单用于选择应用力控制的自由度（轴），并配置目标力/力矩、虚拟系统的响应性、粘性阻力（阻尼）和速度及位移限制值。这些是决定机器人在与环境接触时灵活性和反应速度的关键参数。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Settings] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [3: 力控制选项] ➔ **选择 [设置] 选项卡**
 
 ---
 
 ![](../_assets/_07_fctrl_ctrl_cnd_control.png)
 
 
-##### **[Control Configuration Items]**
+##### **[控制配置项]**
 
 
-| Item | Description |
+| 项目 | 描述 |
 | :--- | :--- |
-| **Axis** | Indicates the 6-DOF axes targeted for control. (X, Y, Z: Linear velocity directions / Rx, Ry, Rz: Rotational directions) |
-| **Active** | Specifies whether to activate force control for the corresponding axis. When activated, the box lights up in **yellow**. |
-| **Target** | Enter the target force (Unit: N) or target torque (Unit: Nm). |
-| **Response** | Adjusts the initial responsiveness (%) of the robot to external forces or target value changes. The **lower the set value, the faster the control response speed, allowing it to reach the target value agilely**. |
-| **Damping** | The damping ratio (%) that matches the virtual viscous damping coefficient. The **lower the set value, the more flexibly it conforms** and responds to external forces. |
-| **Limit** | Limits the maximum output speed that can occur during force control operation. (Linear axis: mm/s, Rotational axis: deg/s) |
-| **-Pos / +Pos** | The bidirectional travel limit (soft limit) range within which the robot can be forcibly pushed or moved during force control operation. (mm or deg) |
+| **轴** | 指示要控制的6自由度轴。（X, Y, Z: 线性速度方向 / Rx, Ry, Rz: 旋转方向） |
+| **激活** | 指定是否为相应的轴激活力控制。当激活时，框框将亮起为**黄色**。 |
+| **目标** | 输入目标力（单位：N）或目标力矩（单位：Nm）。 |
+| **响应** | 调整机器人对外部力或目标值变化的初始响应性（%）。**设置值越低，控制响应速度越快，可以敏捷地达到目标值。** |
+| **阻尼** | 与虚拟粘性阻尼系数匹配的阻尼比（%）。**设置值越低，适应外部力的灵活性越强。** |
+| **限制** | 限制在力控制操作期间可能发生的最大输出速度。（线性轴：mm/s，旋转轴：deg/s） |
+| **-Pos / +Pos** | 在力控制操作期间，机器人可以被强行推或移动的双向行程限制（软限制）范围。（mm或deg） |
 
 
 {% hint style="info" %}
 
-**Coordinate System Reference:** The direction definition of each axis (X, Y, Z, Rx, Ry, Rz) is mapped based on the **task coordinate system selected in the preceding [Settings] tab**.
+**坐标系统参考：** 每个轴的方向定义（X, Y, Z, Rx, Ry, Rz）基于**前面 [设置] 选项卡中选择的任务坐标系统**进行映射。
 
-**Response Tuning Guide:**
-  * **When set to 0%:** This is advantageous for mitigating the impact generated during initial contact, stably controlling the movement, and suppressing vibrations. (However, a larger damping value results in a slower response.)
-  * **When set to 1% or higher:** The target control speed and tracking performance are improved, allowing for a more agile response. However, within certain ranges, the deviation in responsiveness according to the change in the set value may be subtle.
+**响应调整指南：**
+  * **设置为0%时：** 对于减轻初始接触时产生的冲击，稳定控制运动以及抑制振动来说，这是有利的。（但较大的阻尼值会导致响应变慢。）
+  * **设置为1%或更高时：** 目标控制速度和跟踪性能得到改善，响应更敏捷。然而，在某些范围内，响应性的偏差可能随设置值变化而变得微妙。
 
-**Speed and Position Limit Management:** If the balance between response and damping settings is incorrect, or if the speed limit value is set excessively high, the robot may accelerate rapidly upon contact with an object, causing system vibrations. During initial tuning, always ensure safety by **setting the [Limit] speed value low**, and then gradually increase control performance.
+**速度和位置限制管理：** 如果响应与阻尼设置之间的平衡不正确，或速度限制值设置过高，在与物体接触时，机器人可能会快速加速，导致系统振动。在初始调整期间，始终确保通过**将 [限制] 速度值设置为低**，然后逐渐提高控制性能。
 
 {% endhint %}
 
 ---
 
-##### **Control Configuration Example (Vertical Direction Sanding Task)**
+##### **控制配置示例（垂直方向打磨任务）**
 
-This is a UI configuration matching example for a typical sanding/grinding process that maintains the posture of the actual tool while applying pressure.
+这是一个典型打磨/研磨过程的UI配置匹配示例，该过程在施加压力的同时保持实际工具的姿态。
 
 
-| Axis | Active | Target | Response | Damping | Limit | Position Limit (- / +) |
+| 轴 | 激活 | 目标 | 响应 | 阻尼 | 限制 | 位置限制 (- / +) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **X** | Off | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
-| **Y** | Off | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
-| **Z** | **On** | **20 N** | **10 %** | **20 %** | **5 mm/s** | **0 / 30 mm** |
-| **Rx** | **On** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
-| **Ry** | **On** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
-| **Rz** | Off | 0 Nm | 0 % | 100 % | 0 deg/s | 0 / 0 deg |
+| **X** | 关闭 | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
+| **Y** | 关闭 | 0 N | 0 % | 100 % | 0 mm/s | 0 / 0 mm |
+| **Z** | **开启** | **20 N** | **10 %** | **20 %** | **5 mm/s** | **0 / 30 mm** |
+| **Rx** | **开启** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
+| **Ry** | **开启** | **0 Nm** | **0 %** | **10 %** | **5 deg/s** | **-20 / 20 deg** |
+| **Rz** | 关闭 | 0 Nm | 0 % | 100 % | 0 deg/s | 0 / 0 deg |
 
-* **Z-axis Control:** Gently settles onto the surface while maintaining a **constant force of 20N** in the normal direction (pressurizing axis).
-* **Rx, Ry-axis Control:** Soft motion compliance occurs as the tool is coupled with a **target torque of 0Nm and low damping (10%)** to allow it to remain flat in response to curved or warped machining surface edges.
-* The coordinate system must be configured to "Tool".
+* **Z轴控制：** 在法向方向维持**20N的恒定力**，轻柔地贴合于表面。
+* **Rx, Ry轴控制：** 工具与**0Nm和低阻尼(10%)的目标力矩**耦合时，产生软运动顺应性，以使其在响应于曲面或变形加工表面边缘时保持平坦。
+* 坐标系统必须配置为“工具”。
 
 ---
 
 {% hint style="warning" %}
 
-**Vibration and Noise Notice:** Lowering the damping and response ratios allows for a flexible response to external environment changes. However, if the static stiffness of the target object is too high or combined with high-speed robot operation conditions, it may cause **vibrations and high-frequency noise** due to control phase lag, so an adequate damping margin must be secured.
+**振动和噪音注意事项：** 降低阻尼和响应比可以对外部环境变化做出灵活响应。然而，如果目标物体的静态刚度过高或与高速机器人操作条件相结合，可能会因控制相位滞后引起**振动和高频噪声**，因此必须确保足够的阻尼余量。
 
 {% endhint %}

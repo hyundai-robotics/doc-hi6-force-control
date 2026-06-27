@@ -1,72 +1,69 @@
-﻿# 5. Commands
+# 5. 命令
 
-This document provides descriptions of the major system commands and status variables (system variables) related to the force control function. Each command is used for force control configuration, motion control, status verification, and receiving F/T sensor data.
+本文档提供了与力控制功能相关的主要系统命令和状态变量（系统变量）的描述。每个命令用于力控制配置、运动控制、状态验证和接收 F/T 传感器数据。
 
 ---
 
-##### **1. Commands (Version V70.02-00 or Later)**
+##### **1. 命令 (版本 V70.02-00 或更高版本)**
 
-In versions V70.02-00 and later, a standardized format is used where execution commands (`fctrl`) and built-in status variables (`_fctrl`) are separated for clear distinction.
+在 V70.02-00 及更高版本中，使用标准化格式，其中执行命令 (`fctrl`) 和内置状态变量 (`_fctrl`) 被分开以便于清晰区分。
 
-##### **[Commands]**
+##### **[命令]**
 
-| Command | Description | Argument | Remarks |
+| 命令 | 描述 | 参数 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `fctrl on, cnd=` | Starts force control operation and applies the designated control condition. | `cnd=Condition Number` (e.g., `cnd=1`) | Mandatory execution when starting force control |
-| `fctrl control, cnd=` | Modifies only the control parameter conditions in real time while maintaining the force control operation. | `cnd=Condition Number` (e.g., `cnd=2`) | Used to switch control conditions without stopping motion |
-| `fctrl off` | Safely terminates force control operation and returns to normal position control. | None | - |
-| `fctrl motion_on` | Starts the designated automatic path generation motion (Spiral, Bidir, Unidir). | None | Only valid while `fctrl on` is active |
-| `fctrl motion_off` | Immediately stops the automatic path generation motion currently running. | None | The force control (`fctrl on`) state is maintained |
+| `fctrl on, cnd=` | 开始力控制操作并应用指定的控制条件。 | `cnd=条件编号` (例如：`cnd=1`) | 启动力控制时强制执行 |
+| `fctrl control, cnd=` | 在保持力控制操作的同时，实时修改仅控制参数条件。 | `cnd=条件编号` (例如：`cnd=2`) | 用于在不停机的情况下切换控制条件 |
+| `fctrl off` | 安全终止力控制操作并返回正常位置控制。 | 无 | - |
+| `fctrl motion_on` | 启动指定的自动路径生成运动（螺旋、双向、单向）。 | 无 | 仅在 `fctrl on` 处于活动状态时有效 |
+| `fctrl motion_off` | 立即停止当前运行的自动路径生成运动。 | 无 | 保持力控制 (`fctrl on`) 状态 |
 
 {% hint style="info" %}
 
-**`fctrl control` Changeable Parameters (Specifications):** When switching conditions in real time using this command, only the control conditions (selected axes, activation status, target force, responsiveness, damping gain, limit speed, and $\pm$ position limit ranges) can be changed. The reference coordinate system, tool number, and filtering/profile/motion settings do not change and maintain the configuration previously set by (`fctrl on, cnd`).
+**`fctrl control` 可更改参数（规格）：** 使用此命令实时切换条件时，仅可更改控制条件（选择的轴、激活状态、目标力、响应性、阻尼增益、限制速度，以及 $\pm$ 位置限制范围）。参考坐标系、工具编号及过滤/配置/运动设置不会改变，并保持由 (`fctrl on, cnd`) 先前设置的配置。
 
 {% endhint %}
 
-##### **[Monitoring-Related System Variables]**
+##### **[监控相关系统变量]**
 
-| System Variable | Description | Data Type | Remarks |
+| 系统变量 | 描述 | 数据类型 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `_fctrl.motion` | Returns the current operation status of the automatic path generation motion. | (0: In operation, 1: Motion complete) | Used to check motion operation status (e.g., `wait _fctrl.motion==0`) |
-| `_fctrl.contact` | Returns the current contact determination status with the surface of the task object. | (0: No contact, 1: Contact complete) | Used to verify if contact conditions are satisfied (e.g., `wait _fctrl.contact`) |
-| `_fctrl.force_x` | Receives the force along the X-axis direction based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: N) | - |
-| `_fctrl.force_y` | Receives the force along the Y-axis direction based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: N) | - |
-| `_fctrl.force_z` | Receives the force along the Z-axis direction based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: N) | Primary variable for monitoring the pressurizing control axis |
-| `_fctrl.torque_rx` | Receives the rotational torque about the X-axis based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: Nm) | - |
-| `_fctrl.torque_ry` | Receives the rotational torque about the Y-axis based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: Nm) | - |
-| `_fctrl.torque_rz` | Receives the rotational torque about the Z-axis based on the tool coordinate system currently being measured by the F/T sensor. | (Unit: Nm) | - |
-
+| `_fctrl.motion` | 返回当前自动路径生成运动的操作状态。 | (0：正在操作，1：运动完成) | 用于检查运动操作状态 (例如：`wait _fctrl.motion==0`) |
+| `_fctrl.contact` | 返回当前与任务对象表面的接触判断状态。 | (0：无接触，1：接触完成) | 用于验证接触条件是否满足 (例如：`wait _fctrl.contact`) |
+| `_fctrl.force_x` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 X 轴方向的力。 | (单位：N) | - |
+| `_fctrl.force_y` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Y 轴方向的力。 | (单位：N) | - |
+| `_fctrl.force_z` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Z 轴方向的力。 | (单位：N) | 监控加压控制轴的主要变量 |
+| `_fctrl.torque_rx` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 X 轴的旋转扭矩。 | (单位：Nm) | - |
+| `_fctrl.torque_ry` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Y 轴的旋转扭矩。 | (单位：Nm) | - |
+| `_fctrl.torque_rz` | 接收基于当前正在由 F/T 传感器测量的工具坐标系的 Z 轴的旋转扭矩。 | (单位：Nm) | - |
 
 ---
 
-##### **2. Commands (Below Version V70.02-00)**
+##### **2. 命令（低于版本 V70.02-00）**
 
-In controller units and legacy program codes below version V70.02-00, the following global variable and built-in function standards are used. Please pay close attention during maintenance.
+在低于版本 V70.02-00 的控制器单元和遗留程序代码中，使用以下全局变量和内置函数标准。请在维护时给予特别注意。
 
-| Command / Function | Description | Arguments and Specific Rules | Remarks |
+| 命令 / 函数 | 描述 | 参数及具体规则 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `motion_state` | Returns the current operation status of the automatic path generation motion. | None | Identical to `_fctrl.motion` in version V70.02-00 |
-| `contact_state` | Returns the current contact determination status with the surface of the task object. | None | Identical to `_fctrl.contact` in version V70.02-00 |
-
+| `motion_state` | 返回当前自动路径生成运动的操作状态。 | 无 | 与版本 V70.02-00 中的 `_fctrl.motion` 相同 |
+| `contact_state` | 返回当前与任务对象表面的接触判断状态。 | 无 | 与版本 V70.02-00 中的 `_fctrl.contact` 相同 |
 
 ---
 
-##### **3. F/T Sensor Value Reception Function**
+##### **3. F/T 传感器值接收功能**
 
-This data reception function is compatible across all software versions.
+该数据接收功能与所有软件版本兼容。
 
-| Command / Function | Description | Arguments and Specific Rules | Remarks |
+| 命令 / 函数 | 描述 | 参数及具体规则 | 备注 |
 | :--- | :--- | :--- | :--- |
-| `cfo(crd, type)` | Receives F/T sensor data based on the designated coordinate system. | `crd` : Reference coordinate system number configured in the force control condition (cnd)<br>`type` : Fixed to `"sensor"` | Refer to the precautions below |
-
+| `cfo(crd, type)` | 根据指定的坐标系接收 F/T 传感器数据。 | `crd` : 在力控制条件 (cnd) 中配置的参考坐标系编号<br>`类型 (type)` : 固定为 `"sensor"` | 请参阅以下注意事项 |
 
 ---
 
 {% hint style="info" %}
 
-**Precautions for Using `cfo()`:** If the entered coordinate system (`crd`) differs from the reference coordinate system of the currently applied force control condition (`cnd`), the data will not update. To receive data in real time, the `type` argument must be entered in lowercase as `"sensor"`.
+**使用 `cfo()` 的注意事项：** 如果输入的坐标系 (`crd`) 与当前应用的力控制条件 (`cnd`) 的参考坐标系不同，则数据将不会更新。要实时接收数据，`类型 (type)` 参数必须以小写输入为 `"sensor"`。
 
-**Recommendation:** It is highly recommended to use the dedicated system variables for **versions V70.02-00 and later (`_fctrl.force_x`, etc.)**, which eliminate the risk of argument matching errors.
+**建议：** 强烈建议使用针对 **版本 V70.02-00 及更高版本的专用系统变量 (`_fctrl.force_x` 等)**，以消除参数匹配错误的风险。
 
 {% endhint %}

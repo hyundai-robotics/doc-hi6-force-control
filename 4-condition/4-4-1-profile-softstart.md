@@ -1,41 +1,41 @@
-﻿### 4.4.1 Profile: Soft Start
+### 4.4.1 概况: 软启动
 
-This function is designed to prevent a rapid impact force that may occur when the robot initially makes contact with and enters the task object. When reaching the target control value, the target value is gradually applied in the form of a smooth curve (Profile Curve) rather than a step command.
+此功能旨在防止机器人初次接触并进入任务对象时可能发生的快速冲击力。当达到目标控制值时，目标值以平滑曲线（概况曲线）的形式逐渐应用，而不是阶跃命令。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [3: Force Control Options] ➔ **Select [Profile] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力量控制] ➔ [3: 力量控制选项] ➔ **选择 [概况] 选项卡**
 
 ---
 
 ![](../_assets/_09_fctrl_ctrl_soft_start.png)
 
-##### **[Key Configuration Items]**
+##### **[关键配置项]**
 
-| Configuration Item | Description |
+| 配置项 | 描述 |
 | :--- | :--- |
-| **Function Activation** | Specifies whether to use the function via the checkbox. |
-| **Start Ratio [%]** | Sets the force/torque threshold at the moment the function is triggered (operation start) as a percentage (%) of the final target value. Profile control begins when the sensor measurement reaches this ratio. |
-| **Time [s]** | Defines the profile curve time (Unit: seconds) required from the moment the start ratio is satisfied until the final target force/torque value is completely reached. |
+| **功能激活** | 通过复选框指定是否使用该功能。 |
+| **起始比率 [%]** | 设置功能触发时的力/扭矩阈值（操作开始）作为最终目标值的百分比（%）。当传感器测量值达到此比例时，概况控制开始。 |
+| **时间 [s]** | 定义从满足起始比率的时刻到最终目标力/扭矩值完全达到所需的概况曲线时间（单位：秒）。 |
 
 ![](../_assets/_28_fctrl_soft_start.png)
 
-##### **[Understanding through Operation Example]**
+##### **[通过操作示例理解]**
 
-This is an example of the actual robot's tuning behavior based on the settings below.
+这是基于以下设置的实际机器人的调试行为示例。
 
-* **Final Target Force:** `10 N` (Z-axis set value in the Settings tab)
-* **Start Ratio:** `50 %` (Triggers the function when reaching **5 N**, which is 50% of the final target)
-* **Profile Time:** `5 s`
+* **最终目标力:** `10 N` （设置选项卡中的 Z 轴设定值）
+* **起始比率:** `50 %` （当达到 **5 N** 时触发功能，这是最终目标的 50%）
+* **概况时间:** `5 s`
 
-###### **Step 1. Initial Contact and Standby (Initial Contact Phase)**
-As the robot descends and begins contact with the task object, the current force measured by the sensor starts to rise. At this moment, the Soft Start function is officially activated as soon as the actual measured data reaches the trigger reference point of **5 N**.
+###### **步骤 1. 初始接触与待机（初始接触阶段）**
+当机器人下降并开始与任务对象接触时，传感器测量的当前力开始上升。在这一刻，软启动功能在实际测量数据达到 **5 N** 的触发参考点时正式激活。
 
-###### **Step 2. Entering Profile Interval (Profile Control Phase)**
-From the moment the function is activated, the controller does not abruptly increase the command force in a step form. It gradually increases the force command in a smooth curve over the designated **5 seconds**, stably settling the robot until the final target value of 10 N is reached.
+###### **步骤 2. 进入概况间隔（概况控制阶段）**
+从功能激活的那一刻起，控制器不会以阶跃形式突然增加命令力，而是逐渐在指定的 **5 秒** 内以平滑曲线增加力命令，稳定地使机器人直至最终目标值 10 N 达到。
 
 {% hint style="info" %}
 
-**On-Site Application Tip:** This setting is essential when assembling parts with a high risk of damage (glass, displays, etc.) or when initially settling onto precise machined surfaces to prevent product defects and scratches caused by contact impact.
+**现场应用提示：** 当组装易损件（如玻璃、显示器等）或首次在精准加工表面上定型时，该设置至关重要，以防止因接触冲击导致的产品缺陷和划伤。
 
-**On-Site Troubleshooting Guide:** If an abrupt impact still occurs during initial entry, **lower the [Start Ratio]** to activate the function earlier, or **increase the [Time] value** to adjust the pressurizing curve more gently.
+**现场故障排除指南：** 如果在初次进入时仍然发生急剧冲击，**降低 [起始比率]** 以更早激活功能，或**提高 [时间] 值** 以使加压曲线更平缓。
 
 {% endhint %}

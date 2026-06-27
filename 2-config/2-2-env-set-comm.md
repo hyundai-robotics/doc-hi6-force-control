@@ -1,8 +1,8 @@
-﻿## 2.2 F/T Sensor Communication Settings
+## 2.2 F/T 传感器通信设置
 
-This section describes how to activate real-time data communication with the force/torque (F/T) sensor, which serves as the reference for the control loop during actual force control operations, and how to configure the connection parameters.
+本节介绍如何激活与力/扭矩（F/T）传感器的实时数据通信，该传感器在实际力控制操作期间作为控制环路的参考，以及如何配置连接参数。
 
-[F2: System] ➔ [4: Application Parameter] ➔ [24: Force Control] ➔ [1: System Environment] ➔ **Select [Communication] Tab**
+[F2: 系统] ➔ [4: 应用参数] ➔ [24: 力控制] ➔ [1: 系统环境] ➔ **选择 [通信] 选项卡**
 
 ---
 
@@ -10,12 +10,12 @@ This section describes how to activate real-time data communication with the for
 
 
 
-##### **[Key Configuration Items Guide]**
+##### **[关键配置项指南]**
 
-| Configuration Item | Description |
+| 配置项 | 描述 |
 | :--- | :--- |
-| **Function Use** | Selects whether to activate the force control loop. To use the function normally, it must be set to **[Enable]**. |
-| **Sensor Type** | Selects the F/T sensor manufacturer profile that matches the hardware interface. `(ATI, OnRobot, Robotiq, AIDIN)` |
-| **Protocol** | Specifies the method for transmitting and receiving real-time data packets between the sensor controller and the robot controller. Available options are `[UDP]`, `[TCP]`, and `[SCI]`. |
-| **Bias** | An offset filter used to cancel the tool dead weight and residual noise at the time of sensor initialization.<br>**⚠️ Note:** In the current version, this is in a **Disabled state** where only the UI component is placed. (Sequential support is planned for the future) |
-| **Network Parameters** | • **IP Address:** Enter the unique IP address assigned to the F/T sensor controller.<br>• **Local Port:** The data reception port number on the robot controller side. (Mainly 50001, 50100 are used)<br>• **Remote Port:** The data transmission port number on the F/T sensor side. (Enter the fixed port specified in the manufacturer's specification manual) |
+| **功能使用** | 选择是否激活力控制环路。要正常使用该功能，必须设置为 **[启用]**。 |
+| **传感器类型** | 选择与硬件接口匹配的 F/T 传感器制造商配置文件。 `(ATI, OnRobot, Robotiq, AIDIN)` |
+| **协议** | 指定传感器控制器与机器人控制器之间传输和接收实时数据包的方法。可用的选项是 `[UDP]`、`[TCP]` 和 `[SCI]`。 |
+| **偏置** | 用于在传感器初始化时取消工具静重和残余噪声的偏移滤波器。<br>**⚠️ 注意：** 在当前版本中，此状态为 **禁用状态**，仅放置了 UI 组件。 （计划在未来实现顺序支持） |
+| **网络参数** | • **IP 地址：** 输入分配给 F/T 传感器控制器的唯一 IP 地址。<br>• **本地端口：** 机器人控制器侧的数据接收端口号。（主要使用 50001、50100）<br>• **远程端口：** F/T 传感器侧的数据传输端口号。（输入制造商规格手册中指定的固定端口） |

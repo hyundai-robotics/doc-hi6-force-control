@@ -1,32 +1,32 @@
-﻿## 5.3 Contact Surface Detection Function 
+## 5.3 接触面检测功能
 
-The following is an example of a Job program that uses the **contact surface detection function** on a robot.
+以下是一个使用**接触面检测功能**的机器人作业程序示例。
 
 ---
 
-##### **[Operation Overview]**
+##### **[操作概述]**
 
-Configure the **contact** conditions in the **settings** as follows:
+在**设置**中配置**接触**条件如下：
 
-- Example: If contact is maintained based on the criteria below for 5 seconds, the contact surface detection is determined as OK.
+- 示例：如果在下面的标准基础上保持接触5秒钟，则接触面检测确定为OK。
 
-| Item | UI Value |
+| 项目 | UI值 |
 |---|---|
-| Force Error | 3 N |
-| Force Direction Variation | 20 deg |
-| Contact Angle | 40 deg |
-| Duration | 5 sec |
+| 力误差 | 3 N |
+| 力方向变化 | 20 deg |
+| 接触角度 | 40 deg |
+| 持续时间 | 5 sec |
 
 
 ---
 
-##### **[JOB Program]**
+##### **[作业程序]**
 
 ```python
-delay 1.0                            # Stabilization wait before starting control
-fctrl on,cnd=1                       # Start force control (Uses condition number 1)
-delay 0.5                            # Wait for 0.5 seconds before executing the contact surface detection condition
+delay 1.0                            # 开始控制前的稳定等待
+fctrl on,cnd=1                       # 开始力控制（使用条件编号1）
+delay 0.5                            # 在执行接触面检测条件前等待0.5秒
 
-wait _fctrl.contact, 20              # Execute contact surface detection condition, wait until contact surface detection is OK, check for a maximum of 20 seconds
+wait _fctrl.contact, 20              # 执行接触面检测条件，等待直到接触面检测为OK，最多检查20秒
 
-fctrl off                            # Terminate force control
+fctrl off                            # 终止力控制
